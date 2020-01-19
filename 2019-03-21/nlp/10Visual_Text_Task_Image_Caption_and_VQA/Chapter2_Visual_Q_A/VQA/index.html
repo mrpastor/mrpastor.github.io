@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="preconnect" href="//www.googletagmanager.com">
+	<link rel="preconnect" href="//zz.bdstatic.com">
+	<link rel="preconnect" href="//sp0.baidu.com">
+	<link rel="preconnect" href="//www.google-analytics.com">
+	<link rel="preconnect" href="//cdn1.lncld.net">
+	<link rel="preconnect" href="//unpkg.com">
+	<link rel="preconnect" href="//app-router.leancloud.cn">
+	<link rel="preconnect" href="//9qpuwspm.api.lncld.net">
+	<link rel="preconnect" href="//gravatar.loli.net">
+
+	<title>NLP系列 | Pastor Dean</title>
+
+	<meta name="HandheldFriendly" content="True">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+	<meta name="generator" content="hexo">
+	<meta name="author" content="pastor">
+	<meta name="description" content>
+
+	
+	<meta name="keywords" content>
+	
+
+	
+	<link rel="shortcut icon" href="/images/favicon-16x16-next.png">
+	<link rel="apple-touch-icon" href="/images/favicon-16x16-next.png">
+	
+
+	
+	<meta name="theme-color" content="#3c484e">
+	<meta name="msapplication-TileColor" content="#3c484e">
+	
+
+	
+
+	
+
+	<meta property="og:site_name" content="Pastor Dean">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="NLP系列 | Pastor Dean">
+	<meta property="og:description" content>
+	<meta property="og:url" content="https://mrpastor.github.io/2019-03-21/nlp/10Visual_Text_Task_Image_Caption_and_VQA/Chapter2_Visual_Q_A/VQA/">
+
+	
+	<meta property="article:published_time" content="2019-03-21T19:03:00+08:00"> 
+	<meta property="article:author" content="pastor">
+	<meta property="article:published_first" content="Pastor Dean, /2019-03-21/nlp/10Visual_Text_Task_Image_Caption_and_VQA/Chapter2_Visual_Q_A/VQA/">
+	
+
+	
+	
+	<link rel="stylesheet" href="/css/allinonecss.min.css">
+
+	
+	
+	
+</head>
+<body class="post-template">
+	<div class="site-wrapper">
+		
+
+
+
+
+<header class="site-header post-site-header outer">
+    <div class="inner">
+        
+<nav class="site-nav"> 
+    <div class="site-nav-left">
+        <ul class="nav">
+            <li>
+                
+                
+                <a class="site-nav-logo" href="/" title="Pastor Dean">
+                    <img src="/images/favicon-32x32-next.png" alt="Pastor Dean">
+                </a>
+                
+                
+            </li>
+            
+            
+            <li>
+                <a href="/ || home" title="home">home</a>
+            </li>
+            
+            <li>
+                <a href="/categories/ || th" title="categories">categories</a>
+            </li>
+            
+            <li>
+                <a href="/archives/ || archive" title="archives">archives</a>
+            </li>
+            
+            <li>
+                <a href="/tools/ || tools" title="tools">tools</a>
+            </li>
+            
+            
+        </ul> 
+    </div>
+    
+    <div class="search-button-area">
+        <a href="#search" class="search-button">Search ...</a>
+    </div>
+     
+    <div class="site-nav-right">
+        
+        <a href="#search" class="search-button">Search ...</a>
+         
+        
+<div class="social-links">
+    
+    
+    <a class="social-link" title="github" href="https://github.com/mrpastor" target="_blank" rel="noopener">
+        <svg viewbox="0 0 1049 1024" xmlns="http://www.w3.org/2000/svg"><path d="M524.979332 0C234.676191 0 0 234.676191 0 524.979332c0 232.068678 150.366597 428.501342 358.967656 498.035028 26.075132 5.215026 35.636014-11.299224 35.636014-25.205961 0-12.168395-0.869171-53.888607-0.869171-97.347161-146.020741 31.290159-176.441729-62.580318-176.441729-62.580318-23.467619-60.841976-58.234462-76.487055-58.234463-76.487055-47.804409-32.15933 3.476684-32.15933 3.476685-32.15933 53.019436 3.476684 80.83291 53.888607 80.83291 53.888607 46.935238 79.963739 122.553122 57.365291 152.97411 43.458554 4.345855-33.897672 18.252593-57.365291 33.028501-70.402857-116.468925-12.168395-239.022047-57.365291-239.022047-259.012982 0-57.365291 20.860106-104.300529 53.888607-140.805715-5.215026-13.037566-23.467619-66.926173 5.215027-139.067372 0 0 44.327725-13.906737 144.282399 53.888607 41.720212-11.299224 86.917108-17.383422 131.244833-17.383422s89.524621 6.084198 131.244833 17.383422C756.178839 203.386032 800.506564 217.29277 800.506564 217.29277c28.682646 72.1412 10.430053 126.029806 5.215026 139.067372 33.897672 36.505185 53.888607 83.440424 53.888607 140.805715 0 201.64769-122.553122 245.975415-239.891218 259.012982 19.121764 16.514251 35.636014 47.804409 35.636015 97.347161 0 70.402857-0.869171 126.898978-0.869172 144.282399 0 13.906737 9.560882 30.420988 35.636015 25.205961 208.601059-69.533686 358.967656-265.96635 358.967655-498.035028C1049.958663 234.676191 814.413301 0 524.979332 0z"/></svg>
+    </a>
+    
+    
+    <a class="social-link" title="facebook" href="https://facebook" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+
+    </a>
+    
+    
+    <a class="social-link" title="twitter" href="https://twitter.com" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+    </a>
+    
+    
+    
+    
+</div>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<div id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+        <header class="post-full-header">
+            <div class="post-full-meta">
+                <time class="post-full-meta-date" datetime="2019-03-21T11:19:18.000Z">
+                    2019-03-21
+                </time>
+                
+                <span class="date-divider">/</span>
+                
+                <a href="/categories/NLP/">NLP</a>&nbsp;&nbsp;
+                
+                
+            </div>
+            <h1 class="post-full-title">NLP系列</h1>
+        </header>
+        <div class="post-full no-image">
+            
+            <div class="post-full-content">
+                <article id="photoswipe" class="markdown-body">
+                    <h1 id="视觉问答机器人（VQA-原理与实现"><a href="#视觉问答机器人（VQA-原理与实现" class="headerlink" title="视觉问答机器人（VQA) 原理与实现"></a>视觉问答机器人（VQA) 原理与实现</h1><h2 id="本章概述"><a href="#本章概述" class="headerlink" title="本章概述"></a>本章概述</h2><pre><code>2.1 视觉问答机器人问题介绍
+2.2 基于图像信息和文本信息抽取匹配的VQA实现方案
+2.3 基于注意力（attention）的深度学习VQA实现方案
+2.4 【实战】使用keras完成CNN+RNN基础VQA模型
+2.5 【实战】基于attention 的深度学习VQA模型实现
+</code></pre><h2 id="2-1-视觉问答机器人问题介绍"><a href="#2-1-视觉问答机器人问题介绍" class="headerlink" title="2.1 视觉问答机器人问题介绍"></a>2.1 视觉问答机器人问题介绍</h2><ul>
+<li>视觉问答任务的定义是对于一张图片和一个跟这幅图片相关的问题，机器需要根据图片信息对问题进行回答。</li>
+<li>输入：一张图片和一个关于图片信息的问题，常见的问题形式有选择题，判断题</li>
+<li>输出：挑选出正确答案<br><img alt class="post-img b-lazy" data-img="./img/vqa-example.jpg" data-index="0" data-src="./img/vqa-example.jpg"></li>
+<li>问题: how many players are in the image?</li>
+<li>答案: eleven </li>
+<li>人可以清楚地指出图片中的运动员，而且不会把观众也计算在内，我们希望AI机器人也能够对图片信息进行理解，根据问题进行筛选，之后返回正确的答案。</li>
+</ul>
+<h2 id="2-1-视觉问答机器人问题介绍-1"><a href="#2-1-视觉问答机器人问题介绍-1" class="headerlink" title="2.1 视觉问答机器人问题介绍"></a>2.1 视觉问答机器人问题介绍</h2><ul>
+<li>视觉问答任务本质上是一个多模态的研究问题。这个任务需要我们结合自然语言处理（NLP）和计算机视觉（CV)的技术来进行回答。</li>
+<li>自然语言处理（NLP）<ul>
+<li>先理解问题</li>
+<li>再产生答案</li>
+<li>举一个在NLP领域常见的基于文本的Q&amp;A问题：how many bridges are there in Paris?</li>
+<li>一个NLP Q&amp;A 系统需要首先识别出这是一个什么类型的问题，比如这里是一个“how many” 关于计数的问题，所以答案应该是一个数字。之后系统需要提取出哪个物体（object）需要机器去计数，比如这里是 “bridges“。最后需要我们提取出问题中的背景（context），比如这个问题计数的限定范围是在巴黎这个城市。</li>
+<li>当一个Q&amp;A系统分析完问题，系统需要根据知识库（knowledge base）去得到答案。</li>
+</ul>
+</li>
+<li>机器视觉（CV)<ul>
+<li>VQA区别于传统的text QA在于搜索答案和推理部分都是基于图片的内容。所以系统需要进行目标检测（object detection），再进行分类（classification），之后系统需要对图片中物体之间的关系进行推理。</li>
+</ul>
+</li>
+<li>总结来说，一个好的VQA系统需要具备能够解决传统的NLP及CV的基础任务，所以这是一个交叉学科，多模态的研究问题。</li>
+</ul>
+<h2 id="2-1-视觉问答机器人问题介绍¶"><a href="#2-1-视觉问答机器人问题介绍¶" class="headerlink" title="2.1 视觉问答机器人问题介绍¶"></a>2.1 视觉问答机器人问题介绍¶</h2><ul>
+<li>图片数据集<ul>
+<li>Microsoft Common Objects in Context (MSCOCO) 包含了328000张图片，91类物体，2500000个标注数据，这些物体能够被一个4岁小孩轻易地识别出来。<br><img alt class="post-img b-lazy" data-img="./img/dataset-coco.jpg" data-index="1" data-src="./img/dataset-coco.jpg"></li>
+</ul>
+</li>
+<li><p>常见的VQA数据集：一个好的数据集需要尽量避免数据采集过程中的偏差（bias），比如说一个数据集中，90%的判断题的答案都是yes，那么一个只输出yes的系统的准确率有90%。</p>
+<ul>
+<li><p>DAtaset for QUestion Answering on Real-world images (DAQUAR)，第一个重要的VQA数据集，包含了6794个训练样本，5674个测试样本，图片都来自NYU-Depth V2数据集，平均一张图片包含了9个问题答案对（QA pair），这个数据集的缺点是数据太小，不足以训练一个复杂的VQA系统。<br><img alt class="post-img b-lazy" data-img="./img/dataset-daquar.jpg" data-index="2" data-src="./img/dataset-daquar.jpg"></p>
+</li>
+<li><p>COCO-QA数据集使用了MSCOCO中123287张图片，其中78736个QA对作为训练，38948个QA对作为测试。这个数据集是通过对MSCOCO中的图片标题（caption）使用NLP工具自动生成出问题和答案对（QA pair），比如一个标题“two chairs in a room”，可以生成一个问题”how many chairs are there？“，所有的答案都是一个单词。虽然这个数据集足够大，但是这种产生QA pair的方法会使得语法错误，或者信息不完整地错误。而且这个数据集只包含了4类问题，且这四类问题的数量不均等，object（69.84%），color（16.59%），counting（7.47%）， location（6.10%）<br><img alt class="post-img b-lazy" data-img="./img/dataset-coco-qa.jpg" data-index="3" data-src="./img/dataset-coco-qa.jpg"></p>
+</li>
+<li>the VQA dataset 相对来说更大一些，出来204721张来自MSCOCO的图片，还包含了50000张抽象的卡通图片。一张图片平均有3个问题，一个问题平均有10个答案，总共有超过760000个问题和10000000个答案。全部问题和答案对都是Amazon Mechanical Turk上让人标注的。同时问题包括开放性问题和多选项问题。对于开放性问题，至少3个人提供了一模一样的答案才能作为正确的答案。对于多选题，他们创建了18个候选答案，其中正确（correct）答案是10个人都认为正确的一个答案，有可能（plausible）答案是由三个人没有看过图片只根据问题提供的三个答案，常见（popular）答案是由10个最常见的回答组成（yes，no，1，2，3，4，white，red，blue，green），随机（random）答案是从其他问题的正确答案中随机挑选出来的一个答案。这个数据集的缺点是有些问题太主观了。另一个缺点是有些问题根本不需要图片信息，比如“how many legs does the dog have?” 或者 “what color are the trees?”<br><img alt class="post-img b-lazy" data-img="./img/dataset-vqa.jpg" data-index="4" data-src="./img/dataset-vqa.jpg"><br><img alt class="post-img b-lazy" data-img="./img/question-type.png" data-index="5" data-src="./img/question-type.png"></li>
+</ul>
+</li>
+</ul>
+<h2 id="2-2-基于图像信息和文本信息抽取匹配的VQA实现方案"><a href="#2-2-基于图像信息和文本信息抽取匹配的VQA实现方案" class="headerlink" title="2.2 基于图像信息和文本信息抽取匹配的VQA实现方案"></a>2.2 基于图像信息和文本信息抽取匹配的VQA实现方案</h2><ul>
+<li>通常，一个VQA系统包含了以下三个步骤：<ol>
+<li>抽取问题特征</li>
+<li>抽取图片特征</li>
+<li>结合图片和问题特征去生成答案<br><img alt class="post-img b-lazy" data-img="./img/visual-question-answering-approach.jpg" data-index="6" data-src="./img/visual-question-answering-approach.jpg"></li>
+</ol>
+</li>
+</ul>
+<h2 id="2-2-基于图像信息和文本信息抽取匹配的VQA实现方案-1"><a href="#2-2-基于图像信息和文本信息抽取匹配的VQA实现方案-1" class="headerlink" title="2.2 基于图像信息和文本信息抽取匹配的VQA实现方案"></a>2.2 基于图像信息和文本信息抽取匹配的VQA实现方案</h2><ul>
+<li>抽取问题特征<ul>
+<li>我们通常可以用Bag-of-Words (BOW) 或者LSTM去编码一个问题信息</li>
+</ul>
+</li>
+<li>抽取图片信息<ul>
+<li>我们通常使用在ImageNet上预训练好的CNN模型</li>
+</ul>
+</li>
+<li>生成答案经常被简化为一个分类问题</li>
+<li>各种方法之间比较不一样的是如何把文字特征与图片特征结合。比如我们可以通过把两个特征拼接（concatenation）在一起之后接上一个线性分类器。或者通过Bayesian的方法去预测问题，图片及答案三者之间的特征分布的关系。</li>
+</ul>
+<h2 id="2-2-基于图像信息和文本信息抽取匹配的VQA实现方案-2"><a href="#2-2-基于图像信息和文本信息抽取匹配的VQA实现方案-2" class="headerlink" title="2.2 基于图像信息和文本信息抽取匹配的VQA实现方案"></a>2.2 基于图像信息和文本信息抽取匹配的VQA实现方案</h2><ul>
+<li>基本方法（baselines), Antol et al. (2016) “VQA: Visual Question Answering”，该文章提出通过简单的特征拼接（concatenation）或者element-wise sum/product的方式去融合文本和图片的特征。其中图片特征使用了VGGNet最后一层的1024维特征，文本特征有以下两种方法<ol>
+<li>使用BOW的方法去编码一个问题的文本特征，之后再用一个多层的感知器（multi-layer perceptron，MLP）去预测答案。其中MLP包含了两个隐含层，1000个隐含元，使用了tanh 非线性函数，0.5的dropout。</li>
+<li>一个LSTM模型，通过softmax 去预测答案<br><img alt class="post-img b-lazy" data-img="./img/baseline.png" data-index="7" data-src="./img/baseline.png"></li>
+</ol>
+</li>
+<li>这些基本方法的结果很有意思，如果一个模型只使用了文本特征，其正确率为48.09%，如果一个模型只使用了图片特征，其正确率为28.13%，而他们最好的模型是使用了LSTM去编码文本特征的，能达到53.74%的正确率。而且多选题的结果会显著好于开放式问题的效果。所有的模型预测的结果都远不如人类的表现。<br><img alt class="post-img b-lazy" data-img="./img/baseline-results.png" data-index="8" data-src="./img/baseline-results.png">  </li>
+</ul>
+<h2 id="2-3-基于注意力（attention）的深度学习VQA实现方案"><a href="#2-3-基于注意力（attention）的深度学习VQA实现方案" class="headerlink" title="2.3 基于注意力（attention）的深度学习VQA实现方案"></a>2.3 基于注意力（attention）的深度学习VQA实现方案</h2><ul>
+<li>基于注意力的深度学习VQA方法是通过关注图片中相关的部位来获得答案，比如一个问题“what color is the ball?”，则图片中包含了球ball这个object的小区域是比其他区域更具有信息量，比其他区域更相关。相似的，”color“ 和”ball“也比其他单词更加相关。</li>
+<li>另一个常见的VQA方案是使用位置注意力（spatial attention）去生成关于区域（region）的位置特征，并训练一个CNN网络。一般有两种方法去获得一张图片关于方位的区域。<ol>
+<li>通过将一张图片划分成网格状（grid），并根据问题与图片特征去预测每一个网格的attention weight，将图片的CNN的feature通过加权求和的方式得到attention weighted feature，再通过attention weighted feature发现相对比较重要的区域<br><img alt class="post-img b-lazy" data-img="./img/approach-attention.jpg" data-index="9" data-src="./img/approach-attention.jpg"></li>
+<li>通过目标识别的方式生成很多bounding box<br><img alt class="post-img b-lazy" data-img="./img/approach-attention-bounding-box.jpg" data-index="10" data-src="./img/approach-attention-bounding-box.jpg"></li>
+</ol>
+</li>
+<li>根据生成的区域（region），使用问题去找到最相关的区域，并利用这些区域去生成答案。</li>
+</ul>
+<h2 id="2-3-基于注意力（attention）的深度学习VQA实现方案-1"><a href="#2-3-基于注意力（attention）的深度学习VQA实现方案-1" class="headerlink" title="2.3 基于注意力（attention）的深度学习VQA实现方案"></a>2.3 基于注意力（attention）的深度学习VQA实现方案</h2><ul>
+<li>Yang et al. 2016  Stacked Attention Networks for Image Question Answering，提出了一个基于堆叠注意力的VQA系统</li>
+<li>图片使用CNN 编码<br>  $$f_I = CNN_{vgg}(I)$$<br><img alt class="post-img b-lazy" data-img="./img/san-cnn.png" data-index="11" data-src="./img/san-cnn.png">    </li>
+<li>问题使用LSTM编码<br>  $$h_t= LSTM(q), ~~ h_t=CNN(q)$$<br><img alt class="post-img b-lazy" data-img="./img/san-q-rnn.png" data-index="12" data-src="./img/san-q-rnn.png"><br><img alt class="post-img b-lazy" data-img="./img/san-q-cnn.png" data-index="13" data-src="./img/san-q-cnn.png"></li>
+<li>Stacked Attention，多次重复question-image attention<br><img alt class="post-img b-lazy" data-img="./img/san.png" data-index="14" data-src="./img/san.png"></li>
+</ul>
+<h2 id="2-3-基于注意力（attention）的深度学习VQA实现方案-2"><a href="#2-3-基于注意力（attention）的深度学习VQA实现方案-2" class="headerlink" title="2.3 基于注意力（attention）的深度学习VQA实现方案"></a>2.3 基于注意力（attention）的深度学习VQA实现方案</h2><ul>
+<li>Kazemi (2017 et al.) Show, Ask, Attend, and Answer: A Strong Baseline For Visual Question Answering，提出了一个基于注意力的VQA系统<br><img alt class="post-img b-lazy" data-img="./img/vqa-attend.png" data-index="15" data-src="./img/vqa-attend.png"></li>
+<li>图片使用CNN 编码<br>  $$\phi = CNN(I)$$</li>
+<li>问题使用LSTM编码<br>  $$s= LSTM(E_q)$$</li>
+<li>Stacked Attention<br>  $$\alpha_{c,l} \propto \exp F_c(s, \phi_l) ,~~  \sum_{l=1}^L \alpha_{c,l}=1, ~~ x_c = \sum_l \alpha_{c,l}\phi_l$$</li>
+<li>classifier, 其中G=[G_1, G_2, …, G_M]是两层的全连接层<br>  $$P(a_i|I,q) \propto \exp G_i(x,s),~~ x=[x_1, x2,…,x_C]$$<br><img alt class="post-img b-lazy" data-img="./img/vqa-model.png" data-index="16" data-src="./img/vqa-model.png"></li>
+</ul>
+<h2 id="2-4-【实战】使用keras完成CNN-RNN基础VQA模型"><a href="#2-4-【实战】使用keras完成CNN-RNN基础VQA模型" class="headerlink" title="2.4 【实战】使用keras完成CNN+RNN基础VQA模型"></a>2.4 【实战】使用keras完成CNN+RNN基础VQA模型</h2><ul>
+<li><p>Keras VQA Demo <a href="https://github.com/iamaaditya/VQA_Demo" target="_blank" rel="noopener">https://github.com/iamaaditya/VQA_Demo</a></p>
+<ol>
+<li>Keras version 2.0+</li>
+<li>Tensorflow 1.2+ </li>
+<li>scikit-learn</li>
+<li><p>Spacy version 2.0+，用于下载Glove Word embeddings</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m spacy download en_vectors_web_lg</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>OpenCV，用于resize图片成224x224大小</p>
+</li>
+<li>VGG 16，预训练好的权重</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python demo.py -image_file_name test.jpg -question <span class="string">"Is there a man in the picture?"</span></span><br></pre></td></tr></table></figure>
+<p><img alt class="post-img b-lazy" data-img="./test.jpg" data-index="17" data-src="./test.jpg"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">%%bash</span><br><span class="line">! git <span class="built_in">clone</span> https://github.com/iamaaditya/VQA_Demo</span><br><span class="line">! <span class="built_in">cd</span> VQA_Demo</span><br></pre></td></tr></table></figure>
+<pre><code>Cloning into &apos;VQA_Demo&apos;...
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">VQA_MODEL</span><span class="params">()</span>:</span></span><br><span class="line">    image_feature_size          = <span class="number">4096</span></span><br><span class="line">    word_feature_size           = <span class="number">300</span></span><br><span class="line">    number_of_LSTM              = <span class="number">3</span></span><br><span class="line">    number_of_hidden_units_LSTM = <span class="number">512</span></span><br><span class="line">    max_length_questions        = <span class="number">30</span></span><br><span class="line">    number_of_dense_layers      = <span class="number">3</span></span><br><span class="line">    number_of_hidden_units      = <span class="number">1024</span></span><br><span class="line">    activation_function         = <span class="string">'tanh'</span></span><br><span class="line">    dropout_pct                 = <span class="number">0.5</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Image model</span></span><br><span class="line">    model_image = Sequential()</span><br><span class="line">    model_image.add(Reshape((image_feature_size,), input_shape=(image_feature_size,)))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Language Model</span></span><br><span class="line">    model_language = Sequential()</span><br><span class="line">    model_language.add(LSTM(number_of_hidden_units_LSTM, return_sequences=<span class="keyword">True</span>, input_shape=(max_length_questions, word_feature_size)))</span><br><span class="line">    model_language.add(LSTM(number_of_hidden_units_LSTM, return_sequences=<span class="keyword">True</span>))</span><br><span class="line">    model_language.add(LSTM(number_of_hidden_units_LSTM, return_sequences=<span class="keyword">False</span>))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># combined model</span></span><br><span class="line">    model = Sequential()</span><br><span class="line">    model.add(Merge([model_language, model_image], mode=<span class="string">'concat'</span>, concat_axis=<span class="number">1</span>))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> xrange(number_of_dense_layers):</span><br><span class="line">        model.add(Dense(number_of_hidden_units, kernel_initializer=<span class="string">'uniform'</span>))</span><br><span class="line">        model.add(Activation(activation_function))</span><br><span class="line">        model.add(Dropout(dropout_pct))</span><br><span class="line"></span><br><span class="line">    model.add(Dense(<span class="number">1000</span>))</span><br><span class="line">    model.add(Activation(<span class="string">'softmax'</span>))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> model</span><br></pre></td></tr></table></figure>
+<p><img alt class="post-img b-lazy" data-img="./img/model_vqa.png" data-index="18" data-src="./img/model_vqa.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 载入库</span></span><br><span class="line">%matplotlib inline</span><br><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line">warnings.filterwarnings(<span class="string">"ignore"</span>)</span><br><span class="line"><span class="keyword">import</span> os, argparse</span><br><span class="line"><span class="keyword">import</span> cv2, spacy, numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> model_from_json</span><br><span class="line"><span class="keyword">from</span> keras.optimizers <span class="keyword">import</span> SGD</span><br><span class="line"><span class="keyword">from</span> sklearn.externals <span class="keyword">import</span> joblib</span><br><span class="line"><span class="keyword">from</span> keras <span class="keyword">import</span> backend <span class="keyword">as</span> K</span><br><span class="line"><span class="keyword">from</span> keras.utils.vis_utils <span class="keyword">import</span> plot_model</span><br><span class="line">K.set_image_data_format(<span class="string">'channels_first'</span>)</span><br><span class="line"><span class="comment">#K.set_image_dim_ordering('th')</span></span><br></pre></td></tr></table></figure>
+<pre><code>Using TensorFlow backend.
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 载入模型的权重</span></span><br><span class="line"><span class="comment"># 需要下载 VGG weights</span></span><br><span class="line">VQA_model_file_name      = <span class="string">'models/VQA/VQA_MODEL.json'</span></span><br><span class="line">VQA_weights_file_name   = <span class="string">'models/VQA/VQA_MODEL_WEIGHTS.hdf5'</span></span><br><span class="line">label_encoder_file_name  = <span class="string">'models/VQA/FULL_labelencoder_trainval.pkl'</span></span><br><span class="line">CNN_weights_file_name   = <span class="string">'models/CNN/vgg16_weights.h5'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 编译图像模型</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_image_model</span><span class="params">(CNN_weights_file_name)</span>:</span></span><br><span class="line">    <span class="string">''' Takes the CNN weights file, and returns the VGG model update </span></span><br><span class="line"><span class="string">    with the weights. Requires the file VGG.py inside models/CNN '''</span></span><br><span class="line">    <span class="keyword">from</span> models.CNN.VGG <span class="keyword">import</span> VGG_16</span><br><span class="line">    image_model = VGG_16(CNN_weights_file_name)</span><br><span class="line">    image_model.layers.pop()</span><br><span class="line">    image_model.layers.pop()</span><br><span class="line">    <span class="comment"># this is standard VGG 16 without the last two layers</span></span><br><span class="line">    sgd = SGD(lr=<span class="number">0.1</span>, decay=<span class="number">1e-6</span>, momentum=<span class="number">0.9</span>, nesterov=<span class="keyword">True</span>)</span><br><span class="line">    <span class="comment"># one may experiment with "adam" optimizer, but the loss function for</span></span><br><span class="line">    <span class="comment"># this kind of task is pretty standard</span></span><br><span class="line">    image_model.compile(optimizer=sgd, loss=<span class="string">'categorical_crossentropy'</span>)</span><br><span class="line">    <span class="keyword">return</span> image_model</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 获得图像特征</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_image_features</span><span class="params">(image_file_name)</span>:</span></span><br><span class="line">    <span class="string">''' Runs the given image_file to VGG 16 model and returns the </span></span><br><span class="line"><span class="string">    weights (filters) as a 1, 4096 dimension vector '''</span></span><br><span class="line">    image_features = np.zeros((<span class="number">1</span>, <span class="number">4096</span>))</span><br><span class="line">    <span class="comment"># Magic_Number = 4096  &gt; Comes from last layer of VGG Model</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Since VGG was trained as a image of 224x224, every new image</span></span><br><span class="line">    <span class="comment"># is required to go through the same transformation</span></span><br><span class="line">    im = cv2.resize(cv2.imread(image_file_name), (<span class="number">224</span>, <span class="number">224</span>))</span><br><span class="line">    im = im.transpose((<span class="number">2</span>,<span class="number">0</span>,<span class="number">1</span>)) <span class="comment"># convert the image to RGBA</span></span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># this axis dimension is required because VGG was trained on a dimension</span></span><br><span class="line">    <span class="comment"># of 1, 3, 224, 224 (first axis is for the batch size</span></span><br><span class="line">    <span class="comment"># even though we are using only one image, we have to keep the dimensions consistent</span></span><br><span class="line">    im = np.expand_dims(im, axis=<span class="number">0</span>) </span><br><span class="line"></span><br><span class="line">    image_features[<span class="number">0</span>,:] = image_model.predict(im)[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">return</span> image_features</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 获得问题特征</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_question_features</span><span class="params">(question)</span>:</span></span><br><span class="line">    <span class="string">''' For a given question, a unicode string, returns the time series vector</span></span><br><span class="line"><span class="string">    with each word (token) transformed into a 300 dimension representation</span></span><br><span class="line"><span class="string">    calculated using Glove Vector '''</span></span><br><span class="line">    word_embeddings = spacy.load(<span class="string">'en_vectors_web_lg'</span>)</span><br><span class="line">    tokens = word_embeddings(question)</span><br><span class="line">    question_tensor = np.zeros((<span class="number">1</span>, <span class="number">30</span>, <span class="number">300</span>))</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> xrange(len(tokens)):</span><br><span class="line">        question_tensor[<span class="number">0</span>,j,:] = tokens[j].vector</span><br><span class="line">    <span class="keyword">return</span> question_tensor</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 构建VQA系统</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_VQA_model</span><span class="params">(VQA_model_file_name, VQA_weights_file_name)</span>:</span></span><br><span class="line">    <span class="string">''' Given the VQA model and its weights, compiles and returns the model '''</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># thanks the keras function for loading a model from JSON, this becomes</span></span><br><span class="line">    <span class="comment"># very easy to understand and work. Alternative would be to load model</span></span><br><span class="line">    <span class="comment"># from binary like cPickle but then model would be obfuscated to users</span></span><br><span class="line">    vqa_model = model_from_json(open(VQA_model_file_name).read())</span><br><span class="line">    vqa_model.load_weights(VQA_weights_file_name)</span><br><span class="line">    vqa_model.compile(loss=<span class="string">'categorical_crossentropy'</span>, optimizer=<span class="string">'rmsprop'</span>)</span><br><span class="line">    <span class="keyword">return</span> vqa_model</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">image_model = get_image_model(CNN_weights_file_name)</span><br><span class="line">plot_model(image_model, to_file=<span class="string">'model_vgg.png'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 测试一张图片和问题</span></span><br><span class="line">image_file_name = <span class="string">'test.jpg'</span></span><br><span class="line">question = <span class="string">u"What vehicle is in the picture?"</span></span><br><span class="line"><span class="comment"># 获取图片特征</span></span><br><span class="line">image_features = get_image_features(image_file_name)</span><br><span class="line"><span class="comment"># 获取问题特征</span></span><br><span class="line">question_features = get_question_features(question)</span><br><span class="line"></span><br><span class="line">y_output = model_vqa.predict([question_features, image_features])</span><br><span class="line"></span><br><span class="line"><span class="comment"># This task here is represented as a classification into a 1000 top answers</span></span><br><span class="line"><span class="comment"># this means some of the answers were not part of training and thus would </span></span><br><span class="line"><span class="comment"># not show up in the result.</span></span><br><span class="line"><span class="comment"># These 1000 answers are stored in the sklearn Encoder class</span></span><br><span class="line">warnings.filterwarnings(<span class="string">"ignore"</span>, category=DeprecationWarning)</span><br><span class="line">labelencoder = joblib.load(label_encoder_file_name)</span><br><span class="line"><span class="keyword">for</span> label <span class="keyword">in</span> reversed(np.argsort(y_output)[<span class="number">0</span>,<span class="number">-5</span>:]):</span><br><span class="line">    print(str(round(y_output[<span class="number">0</span>,label]*<span class="number">100</span>,<span class="number">2</span>)).zfill(<span class="number">5</span>), <span class="string">"% "</span>, labelencoder.inverse_transform(label))</span><br></pre></td></tr></table></figure>
+<h2 id="【2-5-实战】基于attention-的深度学习VQA模型实现"><a href="#【2-5-实战】基于attention-的深度学习VQA模型实现" class="headerlink" title="【2.5 实战】基于attention 的深度学习VQA模型实现"></a>【2.5 实战】基于attention 的深度学习VQA模型实现</h2><ul>
+<li>pytorch Attention VQA <a href="https://github.com/Cyanogenoid/pytorch-vqa" target="_blank" rel="noopener">https://github.com/Cyanogenoid/pytorch-vqa</a><ul>
+<li>python 3.6</li>
+<li>torch</li>
+<li>torchvision</li>
+<li>h5py</li>
+<li>tqdm</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">%%bash</span><br><span class="line"><span class="comment"># 下载github repo</span></span><br><span class="line">git <span class="built_in">clone</span> https://github.com/Cyanogenoid/pytorch-vqa --recursive</span><br></pre></td></tr></table></figure>
+<pre><code>Submodule path &apos;resnet&apos;: checked out &apos;9332392b01317d57e92f81e00933c48f423ff503&apos;
+
+
+Cloning into &apos;pytorch-vqa&apos;...
+Submodule &apos;resnet&apos; (https://github.com/Cyanogenoid/pytorch-resnet) registered for path &apos;resnet&apos;
+Cloning into &apos;/Users/jjhu/MT/slides/MT-course/vqa/pytorch-vqa/resnet&apos;...
+</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">%%bash</span><br><span class="line"><span class="comment"># 预处理图片与vocab</span></span><br><span class="line">python preprocess-images.py</span><br><span class="line">python preprocess-vocab.py</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">%%bash</span><br><span class="line"><span class="comment"># 开始训练模型</span></span><br><span class="line">python train.py</span><br></pre></td></tr></table></figure>
+<p><img alt class="post-img b-lazy" data-img="./img/train_log.png" data-index="19" data-src="./img/train_log.png"></p>
+<h3 id="训练代码"><a href="#训练代码" class="headerlink" title="训练代码"></a>训练代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 训练的main 函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">if</span> len(sys.argv) &gt; <span class="number">1</span>:</span><br><span class="line">        name = <span class="string">' '</span>.join(sys.argv[<span class="number">1</span>:])</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line">        name = datetime.now().strftime(<span class="string">"%Y-%m-%d_%H:%M:%S"</span>)</span><br><span class="line">    target_name = os.path.join(<span class="string">'logs'</span>, <span class="string">'&#123;&#125;.pth'</span>.format(name))</span><br><span class="line">    print(<span class="string">'will save to &#123;&#125;'</span>.format(target_name))</span><br><span class="line"></span><br><span class="line">    cudnn.benchmark = <span class="keyword">True</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 加载训练数据及validation数据</span></span><br><span class="line">    train_loader = data.get_loader(train=<span class="keyword">True</span>)</span><br><span class="line">    val_loader = data.get_loader(val=<span class="keyword">True</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 加载vqa模型及优化器</span></span><br><span class="line">    net = nn.DataParallel(model.Net(train_loader.dataset.num_tokens)).cuda()</span><br><span class="line">    optimizer = optim.Adam([p <span class="keyword">for</span> p <span class="keyword">in</span> net.parameters() <span class="keyword">if</span> p.requires_grad])</span><br><span class="line"></span><br><span class="line">    tracker = utils.Tracker()</span><br><span class="line">    config_as_dict = &#123;k: v <span class="keyword">for</span> k, v <span class="keyword">in</span> vars(config).items() <span class="keyword">if</span> <span class="keyword">not</span> k.startswith(<span class="string">'__'</span>)&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(config.epochs):</span><br><span class="line">        _ = run(net, train_loader, optimizer, tracker, train=<span class="keyword">True</span>, prefix=<span class="string">'train'</span>, epoch=i)</span><br><span class="line">        r = run(net, val_loader, optimizer, tracker, train=<span class="keyword">False</span>, prefix=<span class="string">'val'</span>, epoch=i)</span><br><span class="line"></span><br><span class="line">        results = &#123;</span><br><span class="line">            <span class="string">'name'</span>: name,</span><br><span class="line">            <span class="string">'tracker'</span>: tracker.to_dict(),</span><br><span class="line">            <span class="string">'config'</span>: config_as_dict,</span><br><span class="line">            <span class="string">'weights'</span>: net.state_dict(),</span><br><span class="line">            <span class="string">'eval'</span>: &#123;</span><br><span class="line">                <span class="string">'answers'</span>: r[<span class="number">0</span>],</span><br><span class="line">                <span class="string">'accuracies'</span>: r[<span class="number">1</span>],</span><br><span class="line">                <span class="string">'idx'</span>: r[<span class="number">2</span>],</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="string">'vocab'</span>: train_loader.dataset.vocab,</span><br><span class="line">        &#125;</span><br><span class="line">        torch.save(results, target_name)</span><br><span class="line">        </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(net, loader, optimizer, tracker, train=False, prefix=<span class="string">''</span>, epoch=<span class="number">0</span>)</span>:</span></span><br><span class="line">    <span class="string">""" Run an epoch over the given loader """</span></span><br><span class="line">    <span class="keyword">if</span> train:</span><br><span class="line">        net.train()</span><br><span class="line">        tracker_class, tracker_params = tracker.MovingMeanMonitor, &#123;<span class="string">'momentum'</span>: <span class="number">0.99</span>&#125;</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        net.eval()</span><br><span class="line">        tracker_class, tracker_params = tracker.MeanMonitor, &#123;&#125;</span><br><span class="line">        answ = []</span><br><span class="line">        idxs = []</span><br><span class="line">        accs = []</span><br><span class="line"></span><br><span class="line">    tq = tqdm(loader, desc=<span class="string">'&#123;&#125; E&#123;:03d&#125;'</span>.format(prefix, epoch), ncols=<span class="number">0</span>)</span><br><span class="line">    loss_tracker = tracker.track(<span class="string">'&#123;&#125;_loss'</span>.format(prefix), tracker_class(**tracker_params))</span><br><span class="line">    acc_tracker = tracker.track(<span class="string">'&#123;&#125;_acc'</span>.format(prefix), tracker_class(**tracker_params))</span><br><span class="line"></span><br><span class="line">    log_softmax = nn.LogSoftmax().cuda()</span><br><span class="line">    <span class="keyword">for</span> v, q, a, idx, q_len <span class="keyword">in</span> tq:</span><br><span class="line">        var_params = &#123;</span><br><span class="line">            <span class="string">'volatile'</span>: <span class="keyword">not</span> train,</span><br><span class="line">            <span class="string">'requires_grad'</span>: <span class="keyword">False</span>,</span><br><span class="line">        &#125;</span><br><span class="line">        v = Variable(v.cuda(<span class="keyword">async</span>=<span class="keyword">True</span>), **var_params)</span><br><span class="line">        q = Variable(q.cuda(<span class="keyword">async</span>=<span class="keyword">True</span>), **var_params)</span><br><span class="line">        a = Variable(a.cuda(<span class="keyword">async</span>=<span class="keyword">True</span>), **var_params)</span><br><span class="line">        q_len = Variable(q_len.cuda(<span class="keyword">async</span>=<span class="keyword">True</span>), **var_params)</span><br><span class="line"></span><br><span class="line">        out = net(v, q, q_len)</span><br><span class="line">        nll = -log_softmax(out)</span><br><span class="line">        loss = (nll * a / <span class="number">10</span>).sum(dim=<span class="number">1</span>).mean()</span><br><span class="line">        acc = utils.batch_accuracy(out.data, a.data).cpu()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> train:</span><br><span class="line">            <span class="keyword">global</span> total_iterations</span><br><span class="line">            update_learning_rate(optimizer, total_iterations)</span><br><span class="line"></span><br><span class="line">            optimizer.zero_grad()</span><br><span class="line">            loss.backward()</span><br><span class="line">            optimizer.step()</span><br><span class="line"></span><br><span class="line">            total_iterations += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># store information about evaluation of this minibatch</span></span><br><span class="line">            _, answer = out.data.cpu().max(dim=<span class="number">1</span>)</span><br><span class="line">            answ.append(answer.view(<span class="number">-1</span>))</span><br><span class="line">            accs.append(acc.view(<span class="number">-1</span>))</span><br><span class="line">            idxs.append(idx.view(<span class="number">-1</span>).clone())</span><br><span class="line"></span><br><span class="line">        loss_tracker.append(loss.data[<span class="number">0</span>])</span><br><span class="line">        <span class="comment"># acc_tracker.append(acc.mean())</span></span><br><span class="line">        <span class="keyword">for</span> a <span class="keyword">in</span> acc:</span><br><span class="line">            acc_tracker.append(a.item())</span><br><span class="line">        fmt = <span class="string">'&#123;:.4f&#125;'</span>.format</span><br><span class="line">        tq.set_postfix(loss=fmt(loss_tracker.mean.value), acc=fmt(acc_tracker.mean.value))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> train:</span><br><span class="line">        answ = list(torch.cat(answ, dim=<span class="number">0</span>))</span><br><span class="line">        accs = list(torch.cat(accs, dim=<span class="number">0</span>))</span><br><span class="line">        idxs = list(torch.cat(idxs, dim=<span class="number">0</span>))</span><br><span class="line">        <span class="keyword">return</span> answ, accs, idxs</span><br></pre></td></tr></table></figure>
+<h3 id="attention-VQA-模型代码讲解"><a href="#attention-VQA-模型代码讲解" class="headerlink" title="attention VQA 模型代码讲解"></a>attention VQA 模型代码讲解</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Net</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="string">""" Re-implementation of ``Show, Ask, Attend, and Answer: A Strong Baseline For Visual Question Answering'' [0]</span></span><br><span class="line"><span class="string">    [0]: https://arxiv.org/abs/1704.03162</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, embedding_tokens)</span>:</span></span><br><span class="line">        super(Net, self).__init__()</span><br><span class="line">        question_features = <span class="number">1024</span></span><br><span class="line">        vision_features = config.output_features</span><br><span class="line">        glimpses = <span class="number">2</span></span><br><span class="line"></span><br><span class="line">        self.text = TextProcessor(</span><br><span class="line">            embedding_tokens=embedding_tokens,</span><br><span class="line">            embedding_features=<span class="number">300</span>,</span><br><span class="line">            lstm_features=question_features,</span><br><span class="line">            drop=<span class="number">0.5</span>,</span><br><span class="line">        )</span><br><span class="line">        self.attention = Attention(</span><br><span class="line">            v_features=vision_features,</span><br><span class="line">            q_features=question_features,</span><br><span class="line">            mid_features=<span class="number">512</span>,</span><br><span class="line">            glimpses=<span class="number">2</span>,</span><br><span class="line">            drop=<span class="number">0.5</span>,</span><br><span class="line">        )</span><br><span class="line">        self.classifier = Classifier(</span><br><span class="line">            in_features=glimpses * vision_features + question_features,</span><br><span class="line">            mid_features=<span class="number">1024</span>,</span><br><span class="line">            out_features=config.max_answers,</span><br><span class="line">            drop=<span class="number">0.5</span>,</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> m <span class="keyword">in</span> self.modules():</span><br><span class="line">            <span class="keyword">if</span> isinstance(m, nn.Linear) <span class="keyword">or</span> isinstance(m, nn.Conv2d):</span><br><span class="line">                init.xavier_uniform(m.weight)</span><br><span class="line">                <span class="keyword">if</span> m.bias <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">                    m.bias.data.zero_()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, v, q, q_len)</span>:</span></span><br><span class="line">        q = self.text(q, list(q_len.data))</span><br><span class="line"></span><br><span class="line">        v = v / (v.norm(p=<span class="number">2</span>, dim=<span class="number">1</span>, keepdim=<span class="keyword">True</span>).expand_as(v) + <span class="number">1e-8</span>)</span><br><span class="line">        a = self.attention(v, q)</span><br><span class="line">        v = apply_attention(v, a)</span><br><span class="line"></span><br><span class="line">        combined = torch.cat([v, q], dim=<span class="number">1</span>)</span><br><span class="line">        answer = self.classifier(combined)</span><br><span class="line">        <span class="keyword">return</span> answer</span><br></pre></td></tr></table></figure>
+<h3 id="分类器"><a href="#分类器" class="headerlink" title="分类器"></a>分类器</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Classifier</span><span class="params">(nn.Sequential)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, in_features, mid_features, out_features, drop=<span class="number">0.0</span>)</span>:</span></span><br><span class="line">        super(Classifier, self).__init__()</span><br><span class="line">        self.add_module(<span class="string">'drop1'</span>, nn.Dropout(drop))</span><br><span class="line">        self.add_module(<span class="string">'lin1'</span>, nn.Linear(in_features, mid_features))</span><br><span class="line">        self.add_module(<span class="string">'relu'</span>, nn.ReLU())</span><br><span class="line">        self.add_module(<span class="string">'drop2'</span>, nn.Dropout(drop))</span><br><span class="line">        self.add_module(<span class="string">'lin2'</span>, nn.Linear(mid_features, out_features))</span><br></pre></td></tr></table></figure>
+<h3 id="attention-层"><a href="#attention-层" class="headerlink" title="attention 层"></a>attention 层</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Attention</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, v_features, q_features, mid_features, glimpses, drop=<span class="number">0.0</span>)</span>:</span></span><br><span class="line">        super(Attention, self).__init__()</span><br><span class="line">        self.v_conv = nn.Conv2d(v_features, mid_features, <span class="number">1</span>, bias=<span class="keyword">False</span>)  <span class="comment"># let self.lin take care of bias</span></span><br><span class="line">        self.q_lin = nn.Linear(q_features, mid_features)</span><br><span class="line">        self.x_conv = nn.Conv2d(mid_features, glimpses, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        self.drop = nn.Dropout(drop)</span><br><span class="line">        self.relu = nn.ReLU(inplace=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, v, q)</span>:</span></span><br><span class="line">        v = self.v_conv(self.drop(v))</span><br><span class="line">        q = self.q_lin(self.drop(q))</span><br><span class="line">        q = tile_2d_over_nd(q, v)</span><br><span class="line">        x = self.relu(v + q)</span><br><span class="line">        x = self.x_conv(self.drop(x))</span><br><span class="line">        <span class="keyword">return</span> x</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">apply_attention</span><span class="params">(input, attention)</span>:</span></span><br><span class="line">    <span class="string">""" Apply any number of attention maps over the input.</span></span><br><span class="line"><span class="string">        The attention map has to have the same size in all dimensions except dim=1.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    n, c = input.size()[:<span class="number">2</span>]</span><br><span class="line">    glimpses = attention.size(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># flatten the spatial dims into the third dim, since we don't need to care about how they are arranged</span></span><br><span class="line">    input = input.view(n, c, <span class="number">-1</span>)</span><br><span class="line">    attention = attention.view(n, glimpses, <span class="number">-1</span>)</span><br><span class="line">    s = input.size(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># apply a softmax to each attention map separately</span></span><br><span class="line">    <span class="comment"># since softmax only takes 2d inputs, we have to collapse the first two dimensions together</span></span><br><span class="line">    <span class="comment"># so that each glimpse is normalized separately</span></span><br><span class="line">    attention = attention.view(n * glimpses, <span class="number">-1</span>)</span><br><span class="line">    attention = F.softmax(attention)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># apply the weighting by creating a new dim to tile both tensors over</span></span><br><span class="line">    target_size = [n, glimpses, c, s]</span><br><span class="line">    input = input.view(n, <span class="number">1</span>, c, s).expand(*target_size)</span><br><span class="line">    attention = attention.view(n, glimpses, <span class="number">1</span>, s).expand(*target_size)</span><br><span class="line">    weighted = input * attention</span><br><span class="line">    <span class="comment"># sum over only the spatial dimension</span></span><br><span class="line">    weighted_mean = weighted.sum(dim=<span class="number">3</span>)</span><br><span class="line">    <span class="comment"># the shape at this point is (n, glimpses, c, 1)</span></span><br><span class="line">    <span class="keyword">return</span> weighted_mean.view(n, <span class="number">-1</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="本章小结"><a href="#本章小结" class="headerlink" title="本章小结"></a>本章小结</h2><pre><code>2.1 视觉问答机器人问题介绍
+2.2 基于图像信息和文本信息抽取匹配的VQA实现方案
+2.3 基于注意力（attention）的深度学习VQA实现方案
+2.4 【实战】使用keras完成CNN+RNN基础VQA模型
+2.5 【实战】基于attention 的深度学习VQA模型实现
+</code></pre>
+                </article>
+                <ul class="tags-postTags">
+                    
+                    <li>
+                        <a href="/tags/nlp/" rel="tag"># nlp</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tags/自然语言处理/" rel="tag"># 自然语言处理</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    
+    <nav id="gobottom" class="pagination">
+        
+        <a class="prev-post" title="NLP系列" href="/2019-03-21/nlp/2NLP_Basics2/lesson1/0.natural language processing/">
+            ← NLP系列
+        </a>
+        
+        <span class="prev-next-post">·</span>
+        
+        <a class="next-post" title="NLP系列" href="/2019-03-21/nlp/2NLP_Basics2/lesson2/2.English_text_analysis_and_processing-spaCy/">
+            NLP系列 →
+        </a>
+        
+    </nav>
+
+    
+    <div class="inner">
+        <div id="comment"></div>
+    </div>
+    
+</div>
+
+<div class="toc-bar">
+    <div class="toc-btn-bar">
+        <a href="#site-main" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M793.024 710.272a32 32 0 1 0 45.952-44.544l-310.304-320a32 32 0 0 0-46.4 0.48l-297.696 320a32 32 0 0 0 46.848 43.584l274.752-295.328 286.848 295.808z"/></svg>
+        </a>
+        <div class="toc-btn toc-switch">
+            <svg class="toc-open" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M779.776 480h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M779.776 672h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M256 288a32 32 0 1 0 0 64 32 32 0 0 0 0-64M392.576 352h387.2a32 32 0 0 0 0-64h-387.2a32 32 0 0 0 0 64M256 480a32 32 0 1 0 0 64 32 32 0 0 0 0-64M256 672a32 32 0 1 0 0 64 32 32 0 0 0 0-64"/></svg>
+            <svg class="toc-close hide" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M512 960c-247.039484 0-448-200.960516-448-448S264.960516 64 512 64 960 264.960516 960 512 759.039484 960 512 960zM512 128.287273c-211.584464 0-383.712727 172.128262-383.712727 383.712727 0 211.551781 172.128262 383.712727 383.712727 383.712727 211.551781 0 383.712727-172.159226 383.712727-383.712727C895.712727 300.415536 723.551781 128.287273 512 128.287273z"/><path d="M557.05545 513.376159l138.367639-136.864185c12.576374-12.416396 12.672705-32.671738 0.25631-45.248112s-32.704421-12.672705-45.248112-0.25631l-138.560301 137.024163-136.447897-136.864185c-12.512727-12.512727-32.735385-12.576374-45.248112-0.063647-12.512727 12.480043-12.54369 32.735385-0.063647 45.248112l136.255235 136.671523-137.376804 135.904314c-12.576374 12.447359-12.672705 32.671738-0.25631 45.248112 6.271845 6.335493 14.496116 9.504099 22.751351 9.504099 8.12794 0 16.25588-3.103239 22.496761-9.247789l137.567746-136.064292 138.687596 139.136568c6.240882 6.271845 14.432469 9.407768 22.65674 9.407768 8.191587 0 16.352211-3.135923 22.591372-9.34412 12.512727-12.480043 12.54369-32.704421 0.063647-45.248112L557.05545 513.376159z"/></svg>
+        </div>
+        <a href="#gobottom" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M231.424 346.208a32 32 0 0 0-46.848 43.584l297.696 320a32 32 0 0 0 46.4 0.48l310.304-320a32 32 0 1 0-45.952-44.544l-286.848 295.808-274.752-295.36z"/></svg>
+        </a>
+    </div>
+    <div class="toc-main">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#视觉问答机器人（VQA-原理与实现"><span class="toc-text">视觉问答机器人（VQA) 原理与实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#本章概述"><span class="toc-text">本章概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-视觉问答机器人问题介绍"><span class="toc-text">2.1 视觉问答机器人问题介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-视觉问答机器人问题介绍-1"><span class="toc-text">2.1 视觉问答机器人问题介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-视觉问答机器人问题介绍¶"><span class="toc-text">2.1 视觉问答机器人问题介绍¶</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-基于图像信息和文本信息抽取匹配的VQA实现方案"><span class="toc-text">2.2 基于图像信息和文本信息抽取匹配的VQA实现方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-基于图像信息和文本信息抽取匹配的VQA实现方案-1"><span class="toc-text">2.2 基于图像信息和文本信息抽取匹配的VQA实现方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-基于图像信息和文本信息抽取匹配的VQA实现方案-2"><span class="toc-text">2.2 基于图像信息和文本信息抽取匹配的VQA实现方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-基于注意力（attention）的深度学习VQA实现方案"><span class="toc-text">2.3 基于注意力（attention）的深度学习VQA实现方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-基于注意力（attention）的深度学习VQA实现方案-1"><span class="toc-text">2.3 基于注意力（attention）的深度学习VQA实现方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-基于注意力（attention）的深度学习VQA实现方案-2"><span class="toc-text">2.3 基于注意力（attention）的深度学习VQA实现方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-【实战】使用keras完成CNN-RNN基础VQA模型"><span class="toc-text">2.4 【实战】使用keras完成CNN+RNN基础VQA模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#【2-5-实战】基于attention-的深度学习VQA模型实现"><span class="toc-text">【2.5 实战】基于attention 的深度学习VQA模型实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#训练代码"><span class="toc-text">训练代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#attention-VQA-模型代码讲解"><span class="toc-text">attention VQA 模型代码讲解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分类器"><span class="toc-text">分类器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#attention-层"><span class="toc-text">attention 层</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#本章小结"><span class="toc-text">本章小结</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+	</div>
+	
+
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+  <header class="read-next-card-header">
+    <small class="read-next-card-header-sitetitle">&mdash; Pastor Dean &mdash;</small>
+    <h3 class="read-next-card-header-title">Recent Posts</h3>
+  </header>
+  <div class="read-next-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+      <path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/>
+    </svg>
+  </div>
+  <div class="read-next-card-content">
+    <ul>
+      
+      
+      
+      <li>
+        <a href="/2020-01-16/thinking/Thinking modelBiological thinking Biological thinking looking at the business world from an evolutionary perspective/">Thinking modelBiological thinking Biological thinking: looking at the business world from an evolutionary perspective</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2020-01-13/thinking/Modern Darwin Integrated Model  Biological Thinking Mode Opening God Perspective/">Modern Darwin Integrated Model Biological Thinking Mode Opening God is Perspective</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2020-01-11/thinking/Metacognition Changing the stubborn thinking of the brain/">Metacognition Changing the stubborn thinking of the brain</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <footer class="read-next-card-footer">
+    <a href="/archives">  MORE  → </a>
+  </footer>
+</article>
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+    <header class="read-next-card-header tagcloud-card">
+        <h3 class="read-next-card-header-title">Categories</h3>
+    </header>
+    <div class="read-next-card-content">
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Biological-Thinking/">Biological Thinking</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cognitive-Neuroscience/">Cognitive Neuroscience</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DeepLearning/">DeepLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/FFmpeg/">FFmpeg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MacOS/">MacOS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MachineLearning/">MachineLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PM/">PM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/RPC/">RPC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vim/">Vim</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WebRTC/">WebRTC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/deeplearn/">deeplearn</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/http/">http</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/machineLearning/">machineLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/文摘/">文摘</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构师/">架构师</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/知识图谱/">知识图谱</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/职业规划/">职业规划</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/职业规划/个人提升/">个人提升</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机相关技术资料整理/">计算机相关技术资料整理</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/认知升级/">认知升级</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/财务自由/">财务自由</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/财富自由/">财富自由</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/运维/">运维</a></li></ul>
+    </div>
+</article>
+
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+	<header class="read-next-card-header tagcloud-card">
+		<h3 class="read-next-card-header-title">Tag Cloud</h3>
+	</header>
+	<div class="read-next-card-content-ext">
+		<a href="/tags/AI/" style="font-size: 14px;">AI</a> <a href="/tags/Android/" style="font-size: 14px;">Android</a> <a href="/tags/Biological/" style="font-size: 17.75px;">Biological</a> <a href="/tags/Browser/" style="font-size: 14px;">Browser</a> <a href="/tags/Business/" style="font-size: 16.5px;">Business</a> <a href="/tags/Cognitive/" style="font-size: 17.75px;">Cognitive</a> <a href="/tags/DeepLearning/" style="font-size: 15.25px;">DeepLearning</a> <a href="/tags/Docker/" style="font-size: 14px;">Docker</a> <a href="/tags/FFmpeg/" style="font-size: 21.5px;">FFmpeg</a> <a href="/tags/FastCGI/" style="font-size: 14px;">FastCGI</a> <a href="/tags/IP划分/" style="font-size: 14px;">IP划分</a> <a href="/tags/IP地址/" style="font-size: 14px;">IP地址</a> <a href="/tags/Knowledge-Graph/" style="font-size: 16.5px;">Knowledge Graph</a> <a href="/tags/Linux-Shell/" style="font-size: 14px;">Linux Shell</a> <a href="/tags/MacOS/" style="font-size: 15.25px;">MacOS</a> <a href="/tags/Neuroscience/" style="font-size: 17.75px;">Neuroscience</a> <a href="/tags/RPC/" style="font-size: 14px;">RPC</a> <a href="/tags/Thinking/" style="font-size: 17.75px;">Thinking</a> <a href="/tags/Tutorial/" style="font-size: 20.25px;">Tutorial</a> <a href="/tags/WebRTC/" style="font-size: 21.5px;">WebRTC</a> <a href="/tags/WebSocket/" style="font-size: 14px;">WebSocket</a> <a href="/tags/algorithm/" style="font-size: 15.25px;">algorithm</a> <a href="/tags/config/" style="font-size: 14px;">config</a> <a href="/tags/decisionTree/" style="font-size: 14px;">decisionTree</a> <a href="/tags/git/" style="font-size: 17.75px;">git</a> <a href="/tags/google-adsense/" style="font-size: 14px;">google adsense</a> <a href="/tags/hexo/" style="font-size: 17.75px;">hexo</a> <a href="/tags/http/" style="font-size: 17.75px;">http</a> <a href="/tags/knn/" style="font-size: 14px;">knn</a> <a href="/tags/lighttpd/" style="font-size: 15.25px;">lighttpd</a> <a href="/tags/mxnet/" style="font-size: 14px;">mxnet</a> <a href="/tags/mysql/" style="font-size: 22.75px;">mysql</a> <a href="/tags/nlp/" style="font-size: 24px;">nlp</a> <a href="/tags/nodejs/" style="font-size: 14px;">nodejs</a> <a href="/tags/openvpn/" style="font-size: 14px;">openvpn</a> <a href="/tags/other/" style="font-size: 15.25px;">other</a> <a href="/tags/paddle/" style="font-size: 14px;">paddle</a> <a href="/tags/planning/" style="font-size: 20.25px;">planning</a> <a href="/tags/pracitce/" style="font-size: 15.25px;">pracitce</a> <a href="/tags/rich/" style="font-size: 14px;">rich</a> <a href="/tags/shell/" style="font-size: 14px;">shell</a> <a href="/tags/svn/" style="font-size: 14px;">svn</a> <a href="/tags/ubuntu/" style="font-size: 14px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 16.5px;">vim</a> <a href="/tags/webpack/" style="font-size: 14px;">webpack</a> <a href="/tags/webrtc/" style="font-size: 19px;">webrtc</a> <a href="/tags/个人发展/" style="font-size: 14px;">个人发展</a> <a href="/tags/互联网实事/" style="font-size: 14px;">互联网实事</a> <a href="/tags/外链/" style="font-size: 14px;">外链</a> <a href="/tags/提升个人思维/" style="font-size: 14px;">提升个人思维</a> <a href="/tags/文摘/" style="font-size: 15.25px;">文摘</a> <a href="/tags/斜杠青年/" style="font-size: 14px;">斜杠青年</a> <a href="/tags/机器学习/" style="font-size: 16.5px;">机器学习</a> <a href="/tags/架构师/" style="font-size: 14px;">架构师</a> <a href="/tags/测试工具/" style="font-size: 14px;">测试工具</a> <a href="/tags/睡后成长/" style="font-size: 14px;">睡后成长</a> <a href="/tags/睡后收入/" style="font-size: 14px;">睡后收入</a> <a href="/tags/税后收入/" style="font-size: 14px;">税后收入</a> <a href="/tags/笔记/" style="font-size: 14px;">笔记</a> <a href="/tags/自然语言处理/" style="font-size: 24px;">自然语言处理</a> <a href="/tags/视频流/" style="font-size: 15.25px;">视频流</a> <a href="/tags/计算机相关技术资料整理/" style="font-size: 14px;">计算机相关技术资料整理</a> <a href="/tags/认知升级/" style="font-size: 14px;">认知升级</a> <a href="/tags/限速/" style="font-size: 14px;">限速</a> <a href="/tags/面试/" style="font-size: 14px;">面试</a> <a href="/tags/项目管理/" style="font-size: 14px;">项目管理</a>
+	</div>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+	
+
+
+
+
+<div id="search" class="search-overlay">
+    <div class="search-form">
+        
+        <div class="search-overlay-logo">
+        	<img src="/images/favicon-16x16-next.png" alt="Pastor Dean">
+        </div>
+        
+        <input id="local-search-input" class="search-input" type="text" name="search" placeholder="Search ...">
+        <a class="search-overlay-close" href="#"></a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+<footer class="site-footer outer">
+	<div class="site-footer-content inner">
+		<div class="copyright">
+			<a href="/" title="Pastor Dean">Pastor Dean &copy; 2020</a>
+			
+				
+			        <span hidden="true" id="/2019-03-21/nlp/10Visual_Text_Task_Image_Caption_and_VQA/Chapter2_Visual_Q_A/VQA/" class="leancloud-visitors" data-flag-title="NLP系列">
+			            <span>阅读量 </span>
+			            <span class="leancloud-visitors-count">0</span>
+			        </span>
+	    		
+    		
+		</div>
+		<nav class="site-footer-nav">
+			
+			<a href="https://hexo.io" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+			<a href="https://github.com/xzhih/hexo-theme-casper" title="Casper" target="_blank" rel="noopener">Casper</a>
+		</nav>
+	</div>
+</footer>
+	
+
+
+<script>
+    if(window.navigator && navigator.serviceWorker) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister()
+            }
+        })
+    }
+</script>
+
+
+<script id="scriptLoad" src="/js/allinone.min.js" async></script>
+
+
+<script>
+    document.getElementById('scriptLoad').addEventListener('load', function () {
+        
+        
+            var bLazy = new Blazy();
+        
+
+        
+        
+
+        
+        
+        
+            searchFunc("/");
+        
+        
+    })
+</script>
+
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+
+
+<script id="valineScript" src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+<script>
+    document.getElementById('valineScript').addEventListener("load", function() {
+        new Valine({
+            el: '#comment' ,
+            verify: false,
+            notify: false,
+            appId: '',
+            appKey: '',
+            placeholder: 'Just go go',
+            pageSize: 10,
+            avatar: 'mm',
+            visitor: true
+        })
+    });
+</script>
+
+
+
+
+
+</body>
+</html>

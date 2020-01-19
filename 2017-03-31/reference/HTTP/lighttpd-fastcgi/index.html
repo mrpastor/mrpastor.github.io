@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="preconnect" href="//www.googletagmanager.com">
+	<link rel="preconnect" href="//zz.bdstatic.com">
+	<link rel="preconnect" href="//sp0.baidu.com">
+	<link rel="preconnect" href="//www.google-analytics.com">
+	<link rel="preconnect" href="//cdn1.lncld.net">
+	<link rel="preconnect" href="//unpkg.com">
+	<link rel="preconnect" href="//app-router.leancloud.cn">
+	<link rel="preconnect" href="//9qpuwspm.api.lncld.net">
+	<link rel="preconnect" href="//gravatar.loli.net">
+
+	<title>lighttpd+fastcgi | Pastor Dean</title>
+
+	<meta name="HandheldFriendly" content="True">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+	<meta name="generator" content="hexo">
+	<meta name="author" content="pastor">
+	<meta name="description" content>
+
+	
+	<meta name="keywords" content>
+	
+
+	
+	<link rel="shortcut icon" href="/images/favicon-16x16-next.png">
+	<link rel="apple-touch-icon" href="/images/favicon-16x16-next.png">
+	
+
+	
+	<meta name="theme-color" content="#3c484e">
+	<meta name="msapplication-TileColor" content="#3c484e">
+	
+
+	
+
+	
+
+	<meta property="og:site_name" content="Pastor Dean">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="lighttpd+fastcgi | Pastor Dean">
+	<meta property="og:description" content>
+	<meta property="og:url" content="https://mrpastor.github.io/2017-03-31/reference/HTTP/lighttpd-fastcgi/">
+
+	
+	<meta property="article:published_time" content="2017-03-31T12:03:00+08:00"> 
+	<meta property="article:author" content="pastor">
+	<meta property="article:published_first" content="Pastor Dean, /2017-03-31/reference/HTTP/lighttpd-fastcgi/">
+	
+
+	
+	
+	<link rel="stylesheet" href="/css/allinonecss.min.css">
+
+	
+	
+	
+</head>
+<body class="post-template">
+	<div class="site-wrapper">
+		
+
+
+
+
+<header class="site-header post-site-header outer">
+    <div class="inner">
+        
+<nav class="site-nav"> 
+    <div class="site-nav-left">
+        <ul class="nav">
+            <li>
+                
+                
+                <a class="site-nav-logo" href="/" title="Pastor Dean">
+                    <img src="/images/favicon-32x32-next.png" alt="Pastor Dean">
+                </a>
+                
+                
+            </li>
+            
+            
+            <li>
+                <a href="/ || home" title="home">home</a>
+            </li>
+            
+            <li>
+                <a href="/categories/ || th" title="categories">categories</a>
+            </li>
+            
+            <li>
+                <a href="/archives/ || archive" title="archives">archives</a>
+            </li>
+            
+            <li>
+                <a href="/tools/ || tools" title="tools">tools</a>
+            </li>
+            
+            
+        </ul> 
+    </div>
+    
+    <div class="search-button-area">
+        <a href="#search" class="search-button">Search ...</a>
+    </div>
+     
+    <div class="site-nav-right">
+        
+        <a href="#search" class="search-button">Search ...</a>
+         
+        
+<div class="social-links">
+    
+    
+    <a class="social-link" title="github" href="https://github.com/mrpastor" target="_blank" rel="noopener">
+        <svg viewbox="0 0 1049 1024" xmlns="http://www.w3.org/2000/svg"><path d="M524.979332 0C234.676191 0 0 234.676191 0 524.979332c0 232.068678 150.366597 428.501342 358.967656 498.035028 26.075132 5.215026 35.636014-11.299224 35.636014-25.205961 0-12.168395-0.869171-53.888607-0.869171-97.347161-146.020741 31.290159-176.441729-62.580318-176.441729-62.580318-23.467619-60.841976-58.234462-76.487055-58.234463-76.487055-47.804409-32.15933 3.476684-32.15933 3.476685-32.15933 53.019436 3.476684 80.83291 53.888607 80.83291 53.888607 46.935238 79.963739 122.553122 57.365291 152.97411 43.458554 4.345855-33.897672 18.252593-57.365291 33.028501-70.402857-116.468925-12.168395-239.022047-57.365291-239.022047-259.012982 0-57.365291 20.860106-104.300529 53.888607-140.805715-5.215026-13.037566-23.467619-66.926173 5.215027-139.067372 0 0 44.327725-13.906737 144.282399 53.888607 41.720212-11.299224 86.917108-17.383422 131.244833-17.383422s89.524621 6.084198 131.244833 17.383422C756.178839 203.386032 800.506564 217.29277 800.506564 217.29277c28.682646 72.1412 10.430053 126.029806 5.215026 139.067372 33.897672 36.505185 53.888607 83.440424 53.888607 140.805715 0 201.64769-122.553122 245.975415-239.891218 259.012982 19.121764 16.514251 35.636014 47.804409 35.636015 97.347161 0 70.402857-0.869171 126.898978-0.869172 144.282399 0 13.906737 9.560882 30.420988 35.636015 25.205961 208.601059-69.533686 358.967656-265.96635 358.967655-498.035028C1049.958663 234.676191 814.413301 0 524.979332 0z"/></svg>
+    </a>
+    
+    
+    <a class="social-link" title="facebook" href="https://facebook" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+
+    </a>
+    
+    
+    <a class="social-link" title="twitter" href="https://twitter.com" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+    </a>
+    
+    
+    
+    
+</div>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<div id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+        <header class="post-full-header">
+            <div class="post-full-meta">
+                <time class="post-full-meta-date" datetime="2017-03-31T04:34:28.000Z">
+                    2017-03-31
+                </time>
+                
+                <span class="date-divider">/</span>
+                
+                
+            </div>
+            <h1 class="post-full-title">lighttpd+fastcgi</h1>
+        </header>
+        <div class="post-full no-image">
+            
+            <div class="post-full-content">
+                <article id="photoswipe" class="markdown-body">
+                    <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p><code>lighttpd</code> 提供了一种外部程序调用的接口，即 <code>FastCGI</code> 接口。这是一种独立于平台和服务器的接口，它介于Web应用程序和Web服务器之间。</p>
+<p>这就意味着能够在 <code>Apache</code> 服务器上运行的 <code>FastCGI</code> 程序，也一定可以无缝的在 <code>lighttpd</code> 上使用。</p>
+<a id="more"></a>
+<h3 id="FastCGI介绍"><a href="#FastCGI介绍" class="headerlink" title="FastCGI介绍"></a>FastCGI介绍</h3><p>1）就像 <code>CGI</code> 一样，<code>FastCGI</code> 也是独立于编程语言的。<br>2）就像 <code>CGI</code> 一样，<code>FastCGI</code> 程序运行在完全独立于核心 <code>Web Server</code> 之外的进程中，和 <code>API</code> 方式相比，提供了很大的安全性。（API会将程序代码与核心Web Server挂接在一起，这就意味着基于问题API的应用程序可能会使整个Web Server或另一个应用程序崩溃；一个恶意API还可以从核心Web Server或另一个应用程序中盗取安全密钥）</p>
+<p>3) 虽然 <code>FastCGI</code> 不能一夜之间复制CGI的所有功能，但是 <code>FastCGI</code> 一直宣扬开放，这也使得我们拥有很多免费的 <code>FastCGI</code> 应用程序库（C/C++、Java、Perl、TCL）和免费的Server模块（Apache、ISS、Lighttpd）。</p>
+<p>4) 就像 <code>CGI</code> 一样，<code>FastCGI</code> 并不依附于任何 <code>Web Server</code> 的内部架构，因此即使 <code>Server</code> 的技术实现变动，<code>FastCGI</code> 仍然非常稳定；而 <code>API</code> 设计是反映 <code>Web Server</code> 内部架构的，因此，一旦架构改变，API要随之变动。</p>
+<p>5) <code>FastCGI</code> 程序可以运行在任何机器上，完全可以和 <code>Web Server</code> 不在一台机器上。这种分布式计算的思想可以确保可扩展性、提高系统可用性和安全性。</p>
+<p>6) <code>CGI</code> 程序主要是对 <code>HTTP</code> 请求做计算处理，而 <code>FastCGI</code> 却还可以做得更多，例如模块化认证、授权检查、数据类型转换等等。在未来，<code>FastCGI</code> 还会有能力扮演更多角色。</p>
+<p>7) <code>FastCGI</code> 移除了 <code>CGI</code> 程序的许多弊端。例如，针对每一个新请求，<code>WebServer</code> 都必须重启 <code>CGI</code> 程序来处理新请求，这导致 <code>WebServer</code> 的性能会大受影响。而 <code>FastCGI</code> 通过保持进程处理运行状态并持续处理请求的方式解决了该问题，这就将进程创建和销毁的时间节省了出来。</p>
+<p>8) <code>CGI</code> 程序需要通过管道（pipe）方式与 <code>Web Server</code> 通信，而 <code>FastCGI</code> 则是通过 <code>Unix-Domain-Sockets</code> 或 <code>TCP/IP</code> 方式来实现与 <code>Web Server</code> 的通信。这确保了 <code>FastCGI</code> 可以运行在 <code>Web Server</code> 之外的服务器上。<code>FastCGI</code> 提供了 <code>FastCGI</code> 负载均衡器，它可以有效控制多个独立的 <code>FastCGI Server</code> 的负载，这种方式比 <code>load-balancer+apache+mod_php</code> 方式能够承担更多的流量。</p>
+<h3 id="FastCGI-模块"><a href="#FastCGI-模块" class="headerlink" title="FastCGI 模块"></a>FastCGI 模块</h3><p>若要 <code>lighttpd</code> 支持 <code>fastcgi</code>，则需要配置如下内容：</p>
+<p>在 <code>fastcgi.conf</code> 中配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">server.modules += ( &quot;mod_fastcgi&quot; )</span><br></pre></td></tr></table></figure>
+<p>及在 <code>module.conf</code> 中配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">include &quot;conf.d/fastcgi.conf&quot;</span><br></pre></td></tr></table></figure>
+<h3 id="FastCGI-配置选项"><a href="#FastCGI-配置选项" class="headerlink" title="FastCGI 配置选项"></a>FastCGI 配置选项</h3><p><code>lighttpd</code> 通过 <code>fastcgi</code> 模块的方式实现了对 <code>fastcgi</code> 的支持，并且在配置文件中提供了三个相关的选项：</p>
+<p>1） fastcgi.debug</p>
+<p>可以设置一个从0到65535的值，用于设定 <code>FastCGI</code> 模块的调试等级。当前仅有0和1可用。<strong>1表示开启调试（会输出调试信息），0表示禁用</strong>。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastcgi.debug = 1</span><br></pre></td></tr></table></figure>
+<p>2） fastcgi.map-extentsions</p>
+<p>同一个 <code>fastcgi server</code> 能够映射多个扩展名，如 <code>.php3</code> 和 <code>.php4</code> 都对应 <code>.php</code>。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastcgi.map-extensions = ( &quot;.php3&quot; =&gt; &quot;.php&quot; )</span><br></pre></td></tr></table></figure>
+<p>or for multiple</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastcgi.map-extensions = ( &quot;.php3&quot; =&gt; &quot;.php&quot;, &quot;.php4&quot; =&gt; &quot;.php&quot; )</span><br></pre></td></tr></table></figure>
+<p>3） fastcgi.server</p>
+<p>这个配置是告诉 <code>Web Server</code> 将 <code>FastCGI</code> 请求发送到哪里，其中每一个文件扩展名可以处理一个类型的请求。负载均衡器可以实现对同一扩展名的多个对象的负载均衡。</p>
+<p><code>fastcgi.server</code> 的结构语法如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">( &lt;extension&gt; =&gt;</span><br><span class="line">  ( [ &lt;name&gt; =&gt; ]</span><br><span class="line">    ( <span class="comment"># Be careful: lighty does *not* warn you if it doesn't know a specified option here (make sure you have no typos)</span></span><br><span class="line">      <span class="string">"host"</span> =&gt; &lt;string&gt; ,</span><br><span class="line">      <span class="string">"port"</span> =&gt; &lt;<span class="built_in">integer</span>&gt; ,</span><br><span class="line">      <span class="string">"socket"</span> =&gt; &lt;string&gt;,                 <span class="comment"># either socket or host+port</span></span><br><span class="line">      <span class="string">"bin-path"</span> =&gt; &lt;string&gt;,               <span class="comment"># optional</span></span><br><span class="line">      <span class="string">"bin-environment"</span> =&gt; &lt;array&gt;,         <span class="comment"># optional</span></span><br><span class="line">      <span class="string">"bin-copy-environment"</span> =&gt; &lt;array&gt;,    <span class="comment"># optional</span></span><br><span class="line">      <span class="string">"mode"</span> =&gt; &lt;string&gt;,                   <span class="comment"># optional</span></span><br><span class="line">      <span class="string">"docroot"</span> =&gt; &lt;string&gt; ,               <span class="comment"># optional if "mode" is not "authorizer"</span></span><br><span class="line">      <span class="string">"check-local"</span> =&gt; &lt;string&gt;,            <span class="comment"># optional</span></span><br><span class="line">      <span class="string">"max-procs"</span> =&gt; &lt;<span class="built_in">integer</span>&gt;,             <span class="comment"># optional - when omitted, default is 4</span></span><br><span class="line">      <span class="string">"broken-scriptfilename"</span> =&gt; &lt;boolean&gt;, <span class="comment"># optional</span></span><br><span class="line">      <span class="string">"kill-signal"</span> =&gt; &lt;<span class="built_in">integer</span>&gt;,           <span class="comment"># optional, default is SIGTERM(15) (v1.4.14+)</span></span><br><span class="line">    ),</span><br><span class="line">    ( <span class="string">"host"</span> =&gt; ...</span><br><span class="line">    )</span><br><span class="line">  )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>其中：</p>
+<blockquote>
+<p><strong>extentsion</strong> ：文件名后缀或以”/”开头的前缀（也可为文件名）<br><strong>name</strong> ：这是一个可选项，表示handler的名称，在mod_status中用于统计功能，可以清晰的分辨出是哪一个handler处理了<extension>。<br><strong>host</strong> ：FastCGI进程监听的IP地址。此处不支持hostname形式。<br><strong>port</strong> ：FastCGI进程所监听的TCP端口号<br><strong>bin-path</strong> ：本地FastCGI二进制程序的路径，当本地没有FastCGI正在运行时，会启动这个FastCGI程序。<br><strong>socket</strong> ：unix-domain-socket所在路径。<br><strong>mode</strong> ：可以选择FastCGI协议的模式，默认是“responder”，还可以选择authorizer。<br><strong>docroot</strong> ：这是一个可选项，对于responder模式来讲，表示远程主机docroot；对于authorizer模式来说，它表示MANDATORY，并且指向授权请求的docroot。<br><strong>check_local</strong> ：这是一个可选项，默认是enable。如果是enable，那么server会首先在本地（server.document-root）目录中检查被请求的文件是否存在，如果不存在，则给用户返回404（Not Found），而不会把这个请求传递给FastCGI。如果是disable，那么server不会检查本地文件，而是直接将请求转发给FastCGI。（disable的话，server从某种意义上说就变为了一个转发器）<br><strong>broken-scriptfilename</strong> ：以类似PHP抽取PATH_INFO的方式，抽取URL中的SCRIPT_FILENAME。</extension></p>
+</blockquote>
+<p>如果 <code>bin-path</code> 被设置了，那么：</p>
+<blockquote>
+<p><strong>max-procs</strong> ：设置多少个FastCGI进程被启动<br><strong>bin-environment</strong> ：在FastCGI进程启动时设置一个环境变量<br><strong>bin-copy-environment</strong> ：清除环境，并拷贝指定的变量到全新的环境中。<br><strong>kill-signal</strong> ：默认的话，在停止FastCGI进程时，lighttpd会发送SIGTERM(-15)信号给子进程。此处可以设置发送的信号。</p>
+</blockquote>
+<p><strong>举例</strong> ：</p>
+<p>使用前缀来对应主机：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">fastcgi.server = (</span><br><span class="line">  <span class="string">"/remote_scripts/"</span> =&gt;</span><br><span class="line">  (( <span class="string">"host"</span> =&gt; <span class="string">"192.168.0.3"</span>,</span><br><span class="line">     <span class="string">"port"</span> =&gt; 9000,</span><br><span class="line">     <span class="string">"check-local"</span> =&gt; <span class="string">"disable"</span>,</span><br><span class="line">     <span class="string">"docroot"</span> =&gt; <span class="string">"/"</span> <span class="comment"># remote server may use</span></span><br><span class="line">                      <span class="comment"># it's own docroot</span></span><br><span class="line">  ))</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>如果有一个请求 “<a href="http://my.example.org/remote_scripts/test.cgi&quot;，那么server会将其转发给192.168.0.3的9000端口，并且" target="_blank" rel="noopener">http://my.example.org/remote_scripts/test.cgi&quot;，那么server会将其转发给192.168.0.3的9000端口，并且</a> <code>SCRIPT_NAME</code> 会被赋值为 <code>“/remote_scripts/test.cgi”</code>。如果所设置的 <code>handler</code> 的末尾不是 <code>“/”</code> ，那么会被认为是一个文件。</p>
+<p><strong>负载均衡</strong> ：</p>
+<p><code>FastCGI</code> 模块提供了一种在多台 <code>FastCGI</code> 服务器间负载均衡的方法。</p>
+<p>例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">fastcgi.server = ( <span class="string">".php"</span> =&gt;</span><br><span class="line">  (</span><br><span class="line">    ( <span class="string">"host"</span> =&gt; <span class="string">"10.0.0.2"</span>,</span><br><span class="line">      <span class="string">"port"</span> =&gt; 1030</span><br><span class="line">    ),</span><br><span class="line">    ( <span class="string">"host"</span> =&gt; <span class="string">"10.0.0.3"</span>,</span><br><span class="line">      <span class="string">"port"</span> =&gt; 1030 )</span><br><span class="line">    )</span><br><span class="line">  )</span><br></pre></td></tr></table></figure>
+<p>为了更好的理解负载均衡实现的原理，建议你置 <code>fastcgi.debug</code> 为 <code>1</code> 。即使对于本机的多个 <code>FastCGI</code> ，你也会获得如下输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">proc: 127.0.0.1 1031  1 1 1 31454</span><br><span class="line">proc: 127.0.0.1 1028  1 1 1 31442</span><br><span class="line">proc: 127.0.0.1 1030  1 1 1 31449</span><br><span class="line">proc: 127.0.0.1 1029  1 1 2 31447</span><br><span class="line">proc: 127.0.0.1 1026  1 1 2 31438</span><br><span class="line">got proc: 34 31454</span><br><span class="line">release proc: 40 31438</span><br><span class="line">proc: 127.0.0.1 1026  1 1 1 31438</span><br><span class="line">proc: 127.0.0.1 1028  1 1 1 31442</span><br><span class="line">proc: 127.0.0.1 1030  1 1 1 31449</span><br><span class="line">proc: 127.0.0.1 1031  1 1 2 31454</span><br><span class="line">proc: 127.0.0.1 1029  1 1 2 31447</span><br></pre></td></tr></table></figure>
+<p>上述信息显示出了IP地址，端口号、当前链接数（也就是负载）（倒数第二列）、进程ID（倒数第一列）等等。整个输出信息总是以负载域来从小到大排序的。</p>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p><a href="http://redmine.lighttpd.net/projects/1/wiki/Docs:ModFastCGI" target="_blank" rel="noopener"></a></p>
+<p><a href="http://www.fastcgi.com" target="_blank" rel="noopener"></a></p>
+<p><a href="http://roclinux.cn/?p=2347" target="_blank" rel="noopener">说说lighttpd的fastcgi</a></p>
+<p><a href="http://www.cnblogs.com/skynet/p/4173450.html" target="_blank" rel="noopener">Nginx + CGI/FastCGI + C/Cpp</a></p>
+<p><a href="https://segmentfault.com/a/1190000004006596" target="_blank" rel="noopener">FastCGI+lighttpd开发之介绍和环境搭建</a></p>
+<h3 id="附：QC-V3-PP-版本-lighttpd-conf"><a href="#附：QC-V3-PP-版本-lighttpd-conf" class="headerlink" title="附：QC V3 PP 版本 lighttpd.conf"></a>附：QC V3 PP 版本 lighttpd.conf</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line">$ cat /etc/qtilighttpd.conf </span><br><span class="line"><span class="comment"># ------------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># Copyright (c) 2016 Qualcomm Technologies, Inc.</span></span><br><span class="line"><span class="comment"># All Rights Reserved.</span></span><br><span class="line"><span class="comment"># Confidential and Proprietary - Qualcomm Technologies, Inc.</span></span><br><span class="line"><span class="comment"># ------------------------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line">server.document-root = <span class="string">"/opt/qcom/www"</span></span><br><span class="line"></span><br><span class="line">server.port    = 80</span><br><span class="line">server.username    = <span class="string">"apps"</span></span><br><span class="line">server.groupname  = <span class="string">"apps"</span></span><br><span class="line">server.bind    = <span class="string">"0.0.0.0"</span></span><br><span class="line">server.tag    = <span class="string">"lighttpd"</span></span><br><span class="line"><span class="variable">$SERVER</span>[<span class="string">"socket"</span>] == <span class="string">"[::]:80"</span> &#123;  &#125;</span><br><span class="line"></span><br><span class="line">server.errorlog-use-syslog  = <span class="string">"enable"</span></span><br><span class="line">accesslog.use-syslog    = <span class="string">"enable"</span></span><br><span class="line"></span><br><span class="line">server.modules    = (</span><br><span class="line">  <span class="string">"mod_access"</span>,<span class="string">"mod_accesslog"</span>, <span class="string">"mod_cgi"</span>, <span class="string">"mod_fastcgi"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">fastcgi.debug = 1</span><br><span class="line">fastcgi.server = (</span><br><span class="line">    <span class="string">"/fsmoam"</span> =&gt; (</span><br><span class="line">    <span class="string">"fsmoam.fcgi.handler"</span> =&gt; (</span><br><span class="line">        <span class="string">"socket"</span> =&gt; <span class="string">"/tmp/fsmoam.fcgi.socket"</span>,</span><br><span class="line">        <span class="string">"check-local"</span> =&gt; <span class="string">"disable"</span>,</span><br><span class="line">        <span class="string">"bin-path"</span> =&gt; <span class="string">"/opt/qcom/bin/tests/fsmWebServer --default-log-level=DEBUG"</span>,</span><br><span class="line">        <span class="string">"max-procs"</span> =&gt; 1)</span><br><span class="line">     )</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># mimetype mapping</span></span><br><span class="line">mimetype.assign    = (</span><br><span class="line">  <span class="string">".pdf"</span>    =&gt;  <span class="string">"application/pdf"</span>,</span><br><span class="line">  <span class="string">".sig"</span>    =&gt;  <span class="string">"application/pgp-signature"</span>,</span><br><span class="line">  <span class="string">".spl"</span>    =&gt;  <span class="string">"application/futuresplash"</span>,</span><br><span class="line">  <span class="string">".class"</span>  =&gt;  <span class="string">"application/octet-stream"</span>,</span><br><span class="line">  <span class="string">".ps"</span>    =&gt;  <span class="string">"application/postscript"</span>,</span><br><span class="line">  <span class="string">".torrent"</span>  =&gt;  <span class="string">"application/x-bittorrent"</span>,</span><br><span class="line">  <span class="string">".dvi"</span>    =&gt;  <span class="string">"application/x-dvi"</span>,</span><br><span class="line">  <span class="string">".gz"</span>    =&gt;  <span class="string">"application/x-gzip"</span>,</span><br><span class="line">  <span class="string">".pac"</span>    =&gt;  <span class="string">"application/x-ns-proxy-autoconfig"</span>,</span><br><span class="line">  <span class="string">".swf"</span>    =&gt;  <span class="string">"application/x-shockwave-flash"</span>,</span><br><span class="line">  <span class="string">".tar.gz"</span>  =&gt;  <span class="string">"application/x-tgz"</span>,</span><br><span class="line">  <span class="string">".tgz"</span>    =&gt;  <span class="string">"application/x-tgz"</span>,</span><br><span class="line">  <span class="string">".tar"</span>    =&gt;  <span class="string">"application/x-tar"</span>,</span><br><span class="line">  <span class="string">".zip"</span>    =&gt;  <span class="string">"application/zip"</span>,</span><br><span class="line">  <span class="string">".mp3"</span>    =&gt;  <span class="string">"audio/mpeg"</span>,</span><br><span class="line">  <span class="string">".m3u"</span>    =&gt;  <span class="string">"audio/x-mpegurl"</span>,</span><br><span class="line">  <span class="string">".wma"</span>    =&gt;  <span class="string">"audio/x-ms-wma"</span>,</span><br><span class="line">  <span class="string">".wax"</span>    =&gt;  <span class="string">"audio/x-ms-wax"</span>,</span><br><span class="line">  <span class="string">".ogg"</span>    =&gt;  <span class="string">"audio/x-wav"</span>,</span><br><span class="line">  <span class="string">".wav"</span>    =&gt;  <span class="string">"audio/x-wav"</span>,</span><br><span class="line">  <span class="string">".gif"</span>    =&gt;  <span class="string">"image/gif"</span>,</span><br><span class="line">  <span class="string">".jpg"</span>    =&gt;  <span class="string">"image/jpeg"</span>,</span><br><span class="line">  <span class="string">".jpeg"</span>    =&gt;  <span class="string">"image/jpeg"</span>,</span><br><span class="line">  <span class="string">".png"</span>    =&gt;  <span class="string">"image/png"</span>,</span><br><span class="line">  <span class="string">".xbm"</span>    =&gt;  <span class="string">"image/x-xbitmap"</span>,</span><br><span class="line">  <span class="string">".xpm"</span>    =&gt;  <span class="string">"image/x-xpixmap"</span>,</span><br><span class="line">  <span class="string">".xwd"</span>    =&gt;  <span class="string">"image/x-xwindowdump"</span>,</span><br><span class="line">  <span class="string">".css"</span>    =&gt;  <span class="string">"text/css"</span>,</span><br><span class="line">  <span class="string">".html"</span>    =&gt;  <span class="string">"text/html"</span>,</span><br><span class="line">  <span class="string">".htm"</span>    =&gt;  <span class="string">"text/html"</span>,</span><br><span class="line">  <span class="string">".js"</span>    =&gt;  <span class="string">"text/javascript"</span>,</span><br><span class="line">  <span class="string">".asc"</span>    =&gt;  <span class="string">"text/plain"</span>,</span><br><span class="line">  <span class="string">".c"</span>    =&gt;  <span class="string">"text/plain"</span>,</span><br><span class="line">  <span class="string">".conf"</span>    =&gt;  <span class="string">"text/plain"</span>,</span><br><span class="line">  <span class="string">".text"</span>    =&gt;  <span class="string">"text/plain"</span>,</span><br><span class="line">  <span class="string">".txt"</span>    =&gt;  <span class="string">"text/plain"</span>,</span><br><span class="line">  <span class="string">".dtd"</span>    =&gt;  <span class="string">"text/xml"</span>,</span><br><span class="line">  <span class="string">".xml"</span>    =&gt;  <span class="string">"text/xml"</span>,</span><br><span class="line">  <span class="string">".mpeg"</span>    =&gt;  <span class="string">"video/mpeg"</span>,</span><br><span class="line">  <span class="string">".mpg"</span>    =&gt;  <span class="string">"video/mpeg"</span>,</span><br><span class="line">  <span class="string">".mov"</span>    =&gt;  <span class="string">"video/quicktime"</span>,</span><br><span class="line">  <span class="string">".qt"</span>    =&gt;  <span class="string">"video/quicktime"</span>,</span><br><span class="line">  <span class="string">".avi"</span>    =&gt;  <span class="string">"video/x-msvideo"</span>,</span><br><span class="line">  <span class="string">".asf"</span>    =&gt;  <span class="string">"video/x-ms-asf"</span>,</span><br><span class="line">  <span class="string">".asx"</span>    =&gt;  <span class="string">"video/x-ms-asf"</span>,</span><br><span class="line">  <span class="string">".wmv"</span>    =&gt;  <span class="string">"video/x-ms-wmv"</span>,</span><br><span class="line">  <span class="string">".bz2"</span>    =&gt;  <span class="string">"application/x-bzip"</span>,</span><br><span class="line">  <span class="string">".tbz"</span>    =&gt;  <span class="string">"application/x-bzip-compressed-tar"</span>,</span><br><span class="line">  <span class="string">".tar.bz2"</span>  =&gt;  <span class="string">"application/x-bzip-compressed-tar"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">index-file.names = ( <span class="string">"index.html"</span> )</span><br><span class="line"></span><br><span class="line">cgi.assign = ( <span class="string">".sh"</span> =&gt; <span class="string">"/bin/sh"</span> )</span><br></pre></td></tr></table></figure>
+
+                </article>
+                <ul class="tags-postTags">
+                    
+                    <li>
+                        <a href="/tags/lighttpd/" rel="tag"># lighttpd</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tags/FastCGI/" rel="tag"># FastCGI</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    
+    <nav id="gobottom" class="pagination">
+        
+        <a class="prev-post" title="lighttpd 配置https" href="/2017-03-31/reference/HTTP/lighttpd-配置https/">
+            ← lighttpd 配置https
+        </a>
+        
+        <span class="prev-next-post">·</span>
+        
+        <a class="next-post" title="svn 常用操作命令" href="/2017-03-29/reference/Git/svn-常用操作命令/">
+            svn 常用操作命令 →
+        </a>
+        
+    </nav>
+
+    
+    <div class="inner">
+        <div id="comment"></div>
+    </div>
+    
+</div>
+
+<div class="toc-bar">
+    <div class="toc-btn-bar">
+        <a href="#site-main" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M793.024 710.272a32 32 0 1 0 45.952-44.544l-310.304-320a32 32 0 0 0-46.4 0.48l-297.696 320a32 32 0 0 0 46.848 43.584l274.752-295.328 286.848 295.808z"/></svg>
+        </a>
+        <div class="toc-btn toc-switch">
+            <svg class="toc-open" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M779.776 480h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M779.776 672h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M256 288a32 32 0 1 0 0 64 32 32 0 0 0 0-64M392.576 352h387.2a32 32 0 0 0 0-64h-387.2a32 32 0 0 0 0 64M256 480a32 32 0 1 0 0 64 32 32 0 0 0 0-64M256 672a32 32 0 1 0 0 64 32 32 0 0 0 0-64"/></svg>
+            <svg class="toc-close hide" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M512 960c-247.039484 0-448-200.960516-448-448S264.960516 64 512 64 960 264.960516 960 512 759.039484 960 512 960zM512 128.287273c-211.584464 0-383.712727 172.128262-383.712727 383.712727 0 211.551781 172.128262 383.712727 383.712727 383.712727 211.551781 0 383.712727-172.159226 383.712727-383.712727C895.712727 300.415536 723.551781 128.287273 512 128.287273z"/><path d="M557.05545 513.376159l138.367639-136.864185c12.576374-12.416396 12.672705-32.671738 0.25631-45.248112s-32.704421-12.672705-45.248112-0.25631l-138.560301 137.024163-136.447897-136.864185c-12.512727-12.512727-32.735385-12.576374-45.248112-0.063647-12.512727 12.480043-12.54369 32.735385-0.063647 45.248112l136.255235 136.671523-137.376804 135.904314c-12.576374 12.447359-12.672705 32.671738-0.25631 45.248112 6.271845 6.335493 14.496116 9.504099 22.751351 9.504099 8.12794 0 16.25588-3.103239 22.496761-9.247789l137.567746-136.064292 138.687596 139.136568c6.240882 6.271845 14.432469 9.407768 22.65674 9.407768 8.191587 0 16.352211-3.135923 22.591372-9.34412 12.512727-12.480043 12.54369-32.704421 0.063647-45.248112L557.05545 513.376159z"/></svg>
+        </div>
+        <a href="#gobottom" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M231.424 346.208a32 32 0 0 0-46.848 43.584l297.696 320a32 32 0 0 0 46.4 0.48l310.304-320a32 32 0 1 0-45.952-44.544l-286.848 295.808-274.752-295.36z"/></svg>
+        </a>
+    </div>
+    <div class="toc-main">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#简介"><span class="toc-text">简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FastCGI介绍"><span class="toc-text">FastCGI介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FastCGI-模块"><span class="toc-text">FastCGI 模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FastCGI-配置选项"><span class="toc-text">FastCGI 配置选项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考文献"><span class="toc-text">参考文献</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#附：QC-V3-PP-版本-lighttpd-conf"><span class="toc-text">附：QC V3 PP 版本 lighttpd.conf</span></a></li></ol>
+    </div>
+</div>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+	</div>
+	
+
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+  <header class="read-next-card-header">
+    <small class="read-next-card-header-sitetitle">&mdash; Pastor Dean &mdash;</small>
+    <h3 class="read-next-card-header-title">Recent Posts</h3>
+  </header>
+  <div class="read-next-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+      <path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/>
+    </svg>
+  </div>
+  <div class="read-next-card-content">
+    <ul>
+      
+      
+      
+      <li>
+        <a href="/2020-01-16/thinking/Thinking modelBiological thinking Biological thinking looking at the business world from an evolutionary perspective/">Thinking modelBiological thinking Biological thinking: looking at the business world from an evolutionary perspective</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2020-01-13/thinking/Modern Darwin Integrated Model  Biological Thinking Mode Opening God Perspective/">Modern Darwin Integrated Model Biological Thinking Mode Opening God is Perspective</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2020-01-11/thinking/Metacognition Changing the stubborn thinking of the brain/">Metacognition Changing the stubborn thinking of the brain</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <footer class="read-next-card-footer">
+    <a href="/archives">  MORE  → </a>
+  </footer>
+</article>
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+    <header class="read-next-card-header tagcloud-card">
+        <h3 class="read-next-card-header-title">Categories</h3>
+    </header>
+    <div class="read-next-card-content">
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Biological-Thinking/">Biological Thinking</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cognitive-Neuroscience/">Cognitive Neuroscience</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DeepLearning/">DeepLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/FFmpeg/">FFmpeg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MacOS/">MacOS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MachineLearning/">MachineLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PM/">PM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/RPC/">RPC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vim/">Vim</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WebRTC/">WebRTC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/deeplearn/">deeplearn</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/http/">http</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/machineLearning/">machineLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/文摘/">文摘</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构师/">架构师</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/知识图谱/">知识图谱</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/职业规划/">职业规划</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/职业规划/个人提升/">个人提升</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机相关技术资料整理/">计算机相关技术资料整理</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/认知升级/">认知升级</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/财务自由/">财务自由</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/财富自由/">财富自由</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/运维/">运维</a></li></ul>
+    </div>
+</article>
+
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+	<header class="read-next-card-header tagcloud-card">
+		<h3 class="read-next-card-header-title">Tag Cloud</h3>
+	</header>
+	<div class="read-next-card-content-ext">
+		<a href="/tags/AI/" style="font-size: 14px;">AI</a> <a href="/tags/Android/" style="font-size: 14px;">Android</a> <a href="/tags/Biological/" style="font-size: 17.75px;">Biological</a> <a href="/tags/Browser/" style="font-size: 14px;">Browser</a> <a href="/tags/Business/" style="font-size: 16.5px;">Business</a> <a href="/tags/Cognitive/" style="font-size: 17.75px;">Cognitive</a> <a href="/tags/DeepLearning/" style="font-size: 15.25px;">DeepLearning</a> <a href="/tags/Docker/" style="font-size: 14px;">Docker</a> <a href="/tags/FFmpeg/" style="font-size: 21.5px;">FFmpeg</a> <a href="/tags/FastCGI/" style="font-size: 14px;">FastCGI</a> <a href="/tags/IP划分/" style="font-size: 14px;">IP划分</a> <a href="/tags/IP地址/" style="font-size: 14px;">IP地址</a> <a href="/tags/Knowledge-Graph/" style="font-size: 16.5px;">Knowledge Graph</a> <a href="/tags/Linux-Shell/" style="font-size: 14px;">Linux Shell</a> <a href="/tags/MacOS/" style="font-size: 15.25px;">MacOS</a> <a href="/tags/Neuroscience/" style="font-size: 17.75px;">Neuroscience</a> <a href="/tags/RPC/" style="font-size: 14px;">RPC</a> <a href="/tags/Thinking/" style="font-size: 17.75px;">Thinking</a> <a href="/tags/Tutorial/" style="font-size: 20.25px;">Tutorial</a> <a href="/tags/WebRTC/" style="font-size: 21.5px;">WebRTC</a> <a href="/tags/WebSocket/" style="font-size: 14px;">WebSocket</a> <a href="/tags/algorithm/" style="font-size: 15.25px;">algorithm</a> <a href="/tags/config/" style="font-size: 14px;">config</a> <a href="/tags/decisionTree/" style="font-size: 14px;">decisionTree</a> <a href="/tags/git/" style="font-size: 17.75px;">git</a> <a href="/tags/google-adsense/" style="font-size: 14px;">google adsense</a> <a href="/tags/hexo/" style="font-size: 17.75px;">hexo</a> <a href="/tags/http/" style="font-size: 17.75px;">http</a> <a href="/tags/knn/" style="font-size: 14px;">knn</a> <a href="/tags/lighttpd/" style="font-size: 15.25px;">lighttpd</a> <a href="/tags/mxnet/" style="font-size: 14px;">mxnet</a> <a href="/tags/mysql/" style="font-size: 22.75px;">mysql</a> <a href="/tags/nlp/" style="font-size: 24px;">nlp</a> <a href="/tags/nodejs/" style="font-size: 14px;">nodejs</a> <a href="/tags/openvpn/" style="font-size: 14px;">openvpn</a> <a href="/tags/other/" style="font-size: 15.25px;">other</a> <a href="/tags/paddle/" style="font-size: 14px;">paddle</a> <a href="/tags/planning/" style="font-size: 20.25px;">planning</a> <a href="/tags/pracitce/" style="font-size: 15.25px;">pracitce</a> <a href="/tags/rich/" style="font-size: 14px;">rich</a> <a href="/tags/shell/" style="font-size: 14px;">shell</a> <a href="/tags/svn/" style="font-size: 14px;">svn</a> <a href="/tags/ubuntu/" style="font-size: 14px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 16.5px;">vim</a> <a href="/tags/webpack/" style="font-size: 14px;">webpack</a> <a href="/tags/webrtc/" style="font-size: 19px;">webrtc</a> <a href="/tags/个人发展/" style="font-size: 14px;">个人发展</a> <a href="/tags/互联网实事/" style="font-size: 14px;">互联网实事</a> <a href="/tags/外链/" style="font-size: 14px;">外链</a> <a href="/tags/提升个人思维/" style="font-size: 14px;">提升个人思维</a> <a href="/tags/文摘/" style="font-size: 15.25px;">文摘</a> <a href="/tags/斜杠青年/" style="font-size: 14px;">斜杠青年</a> <a href="/tags/机器学习/" style="font-size: 16.5px;">机器学习</a> <a href="/tags/架构师/" style="font-size: 14px;">架构师</a> <a href="/tags/测试工具/" style="font-size: 14px;">测试工具</a> <a href="/tags/睡后成长/" style="font-size: 14px;">睡后成长</a> <a href="/tags/睡后收入/" style="font-size: 14px;">睡后收入</a> <a href="/tags/税后收入/" style="font-size: 14px;">税后收入</a> <a href="/tags/笔记/" style="font-size: 14px;">笔记</a> <a href="/tags/自然语言处理/" style="font-size: 24px;">自然语言处理</a> <a href="/tags/视频流/" style="font-size: 15.25px;">视频流</a> <a href="/tags/计算机相关技术资料整理/" style="font-size: 14px;">计算机相关技术资料整理</a> <a href="/tags/认知升级/" style="font-size: 14px;">认知升级</a> <a href="/tags/限速/" style="font-size: 14px;">限速</a> <a href="/tags/面试/" style="font-size: 14px;">面试</a> <a href="/tags/项目管理/" style="font-size: 14px;">项目管理</a>
+	</div>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+	
+
+
+
+
+<div id="search" class="search-overlay">
+    <div class="search-form">
+        
+        <div class="search-overlay-logo">
+        	<img src="/images/favicon-16x16-next.png" alt="Pastor Dean">
+        </div>
+        
+        <input id="local-search-input" class="search-input" type="text" name="search" placeholder="Search ...">
+        <a class="search-overlay-close" href="#"></a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+<footer class="site-footer outer">
+	<div class="site-footer-content inner">
+		<div class="copyright">
+			<a href="/" title="Pastor Dean">Pastor Dean &copy; 2020</a>
+			
+				
+			        <span hidden="true" id="/2017-03-31/reference/HTTP/lighttpd-fastcgi/" class="leancloud-visitors" data-flag-title="lighttpd+fastcgi">
+			            <span>阅读量 </span>
+			            <span class="leancloud-visitors-count">0</span>
+			        </span>
+	    		
+    		
+		</div>
+		<nav class="site-footer-nav">
+			
+			<a href="https://hexo.io" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+			<a href="https://github.com/xzhih/hexo-theme-casper" title="Casper" target="_blank" rel="noopener">Casper</a>
+		</nav>
+	</div>
+</footer>
+	
+
+
+<script>
+    if(window.navigator && navigator.serviceWorker) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister()
+            }
+        })
+    }
+</script>
+
+
+<script id="scriptLoad" src="/js/allinone.min.js" async></script>
+
+
+<script>
+    document.getElementById('scriptLoad').addEventListener('load', function () {
+        
+        
+            var bLazy = new Blazy();
+        
+
+        
+        
+
+        
+        
+        
+            searchFunc("/");
+        
+        
+    })
+</script>
+
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+
+
+<script id="valineScript" src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+<script>
+    document.getElementById('valineScript').addEventListener("load", function() {
+        new Valine({
+            el: '#comment' ,
+            verify: false,
+            notify: false,
+            appId: '',
+            appKey: '',
+            placeholder: 'Just go go',
+            pageSize: 10,
+            avatar: 'mm',
+            visitor: true
+        })
+    });
+</script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="preconnect" href="//www.googletagmanager.com">
+	<link rel="preconnect" href="//zz.bdstatic.com">
+	<link rel="preconnect" href="//sp0.baidu.com">
+	<link rel="preconnect" href="//www.google-analytics.com">
+	<link rel="preconnect" href="//cdn1.lncld.net">
+	<link rel="preconnect" href="//unpkg.com">
+	<link rel="preconnect" href="//app-router.leancloud.cn">
+	<link rel="preconnect" href="//9qpuwspm.api.lncld.net">
+	<link rel="preconnect" href="//gravatar.loli.net">
+
+	<title>NLP系列 | Pastor Dean</title>
+
+	<meta name="HandheldFriendly" content="True">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+	<meta name="generator" content="hexo">
+	<meta name="author" content="pastor">
+	<meta name="description" content>
+
+	
+	<meta name="keywords" content>
+	
+
+	
+	<link rel="shortcut icon" href="/images/favicon-16x16-next.png">
+	<link rel="apple-touch-icon" href="/images/favicon-16x16-next.png">
+	
+
+	
+	<meta name="theme-color" content="#3c484e">
+	<meta name="msapplication-TileColor" content="#3c484e">
+	
+
+	
+
+	
+
+	<meta property="og:site_name" content="Pastor Dean">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="NLP系列 | Pastor Dean">
+	<meta property="og:description" content>
+	<meta property="og:url" content="https://mrpastor.github.io/2019-03-21/nlp/4Text_Classification/Chapter2_Chapter1_Text_Classification_based_on_Deep_Learning/1.text-classification/">
+
+	
+	<meta property="article:published_time" content="2019-03-21T19:03:00+08:00"> 
+	<meta property="article:author" content="pastor">
+	<meta property="article:published_first" content="Pastor Dean, /2019-03-21/nlp/4Text_Classification/Chapter2_Chapter1_Text_Classification_based_on_Deep_Learning/1.text-classification/">
+	
+
+	
+	
+	<link rel="stylesheet" href="/css/allinonecss.min.css">
+
+	
+	
+	
+</head>
+<body class="post-template">
+	<div class="site-wrapper">
+		
+
+
+
+
+<header class="site-header post-site-header outer">
+    <div class="inner">
+        
+<nav class="site-nav"> 
+    <div class="site-nav-left">
+        <ul class="nav">
+            <li>
+                
+                
+                <a class="site-nav-logo" href="/" title="Pastor Dean">
+                    <img src="/images/favicon-32x32-next.png" alt="Pastor Dean">
+                </a>
+                
+                
+            </li>
+            
+            
+            <li>
+                <a href="/ || home" title="home">home</a>
+            </li>
+            
+            <li>
+                <a href="/categories/ || th" title="categories">categories</a>
+            </li>
+            
+            <li>
+                <a href="/archives/ || archive" title="archives">archives</a>
+            </li>
+            
+            <li>
+                <a href="/tools/ || tools" title="tools">tools</a>
+            </li>
+            
+            
+        </ul> 
+    </div>
+    
+    <div class="search-button-area">
+        <a href="#search" class="search-button">Search ...</a>
+    </div>
+     
+    <div class="site-nav-right">
+        
+        <a href="#search" class="search-button">Search ...</a>
+         
+        
+<div class="social-links">
+    
+    
+    <a class="social-link" title="github" href="https://github.com/mrpastor" target="_blank" rel="noopener">
+        <svg viewbox="0 0 1049 1024" xmlns="http://www.w3.org/2000/svg"><path d="M524.979332 0C234.676191 0 0 234.676191 0 524.979332c0 232.068678 150.366597 428.501342 358.967656 498.035028 26.075132 5.215026 35.636014-11.299224 35.636014-25.205961 0-12.168395-0.869171-53.888607-0.869171-97.347161-146.020741 31.290159-176.441729-62.580318-176.441729-62.580318-23.467619-60.841976-58.234462-76.487055-58.234463-76.487055-47.804409-32.15933 3.476684-32.15933 3.476685-32.15933 53.019436 3.476684 80.83291 53.888607 80.83291 53.888607 46.935238 79.963739 122.553122 57.365291 152.97411 43.458554 4.345855-33.897672 18.252593-57.365291 33.028501-70.402857-116.468925-12.168395-239.022047-57.365291-239.022047-259.012982 0-57.365291 20.860106-104.300529 53.888607-140.805715-5.215026-13.037566-23.467619-66.926173 5.215027-139.067372 0 0 44.327725-13.906737 144.282399 53.888607 41.720212-11.299224 86.917108-17.383422 131.244833-17.383422s89.524621 6.084198 131.244833 17.383422C756.178839 203.386032 800.506564 217.29277 800.506564 217.29277c28.682646 72.1412 10.430053 126.029806 5.215026 139.067372 33.897672 36.505185 53.888607 83.440424 53.888607 140.805715 0 201.64769-122.553122 245.975415-239.891218 259.012982 19.121764 16.514251 35.636014 47.804409 35.636015 97.347161 0 70.402857-0.869171 126.898978-0.869172 144.282399 0 13.906737 9.560882 30.420988 35.636015 25.205961 208.601059-69.533686 358.967656-265.96635 358.967655-498.035028C1049.958663 234.676191 814.413301 0 524.979332 0z"/></svg>
+    </a>
+    
+    
+    <a class="social-link" title="facebook" href="https://facebook" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+
+    </a>
+    
+    
+    <a class="social-link" title="twitter" href="https://twitter.com" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+    </a>
+    
+    
+    
+    
+</div>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<div id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+        <header class="post-full-header">
+            <div class="post-full-meta">
+                <time class="post-full-meta-date" datetime="2019-03-21T11:19:18.000Z">
+                    2019-03-21
+                </time>
+                
+                <span class="date-divider">/</span>
+                
+                <a href="/categories/NLP/">NLP</a>&nbsp;&nbsp;
+                
+                
+            </div>
+            <h1 class="post-full-title">NLP系列</h1>
+        </header>
+        <div class="post-full no-image">
+            
+            <div class="post-full-content">
+                <article id="photoswipe" class="markdown-body">
+                    <h1 id="词嵌入与fine-tuning"><a href="#词嵌入与fine-tuning" class="headerlink" title="词嵌入与fine-tuning"></a>词嵌入与fine-tuning</h1><p>很多高阶的深度学习自然语言处理任务，都可以用词向量作为基础。我们课程的很多任务，可以用预训练好的word2vec初始化，接下来进行fine-tuning。如本章的文本分类。<br>其基本思路是将离散的词嵌入到连续的空间中，并以此作为词的表示输入到下层的任务中去。<br><img alt class="post-img b-lazy" data-img="http://i.stack.imgur.com/fYxO9.png" data-index="0" data-src="http://i.stack.imgur.com/fYxO9.png"></p>
+<h2 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用?"></a>如何使用?</h2><ul>
+<li>从头训练 <ul>
+<li>就像word2vec一样, 这一层是可学习的, 用随机数initialize , 通过BP去调整.</li>
+</ul>
+</li>
+<li>pre-trained + fine tuning <ul>
+<li>用其他网络(如 word2vec) 训练好的现成的词向量, 作为初始化参数, 然后继续学习.</li>
+</ul>
+</li>
+<li>pre-trained + static <ul>
+<li>用其他网络(如 word2vec) 训练好的现成的词向量, 作为初始化参数, 并且这些参数保持固定, 不参与网络的学习.</li>
+</ul>
+</li>
+</ul>
+<h1 id="基于卷积神经网络的文本分类"><a href="#基于卷积神经网络的文本分类" class="headerlink" title="基于卷积神经网络的文本分类"></a>基于卷积神经网络的文本分类</h1><ul>
+<li>参考文章：<a href="http://paddlepaddle.org/documentation/docs/zh/1.2/beginners_guide/basics/understand_sentiment/index.html" target="_blank" rel="noopener">《paddlepaddle情感分析》</a></li>
+</ul>
+<h2 id="CNN"><a href="#CNN" class="headerlink" title="CNN"></a>CNN</h2><p>传统CNN包含卷积层、全连接层等组件，并采用softmax多类别分类器和多类交叉熵损失函数，一个典型的卷积神经网络如图所示，我们先介绍用来构造CNN的常见组件。</p>
+<p align="center"><br><img class="post-img b-lazy" data-img="https://github.com/PaddlePaddle/book/blob/develop/03.image_classification/image/lenet.png?raw=true" data-index="1" data-src="https://github.com/PaddlePaddle/book/blob/develop/03.image_classification/image/lenet.png?raw=true"><br><br></p>
+
+
+<ul>
+<li>卷积层(convolution layer): 执行卷积操作提取底层到高层的特征，发掘出图片局部关联性质和空间不变性质。</li>
+<li>池化层(pooling layer): 执行降采样操作。通过取卷积输出特征图中局部区块的最大值(max-pooling)或者均值(avg-pooling)。降采样也是图像处理中常见的一种操作，可以过滤掉一些不重要的高频信息。</li>
+<li>全连接层(fully-connected layer，或者fc layer): 输入层到隐藏层的神经元是全部连接的。</li>
+<li>非线性变化: 卷积层、全连接层后面一般都会接非线性变化层，例如Sigmoid、Tanh、ReLu等来增强网络的表达能力，在CNN里最常使用的为ReLu激活函数。</li>
+<li>Dropout: 在模型训练阶段随机让一些隐层节点权重不工作，提高网络的泛化能力，一定程度上防止过拟合。</li>
+</ul>
+<p>另外，在训练过程中由于每层参数不断更新，会导致下一次输入分布发生变化，这样导致训练过程需要精心设计超参数。如2015年Sergey Ioffe和Christian Szegedy提出了Batch Normalization (BN)算法中，每个batch对网络中的每一层特征都做归一化，使得每层分布相对稳定。BN算法不仅起到一定的正则作用，而且弱化了一些超参数的设计。经过实验证明，BN算法加速了模型收敛过程，在后来较深的模型中被广泛使用。</p>
+<h2 id="文本卷积神经网络（CNN）"><a href="#文本卷积神经网络（CNN）" class="headerlink" title="文本卷积神经网络（CNN）"></a>文本卷积神经网络（CNN）</h2><p>卷积神经网络经常用来处理具有类似网格拓扑结构（grid-like topology）的数据。例如，图像可以视为二维网格的像素点，自然语言可以视为一维的词序列。卷积神经网络可以提取多种局部特征，并对其进行组合抽象得到更高级的特征表示。实验表明，卷积神经网络能高效地对图像及文本问题进行建模处理。</p>
+<p>卷积神经网络主要由卷积（convolution）和池化（pooling）操作构成，其应用及组合方式灵活多变，种类繁多。本小结我们以如图所示的网络进行讲解：</p>
+<p align="center"><br><img width="80%" align="center" class="post-img b-lazy" data-img="https://github.com/PaddlePaddle/book/blob/develop/05.recommender_system/image/text_cnn.png?raw=true" data-index="2" data-src="https://github.com/PaddlePaddle/book/blob/develop/05.recommender_system/image/text_cnn.png?raw=true"><br><br><br></p>
+
+<p>假设待处理句子的长度为$n$，其中第$i$个词的词向量（word embedding）为$x_i\in\mathbb{R}^k$，$k$为维度大小。</p>
+<p>首先，进行词向量的拼接操作：将每$h$个词拼接起来形成一个大小为$h$的词窗口，记为$x_{i:i+h-1}$，它表示词序列$x_{i},x_{i+1},\ldots,x_{i+h-1}$的拼接，其中，$i$表示词窗口中第一个词在整个句子中的位置，取值范围从$1$到$n-h+1$，$x_{i:i+h-1}\in\mathbb{R}^{hk}$。</p>
+<p>其次，进行卷积操作：把卷积核(kernel)$w\in\mathbb{R}^{hk}$应用于包含$h$个词的窗口$x_{i:i+h-1}$，得到特征$c_i=f(w\cdot x_{i:i+h-1}+b)$，其中$b\in\mathbb{R}$为偏置项（bias），$f$为非线性激活函数，如$sigmoid$。将卷积核应用于句子中所有的词窗口${x_{1:h},x_{2:h+1},\ldots,x_{n-h+1:n}}$，产生一个特征图（feature map）：</p>
+<p>$$c=[c_1,c_2,\ldots,c_{n-h+1}], c \in \mathbb{R}^{n-h+1}$$</p>
+<p>接下来，对特征图采用时间维度上的最大池化（max pooling over time）操作得到此卷积核对应的整句话的特征$\hat c$，它是特征图中所有元素的最大值：</p>
+<p>$$\hat c=max(c)$$</p>
+<p>对于一般的短文本分类问题，上文所述的简单的文本卷积网络即可达到很高的正确率。若想得到更抽象更高级的文本特征表示，可以构建深层文本卷积神经网络。</p>
+<h1 id="基于LSTM的文本分类"><a href="#基于LSTM的文本分类" class="headerlink" title="基于LSTM的文本分类"></a>基于LSTM的文本分类</h1><h2 id="循环神经网络（RNN）"><a href="#循环神经网络（RNN）" class="headerlink" title="循环神经网络（RNN）"></a>循环神经网络（RNN）</h2><p>循环神经网络是一种能对序列数据进行精确建模的有力工具。实际上，循环神经网络的理论计算能力是图灵完备的。自然语言是一种典型的序列数据（词序列），近年来，循环神经网络及其变体（如long short term memory等）在自然语言处理的多个领域，如语言模型、句法解析、语义角色标注（或一般的序列标注）、语义表示、图文生成、对话、机器翻译等任务上均表现优异甚至成为目前效果最好的方法。</p>
+<p align="center"><br><img width="60%" align="center" class="post-img b-lazy" data-img="https://github.com/PaddlePaddle/book/blob/develop/06.understand_sentiment/image/rnn.png?raw=true" data-index="3" data-src="https://github.com/PaddlePaddle/book/blob/develop/06.understand_sentiment/image/rnn.png?raw=true"><br><br></p><br><p align="center"><br><img width="60%" align="center" class="post-img b-lazy" data-img="img/rnn1.png" data-index="4" data-src="img/rnn1.png"><br><br></p>
+
+<p>循环神经网络按时间展开后如图所示：在第$t$时刻，网络读入第$t$个输入$x_t$（向量表示）及前一时刻隐层的状态值$h_{t-1}$（向量表示，$h_0$一般初始化为$0$向量），计算得出本时刻隐层的状态值$h_t$，重复这一步骤直至读完所有输入。如果将循环神经网络所表示的函数记为$f$，则其公式可表示为：</p>
+<p>$$h_t=f(x_t,h_{t-1})=\sigma(W_{xh}x_t+W_{hh}h_{t-1}+b_h)$$</p>
+<p>其中$W_{xh}$是输入到隐层的矩阵参数，$W_{hh}$是隐层到隐层的矩阵参数，$b_h$为隐层的偏置向量（bias）参数，$\sigma$为$sigmoid$函数。  </p>
+<p>在处理自然语言时，一般会先将词（one-hot表示）映射为其词向量（word embedding）表示，然后再作为循环神经网络每一时刻的输入$x_t$。此外，可以根据实际需要的不同在循环神经网络的隐层上连接其它层。如，可以把一个循环神经网络的隐层输出连接至下一个循环神经网络的输入构建深层（deep or stacked）循环神经网络，或者提取最后一个时刻的隐层状态作为句子表示进而使用分类模型等等。</p>
+<h2 id="长短期记忆网络（LSTM）"><a href="#长短期记忆网络（LSTM）" class="headerlink" title="长短期记忆网络（LSTM）"></a>长短期记忆网络（LSTM）</h2><p>对于较长的序列数据，循环神经网络的训练过程中容易出现梯度消失或爆炸现象。为了解决这一问题，Hochreiter S, Schmidhuber J. (1997)提出了LSTM(long short term memory)。  </p>
+<p>相比于简单的循环神经网络，LSTM增加了记忆单元$c$、输入门$i$、遗忘门$f$及输出门$o$。这些门及记忆单元组合起来大大提升了循环神经网络处理长序列数据的能力。若将基于LSTM的循环神经网络表示的函数记为$F$，则其公式为：</p>
+<p>$$ h_t=F(x_t,h_{t-1})$$</p>
+<p>$F$由下列公式组合而成：<br>$$ i_t = \sigma{(W_{xi}x_t+W_{hi}h_{t-1}+W_{ci}c_{t-1}+b_i)} $$<br>$$ f_t = \sigma(W_{xf}x_t+W_{hf}h_{t-1}+W_{cf}c_{t-1}+b_f) $$<br>$$ c_t = f_t\odot c_{t-1}+i_t\odot tanh(W_{xc}x_t+W_{hc}h_{t-1}+b_c) $$<br>$$ o_t = \sigma(W_{xo}x_t+W_{ho}h_{t-1}+W_{co}c_{t}+b_o) $$<br>$$ h_t = o_t\odot tanh(c_t) $$<br>其中，$i_t, f_t, c_t, o_t$分别表示输入门，遗忘门，记忆单元及输出门的向量值，带角标的$W$及$b$为模型参数，$tanh$为双曲正切函数，$\odot$表示逐元素（elementwise）的乘法操作。输入门控制着新输入进入记忆单元$c$的强度，遗忘门控制着记忆单元维持上一时刻值的强度，输出门控制着输出记忆单元的强度。三种门的计算方式类似，但有着完全不同的参数，它们各自以不同的方式控制着记忆单元$c$，如图所示：</p>
+<p align="center"><br><img width="65%" align="center" class="post-img b-lazy" data-img="https://github.com/PaddlePaddle/book/blob/develop/06.understand_sentiment/image/lstm.png?raw=true" data-index="5" data-src="https://github.com/PaddlePaddle/book/blob/develop/06.understand_sentiment/image/lstm.png?raw=true"><br><br></p><br><p align="center"><br><img width="60%" align="center" class="post-img b-lazy" data-img="img/LSTM1.png" data-index="6" data-src="img/LSTM1.png"><br><br></p>
+
+<p align="center"><br><img width="1050" class="post-img b-lazy" data-img="img/LSTM3.jpg" data-index="7" data-src="img/LSTM3.jpg"><br><br></p>
+
+<p>LSTM通过给简单的循环神经网络增加记忆及控制门的方式，增强了其处理远距离依赖问题的能力。类似原理的改进还有Gated Recurrent Unit (GRU)，其设计更为简洁一些。<strong>这些改进虽然各有不同，但是它们的宏观描述却与简单的循环神经网络一样（如图所示），即隐状态依据当前输入及前一时刻的隐状态来改变，不断地循环这一过程直至输入处理完毕：</strong></p>
+<p>$$ h_t=Recrurent(x_t,h_{t-1})$$</p>
+<p>其中，$Recrurent$可以表示简单的循环神经网络、GRU或LSTM。</p>
+<h2 id="RCNN（循环卷积神经网络）"><a href="#RCNN（循环卷积神经网络）" class="headerlink" title="RCNN（循环卷积神经网络）"></a>RCNN（循环卷积神经网络）</h2><ul>
+<li>参考文章<a href="http://rsarxiv.github.io/2016/05/27/Recurrent-Convolutional-Neural-Networks-for-Text-Classification-PaperWeekly/" target="_blank" rel="noopener">《Recurrent Convolutional Neural Networks for Text Classification》</a></li>
+</ul>
+<p>双向循环神经网络</p>
+<p align="center"><br><img width="450" class="post-img b-lazy" data-img="img/bilstm.png" data-index="8" data-src="img/bilstm.png"><br><br></p><br>RCNN模型架构图如下：<br><br><p align="center"><br><img width="950" class="post-img b-lazy" data-img="http://rsarxiv.github.io/2016/05/27/Recurrent-Convolutional-Neural-Networks-for-Text-Classification-PaperWeekly/fig1.png" data-index="9" data-src="http://rsarxiv.github.io/2016/05/27/Recurrent-Convolutional-Neural-Networks-for-Text-Classification-PaperWeekly/fig1.png"><br><br></p>
+
+<p>首先，构造CNN的卷积层，卷积层的本质是一个BiRNN模型，通过正向和反向循环来构造一个单词的下文和上文，如下式：</p>
+<p><img alt class="post-img b-lazy" data-img="http://rsarxiv.github.io/2016/05/27/Recurrent-Convolutional-Neural-Networks-for-Text-Classification-PaperWeekly/fig2.png" data-index="10" data-src="http://rsarxiv.github.io/2016/05/27/Recurrent-Convolutional-Neural-Networks-for-Text-Classification-PaperWeekly/fig2.png"></p>
+<p>得到单词的上下文表示之后，用拼接的方式来表示这个单词，如下式：</p>
+<p><img alt class="post-img b-lazy" data-img="http://rsarxiv.github.io/2016/05/27/Recurrent-Convolutional-Neural-Networks-for-Text-Classification-PaperWeekly/fig3.png" data-index="11" data-src="http://rsarxiv.github.io/2016/05/27/Recurrent-Convolutional-Neural-Networks-for-Text-Classification-PaperWeekly/fig3.png"></p>
+<p>将该词向量放入一个单层神经网络中，得到所谓的潜语义向量（latent semantic vector），这里卷积层的计算结束了，时间复杂度仍是O(n)。接下来进行池化层（max-pooling），即将刚刚得到的所有单词的潜语义向量中每个维度上最大的值选出组成一个新的向量，这里采用max-pooling可以将向量中最大的特征提取出来，从而获取到整个文本的信息。池化过程时间复杂度也是O(n)，所以整个模型的时间复杂度是O(n)。得到文本特征向量之后，进行分类。</p>
+<h1 id="Transformer-selt-attention介绍"><a href="#Transformer-selt-attention介绍" class="headerlink" title="Transformer/selt-attention介绍"></a>Transformer/selt-attention介绍</h1><p>Transformer是个叠加的“自注意力机制（Self Attention）”构成的深度网络。其关键是自注意力机制（Self Attention）。所以我们主要介绍selt-attention。</p>
+<p>当我们想对句子“he animal didn’t cross the street because it was too tired”中“it”这个词编码时，注意力机制的基本思想是认为这个句话中每个词对it的语义均会有贡献。那怎么综合这些贡献呢，就是直接将每个词的embedding向量<strong>加权求和</strong>。<br>所以关键的问题是如何得到每个词各自的权重，关系更近的词的权重更大。比如这句话中”The Animal”的权重就应该更大，它们的信息应该更多地编码到“it”中。<br>自注意力机制得到权重的方法非常简单，就是两个词向量的内积。最终通过一个softmax将各个权重归一化。<br><img alt class="post-img b-lazy" data-img="https://jalammar.github.io/images/t/transformer_self-attention_visualization.png" data-index="12" data-src="https://jalammar.github.io/images/t/transformer_self-attention_visualization.png"><br>在上图中，颜色的粗细代表该词的权重大小，权重由该词与“it”的内积得到，最终通过一个softmax将各个权重归一化。</p>
+<p>自注意力机制其实是最原始意义的卷积的思想的推广，因为卷积本身就是一种“加权求和”。</p>
+<ul>
+<li>参考文章：<a href="https://jalammar.github.io/illustrated-transformer/" target="_blank" rel="noopener">《The Illustrated Transformer》</a></li>
+<li>参考文章：<a href="https://colab.research.google.com/drive/1Wt9Jwynnki6lipwUcy0Sz5WKG7MYSGs0#scrollTo=3twSbimFUgQq" target="_blank" rel="noopener">《基于Transformer的神经机器翻译》</a></li>
+</ul>
+
+                </article>
+                <ul class="tags-postTags">
+                    
+                    <li>
+                        <a href="/tags/nlp/" rel="tag"># nlp</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tags/自然语言处理/" rel="tag"># 自然语言处理</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    
+    <nav id="gobottom" class="pagination">
+        
+        <a class="prev-post" title="NLP系列" href="/2019-03-21/nlp/8Machine_Translation/4.Transformer_Model_from_Google/Transformer_Model_from_Google/">
+            ← NLP系列
+        </a>
+        
+        <span class="prev-next-post">·</span>
+        
+        <a class="next-post" title="NLP系列" href="/2019-03-21/nlp/4Text_Classification/Chapter2_Chapter1_Text_Classification_based_on_Deep_Learning/2.News_Classification_based_on_CNN/">
+            NLP系列 →
+        </a>
+        
+    </nav>
+
+    
+    <div class="inner">
+        <div id="comment"></div>
+    </div>
+    
+</div>
+
+<div class="toc-bar">
+    <div class="toc-btn-bar">
+        <a href="#site-main" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M793.024 710.272a32 32 0 1 0 45.952-44.544l-310.304-320a32 32 0 0 0-46.4 0.48l-297.696 320a32 32 0 0 0 46.848 43.584l274.752-295.328 286.848 295.808z"/></svg>
+        </a>
+        <div class="toc-btn toc-switch">
+            <svg class="toc-open" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M779.776 480h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M779.776 672h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M256 288a32 32 0 1 0 0 64 32 32 0 0 0 0-64M392.576 352h387.2a32 32 0 0 0 0-64h-387.2a32 32 0 0 0 0 64M256 480a32 32 0 1 0 0 64 32 32 0 0 0 0-64M256 672a32 32 0 1 0 0 64 32 32 0 0 0 0-64"/></svg>
+            <svg class="toc-close hide" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M512 960c-247.039484 0-448-200.960516-448-448S264.960516 64 512 64 960 264.960516 960 512 759.039484 960 512 960zM512 128.287273c-211.584464 0-383.712727 172.128262-383.712727 383.712727 0 211.551781 172.128262 383.712727 383.712727 383.712727 211.551781 0 383.712727-172.159226 383.712727-383.712727C895.712727 300.415536 723.551781 128.287273 512 128.287273z"/><path d="M557.05545 513.376159l138.367639-136.864185c12.576374-12.416396 12.672705-32.671738 0.25631-45.248112s-32.704421-12.672705-45.248112-0.25631l-138.560301 137.024163-136.447897-136.864185c-12.512727-12.512727-32.735385-12.576374-45.248112-0.063647-12.512727 12.480043-12.54369 32.735385-0.063647 45.248112l136.255235 136.671523-137.376804 135.904314c-12.576374 12.447359-12.672705 32.671738-0.25631 45.248112 6.271845 6.335493 14.496116 9.504099 22.751351 9.504099 8.12794 0 16.25588-3.103239 22.496761-9.247789l137.567746-136.064292 138.687596 139.136568c6.240882 6.271845 14.432469 9.407768 22.65674 9.407768 8.191587 0 16.352211-3.135923 22.591372-9.34412 12.512727-12.480043 12.54369-32.704421 0.063647-45.248112L557.05545 513.376159z"/></svg>
+        </div>
+        <a href="#gobottom" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M231.424 346.208a32 32 0 0 0-46.848 43.584l297.696 320a32 32 0 0 0 46.4 0.48l310.304-320a32 32 0 1 0-45.952-44.544l-286.848 295.808-274.752-295.36z"/></svg>
+        </a>
+    </div>
+    <div class="toc-main">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#词嵌入与fine-tuning"><span class="toc-text">词嵌入与fine-tuning</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#如何使用"><span class="toc-text">如何使用?</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#基于卷积神经网络的文本分类"><span class="toc-text">基于卷积神经网络的文本分类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CNN"><span class="toc-text">CNN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文本卷积神经网络（CNN）"><span class="toc-text">文本卷积神经网络（CNN）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#基于LSTM的文本分类"><span class="toc-text">基于LSTM的文本分类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#循环神经网络（RNN）"><span class="toc-text">循环神经网络（RNN）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#长短期记忆网络（LSTM）"><span class="toc-text">长短期记忆网络（LSTM）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RCNN（循环卷积神经网络）"><span class="toc-text">RCNN（循环卷积神经网络）</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Transformer-selt-attention介绍"><span class="toc-text">Transformer/selt-attention介绍</span></a></li></ol>
+    </div>
+</div>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+	</div>
+	
+
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+  <header class="read-next-card-header">
+    <small class="read-next-card-header-sitetitle">&mdash; Pastor Dean &mdash;</small>
+    <h3 class="read-next-card-header-title">Recent Posts</h3>
+  </header>
+  <div class="read-next-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+      <path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/>
+    </svg>
+  </div>
+  <div class="read-next-card-content">
+    <ul>
+      
+      
+      
+      <li>
+        <a href="/2020-01-16/thinking/Thinking modelBiological thinking Biological thinking looking at the business world from an evolutionary perspective/">Thinking modelBiological thinking Biological thinking: looking at the business world from an evolutionary perspective</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2020-01-13/thinking/Modern Darwin Integrated Model  Biological Thinking Mode Opening God Perspective/">Modern Darwin Integrated Model Biological Thinking Mode Opening God is Perspective</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2020-01-11/thinking/Metacognition Changing the stubborn thinking of the brain/">Metacognition Changing the stubborn thinking of the brain</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <footer class="read-next-card-footer">
+    <a href="/archives">  MORE  → </a>
+  </footer>
+</article>
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+    <header class="read-next-card-header tagcloud-card">
+        <h3 class="read-next-card-header-title">Categories</h3>
+    </header>
+    <div class="read-next-card-content">
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Biological-Thinking/">Biological Thinking</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cognitive-Neuroscience/">Cognitive Neuroscience</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DeepLearning/">DeepLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/FFmpeg/">FFmpeg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MacOS/">MacOS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MachineLearning/">MachineLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PM/">PM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/RPC/">RPC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vim/">Vim</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WebRTC/">WebRTC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/deeplearn/">deeplearn</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/http/">http</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/machineLearning/">machineLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/文摘/">文摘</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构师/">架构师</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/知识图谱/">知识图谱</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/职业规划/">职业规划</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/职业规划/个人提升/">个人提升</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机相关技术资料整理/">计算机相关技术资料整理</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/认知升级/">认知升级</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/财务自由/">财务自由</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/财富自由/">财富自由</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/运维/">运维</a></li></ul>
+    </div>
+</article>
+
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+	<header class="read-next-card-header tagcloud-card">
+		<h3 class="read-next-card-header-title">Tag Cloud</h3>
+	</header>
+	<div class="read-next-card-content-ext">
+		<a href="/tags/AI/" style="font-size: 14px;">AI</a> <a href="/tags/Android/" style="font-size: 14px;">Android</a> <a href="/tags/Biological/" style="font-size: 17.75px;">Biological</a> <a href="/tags/Browser/" style="font-size: 14px;">Browser</a> <a href="/tags/Business/" style="font-size: 16.5px;">Business</a> <a href="/tags/Cognitive/" style="font-size: 17.75px;">Cognitive</a> <a href="/tags/DeepLearning/" style="font-size: 15.25px;">DeepLearning</a> <a href="/tags/Docker/" style="font-size: 14px;">Docker</a> <a href="/tags/FFmpeg/" style="font-size: 21.5px;">FFmpeg</a> <a href="/tags/FastCGI/" style="font-size: 14px;">FastCGI</a> <a href="/tags/IP划分/" style="font-size: 14px;">IP划分</a> <a href="/tags/IP地址/" style="font-size: 14px;">IP地址</a> <a href="/tags/Knowledge-Graph/" style="font-size: 16.5px;">Knowledge Graph</a> <a href="/tags/Linux-Shell/" style="font-size: 14px;">Linux Shell</a> <a href="/tags/MacOS/" style="font-size: 15.25px;">MacOS</a> <a href="/tags/Neuroscience/" style="font-size: 17.75px;">Neuroscience</a> <a href="/tags/RPC/" style="font-size: 14px;">RPC</a> <a href="/tags/Thinking/" style="font-size: 17.75px;">Thinking</a> <a href="/tags/Tutorial/" style="font-size: 20.25px;">Tutorial</a> <a href="/tags/WebRTC/" style="font-size: 21.5px;">WebRTC</a> <a href="/tags/WebSocket/" style="font-size: 14px;">WebSocket</a> <a href="/tags/algorithm/" style="font-size: 15.25px;">algorithm</a> <a href="/tags/config/" style="font-size: 14px;">config</a> <a href="/tags/decisionTree/" style="font-size: 14px;">decisionTree</a> <a href="/tags/git/" style="font-size: 17.75px;">git</a> <a href="/tags/google-adsense/" style="font-size: 14px;">google adsense</a> <a href="/tags/hexo/" style="font-size: 17.75px;">hexo</a> <a href="/tags/http/" style="font-size: 17.75px;">http</a> <a href="/tags/knn/" style="font-size: 14px;">knn</a> <a href="/tags/lighttpd/" style="font-size: 15.25px;">lighttpd</a> <a href="/tags/mxnet/" style="font-size: 14px;">mxnet</a> <a href="/tags/mysql/" style="font-size: 22.75px;">mysql</a> <a href="/tags/nlp/" style="font-size: 24px;">nlp</a> <a href="/tags/nodejs/" style="font-size: 14px;">nodejs</a> <a href="/tags/openvpn/" style="font-size: 14px;">openvpn</a> <a href="/tags/other/" style="font-size: 15.25px;">other</a> <a href="/tags/paddle/" style="font-size: 14px;">paddle</a> <a href="/tags/planning/" style="font-size: 20.25px;">planning</a> <a href="/tags/pracitce/" style="font-size: 15.25px;">pracitce</a> <a href="/tags/rich/" style="font-size: 14px;">rich</a> <a href="/tags/shell/" style="font-size: 14px;">shell</a> <a href="/tags/svn/" style="font-size: 14px;">svn</a> <a href="/tags/ubuntu/" style="font-size: 14px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 16.5px;">vim</a> <a href="/tags/webpack/" style="font-size: 14px;">webpack</a> <a href="/tags/webrtc/" style="font-size: 19px;">webrtc</a> <a href="/tags/个人发展/" style="font-size: 14px;">个人发展</a> <a href="/tags/互联网实事/" style="font-size: 14px;">互联网实事</a> <a href="/tags/外链/" style="font-size: 14px;">外链</a> <a href="/tags/提升个人思维/" style="font-size: 14px;">提升个人思维</a> <a href="/tags/文摘/" style="font-size: 15.25px;">文摘</a> <a href="/tags/斜杠青年/" style="font-size: 14px;">斜杠青年</a> <a href="/tags/机器学习/" style="font-size: 16.5px;">机器学习</a> <a href="/tags/架构师/" style="font-size: 14px;">架构师</a> <a href="/tags/测试工具/" style="font-size: 14px;">测试工具</a> <a href="/tags/睡后成长/" style="font-size: 14px;">睡后成长</a> <a href="/tags/睡后收入/" style="font-size: 14px;">睡后收入</a> <a href="/tags/税后收入/" style="font-size: 14px;">税后收入</a> <a href="/tags/笔记/" style="font-size: 14px;">笔记</a> <a href="/tags/自然语言处理/" style="font-size: 24px;">自然语言处理</a> <a href="/tags/视频流/" style="font-size: 15.25px;">视频流</a> <a href="/tags/计算机相关技术资料整理/" style="font-size: 14px;">计算机相关技术资料整理</a> <a href="/tags/认知升级/" style="font-size: 14px;">认知升级</a> <a href="/tags/限速/" style="font-size: 14px;">限速</a> <a href="/tags/面试/" style="font-size: 14px;">面试</a> <a href="/tags/项目管理/" style="font-size: 14px;">项目管理</a>
+	</div>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+	
+
+
+
+
+<div id="search" class="search-overlay">
+    <div class="search-form">
+        
+        <div class="search-overlay-logo">
+        	<img src="/images/favicon-16x16-next.png" alt="Pastor Dean">
+        </div>
+        
+        <input id="local-search-input" class="search-input" type="text" name="search" placeholder="Search ...">
+        <a class="search-overlay-close" href="#"></a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+<footer class="site-footer outer">
+	<div class="site-footer-content inner">
+		<div class="copyright">
+			<a href="/" title="Pastor Dean">Pastor Dean &copy; 2020</a>
+			
+				
+			        <span hidden="true" id="/2019-03-21/nlp/4Text_Classification/Chapter2_Chapter1_Text_Classification_based_on_Deep_Learning/1.text-classification/" class="leancloud-visitors" data-flag-title="NLP系列">
+			            <span>阅读量 </span>
+			            <span class="leancloud-visitors-count">0</span>
+			        </span>
+	    		
+    		
+		</div>
+		<nav class="site-footer-nav">
+			
+			<a href="https://hexo.io" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+			<a href="https://github.com/xzhih/hexo-theme-casper" title="Casper" target="_blank" rel="noopener">Casper</a>
+		</nav>
+	</div>
+</footer>
+	
+
+
+<script>
+    if(window.navigator && navigator.serviceWorker) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister()
+            }
+        })
+    }
+</script>
+
+
+<script id="scriptLoad" src="/js/allinone.min.js" async></script>
+
+
+<script>
+    document.getElementById('scriptLoad').addEventListener('load', function () {
+        
+        
+            var bLazy = new Blazy();
+        
+
+        
+        
+
+        
+        
+        
+            searchFunc("/");
+        
+        
+    })
+</script>
+
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+
+
+<script id="valineScript" src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+<script>
+    document.getElementById('valineScript').addEventListener("load", function() {
+        new Valine({
+            el: '#comment' ,
+            verify: false,
+            notify: false,
+            appId: '',
+            appKey: '',
+            placeholder: 'Just go go',
+            pageSize: 10,
+            avatar: 'mm',
+            visitor: true
+        })
+    });
+</script>
+
+
+
+
+
+</body>
+</html>

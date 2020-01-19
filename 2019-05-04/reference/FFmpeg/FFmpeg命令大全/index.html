@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="preconnect" href="//www.googletagmanager.com">
+	<link rel="preconnect" href="//zz.bdstatic.com">
+	<link rel="preconnect" href="//sp0.baidu.com">
+	<link rel="preconnect" href="//www.google-analytics.com">
+	<link rel="preconnect" href="//cdn1.lncld.net">
+	<link rel="preconnect" href="//unpkg.com">
+	<link rel="preconnect" href="//app-router.leancloud.cn">
+	<link rel="preconnect" href="//9qpuwspm.api.lncld.net">
+	<link rel="preconnect" href="//gravatar.loli.net">
+
+	<title>FFmpeg命令大全 | Pastor Dean</title>
+
+	<meta name="HandheldFriendly" content="True">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+	<meta name="generator" content="hexo">
+	<meta name="author" content="pastor">
+	<meta name="description" content>
+
+	
+	<meta name="keywords" content>
+	
+
+	
+	<link rel="shortcut icon" href="/images/favicon-16x16-next.png">
+	<link rel="apple-touch-icon" href="/images/favicon-16x16-next.png">
+	
+
+	
+	<meta name="theme-color" content="#3c484e">
+	<meta name="msapplication-TileColor" content="#3c484e">
+	
+
+	
+
+	
+
+	<meta property="og:site_name" content="Pastor Dean">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="FFmpeg命令大全 | Pastor Dean">
+	<meta property="og:description" content>
+	<meta property="og:url" content="https://mrpastor.github.io/2019-05-04/reference/FFmpeg/FFmpeg命令大全/">
+
+	
+	<meta property="article:published_time" content="2019-05-04T10:05:00+08:00"> 
+	<meta property="article:author" content="pastor">
+	<meta property="article:published_first" content="Pastor Dean, /2019-05-04/reference/FFmpeg/FFmpeg命令大全/">
+	
+
+	
+	
+	<link rel="stylesheet" href="/css/allinonecss.min.css">
+
+	
+	
+	
+</head>
+<body class="post-template">
+	<div class="site-wrapper">
+		
+
+
+
+
+<header class="site-header post-site-header outer">
+    <div class="inner">
+        
+<nav class="site-nav"> 
+    <div class="site-nav-left">
+        <ul class="nav">
+            <li>
+                
+                
+                <a class="site-nav-logo" href="/" title="Pastor Dean">
+                    <img src="/images/favicon-32x32-next.png" alt="Pastor Dean">
+                </a>
+                
+                
+            </li>
+            
+            
+            <li>
+                <a href="/ || home" title="home">home</a>
+            </li>
+            
+            <li>
+                <a href="/categories/ || th" title="categories">categories</a>
+            </li>
+            
+            <li>
+                <a href="/archives/ || archive" title="archives">archives</a>
+            </li>
+            
+            <li>
+                <a href="/tools/ || tools" title="tools">tools</a>
+            </li>
+            
+            
+        </ul> 
+    </div>
+    
+    <div class="search-button-area">
+        <a href="#search" class="search-button">Search ...</a>
+    </div>
+     
+    <div class="site-nav-right">
+        
+        <a href="#search" class="search-button">Search ...</a>
+         
+        
+<div class="social-links">
+    
+    
+    <a class="social-link" title="github" href="https://github.com/mrpastor" target="_blank" rel="noopener">
+        <svg viewbox="0 0 1049 1024" xmlns="http://www.w3.org/2000/svg"><path d="M524.979332 0C234.676191 0 0 234.676191 0 524.979332c0 232.068678 150.366597 428.501342 358.967656 498.035028 26.075132 5.215026 35.636014-11.299224 35.636014-25.205961 0-12.168395-0.869171-53.888607-0.869171-97.347161-146.020741 31.290159-176.441729-62.580318-176.441729-62.580318-23.467619-60.841976-58.234462-76.487055-58.234463-76.487055-47.804409-32.15933 3.476684-32.15933 3.476685-32.15933 53.019436 3.476684 80.83291 53.888607 80.83291 53.888607 46.935238 79.963739 122.553122 57.365291 152.97411 43.458554 4.345855-33.897672 18.252593-57.365291 33.028501-70.402857-116.468925-12.168395-239.022047-57.365291-239.022047-259.012982 0-57.365291 20.860106-104.300529 53.888607-140.805715-5.215026-13.037566-23.467619-66.926173 5.215027-139.067372 0 0 44.327725-13.906737 144.282399 53.888607 41.720212-11.299224 86.917108-17.383422 131.244833-17.383422s89.524621 6.084198 131.244833 17.383422C756.178839 203.386032 800.506564 217.29277 800.506564 217.29277c28.682646 72.1412 10.430053 126.029806 5.215026 139.067372 33.897672 36.505185 53.888607 83.440424 53.888607 140.805715 0 201.64769-122.553122 245.975415-239.891218 259.012982 19.121764 16.514251 35.636014 47.804409 35.636015 97.347161 0 70.402857-0.869171 126.898978-0.869172 144.282399 0 13.906737 9.560882 30.420988 35.636015 25.205961 208.601059-69.533686 358.967656-265.96635 358.967655-498.035028C1049.958663 234.676191 814.413301 0 524.979332 0z"/></svg>
+    </a>
+    
+    
+    <a class="social-link" title="facebook" href="https://facebook" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+
+    </a>
+    
+    
+    <a class="social-link" title="twitter" href="https://twitter.com" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+    </a>
+    
+    
+    
+    
+</div>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<div id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+        <header class="post-full-header">
+            <div class="post-full-meta">
+                <time class="post-full-meta-date" datetime="2019-05-04T02:14:50.000Z">
+                    2019-05-4
+                </time>
+                
+                <span class="date-divider">/</span>
+                
+                <a href="/categories/FFmpeg/">FFmpeg</a>&nbsp;&nbsp;
+                
+                
+            </div>
+            <h1 class="post-full-title">FFmpeg命令大全</h1>
+        </header>
+        <div class="post-full no-image">
+            
+            <div class="post-full-content">
+                <article id="photoswipe" class="markdown-body">
+                    <h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1. 前言"></a>1. 前言</h2><p>FFMPEG 是特别强大的专门用于处理音视频的开源库。你既可以使用它的 API 对音视频进行处理，也可以使用它提供的工具，如 ffmpeg, ffplay, ffprobe，来编辑你的音视频文件。</p>
+<p>本文将简要介绍一下 FFMPEG 库的基本目录结构及其功能，然后详细介绍一下我们在日常工作中，如何使用 ffmpeg 提供的工具来处理音视频文件。</p>
+<a id="more"></a>
+<h2 id="2-FFMPEG-目录及作用"><a href="#2-FFMPEG-目录及作用" class="headerlink" title="2. FFMPEG 目录及作用"></a>2. FFMPEG 目录及作用</h2><ul>
+<li>libavcodec： 提供了一系列编码器的实现。</li>
+<li>libavformat： 实现在流协议，容器格式及其本IO访问。</li>
+<li>libavutil： 包括了hash器，解码器和各类工具函数。</li>
+<li>libavfilter： 提供了各种音视频过滤器。</li>
+<li>libavdevice： 提供了访问捕获设备和回放设备的接口。</li>
+<li>libswresample： 实现了混音和重采样。</li>
+<li>libswscale： 实现了色彩转换和缩放工能。</li>
+</ul>
+<h2 id="3-FFMPEG-基本概念"><a href="#3-FFMPEG-基本概念" class="headerlink" title="3. FFMPEG 基本概念"></a>3. FFMPEG 基本概念</h2><p>在讲解 FFMPEG 命令之前，我们先要介绍一些音视频格式的基要概念。</p>
+<ul>
+<li><p>音／视频流</p>
+<p>在音视频领域，我们把一路音／视频称为一路<strong>流</strong>。如我们小时候经常使用VCD看港片，在里边可以选择粤语或国语声音，其实就是CD视频文件中存放了两路音频流，用户可以选择其中一路进行播放。</p>
+</li>
+<li><p>容器</p>
+<p>我们一般把 MP4､ FLV、MOV 等文件格式称之为<strong>容器</strong>。也就是在这些常用格式文件中，可以存放多路音视频文件。以 MP4 为例，就可以存放一路视频流，多路音频流，多路字幕流。</p>
+</li>
+<li><p>channel</p>
+<p>channel 是音频中的概念，称之为声道。在一路音频流中，可以有单声道，双声道或立体声。</p>
+</li>
+</ul>
+<h2 id="4-FFMPEG-命令"><a href="#4-FFMPEG-命令" class="headerlink" title="4. FFMPEG 命令"></a>4. FFMPEG 命令</h2><p>我们按使用目的可以将 FFMPEG 命令分成以下几类：</p>
+<ul>
+<li>基本信息查询命令</li>
+<li>录制</li>
+<li>分解 / 复用</li>
+<li>处理原始数据</li>
+<li>滤镜</li>
+<li>切割与合并</li>
+<li>图／视互转</li>
+<li>直播相关</li>
+</ul>
+<p>除了 FFMPEG 的基本信息查询命令外，其它命令都按下图所示的流程处理音视频。</p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/音视频处理流程.png" data-index="0" data-src="/images/imageFFmpeg/音视频处理流程.png"></p>
+<p>然后将编码的数据包传送给解码器（除非为数据流选择了流拷贝，请参阅进一步描述）。 解码器产生未压缩的帧（原始视频/ PCM音频/ …），可以通过滤波进一步处理（见下一节）。 在过滤之后，帧被传递到编码器，编码器并输出编码的数据包。 最后，这些传递给复用器，将编码的数据包写入输出文件。</p>
+<p>默认情况下，ffmpeg只包含输入文件中每种类型（视频，音频，字幕）的一个流，并将其添加到每个输出文件中。 它根据以下标准挑选每一个的“最佳”：对于视频，它是具有最高分辨率的流，对于音频，它是具有最多channel的流，对于字幕，是第一个字幕流。 在相同类型的几个流相等的情况下，选择具有最低索引的流。</p>
+<p>您可以通过使用 <code>-vn / -an / -sn / -dn</code> 选项来禁用某些默认设置。 要进行全面的手动控制，请使用 <code>-map</code>选项，该选项禁用刚描述的默认设置。</p>
+<p>下面我们就来详细介绍一下这些命令。</p>
+<h2 id="5-基本信息查询命令"><a href="#5-基本信息查询命令" class="headerlink" title="5. 基本信息查询命令"></a>5. 基本信息查询命令</h2><p>FFMPEG 可以使用下面的参数进行基本信息查询。例如，想查询一下现在使用的 FFMPEG 都支持哪些 filter，就可以用 <code>ffmpeg -filters</code> 来查询。详细参数说明如下：</p>
+<table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-version</td>
+<td>显示版本。</td>
+</tr>
+<tr>
+<td>-formats</td>
+<td>显示可用的格式（包括设备）。</td>
+</tr>
+<tr>
+<td>-demuxers</td>
+<td>显示可用的demuxers。</td>
+</tr>
+<tr>
+<td>-muxers</td>
+<td>显示可用的muxers。</td>
+</tr>
+<tr>
+<td>-devices</td>
+<td>显示可用的设备。</td>
+</tr>
+<tr>
+<td>-codecs</td>
+<td>显示libavcodec已知的所有编解码器。</td>
+</tr>
+<tr>
+<td>-decoders</td>
+<td>显示可用的解码器。</td>
+</tr>
+<tr>
+<td>-encoders</td>
+<td>显示所有可用的编码器。</td>
+</tr>
+<tr>
+<td>-bsfs</td>
+<td>显示可用的比特流filter。</td>
+</tr>
+<tr>
+<td>-protocols</td>
+<td>显示可用的协议。</td>
+</tr>
+<tr>
+<td>-filters</td>
+<td>显示可用的libavfilter过滤器。</td>
+</tr>
+<tr>
+<td>-pix_fmts</td>
+<td>显示可用的像素格式。</td>
+</tr>
+<tr>
+<td>-sample_fmts</td>
+<td>显示可用的采样格式。</td>
+</tr>
+<tr>
+<td>-layouts</td>
+<td>显示channel名称和标准channel布局。</td>
+</tr>
+<tr>
+<td>-colors</td>
+<td>显示识别的颜色名称。</td>
+</tr>
+</tbody>
+</table>
+<p>接下来介绍的是 FFMPEG 处理音视频时使用的命令格式与参数。</p>
+<h2 id="6-命令基本格式及参数"><a href="#6-命令基本格式及参数" class="headerlink" title="6. 命令基本格式及参数"></a>6. 命令基本格式及参数</h2><p>下面是 FFMPEG 的基本命令格式：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ffmpeg [global_options] &#123;[input_file_options] -i input_url&#125; ...</span></span><br><span class="line">                         &#123;[output_file_options] output_url&#125; ...</span><br></pre></td></tr></table></figure>
+<p>ffmpeg 通过 <code>-i</code> 选项读取输任意数量的输入“文件”（可以是常规文件，管道，网络流，抓取设备等），并写入任意数量的输出“文件”。</p>
+<p>原则上，每个输入 / 输出“文件”都可以包含任意数量的不同类型的视频流（视频 / 音频 / 字幕 / 附件 / 数据）。 <strong>流的数量和 / 或类型是由容器格式来限制</strong>。 选择从哪个输入进入到哪个输出将自动完成或使用 <code>-map</code> 选项。</p>
+<p>要引用选项中的输入文件，您必须使用它们的索引（从 0 开始）。 例如。 第一个输入文件是0，第二个输入文件是1，等等。类似地，文件内的流被它们的索引引用。 <strong>例如： 2：3 是指第三个输入文件中的第四个流</strong>。</p>
+<p>上面就是 FFMPEG 处理音视频的常用命令，下面是一些常用参数：</p>
+<h3 id="6-1-主要参数"><a href="#6-1-主要参数" class="headerlink" title="6.1 主要参数"></a>6.1 主要参数</h3><table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-f fmt（输入/输出）</td>
+<td>强制输入或输出文件格式。 格式通常是自动检测输入文件，并从输出文件的文件扩展名中猜测出来，所以在大多数情况下这个选项是不需要的。</td>
+</tr>
+<tr>
+<td>-i url（输入）</td>
+<td>输入文件的网址</td>
+</tr>
+<tr>
+<td>-y（全局参数）</td>
+<td>覆盖输出文件而不询问。</td>
+</tr>
+<tr>
+<td>-n（全局参数）</td>
+<td>不要覆盖输出文件，如果指定的输出文件已经存在，请立即退出。</td>
+</tr>
+<tr>
+<td>-c [：stream_specifier] codec（输入/输出，每个流）</td>
+<td>选择一个编码器（当在输出文件之前使用）或解码器（当在输入文件之前使用时）用于一个或多个流。codec 是解码器/编码器的名称或 copy（仅输出）以指示该流不被重新编码。如：<code>ffmpeg -i INPUT -map 0 -c:v libx264 -c:a copy OUTPUT</code></td>
+</tr>
+<tr>
+<td>-codec [：stream_specifier]编解码器（输入/输出，每个流）</td>
+<td>同 -c</td>
+</tr>
+<tr>
+<td>-t duration（输入/输出）</td>
+<td>当用作输入选项（在-i之前）时，限制从输入文件读取的数据的持续时间。当用作输出选项时（在输出url之前），在持续时间到达持续时间之后停止输出。</td>
+</tr>
+<tr>
+<td>-ss位置（输入/输出）</td>
+<td>当用作输入选项时（在-i之前），在这个输入文件中寻找位置。 请注意，在大多数格式中，不可能精确搜索，因此ffmpeg将在位置之前寻找最近的搜索点。 当转码和-accurate_seek被启用时（默认），搜索点和位置之间的这个额外的分段将被解码和丢弃。 当进行流式复制或使用-noaccurate_seek时，它将被保留。当用作输出选项（在输出url之前）时，解码但丢弃输入，直到时间戳到达位置。</td>
+</tr>
+<tr>
+<td>-frames [：stream_specifier] framecount（output，per-stream）</td>
+<td>停止在帧计数帧之后写入流。</td>
+</tr>
+<tr>
+<td>-filter [：stream_specifier] filtergraph（output，per-stream）</td>
+<td>创建由filtergraph指定的过滤器图，并使用它来过滤流。filtergraph是应用于流的filtergraph的描述，并且必须具有相同类型的流的单个输入和单个输出。在过滤器图形中，输入与标签中的标签相关联，标签中的输出与标签相关联。有关filtergraph语法的更多信息，请参阅ffmpeg-filters手册。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="6-2-视频参数"><a href="#6-2-视频参数" class="headerlink" title="6.2 视频参数"></a>6.2 视频参数</h3><table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-vframes num（输出）</td>
+<td>设置要输出的视频帧的数量。对于-frames：v，这是一个过时的别名，您应该使用它。</td>
+</tr>
+<tr>
+<td>-r [：stream_specifier] fps（输入/输出，每个流）</td>
+<td>设置帧率（Hz值，分数或缩写）。作为输入选项，忽略存储在文件中的任何时间戳，根据速率生成新的时间戳。这与用于-framerate选项不同（它在FFmpeg的旧版本中使用的是相同的）。如果有疑问，请使用-framerate而不是输入选项-r。作为输出选项，复制或丢弃输入帧以实现恒定输出帧频fps。</td>
+</tr>
+<tr>
+<td>-s [：stream_specifier]大小（输入/输出，每个流）</td>
+<td>设置窗口大小。作为输入选项，这是video_size专用选项的快捷方式，由某些分帧器识别，其帧尺寸未被存储在文件中。作为输出选项，这会将缩放视频过滤器插入到相应过滤器图形的末尾。请直接使用比例过滤器将其插入到开头或其他地方。格式是’wxh’（默认 - 与源相同）。</td>
+</tr>
+<tr>
+<td>-aspect [：stream_specifier] 宽高比（输出，每个流）</td>
+<td>设置方面指定的视频显示宽高比。aspect可以是浮点数字符串，也可以是num：den形式的字符串，其中num和den是宽高比的分子和分母。例如“4：3”，“16：9”，“1.3333”和“1.7777”是有效的参数值。如果与-vcodec副本一起使用，则会影响存储在容器级别的宽高比，但不会影响存储在编码帧中的宽高比（如果存在）。</td>
+</tr>
+<tr>
+<td>-vn（输出）</td>
+<td>禁用视频录制。</td>
+</tr>
+<tr>
+<td>-vcodec编解码器（输出）</td>
+<td>设置视频编解码器。这是 <code>-codec：v</code> 的别名。</td>
+</tr>
+<tr>
+<td>-vf filtergraph（输出）</td>
+<td>创建由filtergraph指定的过滤器图，并使用它来过滤流。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="6-3-音频参数"><a href="#6-3-音频参数" class="headerlink" title="6.3 音频参数"></a>6.3 音频参数</h3><table>
+<thead>
+<tr>
+<th><strong>参数</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-aframes（输出）</td>
+<td>设置要输出的音频帧的数量。这是 <code>-frames：a</code> 的一个过时的别名。</td>
+</tr>
+<tr>
+<td>-ar [：stream_specifier] freq（输入/输出，每个流）</td>
+<td>设置音频采样频率。对于输出流，它默认设置为相应输入流的频率。对于输入流，此选项仅适用于音频捕获设备和原始分路器，并映射到相应的分路器选件。</td>
+</tr>
+<tr>
+<td>-ac [：stream_specifier]通道（输入/输出，每个流）</td>
+<td>设置音频通道的数量。对于输出流，它默认设置为输入音频通道的数量。对于输入流，此选项仅适用于音频捕获设备和原始分路器，并映射到相应的分路器选件。</td>
+</tr>
+<tr>
+<td>-an（输出）</td>
+<td>禁用录音。</td>
+</tr>
+<tr>
+<td>-acodec编解码器（输入/输出）</td>
+<td>设置音频编解码器。这是-codec的别名：a。</td>
+</tr>
+<tr>
+<td>-sample_fmt [：stream_specifier] sample_fmt（输出，每个流）</td>
+<td>设置音频采样格式。使用-sample_fmts获取支持的样本格式列表。</td>
+</tr>
+<tr>
+<td>-af filtergraph（输出）</td>
+<td>创建由filtergraph指定的过滤器图，并使用它来过滤流。</td>
+</tr>
+</tbody>
+</table>
+<p>了解了这些基本信息后，接下来我们看看 FFMPEG 具体都能干些什么吧。</p>
+<h2 id="7-录制"><a href="#7-录制" class="headerlink" title="7. 录制"></a>7. 录制</h2><p>首先通过下面的命令查看一下 mac 上都有哪些设备。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ffmpeg -f avfoundation -list_devices <span class="literal">true</span> -i <span class="string">""</span></span></span><br></pre></td></tr></table></figure>
+<p><strong>录屏</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ffmpeg -f avfoundation -i 1 -r 30 out.yuv</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>-f 指定使用 avfoundation 采集数据。</p>
+</li>
+<li><p>-i 指定从哪儿采集数据，它是一个文件索引号。在我的MAC上，1代表桌面（可以通过上面的命令查询设备索引号）。</p>
+</li>
+<li><p>-r 指定帧率。按ffmpeg官方文档说-r与-framerate作用相同，但实际测试时发现不同。-framerate 用于限制输入，而 -r 用于限制输出。</p>
+</li>
+</ul>
+<p>注意：桌面的输入对帧率没有要求，所以不用限制桌面的帧率。其实限制了也没用。</p>
+<p><strong>录屏+声音</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ffmpeg  -f avfoundation -i 1:0  -r 29.97 -c:v libx264 -crf 0 -c:a libfdk_aac -profile:a aac_he_v2 -b:a 32k  out.flv</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>-i 1:0 冒号前面的 “1” 代表的屏幕索引号。冒号后面的”0”代表的声音索相号。</p>
+</li>
+<li><p>-c:v 与参数 -vcodec 一样，表示视频编码器。c 是 codec 的缩写，v 是video的缩写。</p>
+</li>
+<li><p>-crf 是 x264 的参数。 0 表式无损压缩。</p>
+</li>
+<li><p>-c:a 与参数 -acodec 一样，表示音频编码器。</p>
+</li>
+<li><p>-profile 是 fdk_aac 的参数。 aac_he_v2 表式使用 AAC_HE v2 压缩数据。</p>
+</li>
+<li><p>-b:a 指定音频码率。 b 是 bitrate的缩写, a是 audio的缩与。</p>
+</li>
+</ul>
+<p><strong>录视频</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ffmpeg -framerate 30 -f avfoundation -i 0 out.mp4</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>-framerate 限制视频的采集帧率。这个必须要根据提示要求进行设置，如果不设置就会报错。</p>
+</li>
+<li><p>-f 指定使用 avfoundation 采集数据。</p>
+</li>
+<li><p>-i 指定视频设备的索引号。</p>
+</li>
+</ul>
+<p><strong>视频+音频</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ffmpeg -framerate 30 -f avfoundation -i 0:0 out.mp4</span></span><br></pre></td></tr></table></figure>
+<p><strong>录音</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ffmpeg -f avfoundation -i :0 out.wav</span></span><br></pre></td></tr></table></figure>
+<p><strong>录制音频裸数据</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ffmpeg  -f avfoundation -i :0 -ar 44100 -f s16le out.pcm</span></span><br></pre></td></tr></table></figure>
+<h2 id="8-分解与复用"><a href="#8-分解与复用" class="headerlink" title="8. 分解与复用"></a>8. 分解与复用</h2><p>流拷贝是通过将 copy 参数提供给-codec选项来选择流的模式。它使得ffmpeg省略了指定流的解码和编码步骤，所以它只能进行多路分解和多路复用。 这对于更改容器格式或修改容器级元数据很有用。 在这种情况下，上图将简化为：</p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/分解与复用.png" data-index="1" data-src="/images/imageFFmpeg/分解与复用.png"></p>
+<p>由于没有解码或编码，速度非常快，没有质量损失。 但是，由于许多因素，在某些情况下可能无法正常工作。 应用过滤器显然也是不可能的，因为过滤器处理未压缩的数据。</p>
+<p><strong>抽取音频流</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ffmpeg -i input.mp4 -acodec copy -vn out.aac</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>acodec: 指定音频编码器，copy 指明只拷贝，不做编解码。</p>
+</li>
+<li><p>vn: v 代表视频，n 代表 no 也就是无视频的意思。</p>
+</li>
+</ul>
+<p><strong>抽取视频流</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ffmpeg -i input.mp4 -vcodec copy -an out.h264</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>vcodec: 指定视频编码器，copy 指明只拷贝，不做编解码。</p>
+</li>
+<li><p>an: a 代表视频，n 代表 no 也就是无音频的意思。</p>
+</li>
+</ul>
+<p><strong>转格式</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ffmpeg -i out.mp4 -vcodec copy -acodec copy out.flv</span></span><br></pre></td></tr></table></figure>
+<p>上面的命令表式的是音频、视频都直接 copy，只是将 mp4 的封装格式转成了 flv。</p>
+<p><strong>音视频合并</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ffmpeg -i out.h264 -i out.aac -vcodec copy -acodec copy out.mp4</span></span><br></pre></td></tr></table></figure>
+<h2 id="9-处理原始数据"><a href="#9-处理原始数据" class="headerlink" title="9. 处理原始数据"></a>9. <strong>处理原始数据</strong></h2><p><strong>提取YUV数据</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ffmpeg -i input.mp4 -an -c:v rawvideo -pixel_format yuv420p out.yuv</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ffplay -s wxh out.yuv</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>-c:v rawvideo 指定将视频转成原始数据</p>
+</li>
+<li><p>-pixel_format yuv420p 指定转换格式为 yuv420p</p>
+</li>
+</ul>
+<p><strong>YUV 转 H264</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ffmpeg -f rawvideo -pix_fmt yuv420p -s 320x240 -r 30 -i out.yuv -c:v libx264 -f rawvideo out.h264</span></span><br></pre></td></tr></table></figure>
+<p><strong>提取 PCM 数据</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ffmpeg -i out.mp4 -vn -ar 44100 -ac 2 -f s16le out.pcm</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ffplay -ar 44100 -ac 2 -f s16le -i out.pcm</span></span><br></pre></td></tr></table></figure>
+<p><strong>PCM 转 WAV</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ffmpeg -f s16be -ar 8000 -ac 2 -acodec pcm_s16be -i input.raw output.wav</span></span><br></pre></td></tr></table></figure>
+<h2 id="10-滤镜"><a href="#10-滤镜" class="headerlink" title="10. 滤镜"></a>10. <strong>滤镜</strong></h2><p>在编码之前，ffmpeg 可以使用 libavfilter 库中的过滤器处理原始音频和视频帧。 几个链式过滤器形成一个过滤器图形。 ffmpeg 区分两种类型的过滤器图形：简单和复杂。</p>
+<h3 id="10-1-简单滤镜"><a href="#10-1-简单滤镜" class="headerlink" title="10.1 简单滤镜"></a>10.1 简单滤镜</h3><p>简单的过滤器图是那些只有一个输入和输出，都是相同的类型。 在上面的图中，它们可以通过在解码和编码之间插入一个额外的步骤来表示：</p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/简单滤镜.png" data-index="2" data-src="/images/imageFFmpeg/简单滤镜.png"></p>
+<p>简单的 filtergraphs 配置了 per-stream-filter 选项（分别为视频和音频使用 <code>-vf</code> 和 <code>-af</code> 别名）。 一个简单的视频 filtergraph 可以看起来像这样的例子：</p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/简单滤镜-01.png" data-index="3" data-src="/images/imageFFmpeg/简单滤镜-01.png"></p>
+<p>请注意，某些滤镜会更改帧属性，但不会改变帧内容。 例如。 上例中的 fps 过滤器会改变帧数，但不会触及帧内容。 另一个例子是 setpts 过滤器，它只设置时间戳，否则不改变帧。</p>
+<h3 id="10-2-复杂滤镜"><a href="#10-2-复杂滤镜" class="headerlink" title="10.2 复杂滤镜"></a>10.2 复杂滤镜</h3><p>复杂的过滤器图是那些不能简单描述为应用于一个流的线性处理链的过滤器图。 例如，当图形有多个输入和/或输出，或者当输出流类型与输入不同时，就是这种情况。 他们可以用下图来表示：</p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/复杂滤镜.png" data-index="4" data-src="/images/imageFFmpeg/复杂滤镜.png"></p>
+<p>复杂的过滤器图使用 <code>-filter_complex</code> 选项进行配置。 请注意，此选项是全局性的，因为复杂的过滤器图形本质上不能与单个流或文件明确关联。</p>
+<p><code>-lavfi</code> 选项等同于 <code>-filter_complex</code>。</p>
+<p>一个复杂的过滤器图的一个简单的例子是覆盖过滤器，它有两个视频输入和一个视频输出，包含一个视频叠加在另一个上面。 它的音频对应是 amix 滤波器。</p>
+<p><strong>添加水印</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ffmpeg -i out.mp4  -vf <span class="string">"movie=logo.png,scale=64:48[watermask];[in][watermask] overlay=30:10 [out]"</span> water.mp4</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>-vf 中的 movie 指定 logo 位置。scale 指定 logo 大小。overlay 指定 logo 摆放的位置。</li>
+</ul>
+<p><strong>删除水印</strong></p>
+<p>先通过 ffplay 找到要删除 LOGO 的位置</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ffplay -i test.flv -vf delogo=x=806:y=20:w=70:h=80:show=1</span></span><br></pre></td></tr></table></figure>
+<p>使用 delogo 滤镜删除 LOGO</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ffmpeg -i test.flv -vf delogo=x=806:y=20:w=70:h=80 output.flv</span></span><br></pre></td></tr></table></figure>
+<p><strong>视频缩小一倍</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ffmpeg -i out.mp4 -vf scale=iw/2:-1 scale.mp4</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>-vf scale 指定使用简单过滤器 scale，<code>iw/2:-1</code> 中的 iw 指定按整型取视频的宽度。 -1 表示高度随宽度一起变化。</li>
+</ul>
+<p><strong>视频裁剪</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ffmpeg -i VR.mov  -vf crop=in_w-200:in_h-200 -c:v libx264 -c:a copy -video_size 1280x720 vr_new.mp4</span></span><br></pre></td></tr></table></figure>
+<p>crop 格式：<code>crop=out_w:out_h:x:y</code></p>
+<ul>
+<li><p>out_w: 输出的宽度。可以使用 in_w 表式输入视频的宽度。</p>
+</li>
+<li><p>out_h: 输出的高度。可以使用 in_h 表式输入视频的高度。</p>
+</li>
+<li><p>x : X坐标</p>
+</li>
+<li><p>y : Y坐标</p>
+</li>
+</ul>
+<p>如果 x 和 y 设置为 0, 说明从左上角开始裁剪。如果不写是从中心点裁剪。</p>
+<p><strong>倍速播放</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ffmpeg -i out.mp4 -filter_complex <span class="string">"[0:v]setpts=0.5*PTS[v];[0:a]atempo=2.0[a]"</span> -map <span class="string">"[v]"</span> -map <span class="string">"[a]"</span> speed2.0.mp4</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>-filter_complex 复杂滤镜，<code>[0:v]</code> 表示第一个（文件索引号是 0）文件的视频作为输入。<code>setpts=0.5*PTS</code> 表示每帧视频的 pts 时间戳都乘 0.5 ，也就是差少一半。<code>[v]</code> 表示输出的别名。音频同理就不详述了。</p>
+</li>
+<li><p>map 可用于处理复杂输出，如可以将指定的多路流输出到一个输出文件，也可以指定输出到多个文件。”[v]” 复杂滤镜输出的别名作为输出文件的一路流。上面 map的用法是将复杂滤镜输出的视频和音频输出到指定文件中。</p>
+</li>
+</ul>
+<p><strong>对称视频</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ffmpeg  -i out.mp4 -filter_complex <span class="string">"[0:v]pad=w=2*iw[a];[0:v]hflip[b];[a][b]overlay=x=w"</span> duicheng.mp4</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>hflip 水平翻转</li>
+</ul>
+<p>如果要修改为垂直翻转可以用 vflip。</p>
+<p><strong>画中画</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ffmpeg -i out.mp4 -i out1.mp4 -filter_complex <span class="string">"[1:v]scale=w=176:h=144:force_original_aspect_ratio=decrease[ckout];[0:v][ckout]overlay=x=W-w-10:y=0[out]"</span> -map <span class="string">"[out]"</span> -movflags faststart new.mp4</span></span><br></pre></td></tr></table></figure>
+<p><strong>录制画中画</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ffmpeg  -f avfoundation -i <span class="string">"1"</span> -framerate 30 -f avfoundation -i <span class="string">"0:0"</span> </span></span><br><span class="line">-r 30 -c:v libx264 -preset ultrafast </span><br><span class="line">-c:a libfdk_aac -profile:a aac_he_v2 -ar 44100 -ac 2 </span><br><span class="line">-filter_complex "[1:v]scale=w=176:h=144:force_original_aspect_ratio=decrease[a];[0:v][a]overlay=x=W-w-10:y=0[out]" </span><br><span class="line">-map "[out]" -movflags faststart -map 1:a b.mp4</span><br></pre></td></tr></table></figure>
+<p><strong>多路视频拼接</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ffmpeg  -f avfoundation -i <span class="string">"1"</span> -framerate 30 -f avfoundation   -i <span class="string">"0:0"</span> -r 30 -c:v libx264 -preset ultrafast -c:a libfdk_aac -profile:a aac_he_v2 -ar 44100 -ac 2 -filter_complex <span class="string">"[0:v]scale=320:240[a];[a]pad=640:240[b];[b][1:v]overlay=320:0[out]"</span> -map <span class="string">"[out]"</span> -movflags faststart  -map 1:a  c.mp4</span></span><br></pre></td></tr></table></figure>
+<h2 id="11-音视频的拼接与裁剪"><a href="#11-音视频的拼接与裁剪" class="headerlink" title="11. 音视频的拼接与裁剪"></a>11. <strong>音视频的拼接与裁剪</strong></h2><p><strong>裁剪</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ffmpeg -i out.mp4 -ss 00:00:00 -t 10 out1.mp4</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>-ss 指定裁剪的开始时间，精确到秒</p>
+</li>
+<li><p>-t 被裁剪后的时长。</p>
+</li>
+</ul>
+<p><strong>合并</strong></p>
+<p>首先创建一个 inputs.txt 文件，文件内容如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> file <span class="string">'1.flv'</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> file <span class="string">'2.flv'</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> file <span class="string">'3.flv'</span></span></span><br></pre></td></tr></table></figure>
+<p>然后执行下面的命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ffmpeg -f concat -i inputs.txt -c copy output.flv</span></span><br></pre></td></tr></table></figure>
+<p><strong>hls切片</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ffmpeg -i out.mp4 -c:v libx264 -c:a libfdk_aac -strict -2 -f hls  out.m3u8</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>-strict -2 指明音频使有AAC。</p>
+</li>
+<li><p>-f hls 转成 m3u8 格式。</p>
+</li>
+</ul>
+<h2 id="12-视频图片互转"><a href="#12-视频图片互转" class="headerlink" title="12. 视频图片互转"></a>12. 视频图片互转</h2><p><strong>视频转 JPEG</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ffmpeg -i test.flv -r 1 -f image2 image-%3d.jpeg</span></span><br></pre></td></tr></table></figure>
+<p><strong>视频转 gif</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ffmpeg -i out.mp4 -ss 00:00:00 -t 10 out.gif</span></span><br></pre></td></tr></table></figure>
+<p><strong>图片转视频</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ffmpeg  -f image2 -i image-%3d.jpeg images.mp4</span></span><br></pre></td></tr></table></figure>
+<h2 id="13-直播相关"><a href="#13-直播相关" class="headerlink" title="13. 直播相关"></a>13. <strong>直播相关</strong></h2><p><strong>推流</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ffmpeg -re -i out.mp4 -c copy -f flv rtmp://server/live/streamName</span></span><br></pre></td></tr></table></figure>
+<p><strong>拉流保存</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ffmpeg -i rtmp://server/live/streamName -c copy dump.flv</span></span><br></pre></td></tr></table></figure>
+<p><strong>转流</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ffmpeg -i rtmp://server/live/originalStream -c:a copy -c:v copy -f flv rtmp://server/live/h264Stream</span></span><br></pre></td></tr></table></figure>
+<p><strong>实时推流</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ffmpeg -framerate 15 -f avfoundation -i <span class="string">"1"</span> -s 1280x720 -c:v libx264  -f  flv rtmp://localhost:1935/live/room</span></span><br></pre></td></tr></table></figure>
+<h2 id="14-ffplay"><a href="#14-ffplay" class="headerlink" title="14. ffplay"></a>14. <strong>ffplay</strong></h2><p><strong>播放 YUV 数据</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ffplay -pix_fmt nv12 -s 192x144 1.yuv</span></span><br></pre></td></tr></table></figure>
+<p><strong>播放 YUV 中的 Y 平面</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ffplay -pix_fmt nv21 -s 640x480 -vf extractplanes=<span class="string">'y'</span> 1.yuv</span></span><br></pre></td></tr></table></figure>
+
+                </article>
+                <ul class="tags-postTags">
+                    
+                    <li>
+                        <a href="/tags/FFmpeg/" rel="tag"># FFmpeg</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    
+    <nav id="gobottom" class="pagination">
+        
+        <a class="prev-post" title="PM计算题笔记" href="/2019-05-10/ispm_note_1/">
+            ← PM计算题笔记
+        </a>
+        
+        <span class="prev-next-post">·</span>
+        
+        <a class="next-post" title="分辨率/码率/帧率/带宽的概念" href="/2019-05-03/webrtc_note_2/">
+            分辨率/码率/帧率/带宽的概念 →
+        </a>
+        
+    </nav>
+
+    
+    <div class="inner">
+        <div id="comment"></div>
+    </div>
+    
+</div>
+
+<div class="toc-bar">
+    <div class="toc-btn-bar">
+        <a href="#site-main" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M793.024 710.272a32 32 0 1 0 45.952-44.544l-310.304-320a32 32 0 0 0-46.4 0.48l-297.696 320a32 32 0 0 0 46.848 43.584l274.752-295.328 286.848 295.808z"/></svg>
+        </a>
+        <div class="toc-btn toc-switch">
+            <svg class="toc-open" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M779.776 480h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M779.776 672h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M256 288a32 32 0 1 0 0 64 32 32 0 0 0 0-64M392.576 352h387.2a32 32 0 0 0 0-64h-387.2a32 32 0 0 0 0 64M256 480a32 32 0 1 0 0 64 32 32 0 0 0 0-64M256 672a32 32 0 1 0 0 64 32 32 0 0 0 0-64"/></svg>
+            <svg class="toc-close hide" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M512 960c-247.039484 0-448-200.960516-448-448S264.960516 64 512 64 960 264.960516 960 512 759.039484 960 512 960zM512 128.287273c-211.584464 0-383.712727 172.128262-383.712727 383.712727 0 211.551781 172.128262 383.712727 383.712727 383.712727 211.551781 0 383.712727-172.159226 383.712727-383.712727C895.712727 300.415536 723.551781 128.287273 512 128.287273z"/><path d="M557.05545 513.376159l138.367639-136.864185c12.576374-12.416396 12.672705-32.671738 0.25631-45.248112s-32.704421-12.672705-45.248112-0.25631l-138.560301 137.024163-136.447897-136.864185c-12.512727-12.512727-32.735385-12.576374-45.248112-0.063647-12.512727 12.480043-12.54369 32.735385-0.063647 45.248112l136.255235 136.671523-137.376804 135.904314c-12.576374 12.447359-12.672705 32.671738-0.25631 45.248112 6.271845 6.335493 14.496116 9.504099 22.751351 9.504099 8.12794 0 16.25588-3.103239 22.496761-9.247789l137.567746-136.064292 138.687596 139.136568c6.240882 6.271845 14.432469 9.407768 22.65674 9.407768 8.191587 0 16.352211-3.135923 22.591372-9.34412 12.512727-12.480043 12.54369-32.704421 0.063647-45.248112L557.05545 513.376159z"/></svg>
+        </div>
+        <a href="#gobottom" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M231.424 346.208a32 32 0 0 0-46.848 43.584l297.696 320a32 32 0 0 0 46.4 0.48l310.304-320a32 32 0 1 0-45.952-44.544l-286.848 295.808-274.752-295.36z"/></svg>
+        </a>
+    </div>
+    <div class="toc-main">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-前言"><span class="toc-text">1. 前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-FFMPEG-目录及作用"><span class="toc-text">2. FFMPEG 目录及作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-FFMPEG-基本概念"><span class="toc-text">3. FFMPEG 基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-FFMPEG-命令"><span class="toc-text">4. FFMPEG 命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-基本信息查询命令"><span class="toc-text">5. 基本信息查询命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-命令基本格式及参数"><span class="toc-text">6. 命令基本格式及参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-主要参数"><span class="toc-text">6.1 主要参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-视频参数"><span class="toc-text">6.2 视频参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-音频参数"><span class="toc-text">6.3 音频参数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-录制"><span class="toc-text">7. 录制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-分解与复用"><span class="toc-text">8. 分解与复用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-处理原始数据"><span class="toc-text">9. 处理原始数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-滤镜"><span class="toc-text">10. 滤镜</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#10-1-简单滤镜"><span class="toc-text">10.1 简单滤镜</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-2-复杂滤镜"><span class="toc-text">10.2 复杂滤镜</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-音视频的拼接与裁剪"><span class="toc-text">11. 音视频的拼接与裁剪</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-视频图片互转"><span class="toc-text">12. 视频图片互转</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-直播相关"><span class="toc-text">13. 直播相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-ffplay"><span class="toc-text">14. ffplay</span></a></li></ol>
+    </div>
+</div>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+	</div>
+	
+
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+  <header class="read-next-card-header">
+    <small class="read-next-card-header-sitetitle">&mdash; Pastor Dean &mdash;</small>
+    <h3 class="read-next-card-header-title">Recent Posts</h3>
+  </header>
+  <div class="read-next-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+      <path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/>
+    </svg>
+  </div>
+  <div class="read-next-card-content">
+    <ul>
+      
+      
+      
+      <li>
+        <a href="/2020-01-16/thinking/Thinking modelBiological thinking Biological thinking looking at the business world from an evolutionary perspective/">Thinking modelBiological thinking Biological thinking: looking at the business world from an evolutionary perspective</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2020-01-13/thinking/Modern Darwin Integrated Model  Biological Thinking Mode Opening God Perspective/">Modern Darwin Integrated Model Biological Thinking Mode Opening God is Perspective</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2020-01-11/thinking/Metacognition Changing the stubborn thinking of the brain/">Metacognition Changing the stubborn thinking of the brain</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <footer class="read-next-card-footer">
+    <a href="/archives">  MORE  → </a>
+  </footer>
+</article>
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+    <header class="read-next-card-header tagcloud-card">
+        <h3 class="read-next-card-header-title">Categories</h3>
+    </header>
+    <div class="read-next-card-content">
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Biological-Thinking/">Biological Thinking</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cognitive-Neuroscience/">Cognitive Neuroscience</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DeepLearning/">DeepLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/FFmpeg/">FFmpeg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MacOS/">MacOS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MachineLearning/">MachineLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PM/">PM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/RPC/">RPC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vim/">Vim</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WebRTC/">WebRTC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/deeplearn/">deeplearn</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/http/">http</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/machineLearning/">machineLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/文摘/">文摘</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构师/">架构师</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/知识图谱/">知识图谱</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/职业规划/">职业规划</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/职业规划/个人提升/">个人提升</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机相关技术资料整理/">计算机相关技术资料整理</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/认知升级/">认知升级</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/财务自由/">财务自由</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/财富自由/">财富自由</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/运维/">运维</a></li></ul>
+    </div>
+</article>
+
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+	<header class="read-next-card-header tagcloud-card">
+		<h3 class="read-next-card-header-title">Tag Cloud</h3>
+	</header>
+	<div class="read-next-card-content-ext">
+		<a href="/tags/AI/" style="font-size: 14px;">AI</a> <a href="/tags/Android/" style="font-size: 14px;">Android</a> <a href="/tags/Biological/" style="font-size: 17.75px;">Biological</a> <a href="/tags/Browser/" style="font-size: 14px;">Browser</a> <a href="/tags/Business/" style="font-size: 16.5px;">Business</a> <a href="/tags/Cognitive/" style="font-size: 17.75px;">Cognitive</a> <a href="/tags/DeepLearning/" style="font-size: 15.25px;">DeepLearning</a> <a href="/tags/Docker/" style="font-size: 14px;">Docker</a> <a href="/tags/FFmpeg/" style="font-size: 21.5px;">FFmpeg</a> <a href="/tags/FastCGI/" style="font-size: 14px;">FastCGI</a> <a href="/tags/IP划分/" style="font-size: 14px;">IP划分</a> <a href="/tags/IP地址/" style="font-size: 14px;">IP地址</a> <a href="/tags/Knowledge-Graph/" style="font-size: 16.5px;">Knowledge Graph</a> <a href="/tags/Linux-Shell/" style="font-size: 14px;">Linux Shell</a> <a href="/tags/MacOS/" style="font-size: 15.25px;">MacOS</a> <a href="/tags/Neuroscience/" style="font-size: 17.75px;">Neuroscience</a> <a href="/tags/RPC/" style="font-size: 14px;">RPC</a> <a href="/tags/Thinking/" style="font-size: 17.75px;">Thinking</a> <a href="/tags/Tutorial/" style="font-size: 20.25px;">Tutorial</a> <a href="/tags/WebRTC/" style="font-size: 21.5px;">WebRTC</a> <a href="/tags/WebSocket/" style="font-size: 14px;">WebSocket</a> <a href="/tags/algorithm/" style="font-size: 15.25px;">algorithm</a> <a href="/tags/config/" style="font-size: 14px;">config</a> <a href="/tags/decisionTree/" style="font-size: 14px;">decisionTree</a> <a href="/tags/git/" style="font-size: 17.75px;">git</a> <a href="/tags/google-adsense/" style="font-size: 14px;">google adsense</a> <a href="/tags/hexo/" style="font-size: 17.75px;">hexo</a> <a href="/tags/http/" style="font-size: 17.75px;">http</a> <a href="/tags/knn/" style="font-size: 14px;">knn</a> <a href="/tags/lighttpd/" style="font-size: 15.25px;">lighttpd</a> <a href="/tags/mxnet/" style="font-size: 14px;">mxnet</a> <a href="/tags/mysql/" style="font-size: 22.75px;">mysql</a> <a href="/tags/nlp/" style="font-size: 24px;">nlp</a> <a href="/tags/nodejs/" style="font-size: 14px;">nodejs</a> <a href="/tags/openvpn/" style="font-size: 14px;">openvpn</a> <a href="/tags/other/" style="font-size: 15.25px;">other</a> <a href="/tags/paddle/" style="font-size: 14px;">paddle</a> <a href="/tags/planning/" style="font-size: 20.25px;">planning</a> <a href="/tags/pracitce/" style="font-size: 15.25px;">pracitce</a> <a href="/tags/rich/" style="font-size: 14px;">rich</a> <a href="/tags/shell/" style="font-size: 14px;">shell</a> <a href="/tags/svn/" style="font-size: 14px;">svn</a> <a href="/tags/ubuntu/" style="font-size: 14px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 16.5px;">vim</a> <a href="/tags/webpack/" style="font-size: 14px;">webpack</a> <a href="/tags/webrtc/" style="font-size: 19px;">webrtc</a> <a href="/tags/个人发展/" style="font-size: 14px;">个人发展</a> <a href="/tags/互联网实事/" style="font-size: 14px;">互联网实事</a> <a href="/tags/外链/" style="font-size: 14px;">外链</a> <a href="/tags/提升个人思维/" style="font-size: 14px;">提升个人思维</a> <a href="/tags/文摘/" style="font-size: 15.25px;">文摘</a> <a href="/tags/斜杠青年/" style="font-size: 14px;">斜杠青年</a> <a href="/tags/机器学习/" style="font-size: 16.5px;">机器学习</a> <a href="/tags/架构师/" style="font-size: 14px;">架构师</a> <a href="/tags/测试工具/" style="font-size: 14px;">测试工具</a> <a href="/tags/睡后成长/" style="font-size: 14px;">睡后成长</a> <a href="/tags/睡后收入/" style="font-size: 14px;">睡后收入</a> <a href="/tags/税后收入/" style="font-size: 14px;">税后收入</a> <a href="/tags/笔记/" style="font-size: 14px;">笔记</a> <a href="/tags/自然语言处理/" style="font-size: 24px;">自然语言处理</a> <a href="/tags/视频流/" style="font-size: 15.25px;">视频流</a> <a href="/tags/计算机相关技术资料整理/" style="font-size: 14px;">计算机相关技术资料整理</a> <a href="/tags/认知升级/" style="font-size: 14px;">认知升级</a> <a href="/tags/限速/" style="font-size: 14px;">限速</a> <a href="/tags/面试/" style="font-size: 14px;">面试</a> <a href="/tags/项目管理/" style="font-size: 14px;">项目管理</a>
+	</div>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+	
+
+
+
+
+<div id="search" class="search-overlay">
+    <div class="search-form">
+        
+        <div class="search-overlay-logo">
+        	<img src="/images/favicon-16x16-next.png" alt="Pastor Dean">
+        </div>
+        
+        <input id="local-search-input" class="search-input" type="text" name="search" placeholder="Search ...">
+        <a class="search-overlay-close" href="#"></a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+<footer class="site-footer outer">
+	<div class="site-footer-content inner">
+		<div class="copyright">
+			<a href="/" title="Pastor Dean">Pastor Dean &copy; 2020</a>
+			
+				
+			        <span hidden="true" id="/2019-05-04/reference/FFmpeg/FFmpeg命令大全/" class="leancloud-visitors" data-flag-title="FFmpeg命令大全">
+			            <span>阅读量 </span>
+			            <span class="leancloud-visitors-count">0</span>
+			        </span>
+	    		
+    		
+		</div>
+		<nav class="site-footer-nav">
+			
+			<a href="https://hexo.io" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+			<a href="https://github.com/xzhih/hexo-theme-casper" title="Casper" target="_blank" rel="noopener">Casper</a>
+		</nav>
+	</div>
+</footer>
+	
+
+
+<script>
+    if(window.navigator && navigator.serviceWorker) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister()
+            }
+        })
+    }
+</script>
+
+
+<script id="scriptLoad" src="/js/allinone.min.js" async></script>
+
+
+<script>
+    document.getElementById('scriptLoad').addEventListener('load', function () {
+        
+        
+            var bLazy = new Blazy();
+        
+
+        
+        
+
+        
+        
+        
+            searchFunc("/");
+        
+        
+    })
+</script>
+
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+
+
+<script id="valineScript" src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+<script>
+    document.getElementById('valineScript').addEventListener("load", function() {
+        new Valine({
+            el: '#comment' ,
+            verify: false,
+            notify: false,
+            appId: '',
+            appKey: '',
+            placeholder: 'Just go go',
+            pageSize: 10,
+            avatar: 'mm',
+            visitor: true
+        })
+    });
+</script>
+
+
+
+
+
+</body>
+</html>

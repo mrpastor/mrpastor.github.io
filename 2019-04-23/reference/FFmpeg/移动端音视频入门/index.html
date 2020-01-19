@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="preconnect" href="//www.googletagmanager.com">
+	<link rel="preconnect" href="//zz.bdstatic.com">
+	<link rel="preconnect" href="//sp0.baidu.com">
+	<link rel="preconnect" href="//www.google-analytics.com">
+	<link rel="preconnect" href="//cdn1.lncld.net">
+	<link rel="preconnect" href="//unpkg.com">
+	<link rel="preconnect" href="//app-router.leancloud.cn">
+	<link rel="preconnect" href="//9qpuwspm.api.lncld.net">
+	<link rel="preconnect" href="//gravatar.loli.net">
+
+	<title>音视频入门知识 | Pastor Dean</title>
+
+	<meta name="HandheldFriendly" content="True">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+	<meta name="generator" content="hexo">
+	<meta name="author" content="pastor">
+	<meta name="description" content>
+
+	
+	<meta name="keywords" content>
+	
+
+	
+	<link rel="shortcut icon" href="/images/favicon-16x16-next.png">
+	<link rel="apple-touch-icon" href="/images/favicon-16x16-next.png">
+	
+
+	
+	<meta name="theme-color" content="#3c484e">
+	<meta name="msapplication-TileColor" content="#3c484e">
+	
+
+	
+
+	
+
+	<meta property="og:site_name" content="Pastor Dean">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="音视频入门知识 | Pastor Dean">
+	<meta property="og:description" content>
+	<meta property="og:url" content="https://mrpastor.github.io/2019-04-23/reference/FFmpeg/移动端音视频入门/">
+
+	
+	<meta property="article:published_time" content="2019-04-23T10:04:00+08:00"> 
+	<meta property="article:author" content="pastor">
+	<meta property="article:published_first" content="Pastor Dean, /2019-04-23/reference/FFmpeg/移动端音视频入门/">
+	
+
+	
+	
+	<link rel="stylesheet" href="/css/allinonecss.min.css">
+
+	
+	
+	
+</head>
+<body class="post-template">
+	<div class="site-wrapper">
+		
+
+
+
+
+<header class="site-header post-site-header outer">
+    <div class="inner">
+        
+<nav class="site-nav"> 
+    <div class="site-nav-left">
+        <ul class="nav">
+            <li>
+                
+                
+                <a class="site-nav-logo" href="/" title="Pastor Dean">
+                    <img src="/images/favicon-32x32-next.png" alt="Pastor Dean">
+                </a>
+                
+                
+            </li>
+            
+            
+            <li>
+                <a href="/ || home" title="home">home</a>
+            </li>
+            
+            <li>
+                <a href="/categories/ || th" title="categories">categories</a>
+            </li>
+            
+            <li>
+                <a href="/archives/ || archive" title="archives">archives</a>
+            </li>
+            
+            <li>
+                <a href="/tools/ || tools" title="tools">tools</a>
+            </li>
+            
+            
+        </ul> 
+    </div>
+    
+    <div class="search-button-area">
+        <a href="#search" class="search-button">Search ...</a>
+    </div>
+     
+    <div class="site-nav-right">
+        
+        <a href="#search" class="search-button">Search ...</a>
+         
+        
+<div class="social-links">
+    
+    
+    <a class="social-link" title="github" href="https://github.com/mrpastor" target="_blank" rel="noopener">
+        <svg viewbox="0 0 1049 1024" xmlns="http://www.w3.org/2000/svg"><path d="M524.979332 0C234.676191 0 0 234.676191 0 524.979332c0 232.068678 150.366597 428.501342 358.967656 498.035028 26.075132 5.215026 35.636014-11.299224 35.636014-25.205961 0-12.168395-0.869171-53.888607-0.869171-97.347161-146.020741 31.290159-176.441729-62.580318-176.441729-62.580318-23.467619-60.841976-58.234462-76.487055-58.234463-76.487055-47.804409-32.15933 3.476684-32.15933 3.476685-32.15933 53.019436 3.476684 80.83291 53.888607 80.83291 53.888607 46.935238 79.963739 122.553122 57.365291 152.97411 43.458554 4.345855-33.897672 18.252593-57.365291 33.028501-70.402857-116.468925-12.168395-239.022047-57.365291-239.022047-259.012982 0-57.365291 20.860106-104.300529 53.888607-140.805715-5.215026-13.037566-23.467619-66.926173 5.215027-139.067372 0 0 44.327725-13.906737 144.282399 53.888607 41.720212-11.299224 86.917108-17.383422 131.244833-17.383422s89.524621 6.084198 131.244833 17.383422C756.178839 203.386032 800.506564 217.29277 800.506564 217.29277c28.682646 72.1412 10.430053 126.029806 5.215026 139.067372 33.897672 36.505185 53.888607 83.440424 53.888607 140.805715 0 201.64769-122.553122 245.975415-239.891218 259.012982 19.121764 16.514251 35.636014 47.804409 35.636015 97.347161 0 70.402857-0.869171 126.898978-0.869172 144.282399 0 13.906737 9.560882 30.420988 35.636015 25.205961 208.601059-69.533686 358.967656-265.96635 358.967655-498.035028C1049.958663 234.676191 814.413301 0 524.979332 0z"/></svg>
+    </a>
+    
+    
+    <a class="social-link" title="facebook" href="https://facebook" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+
+    </a>
+    
+    
+    <a class="social-link" title="twitter" href="https://twitter.com" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+    </a>
+    
+    
+    
+    
+</div>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<div id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+        <header class="post-full-header">
+            <div class="post-full-meta">
+                <time class="post-full-meta-date" datetime="2019-04-23T02:14:50.000Z">
+                    2019-04-23
+                </time>
+                
+                <span class="date-divider">/</span>
+                
+                <a href="/categories/FFmpeg/">FFmpeg</a>&nbsp;&nbsp;
+                
+                
+            </div>
+            <h1 class="post-full-title">音视频入门知识</h1>
+        </header>
+        <div class="post-full no-image">
+            
+            <div class="post-full-content">
+                <article id="photoswipe" class="markdown-body">
+                    <blockquote>
+<p><a href="https://www.jianshu.com/p/97b4dc8c7f00" target="_blank" rel="noopener">H264基本原理</a></p>
+</blockquote>
+<h2 id="1-万人直播架构讲解"><a href="#1-万人直播架构讲解" class="headerlink" title="1. 万人直播架构讲解"></a>1. 万人直播架构讲解</h2><p>直播产品的种类：</p>
+<ul>
+<li><p>泛娱乐化直播</p>
+<p>花椒、映客等娱乐直播，还有斗鱼、熊猫等游戏直播</p>
+</li>
+<li><p>实时互动直播</p>
+<p>音视频会议、教育直播等，像 思科、全时、声网</p>
+</li>
+</ul>
+<a id="more"></a>
+<p>泛娱乐化直播架构</p>
+<blockquote>
+<p>信令服务器：创建房间、聊天、礼物。。。。</p>
+<p>美女主播 –信令–&gt; 信令服务器</p>
+<p>信令服务器–rtmp流地址–&gt;美女主播</p>
+<p>美女主播 –推流–&gt; 流媒体云CDN</p>
+<p>观众 –信令–&gt; 信令服务器：将观众加入到美女主播间</p>
+<p>信令服务器–rmtp流地址–&gt; 观众</p>
+<p>观众 &lt;–拉流–&gt; 流媒体云CDN</p>
+</blockquote>
+<p>泛娱乐化直播架构</p>
+<p>基于TCP协议实现</p>
+<ol>
+<li>发送信令到信令服务器, 服务器收到\执行后, 返回给共享端一个流媒体云的地址</li>
+<li>共享端采集自己音视频数据, 形成rtmp流, 推送到CDN网络(推流)</li>
+<li>获取流媒体云地址</li>
+<li>拉流</li>
+</ol>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/泛娱乐化直播架构.png" data-index="0" data-src="/images/imageFFmpeg/泛娱乐化直播架构.png"></p>
+<p>实时互动直播架构</p>
+<p>基于UDP实现</p>
+<ol>
+<li>自有网络: UDP没有自有网络, 需自己搭建</li>
+<li>多个节点: 为了保障服务的稳定性以及负载均衡</li>
+<li>控制中心: 每个节点定期(心跳)向控制中心报告健康程度, 控制中心根据响应的数据做出决策</li>
+<li>内总线: 数据安全性\吞吐量等可靠性得以保障</li>
+<li>媒体服务器: 将RTP协议的数据转换成RTMP协议的数据</li>
+<li>CDN网络: 根据用户需求进行拉流</li>
+</ol>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/实时互动直播架构.png" data-index="1" data-src="/images/imageFFmpeg/实时互动直播架构.png"></p>
+<h2 id="2-CDN网络介绍"><a href="#2-CDN网络介绍" class="headerlink" title="2. CDN网络介绍"></a>2. CDN网络介绍</h2><blockquote>
+<p>CDN网络是为了解决什么问题而出现的？</p>
+<p>总结为一句话：CDN网络是为了解决用户访问网络资源慢而出现的一个技术，两个原因：</p>
+<ol>
+<li>网络链路太长</li>
+<li>人为因素（南电信北联通，利益相关）</li>
+</ol>
+</blockquote>
+<p>CDN构成：</p>
+<p>边缘结点：用户从边缘节点上获取数据</p>
+<p>二级节点：主干网节点，主要用于缓存、减转源站压力</p>
+<p>源站：CP(内容提供方)将内容放到源站</p>
+<p>查找顺序：边缘结点-&gt;二级节点-&gt;源站</p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/CDN网络.png" data-index="2" data-src="/images/imageFFmpeg/CDN网络.png"></p>
+<h2 id="3-亲手搭建一套简单的直播系统"><a href="#3-亲手搭建一套简单的直播系统" class="headerlink" title="3. 亲手搭建一套简单的直播系统"></a>3. 亲手搭建一套简单的直播系统</h2><p>安装nginx 配置rtmp</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> brew install nginx-full --with-rtmp-module</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">(这一步卡了我好久，安装nginx提示一直找不到nginx-full,网上相关的教程没更新，原因在于nginx仓库已搬迁)</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> brew tap denji/nginx</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> nginx -s reload 重启</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> nginx  启动</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> vi /usr/<span class="built_in">local</span>/etc/nginx/nginx.conf</span></span><br></pre></td></tr></table></figure>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/nginx-trmp配置.png" data-index="3" data-src="/images/imageFFmpeg/nginx-trmp配置.png"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 推流</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ffmpeg -re -i out.mp4 -c copy -f flv rtmp://server/live/streamName</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 拉流</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ffmpeg -i rtmp://server/live/streamName -c copy dump.flv</span></span><br></pre></td></tr></table></figure>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/FFMPEG直播命令.png" data-index="4" data-src="/images/imageFFmpeg/FFMPEG直播命令.png"></p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/测试流媒体服务器.png" data-index="5" data-src="/images/imageFFmpeg/测试流媒体服务器.png"></p>
+<h2 id="4-音频基础知识"><a href="#4-音频基础知识" class="headerlink" title="4. 音频基础知识"></a>4. 音频基础知识</h2><p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/声音三要素.png" data-index="6" data-src="/images/imageFFmpeg/声音三要素.png"></p>
+<p>图一音量：甲乙的振动频率相同、振幅不同。图二音调：甲乙振幅相同、频率不同</p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/音量与音调.png" data-index="7" data-src="/images/imageFFmpeg/音量与音调.png"></p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/音色.png" data-index="8" data-src="/images/imageFFmpeg/音色.png"></p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/人类听觉范围.png" data-index="9" data-src="/images/imageFFmpeg/人类听觉范围.png"></p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/听觉-发声范围.png" data-index="10" data-src="/images/imageFFmpeg/听觉-发声范围.png"></p>
+<h2 id="5-音频的量化与编码"><a href="#5-音频的量化与编码" class="headerlink" title="5. 音频的量化与编码"></a>5. 音频的量化与编码</h2><p>模拟信号进行采样，采样时分频率的从模拟信号获取数据波形值，采样后，进行数据量化，量化后进行编码，把采样的十进制转化为计算机的二进制，也就是数字信号。</p>
+<p>模拟数据——》采样——》量化——》编码——》数字信号</p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/音频量化过程.png" data-index="11" data-src="/images/imageFFmpeg/音频量化过程.png"></p>
+<p>采样大小决定了音频的振幅的高度，采样时指一个采样用多少bit存放，常用的是16bit</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> bit：位     一个二进制数据0或1，是1bit</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> byte：字节  存储空间的基本计量单位，如：MySQL中定义 VARCHAR(45) 即是指 45个字节；</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 1 Byte = 8 Bit = 1 字节</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 2^8 = 256, 2^16 = 65535</span></span><br></pre></td></tr></table></figure>
+<p>aac通常44.1k采样率</p>
+<p>采样率:采样频率8k/秒、16k/秒、32k/秒、44.1k/秒、48k/秒</p>
+<blockquote>
+<p><a href="https://www.zhihu.com/question/20351692" target="_blank" rel="noopener">什么是音频的采样率？采样率和音质有没有关系？</a> - 知乎</p>
+</blockquote>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/量化基本概念.png" data-index="12" data-src="/images/imageFFmpeg/量化基本概念.png"></p>
+<p>人能听到的声音范围是20hz-2whz</p>
+<p>码率 = 采样率 x 采样大小 x 声道数</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 宽带速率的单位用 bps(或b/s)表示</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 1 B = 8 b   1 B/s = 8 b/s</span></span><br></pre></td></tr></table></figure>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/码率计算.png" data-index="13" data-src="/images/imageFFmpeg/码率计算.png"></p>
+<p>原始的wav文件，大小是1411.2Kb/s</p>
+<p>做完aaclc的编码，大小是128Kb/s</p>
+<p>如果是aache-vr这种编码，大小是32Kb/s</p>
+<h2 id="6-音频压缩技术讲解"><a href="#6-音频压缩技术讲解" class="headerlink" title="6. 音频压缩技术讲解"></a>6. 音频压缩技术讲解</h2><p>音频压缩技术</p>
+<p>1、消除冗余数据（有损压缩技术）。</p>
+<p>压缩的主要方法是去除采集到的音频冗余信息，所谓冗余信息包括人耳听觉范围外的音频信号以及被掩蔽掉的音频信号</p>
+<p>信号的掩蔽可分为频域掩蔽和时域掩蔽</p>
+<p>频域掩蔽：一个强纯音会掩蔽在其附近同时发声的弱纯音。也称同时掩蔽</p>
+<p>时域掩蔽：在时间上相邻的声音之间也有掩蔽现象，主要原因是人的大脑处理信息需要花费时间。</p>
+<p>同步掩蔽效应和不同频率声音的频率和相对竟是有关，而时间掩蔽则仅仅和时间有关。如果两个声音在时间上特别接近，分辨会有困难（如两个声音音量相差较大且两个声音间隔时间低于5毫秒，则其中弱的那个声音会听不到）。</p>
+<p>2、哈夫曼无损编码</p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/音频压缩技术.png" data-index="14" data-src="/images/imageFFmpeg/音频压缩技术.png"></p>
+<p>音频压缩：频域，时域。</p>
+<ul>
+<li><p>频域: 截取人耳能听到的频率范围，滤掉响度低的声音，去掉某个高频周围低频的声音；</p>
+</li>
+<li><p>时域: 滤掉某个长时间说话中的低音</p>
+</li>
+</ul>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/音频冗余信息.png" data-index="15" data-src="/images/imageFFmpeg/音频冗余信息.png"></p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/频域掩蔽效应.png" data-index="16" data-src="/images/imageFFmpeg/频域掩蔽效应.png"></p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/时域掩蔽效应.png" data-index="17" data-src="/images/imageFFmpeg/时域掩蔽效应.png"></p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/音频编码过程.png" data-index="18" data-src="/images/imageFFmpeg/音频编码过程.png"></p>
+<h2 id="7-音频编解码器选型"><a href="#7-音频编解码器选型" class="headerlink" title="7. 音频编解码器选型"></a>7. 音频编解码器选型</h2><p>网上测评结果：音频编解码器 opus &gt; aac &gt; vorbis </p>
+<p>音频编解码器：</p>
+<p>1：opus，</p>
+<ul>
+<li>口模型：实时互动，对实时性要求非常高 </li>
+<li>耳模型：高保真，对质量要求非常高</li>
+</ul>
+<p>至于什么时候使用那个模型，由opus自己内部来决定，同时，他是性能最好的，压缩率最好。</p>
+<p>2：AAC，经常用于泛娱乐化直播，因为其对实时性要求不是很高但是对音质要求可能较高，所以，选用AAC，当然也可以选用opus的耳模型</p>
+<p>3：sppex，最大的特点就是不仅可以编码音频，还可以对音频进行降噪，优化，尽可能的获取原音频数据</p>
+<p>4：G.711(722)，主要用于音视频会议，为了和固话进行相应的融合</p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/常见的音频编码器.png" data-index="19" data-src="/images/imageFFmpeg/常见的音频编码器.png"></p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/音频编码器性能对比.png" data-index="20" data-src="/images/imageFFmpeg/音频编码器性能对比.png"></p>
+<h2 id="8-AAC-讲解"><a href="#8-AAC-讲解" class="headerlink" title="8. AAC 讲解"></a>8. AAC 讲解</h2><p>cdn，rtmp  支持 aac</p>
+<p>AAC 产生的目的是取代 MP3 格式：</p>
+<p>AAC 相对优点：压缩率高，损耗低</p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/AAC介绍.png" data-index="21" data-src="/images/imageFFmpeg/AAC介绍.png"></p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/AAC规格.png" data-index="22" data-src="/images/imageFFmpeg/AAC规格.png"></p>
+<p>aac 三种类型<br>aac<br>aacv1: aac+sbr(频率复用-高频部分采样率高，低频部分采样率低)<br>aacv2: aac+sbr+ps(声道关联，一个声道采集全部，一个声道只采集相对不同的声音)</p>
+<p>AAC规格描述（AAC、AAC HE、AAC HE V2）–&gt; AAC+SBR=AAC HE V1, AAC + SBR + PS = AAC HE V2</p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/AAC规格描述.png" data-index="23" data-src="/images/imageFFmpeg/AAC规格描述.png"></p>
+<p>AAC格式：</p>
+<p>1、ADIF(Audio Data Interchange Format):只能从头开始解码，常用在磁盘文件中。</p>
+<p>2、ADTS(Audio Data Transport Stream)：这种格式每一帧都有一个同步字，可以在音频流的任何位置开始解码，它似于数据流格式（缺点：文件比ADIF大，优点:每个帧都可以被单独解码播放）</p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/AAC格式.png" data-index="24" data-src="/images/imageFFmpeg/AAC格式.png"></p>
+<p>aac 编码库 ffmpeg AAC，libfdk AAC</p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/AAC编码库那个好.png" data-index="25" data-src="/images/imageFFmpeg/AAC编码库那个好.png"></p>
+<h2 id="9-视频基本知识"><a href="#9-视频基本知识" class="headerlink" title="9. 视频基本知识"></a>9. 视频基本知识</h2><p>I帧：关键帧，采用帧内压缩技术</p>
+<p>P帧：向前参考帧，压缩时只参考前一个帧，属于帧间压缩技术</p>
+<p>B帧：双向参考帧，压缩时即参考前一帧也参考后一帧，属于帧间压缩技术</p>
+<p>一般实时互动都不会使用 B 帧</p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/H264基本概念.png" data-index="26" data-src="/images/imageFFmpeg/H264基本概念.png"></p>
+<p>GOF(group of frame): 一组帧，可以将一段时间内画面变化不大的所有帧划为一组帧</p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/GOF.png" data-index="27" data-src="/images/imageFFmpeg/GOF.png"></p>
+<p>SPS与PPS（这两种都划为 I 帧）：</p>
+<ul>
+<li><p>SPS(Sequence Parameter Set): </p>
+<p>序列参数集，存放帧数、参考帧数目、解码图像尺寸、帧场编码模式选择标识等。</p>
+</li>
+<li><p>PPS(Picture Parameter Set):</p>
+<p>图像参数集，存放熵编码模式选择标识、片组数目、初始量化参数和去方块滤波系统数调整标识等</p>
+</li>
+</ul>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/SPS与PPS.png" data-index="28" data-src="/images/imageFFmpeg/SPS与PPS.png"></p>
+<p>视频花屏/卡顿原因：</p>
+<p>1、如果 GOP 分组中的 P 帧丢失会造成解码端的图像发生错误（于是形成了花屏）。</p>
+<p>2、为了避免花屏问题的发生，一般如果发现 P 帧或者I帧丢失，就不显示本 GOP 内的所有帧，直到下一个 I 帧来后重新刷新图像（因为丢了一组数据，所以形成了卡顿）</p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/视频花屏卡顿的原因.png" data-index="29" data-src="/images/imageFFmpeg/视频花屏卡顿的原因.png"></p>
+<p>视频编码器：</p>
+<p>1、x264/x265。</p>
+<p>2、openH264(支持 SVC（分层传输） 技术)。</p>
+<p>3、vp8/vp9</p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/视频都有哪些视频编码器.png" data-index="30" data-src="/images/imageFFmpeg/视频都有哪些视频编码器.png"></p>
+<h2 id="10-H264-宏块的划分与帧分组"><a href="#10-H264-宏块的划分与帧分组" class="headerlink" title="10. H264 宏块的划分与帧分组"></a>10. H264 宏块的划分与帧分组</h2><p>H264压缩技术</p>
+<ol>
+<li>帧内预测压缩，解决的是空域数据冗余问题（将一幅图里的人眼不是很敏感的色彩、光亮等数据剔除）</li>
+<li>帧间预测压缩，解决的是时域数据冗余问题（将一组图里面连续的重复性高的帧剔除）</li>
+<li>整数离散余弦变换(DCT)，将空间上的相关性变为频域上无关的数据然后进行量化</li>
+<li>CABAC压缩，也叫上下文适应无损压缩</li>
+</ol>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/H264压缩技术.png" data-index="31" data-src="/images/imageFFmpeg/H264压缩技术.png"></p>
+<p>宏块的划分与分组：</p>
+<p>H264宏块划分与子块划分：宏块里面可以再包含很多子块</p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/H264宏块划分.png" data-index="32" data-src="/images/imageFFmpeg/H264宏块划分.png"></p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/宏块划分完成.png" data-index="33" data-src="/images/imageFFmpeg/宏块划分完成.png"></p>
+<p>子块划分：</p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/子块划分.png" data-index="34" data-src="/images/imageFFmpeg/子块划分.png"></p>
+<p>帧分组(一组连续的图片，一幅图片为一帧)</p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/帧分组.png" data-index="35" data-src="/images/imageFFmpeg/帧分组.png"></p>
+<h2 id="11-视频压缩技术详解"><a href="#11-视频压缩技术详解" class="headerlink" title="11. 视频压缩技术详解"></a>11. 视频压缩技术详解</h2><ul>
+<li><p>帧间预测: </p>
+<p>解决时间数据冗余，比较相邻两帧不同给出运动矢量 + 残差值</p>
+</li>
+<li><p>帧内预测: </p>
+<p>解决空间数据冗余，每一个宏块有一个预测模式，然后讲预测后的图像与原图比较算差值，最后存储预测模式和差值即可。帧内压缩是针对于 I 帧的</p>
+</li>
+</ul>
+<h3 id="11-1-帧间预测"><a href="#11-1-帧间预测" class="headerlink" title="11.1 帧间预测"></a>11.1 帧间预测</h3><p>组内宏块查找：</p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/组内宏块查找.png" data-index="36" data-src="/images/imageFFmpeg/组内宏块查找.png"></p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/运动估算.png" data-index="37" data-src="/images/imageFFmpeg/运动估算.png"></p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/运动矢量与补偿压缩.png" data-index="38" data-src="/images/imageFFmpeg/运动矢量与补偿压缩.png"></p>
+<h3 id="11-2-帧内预测"><a href="#11-2-帧内预测" class="headerlink" title="11.2 帧内预测"></a>11.2 帧内预测</h3><p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/帧内预测.png" data-index="39" data-src="/images/imageFFmpeg/帧内预测.png"></p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/计算帧内预测残差值.png" data-index="40" data-src="/images/imageFFmpeg/计算帧内预测残差值.png"></p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/预测模式与残差值压缩.png" data-index="41" data-src="/images/imageFFmpeg/预测模式与残差值压缩.png"></p>
+<h3 id="11-3-DCT-压缩"><a href="#11-3-DCT-压缩" class="headerlink" title="11.3 DCT 压缩"></a>11.3 DCT 压缩</h3><p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/DCT压缩.png" data-index="42" data-src="/images/imageFFmpeg/DCT压缩.png"></p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/压缩后的结果.png" data-index="43" data-src="/images/imageFFmpeg/压缩后的结果.png"></p>
+<h3 id="11-4-VLC-压缩"><a href="#11-4-VLC-压缩" class="headerlink" title="11.4 VLC 压缩"></a>11.4 VLC 压缩</h3><p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/VLC压缩.png" data-index="44" data-src="/images/imageFFmpeg/VLC压缩.png"></p>
+<h3 id="11-5-CABAC-压缩"><a href="#11-5-CABAC-压缩" class="headerlink" title="11.5 CABAC 压缩"></a>11.5 CABAC 压缩</h3><p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/CABAC压缩.png" data-index="45" data-src="/images/imageFFmpeg/CABAC压缩.png"></p>
+<h2 id="12-H264-结构与码流"><a href="#12-H264-结构与码流" class="headerlink" title="12. H264 结构与码流"></a>12. H264 结构与码流</h2><p>H264编码分层：</p>
+<p>1、NAL层（Network Abstraction Layer）, 视频数据网络抽象层。</p>
+<p>2、VCL层（Video Coding Layer），视频数据编码层，对原始数据进行压缩</p>
+<p>码流基本概念：</p>
+<p>1、SODB（String Of Data Bits）,原始数据比特流，长度不一定是8的倍数，它是由VCL层产生的。</p>
+<p>2、RBSP（Raw Byte Sequence Payload,SODB+trailing bits），算法是在SODB最后一位补1，不按字节对齐则补0。</p>
+<p>3、EBSP(Encapsulate Byte Sequence Payload)，需到两个连续的0x00就增加一个0x03。</p>
+<p>4、NALU，NAL Header(1B)+EBSP</p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/H264结构图.png" data-index="46" data-src="/images/imageFFmpeg/H264结构图.png"></p>
+<p>以太网最大传输字节 1500 字节。</p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/H264编码分层.png" data-index="47" data-src="/images/imageFFmpeg/H264编码分层.png"></p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/码流基本概念一.png" data-index="48" data-src="/images/imageFFmpeg/码流基本概念一.png"></p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/码流基本概念二.png" data-index="49" data-src="/images/imageFFmpeg/码流基本概念二.png"></p>
+<p>一个H264帧最少要有一个切片(NAL Unit)</p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/NALUnit.png" data-index="50" data-src="/images/imageFFmpeg/NALUnit.png"></p>
+<p>切片与宏块的关系：</p>
+<ul>
+<li>每个切片都包括切片头和切片数据，</li>
+<li>每个切片数据又包括了很多宏块，</li>
+<li>每个宏块又包括了宏块的类型、宏块的预测、编码的残渣数据等</li>
+</ul>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/切片与宏.png" data-index="51" data-src="/images/imageFFmpeg/切片与宏.png"></p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/H264切片.png" data-index="52" data-src="/images/imageFFmpeg/H264切片.png"></p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/H264码流分层.png" data-index="53" data-src="/images/imageFFmpeg/H264码流分层.png"></p>
+<h2 id="13-NAL-单元详解"><a href="#13-NAL-单元详解" class="headerlink" title="13. NAL 单元详解"></a>13. NAL 单元详解</h2><p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/NALHeader.png" data-index="54" data-src="/images/imageFFmpeg/NALHeader.png"></p>
+<p>5 - 关键帧</p>
+<p>7- SPS 序列参数集</p>
+<p>8- PPS 图像参数集</p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/NALType一.png" data-index="55" data-src="/images/imageFFmpeg/NALType一.png"></p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/NALType二.png" data-index="56" data-src="/images/imageFFmpeg/NALType二.png"></p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/NAL类型介绍.png" data-index="57" data-src="/images/imageFFmpeg/NAL类型介绍.png"></p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/单一NALU的RTP包.png" data-index="58" data-src="/images/imageFFmpeg/单一NALU的RTP包.png"></p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/组合NALU的RTP包.png" data-index="59" data-src="/images/imageFFmpeg/组合NALU的RTP包.png"></p>
+<p>如：</p>
+<p>P帧B帧很多都是单一类型。</p>
+<p>SPS和PPS这两个NAL单元一般放在同一个RTP包里头</p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/分片NALU的RTP包.png" data-index="60" data-src="/images/imageFFmpeg/分片NALU的RTP包.png"></p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/FUHeader.png" data-index="61" data-src="/images/imageFFmpeg/FUHeader.png"></p>
+<h2 id="14-YUV-讲解"><a href="#14-YUV-讲解" class="headerlink" title="14. YUV 讲解"></a>14. YUV 讲解</h2><p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/图像除了RGB还是有YUV.png" data-index="62" data-src="/images/imageFFmpeg/图像除了RGB还是有YUV.png"></p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/YUV.png" data-index="63" data-src="/images/imageFFmpeg/YUV.png"></p>
+<p>YUV常见格式：YUV4:2:0、YUV4:2:2、YUV4:4:4</p>
+<p>RGB8:8:8</p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/YUV常见格式.png" data-index="64" data-src="/images/imageFFmpeg/YUV常见格式.png"></p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/YUV420.png" data-index="65" data-src="/images/imageFFmpeg/YUV420.png"></p>
+<ul>
+<li>UV 混存则为packed(打包存储)，</li>
+<li>UV分开存则为planar(平面存储) </li>
+</ul>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/YUV存储格式.png" data-index="66" data-src="/images/imageFFmpeg/YUV存储格式.png"></p>
+<h2 id="15-总结"><a href="#15-总结" class="headerlink" title="15. 总结"></a>15. 总结</h2><p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/小结.png" data-index="67" data-src="/images/imageFFmpeg/小结.png"></p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/音频小结.png" data-index="68" data-src="/images/imageFFmpeg/音频小结.png"></p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/视频小结.png" data-index="69" data-src="/images/imageFFmpeg/视频小结.png"></p>
+<p>rtmp 实时消息传输: tcp/ip 应用层协议  推送/直播  基本数据单元为消息</p>
+<p>1B 消息类型  2B 长度  3B 时间 4B  流id 消息体</p>
+<p>传输时 消息回被拆分成消息块 chunk chunk header + chunk data</p>
+<p>flv: 大块音视频 加入标记头信息   延迟表现和大规模并发成熟 </p>
+<p>HLS：分成5-10s 用m3u8索引管理 用于朋友圈分享  </p>
+<p>m3u8索引： 直播信号源–视频编码器（后台视频处理）–流切片器–各种ts媒体文件（分发模块）–索引文件（数据库）–客户端</p>
+<p>cdn网络 为了解决用户访问资源慢出现的技术</p>
+<p>边缘节点  二级节点（大城市） 源站</p>
+<p>搭建流媒体服务：</p>
+<p>准备流媒体服务器 linux max 编译安装nginx服务  配置rtmp服务并启动nginx服务</p>
+<p>声音三要素：音调 音量 音色</p>
+<p>音频量化(模数转换)：模拟数据 采样  量化 编码  数字信号  == 0101001110</p>
+<p>码率 = 采样率（1.6w/44.1/48k）x 采样大小(8位-电话/16位-常见) x 声道数（单/双）</p>
+<p>音频压缩： 有损消除冗余数据   哈夫曼无损编码</p>
+<p>音频编码： 时域转频域—心里声学模型—量化编码—比特流格式化—比特流</p>
+<p>音频编解码 ： opus（口 耳 实时互动 最快）  aac(直播用 次快)  speed(回音 降噪等)   g.711（固话）</p>
+<p>aac : 取代mp3 加入 sir ps 技术  </p>
+<p>aac lc 128k / aac he v2 64k /  aac he v2 32k/</p>
+<p>aac 格式 ： adif 从头开始解码，用在磁盘文件中  adts 每一帧都有一个同步字，可以在任何位置解码</p>
+<p>aac 编码库 ： libfdk_aac &gt; ffmpeg aac &gt;libfaac&gt; libvo_aacenc</p>
+<p>H264： I帧 关键 帧内压缩  / p帧 向前参考1帧 / B帧 双向参考帧</p>
+<p>sps: 序列参数集/pps:图像参数集 </p>
+<p>GOF： 一组帧数  p帧丢失 会花屏卡顿</p>
+<p>视频编码器： x264/x265 /open h264(svc)/vp8/vp9</p>
+<p>h264 压缩技术-编码原理： 帧内预测压缩，空域冗余数据/帧间预测压缩，时域冗余数据/dcp整数离散余炫变换，傅立叶变换/cabac压缩</p>
+<p>h264结构：视频序列–图像–片–宏块–子快</p>
+<p>h264编码分层：nal 视频数据网络抽象层–vcl 视频数据编码层</p>
+<p>码率：sodb 原始比特流 / rbsp sodb最后补1 / ebsp 起始码增加一个起始位0x03 /  nalu nal+ebsp</p>
+<p>nal unit = nalu 头部 + 一个切片（头/数据） 切片 </p>
+<p>yuv格式：4：4:4/4:4:2/4：2:0 （平坦编码 /半平坦编码）</p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/后续.png" data-index="70" data-src="/images/imageFFmpeg/后续.png"></p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/音视频知识01.png" data-index="71" data-src="/images/imageFFmpeg/音视频知识01.png"></p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/音视频知识02.png" data-index="72" data-src="/images/imageFFmpeg/音视频知识02.png"></p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/音视频知识03.png" data-index="73" data-src="/images/imageFFmpeg/音视频知识03.png"></p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/行业痛点-01.png" data-index="74" data-src="/images/imageFFmpeg/行业痛点-01.png"></p>
+<p><img class="post-img b-lazy" data-img="/images/imageFFmpeg/行业痛点-02.png" data-index="75" data-src="/images/imageFFmpeg/行业痛点-02.png"></p>
+
+                </article>
+                <ul class="tags-postTags">
+                    
+                    <li>
+                        <a href="/tags/FFmpeg/" rel="tag"># FFmpeg</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    
+    <nav id="gobottom" class="pagination">
+        
+        <a class="prev-post" title="新增hexo个人页面" href="/2019-04-24/add_new_hexo_page/">
+            ← 新增hexo个人页面
+        </a>
+        
+        <span class="prev-next-post">·</span>
+        
+        <a class="next-post" title="FFmpeg入门" href="/2019-04-20/reference/FFmpeg/FFmpeg入门/">
+            FFmpeg入门 →
+        </a>
+        
+    </nav>
+
+    
+    <div class="inner">
+        <div id="comment"></div>
+    </div>
+    
+</div>
+
+<div class="toc-bar">
+    <div class="toc-btn-bar">
+        <a href="#site-main" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M793.024 710.272a32 32 0 1 0 45.952-44.544l-310.304-320a32 32 0 0 0-46.4 0.48l-297.696 320a32 32 0 0 0 46.848 43.584l274.752-295.328 286.848 295.808z"/></svg>
+        </a>
+        <div class="toc-btn toc-switch">
+            <svg class="toc-open" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M779.776 480h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M779.776 672h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M256 288a32 32 0 1 0 0 64 32 32 0 0 0 0-64M392.576 352h387.2a32 32 0 0 0 0-64h-387.2a32 32 0 0 0 0 64M256 480a32 32 0 1 0 0 64 32 32 0 0 0 0-64M256 672a32 32 0 1 0 0 64 32 32 0 0 0 0-64"/></svg>
+            <svg class="toc-close hide" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M512 960c-247.039484 0-448-200.960516-448-448S264.960516 64 512 64 960 264.960516 960 512 759.039484 960 512 960zM512 128.287273c-211.584464 0-383.712727 172.128262-383.712727 383.712727 0 211.551781 172.128262 383.712727 383.712727 383.712727 211.551781 0 383.712727-172.159226 383.712727-383.712727C895.712727 300.415536 723.551781 128.287273 512 128.287273z"/><path d="M557.05545 513.376159l138.367639-136.864185c12.576374-12.416396 12.672705-32.671738 0.25631-45.248112s-32.704421-12.672705-45.248112-0.25631l-138.560301 137.024163-136.447897-136.864185c-12.512727-12.512727-32.735385-12.576374-45.248112-0.063647-12.512727 12.480043-12.54369 32.735385-0.063647 45.248112l136.255235 136.671523-137.376804 135.904314c-12.576374 12.447359-12.672705 32.671738-0.25631 45.248112 6.271845 6.335493 14.496116 9.504099 22.751351 9.504099 8.12794 0 16.25588-3.103239 22.496761-9.247789l137.567746-136.064292 138.687596 139.136568c6.240882 6.271845 14.432469 9.407768 22.65674 9.407768 8.191587 0 16.352211-3.135923 22.591372-9.34412 12.512727-12.480043 12.54369-32.704421 0.063647-45.248112L557.05545 513.376159z"/></svg>
+        </div>
+        <a href="#gobottom" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M231.424 346.208a32 32 0 0 0-46.848 43.584l297.696 320a32 32 0 0 0 46.4 0.48l310.304-320a32 32 0 1 0-45.952-44.544l-286.848 295.808-274.752-295.36z"/></svg>
+        </a>
+    </div>
+    <div class="toc-main">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-万人直播架构讲解"><span class="toc-text">1. 万人直播架构讲解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-CDN网络介绍"><span class="toc-text">2. CDN网络介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-亲手搭建一套简单的直播系统"><span class="toc-text">3. 亲手搭建一套简单的直播系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-音频基础知识"><span class="toc-text">4. 音频基础知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-音频的量化与编码"><span class="toc-text">5. 音频的量化与编码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-音频压缩技术讲解"><span class="toc-text">6. 音频压缩技术讲解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-音频编解码器选型"><span class="toc-text">7. 音频编解码器选型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-AAC-讲解"><span class="toc-text">8. AAC 讲解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-视频基本知识"><span class="toc-text">9. 视频基本知识</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-H264-宏块的划分与帧分组"><span class="toc-text">10. H264 宏块的划分与帧分组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-视频压缩技术详解"><span class="toc-text">11. 视频压缩技术详解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#11-1-帧间预测"><span class="toc-text">11.1 帧间预测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-2-帧内预测"><span class="toc-text">11.2 帧内预测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-3-DCT-压缩"><span class="toc-text">11.3 DCT 压缩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-4-VLC-压缩"><span class="toc-text">11.4 VLC 压缩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-5-CABAC-压缩"><span class="toc-text">11.5 CABAC 压缩</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-H264-结构与码流"><span class="toc-text">12. H264 结构与码流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-NAL-单元详解"><span class="toc-text">13. NAL 单元详解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-YUV-讲解"><span class="toc-text">14. YUV 讲解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#15-总结"><span class="toc-text">15. 总结</span></a></li></ol>
+    </div>
+</div>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+	</div>
+	
+
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+  <header class="read-next-card-header">
+    <small class="read-next-card-header-sitetitle">&mdash; Pastor Dean &mdash;</small>
+    <h3 class="read-next-card-header-title">Recent Posts</h3>
+  </header>
+  <div class="read-next-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+      <path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/>
+    </svg>
+  </div>
+  <div class="read-next-card-content">
+    <ul>
+      
+      
+      
+      <li>
+        <a href="/2020-01-16/thinking/Thinking modelBiological thinking Biological thinking looking at the business world from an evolutionary perspective/">Thinking modelBiological thinking Biological thinking: looking at the business world from an evolutionary perspective</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2020-01-13/thinking/Modern Darwin Integrated Model  Biological Thinking Mode Opening God Perspective/">Modern Darwin Integrated Model Biological Thinking Mode Opening God is Perspective</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2020-01-11/thinking/Metacognition Changing the stubborn thinking of the brain/">Metacognition Changing the stubborn thinking of the brain</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <footer class="read-next-card-footer">
+    <a href="/archives">  MORE  → </a>
+  </footer>
+</article>
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+    <header class="read-next-card-header tagcloud-card">
+        <h3 class="read-next-card-header-title">Categories</h3>
+    </header>
+    <div class="read-next-card-content">
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Biological-Thinking/">Biological Thinking</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cognitive-Neuroscience/">Cognitive Neuroscience</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DeepLearning/">DeepLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/FFmpeg/">FFmpeg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MacOS/">MacOS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MachineLearning/">MachineLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PM/">PM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/RPC/">RPC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vim/">Vim</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WebRTC/">WebRTC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/deeplearn/">deeplearn</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/http/">http</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/machineLearning/">machineLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/文摘/">文摘</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构师/">架构师</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/知识图谱/">知识图谱</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/职业规划/">职业规划</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/职业规划/个人提升/">个人提升</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机相关技术资料整理/">计算机相关技术资料整理</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/认知升级/">认知升级</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/财务自由/">财务自由</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/财富自由/">财富自由</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/运维/">运维</a></li></ul>
+    </div>
+</article>
+
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+	<header class="read-next-card-header tagcloud-card">
+		<h3 class="read-next-card-header-title">Tag Cloud</h3>
+	</header>
+	<div class="read-next-card-content-ext">
+		<a href="/tags/AI/" style="font-size: 14px;">AI</a> <a href="/tags/Android/" style="font-size: 14px;">Android</a> <a href="/tags/Biological/" style="font-size: 17.75px;">Biological</a> <a href="/tags/Browser/" style="font-size: 14px;">Browser</a> <a href="/tags/Business/" style="font-size: 16.5px;">Business</a> <a href="/tags/Cognitive/" style="font-size: 17.75px;">Cognitive</a> <a href="/tags/DeepLearning/" style="font-size: 15.25px;">DeepLearning</a> <a href="/tags/Docker/" style="font-size: 14px;">Docker</a> <a href="/tags/FFmpeg/" style="font-size: 21.5px;">FFmpeg</a> <a href="/tags/FastCGI/" style="font-size: 14px;">FastCGI</a> <a href="/tags/IP划分/" style="font-size: 14px;">IP划分</a> <a href="/tags/IP地址/" style="font-size: 14px;">IP地址</a> <a href="/tags/Knowledge-Graph/" style="font-size: 16.5px;">Knowledge Graph</a> <a href="/tags/Linux-Shell/" style="font-size: 14px;">Linux Shell</a> <a href="/tags/MacOS/" style="font-size: 15.25px;">MacOS</a> <a href="/tags/Neuroscience/" style="font-size: 17.75px;">Neuroscience</a> <a href="/tags/RPC/" style="font-size: 14px;">RPC</a> <a href="/tags/Thinking/" style="font-size: 17.75px;">Thinking</a> <a href="/tags/Tutorial/" style="font-size: 20.25px;">Tutorial</a> <a href="/tags/WebRTC/" style="font-size: 21.5px;">WebRTC</a> <a href="/tags/WebSocket/" style="font-size: 14px;">WebSocket</a> <a href="/tags/algorithm/" style="font-size: 15.25px;">algorithm</a> <a href="/tags/config/" style="font-size: 14px;">config</a> <a href="/tags/decisionTree/" style="font-size: 14px;">decisionTree</a> <a href="/tags/git/" style="font-size: 17.75px;">git</a> <a href="/tags/google-adsense/" style="font-size: 14px;">google adsense</a> <a href="/tags/hexo/" style="font-size: 17.75px;">hexo</a> <a href="/tags/http/" style="font-size: 17.75px;">http</a> <a href="/tags/knn/" style="font-size: 14px;">knn</a> <a href="/tags/lighttpd/" style="font-size: 15.25px;">lighttpd</a> <a href="/tags/mxnet/" style="font-size: 14px;">mxnet</a> <a href="/tags/mysql/" style="font-size: 22.75px;">mysql</a> <a href="/tags/nlp/" style="font-size: 24px;">nlp</a> <a href="/tags/nodejs/" style="font-size: 14px;">nodejs</a> <a href="/tags/openvpn/" style="font-size: 14px;">openvpn</a> <a href="/tags/other/" style="font-size: 15.25px;">other</a> <a href="/tags/paddle/" style="font-size: 14px;">paddle</a> <a href="/tags/planning/" style="font-size: 20.25px;">planning</a> <a href="/tags/pracitce/" style="font-size: 15.25px;">pracitce</a> <a href="/tags/rich/" style="font-size: 14px;">rich</a> <a href="/tags/shell/" style="font-size: 14px;">shell</a> <a href="/tags/svn/" style="font-size: 14px;">svn</a> <a href="/tags/ubuntu/" style="font-size: 14px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 16.5px;">vim</a> <a href="/tags/webpack/" style="font-size: 14px;">webpack</a> <a href="/tags/webrtc/" style="font-size: 19px;">webrtc</a> <a href="/tags/个人发展/" style="font-size: 14px;">个人发展</a> <a href="/tags/互联网实事/" style="font-size: 14px;">互联网实事</a> <a href="/tags/外链/" style="font-size: 14px;">外链</a> <a href="/tags/提升个人思维/" style="font-size: 14px;">提升个人思维</a> <a href="/tags/文摘/" style="font-size: 15.25px;">文摘</a> <a href="/tags/斜杠青年/" style="font-size: 14px;">斜杠青年</a> <a href="/tags/机器学习/" style="font-size: 16.5px;">机器学习</a> <a href="/tags/架构师/" style="font-size: 14px;">架构师</a> <a href="/tags/测试工具/" style="font-size: 14px;">测试工具</a> <a href="/tags/睡后成长/" style="font-size: 14px;">睡后成长</a> <a href="/tags/睡后收入/" style="font-size: 14px;">睡后收入</a> <a href="/tags/税后收入/" style="font-size: 14px;">税后收入</a> <a href="/tags/笔记/" style="font-size: 14px;">笔记</a> <a href="/tags/自然语言处理/" style="font-size: 24px;">自然语言处理</a> <a href="/tags/视频流/" style="font-size: 15.25px;">视频流</a> <a href="/tags/计算机相关技术资料整理/" style="font-size: 14px;">计算机相关技术资料整理</a> <a href="/tags/认知升级/" style="font-size: 14px;">认知升级</a> <a href="/tags/限速/" style="font-size: 14px;">限速</a> <a href="/tags/面试/" style="font-size: 14px;">面试</a> <a href="/tags/项目管理/" style="font-size: 14px;">项目管理</a>
+	</div>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+	
+
+
+
+
+<div id="search" class="search-overlay">
+    <div class="search-form">
+        
+        <div class="search-overlay-logo">
+        	<img src="/images/favicon-16x16-next.png" alt="Pastor Dean">
+        </div>
+        
+        <input id="local-search-input" class="search-input" type="text" name="search" placeholder="Search ...">
+        <a class="search-overlay-close" href="#"></a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+<footer class="site-footer outer">
+	<div class="site-footer-content inner">
+		<div class="copyright">
+			<a href="/" title="Pastor Dean">Pastor Dean &copy; 2020</a>
+			
+				
+			        <span hidden="true" id="/2019-04-23/reference/FFmpeg/移动端音视频入门/" class="leancloud-visitors" data-flag-title="音视频入门知识">
+			            <span>阅读量 </span>
+			            <span class="leancloud-visitors-count">0</span>
+			        </span>
+	    		
+    		
+		</div>
+		<nav class="site-footer-nav">
+			
+			<a href="https://hexo.io" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+			<a href="https://github.com/xzhih/hexo-theme-casper" title="Casper" target="_blank" rel="noopener">Casper</a>
+		</nav>
+	</div>
+</footer>
+	
+
+
+<script>
+    if(window.navigator && navigator.serviceWorker) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister()
+            }
+        })
+    }
+</script>
+
+
+<script id="scriptLoad" src="/js/allinone.min.js" async></script>
+
+
+<script>
+    document.getElementById('scriptLoad').addEventListener('load', function () {
+        
+        
+            var bLazy = new Blazy();
+        
+
+        
+        
+
+        
+        
+        
+            searchFunc("/");
+        
+        
+    })
+</script>
+
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+
+
+<script id="valineScript" src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+<script>
+    document.getElementById('valineScript').addEventListener("load", function() {
+        new Valine({
+            el: '#comment' ,
+            verify: false,
+            notify: false,
+            appId: '',
+            appKey: '',
+            placeholder: 'Just go go',
+            pageSize: 10,
+            avatar: 'mm',
+            visitor: true
+        })
+    });
+</script>
+
+
+
+
+
+</body>
+</html>

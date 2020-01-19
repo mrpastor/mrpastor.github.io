@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="preconnect" href="//www.googletagmanager.com">
+	<link rel="preconnect" href="//zz.bdstatic.com">
+	<link rel="preconnect" href="//sp0.baidu.com">
+	<link rel="preconnect" href="//www.google-analytics.com">
+	<link rel="preconnect" href="//cdn1.lncld.net">
+	<link rel="preconnect" href="//unpkg.com">
+	<link rel="preconnect" href="//app-router.leancloud.cn">
+	<link rel="preconnect" href="//9qpuwspm.api.lncld.net">
+	<link rel="preconnect" href="//gravatar.loli.net">
+
+	<title>webrtc使用RTCPeerConnection进行流传输 | Pastor Dean</title>
+
+	<meta name="HandheldFriendly" content="True">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+	<meta name="generator" content="hexo">
+	<meta name="author" content="pastor">
+	<meta name="description" content>
+
+	
+	<meta name="keywords" content>
+	
+
+	
+	<link rel="shortcut icon" href="/images/favicon-16x16-next.png">
+	<link rel="apple-touch-icon" href="/images/favicon-16x16-next.png">
+	
+
+	
+	<meta name="theme-color" content="#3c484e">
+	<meta name="msapplication-TileColor" content="#3c484e">
+	
+
+	
+
+	
+
+	<meta property="og:site_name" content="Pastor Dean">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="webrtc使用RTCPeerConnection进行流传输 | Pastor Dean">
+	<meta property="og:description" content>
+	<meta property="og:url" content="https://mrpastor.github.io/2019-03-09/webrtc_tutorial_4/">
+
+	
+	<meta property="article:published_time" content="2019-03-09T19:03:00+08:00"> 
+	<meta property="article:author" content="pastor">
+	<meta property="article:published_first" content="Pastor Dean, /2019-03-09/webrtc_tutorial_4/">
+	
+
+	
+	
+	<link rel="stylesheet" href="/css/allinonecss.min.css">
+
+	
+	
+	
+</head>
+<body class="post-template">
+	<div class="site-wrapper">
+		
+
+
+
+
+<header class="site-header post-site-header outer">
+    <div class="inner">
+        
+<nav class="site-nav"> 
+    <div class="site-nav-left">
+        <ul class="nav">
+            <li>
+                
+                
+                <a class="site-nav-logo" href="/" title="Pastor Dean">
+                    <img src="/images/favicon-32x32-next.png" alt="Pastor Dean">
+                </a>
+                
+                
+            </li>
+            
+            
+            <li>
+                <a href="/ || home" title="home">home</a>
+            </li>
+            
+            <li>
+                <a href="/categories/ || th" title="categories">categories</a>
+            </li>
+            
+            <li>
+                <a href="/archives/ || archive" title="archives">archives</a>
+            </li>
+            
+            <li>
+                <a href="/tools/ || tools" title="tools">tools</a>
+            </li>
+            
+            
+        </ul> 
+    </div>
+    
+    <div class="search-button-area">
+        <a href="#search" class="search-button">Search ...</a>
+    </div>
+     
+    <div class="site-nav-right">
+        
+        <a href="#search" class="search-button">Search ...</a>
+         
+        
+<div class="social-links">
+    
+    
+    <a class="social-link" title="github" href="https://github.com/mrpastor" target="_blank" rel="noopener">
+        <svg viewbox="0 0 1049 1024" xmlns="http://www.w3.org/2000/svg"><path d="M524.979332 0C234.676191 0 0 234.676191 0 524.979332c0 232.068678 150.366597 428.501342 358.967656 498.035028 26.075132 5.215026 35.636014-11.299224 35.636014-25.205961 0-12.168395-0.869171-53.888607-0.869171-97.347161-146.020741 31.290159-176.441729-62.580318-176.441729-62.580318-23.467619-60.841976-58.234462-76.487055-58.234463-76.487055-47.804409-32.15933 3.476684-32.15933 3.476685-32.15933 53.019436 3.476684 80.83291 53.888607 80.83291 53.888607 46.935238 79.963739 122.553122 57.365291 152.97411 43.458554 4.345855-33.897672 18.252593-57.365291 33.028501-70.402857-116.468925-12.168395-239.022047-57.365291-239.022047-259.012982 0-57.365291 20.860106-104.300529 53.888607-140.805715-5.215026-13.037566-23.467619-66.926173 5.215027-139.067372 0 0 44.327725-13.906737 144.282399 53.888607 41.720212-11.299224 86.917108-17.383422 131.244833-17.383422s89.524621 6.084198 131.244833 17.383422C756.178839 203.386032 800.506564 217.29277 800.506564 217.29277c28.682646 72.1412 10.430053 126.029806 5.215026 139.067372 33.897672 36.505185 53.888607 83.440424 53.888607 140.805715 0 201.64769-122.553122 245.975415-239.891218 259.012982 19.121764 16.514251 35.636014 47.804409 35.636015 97.347161 0 70.402857-0.869171 126.898978-0.869172 144.282399 0 13.906737 9.560882 30.420988 35.636015 25.205961 208.601059-69.533686 358.967656-265.96635 358.967655-498.035028C1049.958663 234.676191 814.413301 0 524.979332 0z"/></svg>
+    </a>
+    
+    
+    <a class="social-link" title="facebook" href="https://facebook" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+
+    </a>
+    
+    
+    <a class="social-link" title="twitter" href="https://twitter.com" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+    </a>
+    
+    
+    
+    
+</div>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<div id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+        <header class="post-full-header">
+            <div class="post-full-meta">
+                <time class="post-full-meta-date" datetime="2019-03-09T11:19:18.000Z">
+                    2019-03-9
+                </time>
+                
+                <span class="date-divider">/</span>
+                
+                <a href="/categories/WebRTC/">WebRTC</a>&nbsp;&nbsp;
+                
+                
+            </div>
+            <h1 class="post-full-title">webrtc使用RTCPeerConnection进行流传输</h1>
+        </header>
+        <div class="post-full no-image">
+            
+            <div class="post-full-content">
+                <article id="photoswipe" class="markdown-body">
+                    <h2 id="视频流与RTCPeerConnection"><a href="#视频流与RTCPeerConnection" class="headerlink" title="视频流与RTCPeerConnection"></a>视频流与RTCPeerConnection</h2><h3 id="学习提纲"><a href="#学习提纲" class="headerlink" title="学习提纲"></a>学习提纲</h3><ul>
+<li>各浏览器质检webrtc的差异,<a href="https://github.com/webrtc/adapter" target="_blank" rel="noopener">adapter.js</a></li>
+<li>使用RTCPeerConnection API 传输视频流.</li>
+<li>流的控制与捕捉</li>
+</ul>
+<h3 id="RTCPeerConnection简介"><a href="#RTCPeerConnection简介" class="headerlink" title="RTCPeerConnection简介"></a>RTCPeerConnection简介</h3><p>RTCPeerConnection是一个是得webrtc之间视频与音频数据交换的api协议.本案例是在同一个页面上使用RTCPeerConnection建立一个P2P连接.没有太大实用性只是为了方便理解.</p>
+<h3 id="在页面添加视频控制按钮"><a href="#在页面添加视频控制按钮" class="headerlink" title="在页面添加视频控制按钮"></a>在页面添加视频控制按钮</h3><p>一个视频元素将显示来自getUserMedia()的流,另一个将显示通过RTCPeerconnection流式传输的相同视频. (在实际应用程序中,一个视频元素将显示本地流,另一个视频元素将显示远程流.)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;video id=&quot;localVideo&quot; autoplay playsinline&gt;&lt;/video&gt;</span><br><span class="line">&lt;video id=&quot;remoteVideo&quot; autoplay playsinline&gt;&lt;/video&gt;</span><br><span class="line"></span><br><span class="line">&lt;div&gt;</span><br><span class="line">  &lt;button id=&quot;startButton&quot;&gt;Start&lt;/button&gt;</span><br><span class="line">  &lt;button id=&quot;callButton&quot;&gt;Call&lt;/button&gt;</span><br><span class="line">  &lt;button id=&quot;hangupButton&quot;&gt;Hang Up&lt;/button&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="去除浏览器间的差异"><a href="#去除浏览器间的差异" class="headerlink" title="去除浏览器间的差异"></a>去除浏览器间的差异</h3><p>在页面js最前边增加 <a href="https://github.com/webrtc/adapter" target="_blank" rel="noopener">adapter.js</a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=&quot;https://webrtc.github.io/adapter/adapter-latest.js&quot;&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="新增RTCPeerConnection代码"><a href="#新增RTCPeerConnection代码" class="headerlink" title="新增RTCPeerConnection代码"></a>新增RTCPeerConnection代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;demo2&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">    &lt;video id=&quot;localVideo&quot; autoplay playsinline&gt;&lt;/video&gt;</span><br><span class="line">    &lt;video id=&quot;remoteVideo&quot; autoplay playsinline&gt;&lt;/video&gt;</span><br><span class="line"></span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;button id=&quot;startButton&quot;&gt;Start&lt;/button&gt;</span><br><span class="line">        &lt;button id=&quot;callButton&quot;&gt;Call&lt;/button&gt;</span><br><span class="line">        &lt;button id=&quot;hangupButton&quot;&gt;Hang Up&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line"></span><br><span class="line">    &lt;div class=&quot;box&quot;&gt;</span><br><span class="line">        &lt;span&gt;SDP Semantics:&lt;/span&gt;</span><br><span class="line">        &lt;select id=&quot;sdpSemantics&quot;&gt;</span><br><span class="line">            &lt;option selected value=&quot;&quot;&gt;Default&lt;/option&gt;</span><br><span class="line">            &lt;option value=&quot;unified-plan&quot;&gt;Unified Plan&lt;/option&gt;</span><br><span class="line">            &lt;option value=&quot;plan-b&quot;&gt;Plan B&lt;/option&gt;</span><br><span class="line">        &lt;/select&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;script src=&quot;https://webrtc.github.io/adapter/adapter-latest.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script type=&quot;text/javascript&quot;&gt;</span><br><span class="line">    &apos;use strict&apos;;</span><br><span class="line"></span><br><span class="line">    const startButton = document.getElementById(&apos;startButton&apos;);</span><br><span class="line">    const callButton = document.getElementById(&apos;callButton&apos;);</span><br><span class="line">    const hangupButton = document.getElementById(&apos;hangupButton&apos;);</span><br><span class="line">    callButton.disabled = true;</span><br><span class="line">    hangupButton.disabled = true;</span><br><span class="line">    startButton.addEventListener(&apos;click&apos;, start);</span><br><span class="line">    callButton.addEventListener(&apos;click&apos;, call);</span><br><span class="line">    hangupButton.addEventListener(&apos;click&apos;, hangup);</span><br><span class="line"></span><br><span class="line">    let startTime;</span><br><span class="line">    const localVideo = document.getElementById(&apos;localVideo&apos;);</span><br><span class="line">    const remoteVideo = document.getElementById(&apos;remoteVideo&apos;);</span><br><span class="line"></span><br><span class="line">    localVideo.addEventListener(&apos;loadedmetadata&apos;, function() &#123;</span><br><span class="line">      console.log(`Local video videoWidth: $&#123;this.videoWidth&#125;px,  videoHeight: $&#123;this.videoHeight&#125;px`);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    remoteVideo.addEventListener(&apos;loadedmetadata&apos;, function() &#123;</span><br><span class="line">      console.log(`Remote video videoWidth: $&#123;this.videoWidth&#125;px,  videoHeight: $&#123;this.videoHeight&#125;px`);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    remoteVideo.addEventListener(&apos;resize&apos;, () =&gt; &#123;</span><br><span class="line">      console.log(`Remote video size changed to $&#123;remoteVideo.videoWidth&#125;x$&#123;remoteVideo.videoHeight&#125;`);</span><br><span class="line">      // We&apos;ll use the first onsize callback as an indication that video has started</span><br><span class="line">      // playing out.</span><br><span class="line">      if (startTime) &#123;</span><br><span class="line">        const elapsedTime = window.performance.now() - startTime;</span><br><span class="line">        console.log(&apos;Setup time: &apos; + elapsedTime.toFixed(3) + &apos;ms&apos;);</span><br><span class="line">        startTime = null;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    let localStream;</span><br><span class="line">    let pc1;</span><br><span class="line">    let pc2;</span><br><span class="line">    const offerOptions = &#123;</span><br><span class="line">      offerToReceiveAudio: 1,</span><br><span class="line">      offerToReceiveVideo: 1</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    function getName(pc) &#123;</span><br><span class="line">      return (pc === pc1) ? &apos;pc1&apos; : &apos;pc2&apos;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getOtherPc(pc) &#123;</span><br><span class="line">      return (pc === pc1) ? pc2 : pc1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    async function start() &#123;</span><br><span class="line">      console.log(&apos;Requesting local stream&apos;);</span><br><span class="line">      startButton.disabled = true;</span><br><span class="line">      try &#123;</span><br><span class="line">        const stream = await navigator.mediaDevices.getUserMedia(&#123;audio: true, video: true&#125;);</span><br><span class="line">        console.log(&apos;Received local stream&apos;);</span><br><span class="line">        localVideo.srcObject = stream;</span><br><span class="line">        localStream = stream;</span><br><span class="line">        callButton.disabled = false;</span><br><span class="line">      &#125; catch (e) &#123;</span><br><span class="line">        alert(`getUserMedia() error: $&#123;e.name&#125;`);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function getSelectedSdpSemantics() &#123;</span><br><span class="line">      const sdpSemanticsSelect = document.querySelector(&apos;#sdpSemantics&apos;);</span><br><span class="line">      const option = sdpSemanticsSelect.options[sdpSemanticsSelect.selectedIndex];</span><br><span class="line">      return option.value === &apos;&apos; ? &#123;&#125; : &#123;sdpSemantics: option.value&#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    async function call() &#123;</span><br><span class="line">      callButton.disabled = true;</span><br><span class="line">      hangupButton.disabled = false;</span><br><span class="line">      console.log(&apos;Starting call&apos;);</span><br><span class="line">      startTime = window.performance.now();</span><br><span class="line">      const videoTracks = localStream.getVideoTracks();</span><br><span class="line">      const audioTracks = localStream.getAudioTracks();</span><br><span class="line">      if (videoTracks.length &gt; 0) &#123;</span><br><span class="line">        console.log(`Using video device: $&#123;videoTracks[0].label&#125;`);</span><br><span class="line">      &#125;</span><br><span class="line">      if (audioTracks.length &gt; 0) &#123;</span><br><span class="line">        console.log(`Using audio device: $&#123;audioTracks[0].label&#125;`);</span><br><span class="line">      &#125;</span><br><span class="line">      const configuration = getSelectedSdpSemantics();</span><br><span class="line">      console.log(&apos;RTCPeerConnection configuration:&apos;, configuration);</span><br><span class="line">      pc1 = new RTCPeerConnection(configuration);</span><br><span class="line">      console.log(&apos;Created local peer connection object pc1&apos;);</span><br><span class="line">      pc1.addEventListener(&apos;icecandidate&apos;, e =&gt; onIceCandidate(pc1, e));</span><br><span class="line">      pc2 = new RTCPeerConnection(configuration);</span><br><span class="line">      console.log(&apos;Created remote peer connection object pc2&apos;);</span><br><span class="line">      pc2.addEventListener(&apos;icecandidate&apos;, e =&gt; onIceCandidate(pc2, e));</span><br><span class="line">      pc1.addEventListener(&apos;iceconnectionstatechange&apos;, e =&gt; onIceStateChange(pc1, e));</span><br><span class="line">      pc2.addEventListener(&apos;iceconnectionstatechange&apos;, e =&gt; onIceStateChange(pc2, e));</span><br><span class="line">      pc2.addEventListener(&apos;track&apos;, gotRemoteStream);</span><br><span class="line"></span><br><span class="line">      localStream.getTracks().forEach(track =&gt; pc1.addTrack(track, localStream));</span><br><span class="line">      console.log(&apos;Added local stream to pc1&apos;);</span><br><span class="line"></span><br><span class="line">      try &#123;</span><br><span class="line">        console.log(&apos;pc1 createOffer start&apos;);</span><br><span class="line">        const offer = await pc1.createOffer(offerOptions);</span><br><span class="line">        await onCreateOfferSuccess(offer);</span><br><span class="line">      &#125; catch (e) &#123;</span><br><span class="line">        onCreateSessionDescriptionError(e);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function onCreateSessionDescriptionError(error) &#123;</span><br><span class="line">      console.log(`Failed to create session description: $&#123;error.toString()&#125;`);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    async function onCreateOfferSuccess(desc) &#123;</span><br><span class="line">      console.log(`Offer from pc1\n$&#123;desc.sdp&#125;`);</span><br><span class="line">      console.log(&apos;pc1 setLocalDescription start&apos;);</span><br><span class="line">      try &#123;</span><br><span class="line">        await pc1.setLocalDescription(desc);</span><br><span class="line">        onSetLocalSuccess(pc1);</span><br><span class="line">      &#125; catch (e) &#123;</span><br><span class="line">        onSetSessionDescriptionError();</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      console.log(&apos;pc2 setRemoteDescription start&apos;);</span><br><span class="line">      try &#123;</span><br><span class="line">        await pc2.setRemoteDescription(desc);</span><br><span class="line">        onSetRemoteSuccess(pc2);</span><br><span class="line">      &#125; catch (e) &#123;</span><br><span class="line">        onSetSessionDescriptionError();</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      console.log(&apos;pc2 createAnswer start&apos;);</span><br><span class="line">      // Since the &apos;remote&apos; side has no media stream we need</span><br><span class="line">      // to pass in the right constraints in order for it to</span><br><span class="line">      // accept the incoming offer of audio and video.</span><br><span class="line">      try &#123;</span><br><span class="line">        const answer = await pc2.createAnswer();</span><br><span class="line">        await onCreateAnswerSuccess(answer);</span><br><span class="line">      &#125; catch (e) &#123;</span><br><span class="line">        onCreateSessionDescriptionError(e);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function onSetLocalSuccess(pc) &#123;</span><br><span class="line">      console.log(`$&#123;getName(pc)&#125; setLocalDescription complete`);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function onSetRemoteSuccess(pc) &#123;</span><br><span class="line">      console.log(`$&#123;getName(pc)&#125; setRemoteDescription complete`);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function onSetSessionDescriptionError(error) &#123;</span><br><span class="line">      console.log(`Failed to set session description: $&#123;error.toString()&#125;`);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function gotRemoteStream(e) &#123;</span><br><span class="line">      if (remoteVideo.srcObject !== e.streams[0]) &#123;</span><br><span class="line">        remoteVideo.srcObject = e.streams[0];</span><br><span class="line">        console.log(&apos;pc2 received remote stream&apos;);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    async function onCreateAnswerSuccess(desc) &#123;</span><br><span class="line">      console.log(`Answer from pc2:\n$&#123;desc.sdp&#125;`);</span><br><span class="line">      console.log(&apos;pc2 setLocalDescription start&apos;);</span><br><span class="line">      try &#123;</span><br><span class="line">        await pc2.setLocalDescription(desc);</span><br><span class="line">        onSetLocalSuccess(pc2);</span><br><span class="line">      &#125; catch (e) &#123;</span><br><span class="line">        onSetSessionDescriptionError(e);</span><br><span class="line">      &#125;</span><br><span class="line">      console.log(&apos;pc1 setRemoteDescription start&apos;);</span><br><span class="line">      try &#123;</span><br><span class="line">        await pc1.setRemoteDescription(desc);</span><br><span class="line">        onSetRemoteSuccess(pc1);</span><br><span class="line">      &#125; catch (e) &#123;</span><br><span class="line">        onSetSessionDescriptionError(e);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    async function onIceCandidate(pc, event) &#123;</span><br><span class="line">      try &#123;</span><br><span class="line">        await (getOtherPc(pc).addIceCandidate(event.candidate));</span><br><span class="line">        onAddIceCandidateSuccess(pc);</span><br><span class="line">      &#125; catch (e) &#123;</span><br><span class="line">        onAddIceCandidateError(pc, e);</span><br><span class="line">      &#125;</span><br><span class="line">      console.log(`$&#123;getName(pc)&#125; ICE candidate:\n$&#123;event.candidate ? event.candidate.candidate : &apos;(null)&apos;&#125;`);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function onAddIceCandidateSuccess(pc) &#123;</span><br><span class="line">      console.log(`$&#123;getName(pc)&#125; addIceCandidate success`);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function onAddIceCandidateError(pc, error) &#123;</span><br><span class="line">      console.log(`$&#123;getName(pc)&#125; failed to add ICE Candidate: $&#123;error.toString()&#125;`);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function onIceStateChange(pc, event) &#123;</span><br><span class="line">      if (pc) &#123;</span><br><span class="line">        console.log(`$&#123;getName(pc)&#125; ICE state: $&#123;pc.iceConnectionState&#125;`);</span><br><span class="line">        console.log(&apos;ICE state change event: &apos;, event);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function hangup() &#123;</span><br><span class="line">      console.log(&apos;Ending call&apos;);</span><br><span class="line">      pc1.close();</span><br><span class="line">      pc2.close();</span><br><span class="line">      pc1 = null;</span><br><span class="line">      pc2 = null;</span><br><span class="line">      hangupButton.disabled = true;</span><br><span class="line">      callButton.disabled = false;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h3><p>WebRTC使用RTCPeerConnection API在不同的rtc客户端建立连接从来进行流式视频传输,这就是点对点通讯.</p>
+<p>在webrtc点对点通讯的的三个步骤中设置对应的通话:</p>
+<ul>
+<li>在每个会话端添加一个RTCPeerConnection对象,同时用getUserMedia()获取本地视频流</li>
+<li>获取并共享网络信息:潜在的连接端点称为ICE候选者</li>
+<li>获取并共享本地和远程描述:SDP格式的本地媒体元数据.</li>
+</ul>
+<p>想象一下,Alice和Bob想要使用RTCPeerConnection来设置视频聊天.<br>首先,Alice和Bob交换网络信息.”查找候选者”一词是指使用ICE框架查找网络接口和端口的过程.</p>
+<ol>
+<li>Alice 使用 onicecandidate(addEventListener(‘icecandidate’)) 处理程序创建一个  RTCPeerConnection 对象.这对应于main.js中的以下代码:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let localPeerConnection;</span><br><span class="line">//作为此过程的一部分,WebRTC  API 使用STUN服务器获取计算机的IP地址,并使用TURN服务器作为中继服务器,以防对等通信失败</span><br><span class="line">localPeerConnection = new RTCPeerConnection(servers); // servers特指stun或者turn服务 </span><br><span class="line">localPeerConnection.addEventListener(&apos;icecandidate&apos;, handleConnection);</span><br><span class="line">localPeerConnection.addEventListener(&apos;iceconnectionstatechange&apos;,handleConnectionChange);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>2.Alice调用getUserMedia()并添加参数传递本地流:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">navigator.mediaDevices.getUserMedia(mediaStreamConstraints). then(gotLocalMediaStream). catch(handleLocalMediaStreamError);</span><br><span class="line">  </span><br><span class="line">function gotLocalMediaStream(mediaStream) &#123;</span><br><span class="line">    localVideo.srcObject = mediaStream;</span><br><span class="line">    localStream = mediaStream;</span><br><span class="line">    trace(&apos;Received local stream.&apos;);</span><br><span class="line">    callButton.disabled = false;  // Enable call button.</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">localPeerConnection.addStream(localStream);</span><br><span class="line">trace(&apos;Added local stream to localPeerConnection.&apos;);</span><br></pre></td></tr></table></figure></p>
+<p>3.当网络候选可用时,将调用步骤1中的onicecandidate处理程序.</p>
+<p>4.lice将序列化的候选数据发送给Bob.在实际应用程序中,此过程(称为信令)通过消息传递服务进行 - 您将在后续步骤中学习如何执行此操作. 当然,在此步骤中,两个RTCPeerConnection对象位于同一页面上,可以直接通信,无需外部消息传递.</p>
+<p>5.当Bob从Alice获取候选消息时,他调用addIceCandidate(),将候选者添加到远程对等描述中:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">function handleConnection(event) &#123;</span><br><span class="line">  const peerConnection = event.target;</span><br><span class="line">  const iceCandidate = event.candidate;</span><br><span class="line"></span><br><span class="line">  if (iceCandidate) &#123;</span><br><span class="line">    const newIceCandidate = new RTCIceCandidate(iceCandidate);</span><br><span class="line">    const otherPeer = getOtherPeer(peerConnection);</span><br><span class="line"></span><br><span class="line">    otherPeer.addIceCandidate(newIceCandidate)</span><br><span class="line">      .then(() =&gt; &#123;</span><br><span class="line">        handleConnectionSuccess(peerConnection);</span><br><span class="line">      &#125;).catch((error) =&gt; &#123;</span><br><span class="line">        handleConnectionFailure(peerConnection, error);</span><br><span class="line">      &#125;);</span><br><span class="line"></span><br><span class="line">    trace(`$&#123;getPeerName(peerConnection)&#125; ICE candidate:\n` +</span><br><span class="line">          `$&#123;event.candidate.candidate&#125;.`);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>WebRTC点对点还需要找出交换本地和远程的音频与视频媒体信息,例如分辨率和编解码器功能.通过使用称为SDP的会话描述协议格式交换元数据块(称为offer和answer)来进行交换媒体配置信息的信令:</p>
+<p>1.Alice运行RTCPeerConnection createOffer()方法.返回的promise提供了一个RTCSessionDescription:Alice的本地会话描述:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">trace(&apos;localPeerConnection createOffer start.&apos;);</span><br><span class="line">localPeerConnection.createOffer(offerOptions)</span><br><span class="line">  .then(createdOffer).catch(setSessionDescriptionError);</span><br></pre></td></tr></table></figure></p>
+<p>2.如果成功,Alice使用setLocalDescription()设置本地描述,然后通过其信令通道将此会话描述发送给Bob.</p>
+<p>3.Bob使用setRemoteDescription()将Alice发送给他的描述设置为远程描述.</p>
+<p>4.ob运行RTCPeerConnection createAnswer()方法,向其传递从Alice获得的远程描述,因此可以生成与她兼容的本地会话.createAnswer()承诺传递RTCSessionDescription:Bob将其设置为本地描述并将其发送给Alice.</p>
+<p>5.当Alice获取Bob的会话描述时,她使用setRemoteDescription()将其设置为远程描述.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">// Logs offer creation and sets peer connection session descriptions.</span><br><span class="line">function createdOffer(description) &#123;</span><br><span class="line">  trace(`Offer from localPeerConnection:\n$&#123;description.sdp&#125;`);</span><br><span class="line"></span><br><span class="line">  trace(&apos;localPeerConnection setLocalDescription start.&apos;);</span><br><span class="line">  localPeerConnection.setLocalDescription(description)</span><br><span class="line">    .then(() =&gt; &#123;</span><br><span class="line">      setLocalDescriptionSuccess(localPeerConnection);</span><br><span class="line">    &#125;).catch(setSessionDescriptionError);</span><br><span class="line"></span><br><span class="line">  trace(&apos;remotePeerConnection setRemoteDescription start.&apos;);</span><br><span class="line">  remotePeerConnection.setRemoteDescription(description)</span><br><span class="line">    .then(() =&gt; &#123;</span><br><span class="line">      setRemoteDescriptionSuccess(remotePeerConnection);</span><br><span class="line">    &#125;).catch(setSessionDescriptionError);</span><br><span class="line"></span><br><span class="line">  trace(&apos;remotePeerConnection createAnswer start.&apos;);</span><br><span class="line">  remotePeerConnection.createAnswer()</span><br><span class="line">    .then(createdAnswer)</span><br><span class="line">    .catch(setSessionDescriptionError);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// Logs answer to offer creation and sets peer connection session descriptions.</span><br><span class="line">function createdAnswer(description) &#123;</span><br><span class="line">  trace(`Answer from remotePeerConnection:\n$&#123;description.sdp&#125;.`);</span><br><span class="line"></span><br><span class="line">  trace(&apos;remotePeerConnection setLocalDescription start.&apos;);</span><br><span class="line">  remotePeerConnection.setLocalDescription(description)</span><br><span class="line">    .then(() =&gt; &#123;</span><br><span class="line">      setLocalDescriptionSuccess(remotePeerConnection);</span><br><span class="line">    &#125;).catch(setSessionDescriptionError);</span><br><span class="line"></span><br><span class="line">  trace(&apos;localPeerConnection setRemoteDescription start.&apos;);</span><br><span class="line">  localPeerConnection.setRemoteDescription(description)</span><br><span class="line">    .then(() =&gt; &#123;</span><br><span class="line">      setRemoteDescriptionSuccess(localPeerConnection);</span><br><span class="line">    &#125;).catch(setSessionDescriptionError);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>6.ping!</p>
+<h3 id="关键点"><a href="#关键点" class="headerlink" title="关键点"></a>关键点</h3><p>1.看看chrome://webrtc-internals.这提供了WebRTC统计信息和调试数据.(Chrome网址的完整列表位于chrome:// about.)</p>
+<p>2.使用CSS设置页面样式:</p>
+<ul>
+<li>将视频并排放置.</li>
+<li>使按钮具有相同的宽度,文本更大.</li>
+<li>确保布局适用于移动设备.</li>
+</ul>
+<p>3.在Chrome DevTools控制台中,查看localStream,localPeerConnection和remotePeerConnection.</p>
+<p>4.在控制台中,查看localPeerConnectionpc1.localDescription. SDP格式是什么样的?</p>
+<h3 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h3><ul>
+<li>这一步有很多值得学习的地方!要查找更详细地解释RTCPeerConnection的其他资源,请查看<a href="https://webrtc.org/start" target="_blank" rel="noopener">webrtc.org/start</a>.此页面包含JavaScript框架的建议 - 如果您想使用WebRTC,但又不想争论API.</li>
+<li>从adapter.js GitHub repo中了解有关adapter.js shim的更多信息.</li>
+<li>想看看世界上最好的视频聊天应用程序是什么样的? 看看AppRTC,这是WebRTC项目的WebRTC调用规范应用程序:app,code.呼叫建立时间小于500毫秒.</li>
+</ul>
+
+                </article>
+                <ul class="tags-postTags">
+                    
+                    <li>
+                        <a href="/tags/Tutorial/" rel="tag"># Tutorial</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tags/webrtc/" rel="tag"># webrtc</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    
+    <nav id="gobottom" class="pagination">
+        
+        <a class="prev-post" title="webrtc使用RTCDataChannel交换数据" href="/2019-03-11/webrtc_tutorial_5/">
+            ← webrtc使用RTCDataChannel交换数据
+        </a>
+        
+        <span class="prev-next-post">·</span>
+        
+        <a class="next-post" title="webrtc从摄像头获取视频流" href="/2019-03-08/webrtc_tutorial_3/">
+            webrtc从摄像头获取视频流 →
+        </a>
+        
+    </nav>
+
+    
+    <div class="inner">
+        <div id="comment"></div>
+    </div>
+    
+</div>
+
+<div class="toc-bar">
+    <div class="toc-btn-bar">
+        <a href="#site-main" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M793.024 710.272a32 32 0 1 0 45.952-44.544l-310.304-320a32 32 0 0 0-46.4 0.48l-297.696 320a32 32 0 0 0 46.848 43.584l274.752-295.328 286.848 295.808z"/></svg>
+        </a>
+        <div class="toc-btn toc-switch">
+            <svg class="toc-open" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M779.776 480h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M779.776 672h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M256 288a32 32 0 1 0 0 64 32 32 0 0 0 0-64M392.576 352h387.2a32 32 0 0 0 0-64h-387.2a32 32 0 0 0 0 64M256 480a32 32 0 1 0 0 64 32 32 0 0 0 0-64M256 672a32 32 0 1 0 0 64 32 32 0 0 0 0-64"/></svg>
+            <svg class="toc-close hide" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M512 960c-247.039484 0-448-200.960516-448-448S264.960516 64 512 64 960 264.960516 960 512 759.039484 960 512 960zM512 128.287273c-211.584464 0-383.712727 172.128262-383.712727 383.712727 0 211.551781 172.128262 383.712727 383.712727 383.712727 211.551781 0 383.712727-172.159226 383.712727-383.712727C895.712727 300.415536 723.551781 128.287273 512 128.287273z"/><path d="M557.05545 513.376159l138.367639-136.864185c12.576374-12.416396 12.672705-32.671738 0.25631-45.248112s-32.704421-12.672705-45.248112-0.25631l-138.560301 137.024163-136.447897-136.864185c-12.512727-12.512727-32.735385-12.576374-45.248112-0.063647-12.512727 12.480043-12.54369 32.735385-0.063647 45.248112l136.255235 136.671523-137.376804 135.904314c-12.576374 12.447359-12.672705 32.671738-0.25631 45.248112 6.271845 6.335493 14.496116 9.504099 22.751351 9.504099 8.12794 0 16.25588-3.103239 22.496761-9.247789l137.567746-136.064292 138.687596 139.136568c6.240882 6.271845 14.432469 9.407768 22.65674 9.407768 8.191587 0 16.352211-3.135923 22.591372-9.34412 12.512727-12.480043 12.54369-32.704421 0.063647-45.248112L557.05545 513.376159z"/></svg>
+        </div>
+        <a href="#gobottom" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M231.424 346.208a32 32 0 0 0-46.848 43.584l297.696 320a32 32 0 0 0 46.4 0.48l310.304-320a32 32 0 1 0-45.952-44.544l-286.848 295.808-274.752-295.36z"/></svg>
+        </a>
+    </div>
+    <div class="toc-main">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#视频流与RTCPeerConnection"><span class="toc-text">视频流与RTCPeerConnection</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#学习提纲"><span class="toc-text">学习提纲</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RTCPeerConnection简介"><span class="toc-text">RTCPeerConnection简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在页面添加视频控制按钮"><span class="toc-text">在页面添加视频控制按钮</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#去除浏览器间的差异"><span class="toc-text">去除浏览器间的差异</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#新增RTCPeerConnection代码"><span class="toc-text">新增RTCPeerConnection代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#工作原理"><span class="toc-text">工作原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关键点"><span class="toc-text">关键点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#提示"><span class="toc-text">提示</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+	</div>
+	
+
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+  <header class="read-next-card-header">
+    <small class="read-next-card-header-sitetitle">&mdash; Pastor Dean &mdash;</small>
+    <h3 class="read-next-card-header-title">Recent Posts</h3>
+  </header>
+  <div class="read-next-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+      <path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/>
+    </svg>
+  </div>
+  <div class="read-next-card-content">
+    <ul>
+      
+      
+      
+      <li>
+        <a href="/2020-01-16/thinking/Thinking modelBiological thinking Biological thinking looking at the business world from an evolutionary perspective/">Thinking modelBiological thinking Biological thinking: looking at the business world from an evolutionary perspective</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2020-01-13/thinking/Modern Darwin Integrated Model  Biological Thinking Mode Opening God Perspective/">Modern Darwin Integrated Model Biological Thinking Mode Opening God is Perspective</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2020-01-11/thinking/Metacognition Changing the stubborn thinking of the brain/">Metacognition Changing the stubborn thinking of the brain</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <footer class="read-next-card-footer">
+    <a href="/archives">  MORE  → </a>
+  </footer>
+</article>
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+    <header class="read-next-card-header tagcloud-card">
+        <h3 class="read-next-card-header-title">Categories</h3>
+    </header>
+    <div class="read-next-card-content">
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Biological-Thinking/">Biological Thinking</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cognitive-Neuroscience/">Cognitive Neuroscience</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DeepLearning/">DeepLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/FFmpeg/">FFmpeg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MacOS/">MacOS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MachineLearning/">MachineLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PM/">PM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/RPC/">RPC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vim/">Vim</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WebRTC/">WebRTC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/deeplearn/">deeplearn</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/http/">http</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/machineLearning/">machineLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/文摘/">文摘</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构师/">架构师</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/知识图谱/">知识图谱</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/职业规划/">职业规划</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/职业规划/个人提升/">个人提升</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机相关技术资料整理/">计算机相关技术资料整理</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/认知升级/">认知升级</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/财务自由/">财务自由</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/财富自由/">财富自由</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/运维/">运维</a></li></ul>
+    </div>
+</article>
+
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+	<header class="read-next-card-header tagcloud-card">
+		<h3 class="read-next-card-header-title">Tag Cloud</h3>
+	</header>
+	<div class="read-next-card-content-ext">
+		<a href="/tags/AI/" style="font-size: 14px;">AI</a> <a href="/tags/Android/" style="font-size: 14px;">Android</a> <a href="/tags/Biological/" style="font-size: 17.75px;">Biological</a> <a href="/tags/Browser/" style="font-size: 14px;">Browser</a> <a href="/tags/Business/" style="font-size: 16.5px;">Business</a> <a href="/tags/Cognitive/" style="font-size: 17.75px;">Cognitive</a> <a href="/tags/DeepLearning/" style="font-size: 15.25px;">DeepLearning</a> <a href="/tags/Docker/" style="font-size: 14px;">Docker</a> <a href="/tags/FFmpeg/" style="font-size: 21.5px;">FFmpeg</a> <a href="/tags/FastCGI/" style="font-size: 14px;">FastCGI</a> <a href="/tags/IP划分/" style="font-size: 14px;">IP划分</a> <a href="/tags/IP地址/" style="font-size: 14px;">IP地址</a> <a href="/tags/Knowledge-Graph/" style="font-size: 16.5px;">Knowledge Graph</a> <a href="/tags/Linux-Shell/" style="font-size: 14px;">Linux Shell</a> <a href="/tags/MacOS/" style="font-size: 15.25px;">MacOS</a> <a href="/tags/Neuroscience/" style="font-size: 17.75px;">Neuroscience</a> <a href="/tags/RPC/" style="font-size: 14px;">RPC</a> <a href="/tags/Thinking/" style="font-size: 17.75px;">Thinking</a> <a href="/tags/Tutorial/" style="font-size: 20.25px;">Tutorial</a> <a href="/tags/WebRTC/" style="font-size: 21.5px;">WebRTC</a> <a href="/tags/WebSocket/" style="font-size: 14px;">WebSocket</a> <a href="/tags/algorithm/" style="font-size: 15.25px;">algorithm</a> <a href="/tags/config/" style="font-size: 14px;">config</a> <a href="/tags/decisionTree/" style="font-size: 14px;">decisionTree</a> <a href="/tags/git/" style="font-size: 17.75px;">git</a> <a href="/tags/google-adsense/" style="font-size: 14px;">google adsense</a> <a href="/tags/hexo/" style="font-size: 17.75px;">hexo</a> <a href="/tags/http/" style="font-size: 17.75px;">http</a> <a href="/tags/knn/" style="font-size: 14px;">knn</a> <a href="/tags/lighttpd/" style="font-size: 15.25px;">lighttpd</a> <a href="/tags/mxnet/" style="font-size: 14px;">mxnet</a> <a href="/tags/mysql/" style="font-size: 22.75px;">mysql</a> <a href="/tags/nlp/" style="font-size: 24px;">nlp</a> <a href="/tags/nodejs/" style="font-size: 14px;">nodejs</a> <a href="/tags/openvpn/" style="font-size: 14px;">openvpn</a> <a href="/tags/other/" style="font-size: 15.25px;">other</a> <a href="/tags/paddle/" style="font-size: 14px;">paddle</a> <a href="/tags/planning/" style="font-size: 20.25px;">planning</a> <a href="/tags/pracitce/" style="font-size: 15.25px;">pracitce</a> <a href="/tags/rich/" style="font-size: 14px;">rich</a> <a href="/tags/shell/" style="font-size: 14px;">shell</a> <a href="/tags/svn/" style="font-size: 14px;">svn</a> <a href="/tags/ubuntu/" style="font-size: 14px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 16.5px;">vim</a> <a href="/tags/webpack/" style="font-size: 14px;">webpack</a> <a href="/tags/webrtc/" style="font-size: 19px;">webrtc</a> <a href="/tags/个人发展/" style="font-size: 14px;">个人发展</a> <a href="/tags/互联网实事/" style="font-size: 14px;">互联网实事</a> <a href="/tags/外链/" style="font-size: 14px;">外链</a> <a href="/tags/提升个人思维/" style="font-size: 14px;">提升个人思维</a> <a href="/tags/文摘/" style="font-size: 15.25px;">文摘</a> <a href="/tags/斜杠青年/" style="font-size: 14px;">斜杠青年</a> <a href="/tags/机器学习/" style="font-size: 16.5px;">机器学习</a> <a href="/tags/架构师/" style="font-size: 14px;">架构师</a> <a href="/tags/测试工具/" style="font-size: 14px;">测试工具</a> <a href="/tags/睡后成长/" style="font-size: 14px;">睡后成长</a> <a href="/tags/睡后收入/" style="font-size: 14px;">睡后收入</a> <a href="/tags/税后收入/" style="font-size: 14px;">税后收入</a> <a href="/tags/笔记/" style="font-size: 14px;">笔记</a> <a href="/tags/自然语言处理/" style="font-size: 24px;">自然语言处理</a> <a href="/tags/视频流/" style="font-size: 15.25px;">视频流</a> <a href="/tags/计算机相关技术资料整理/" style="font-size: 14px;">计算机相关技术资料整理</a> <a href="/tags/认知升级/" style="font-size: 14px;">认知升级</a> <a href="/tags/限速/" style="font-size: 14px;">限速</a> <a href="/tags/面试/" style="font-size: 14px;">面试</a> <a href="/tags/项目管理/" style="font-size: 14px;">项目管理</a>
+	</div>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+	
+
+
+
+
+<div id="search" class="search-overlay">
+    <div class="search-form">
+        
+        <div class="search-overlay-logo">
+        	<img src="/images/favicon-16x16-next.png" alt="Pastor Dean">
+        </div>
+        
+        <input id="local-search-input" class="search-input" type="text" name="search" placeholder="Search ...">
+        <a class="search-overlay-close" href="#"></a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+<footer class="site-footer outer">
+	<div class="site-footer-content inner">
+		<div class="copyright">
+			<a href="/" title="Pastor Dean">Pastor Dean &copy; 2020</a>
+			
+				
+			        <span hidden="true" id="/2019-03-09/webrtc_tutorial_4/" class="leancloud-visitors" data-flag-title="webrtc使用RTCPeerConnection进行流传输">
+			            <span>阅读量 </span>
+			            <span class="leancloud-visitors-count">0</span>
+			        </span>
+	    		
+    		
+		</div>
+		<nav class="site-footer-nav">
+			
+			<a href="https://hexo.io" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+			<a href="https://github.com/xzhih/hexo-theme-casper" title="Casper" target="_blank" rel="noopener">Casper</a>
+		</nav>
+	</div>
+</footer>
+	
+
+
+<script>
+    if(window.navigator && navigator.serviceWorker) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister()
+            }
+        })
+    }
+</script>
+
+
+<script id="scriptLoad" src="/js/allinone.min.js" async></script>
+
+
+<script>
+    document.getElementById('scriptLoad').addEventListener('load', function () {
+        
+        
+            var bLazy = new Blazy();
+        
+
+        
+        
+
+        
+        
+        
+            searchFunc("/");
+        
+        
+    })
+</script>
+
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+
+
+<script id="valineScript" src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+<script>
+    document.getElementById('valineScript').addEventListener("load", function() {
+        new Valine({
+            el: '#comment' ,
+            verify: false,
+            notify: false,
+            appId: '',
+            appKey: '',
+            placeholder: 'Just go go',
+            pageSize: 10,
+            avatar: 'mm',
+            visitor: true
+        })
+    });
+</script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="preconnect" href="//www.googletagmanager.com">
+	<link rel="preconnect" href="//zz.bdstatic.com">
+	<link rel="preconnect" href="//sp0.baidu.com">
+	<link rel="preconnect" href="//www.google-analytics.com">
+	<link rel="preconnect" href="//cdn1.lncld.net">
+	<link rel="preconnect" href="//unpkg.com">
+	<link rel="preconnect" href="//app-router.leancloud.cn">
+	<link rel="preconnect" href="//9qpuwspm.api.lncld.net">
+	<link rel="preconnect" href="//gravatar.loli.net">
+
+	<title>NLP系列 | Pastor Dean</title>
+
+	<meta name="HandheldFriendly" content="True">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+	<meta name="generator" content="hexo">
+	<meta name="author" content="pastor">
+	<meta name="description" content>
+
+	
+	<meta name="keywords" content>
+	
+
+	
+	<link rel="shortcut icon" href="/images/favicon-16x16-next.png">
+	<link rel="apple-touch-icon" href="/images/favicon-16x16-next.png">
+	
+
+	
+	<meta name="theme-color" content="#3c484e">
+	<meta name="msapplication-TileColor" content="#3c484e">
+	
+
+	
+
+	
+
+	<meta property="og:site_name" content="Pastor Dean">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="NLP系列 | Pastor Dean">
+	<meta property="og:description" content>
+	<meta property="og:url" content="https://mrpastor.github.io/2019-03-21/nlp/4Text_Classification/Chapter1_Text_Classification_based_on_Machine_Learning/2.LR_SVM_Text_Classification/">
+
+	
+	<meta property="article:published_time" content="2019-03-21T19:03:00+08:00"> 
+	<meta property="article:author" content="pastor">
+	<meta property="article:published_first" content="Pastor Dean, /2019-03-21/nlp/4Text_Classification/Chapter1_Text_Classification_based_on_Machine_Learning/2.LR_SVM_Text_Classification/">
+	
+
+	
+	
+	<link rel="stylesheet" href="/css/allinonecss.min.css">
+
+	
+	
+	
+</head>
+<body class="post-template">
+	<div class="site-wrapper">
+		
+
+
+
+
+<header class="site-header post-site-header outer">
+    <div class="inner">
+        
+<nav class="site-nav"> 
+    <div class="site-nav-left">
+        <ul class="nav">
+            <li>
+                
+                
+                <a class="site-nav-logo" href="/" title="Pastor Dean">
+                    <img src="/images/favicon-32x32-next.png" alt="Pastor Dean">
+                </a>
+                
+                
+            </li>
+            
+            
+            <li>
+                <a href="/ || home" title="home">home</a>
+            </li>
+            
+            <li>
+                <a href="/categories/ || th" title="categories">categories</a>
+            </li>
+            
+            <li>
+                <a href="/archives/ || archive" title="archives">archives</a>
+            </li>
+            
+            <li>
+                <a href="/tools/ || tools" title="tools">tools</a>
+            </li>
+            
+            
+        </ul> 
+    </div>
+    
+    <div class="search-button-area">
+        <a href="#search" class="search-button">Search ...</a>
+    </div>
+     
+    <div class="site-nav-right">
+        
+        <a href="#search" class="search-button">Search ...</a>
+         
+        
+<div class="social-links">
+    
+    
+    <a class="social-link" title="github" href="https://github.com/mrpastor" target="_blank" rel="noopener">
+        <svg viewbox="0 0 1049 1024" xmlns="http://www.w3.org/2000/svg"><path d="M524.979332 0C234.676191 0 0 234.676191 0 524.979332c0 232.068678 150.366597 428.501342 358.967656 498.035028 26.075132 5.215026 35.636014-11.299224 35.636014-25.205961 0-12.168395-0.869171-53.888607-0.869171-97.347161-146.020741 31.290159-176.441729-62.580318-176.441729-62.580318-23.467619-60.841976-58.234462-76.487055-58.234463-76.487055-47.804409-32.15933 3.476684-32.15933 3.476685-32.15933 53.019436 3.476684 80.83291 53.888607 80.83291 53.888607 46.935238 79.963739 122.553122 57.365291 152.97411 43.458554 4.345855-33.897672 18.252593-57.365291 33.028501-70.402857-116.468925-12.168395-239.022047-57.365291-239.022047-259.012982 0-57.365291 20.860106-104.300529 53.888607-140.805715-5.215026-13.037566-23.467619-66.926173 5.215027-139.067372 0 0 44.327725-13.906737 144.282399 53.888607 41.720212-11.299224 86.917108-17.383422 131.244833-17.383422s89.524621 6.084198 131.244833 17.383422C756.178839 203.386032 800.506564 217.29277 800.506564 217.29277c28.682646 72.1412 10.430053 126.029806 5.215026 139.067372 33.897672 36.505185 53.888607 83.440424 53.888607 140.805715 0 201.64769-122.553122 245.975415-239.891218 259.012982 19.121764 16.514251 35.636014 47.804409 35.636015 97.347161 0 70.402857-0.869171 126.898978-0.869172 144.282399 0 13.906737 9.560882 30.420988 35.636015 25.205961 208.601059-69.533686 358.967656-265.96635 358.967655-498.035028C1049.958663 234.676191 814.413301 0 524.979332 0z"/></svg>
+    </a>
+    
+    
+    <a class="social-link" title="facebook" href="https://facebook" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+
+    </a>
+    
+    
+    <a class="social-link" title="twitter" href="https://twitter.com" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+    </a>
+    
+    
+    
+    
+</div>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<div id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+        <header class="post-full-header">
+            <div class="post-full-meta">
+                <time class="post-full-meta-date" datetime="2019-03-21T11:19:18.000Z">
+                    2019-03-21
+                </time>
+                
+                <span class="date-divider">/</span>
+                
+                <a href="/categories/NLP/">NLP</a>&nbsp;&nbsp;
+                
+                
+            </div>
+            <h1 class="post-full-title">NLP系列</h1>
+        </header>
+        <div class="post-full no-image">
+            
+            <div class="post-full-content">
+                <article id="photoswipe" class="markdown-body">
+                    <h1 id="逻辑回归-SVM与文本分类"><a href="#逻辑回归-SVM与文本分类" class="headerlink" title="逻辑回归/SVM与文本分类"></a>逻辑回归/SVM与文本分类</h1><ul>
+<li>参考文章：<a href="https://www.jiqizhixin.com/articles/2018-05-13-3" target="_blank" rel="noopener">《从原理到应用：简述Logistics回归算法》</a></li>
+</ul>
+<h2 id="Part-1-Logistic-Regression"><a href="#Part-1-Logistic-Regression" class="headerlink" title="Part 1 Logistic Regression"></a>Part 1 Logistic Regression</h2><h3 id="1-1-什么是-Logistic-回归？"><a href="#1-1-什么是-Logistic-回归？" class="headerlink" title="1.1 什么是 Logistic 回归？"></a>1.1 什么是 Logistic 回归？</h3><p>和很多其他机器学习算法一样，逻辑回归也是从统计学中借鉴来的，尽管名字里有回归俩字儿，但它不是一个需要预测连续结果的回归算法。</p>
+<p>与之相反，Logistic 回归是二分类任务的首选方法。它输出一个 0 到 1 之间的离散二值结果。简单来说，它的结果不是 1 就是 0。</p>
+<p>癌症检测算法可看做是 Logistic 回归问题的一个简单例子，这种算法输入病理图片并且应该辨别患者是患有癌症（1）或没有癌症（0）。</p>
+<p>它是如何工作的?<br>Logistic 回归通过使用其固有的 logistic 函数估计概率，来衡量因变量（我们想要预测的标签）与一个或多个自变量（特征）之间的关系。</p>
+<p>然后这些概率必须二值化才能真地进行预测。这就是 logistic 函数的任务，也称为 Sigmoid 函数。Sigmoid 函数是一个 S 形曲线，它可以将任意实数值映射到介于 0 和 1 之间的值，但并不能取到 0或1。然后使用阈值分类器将 0 和 1 之间的值转换为 0 或 1。</p>
+<p>下面的图片说明了 logistic 回归得出预测所需的所有步骤。</p>
+<p><img alt class="post-img b-lazy" data-img="https://image.jiqizhixin.com/uploads/editor/164bdc1d-46ae-4c67-868f-a36d8c129af0/1526191840515.png" data-index="0" data-src="https://image.jiqizhixin.com/uploads/editor/164bdc1d-46ae-4c67-868f-a36d8c129af0/1526191840515.png"></p>
+<p>下面是 logistic 函数（sigmoid 函数）的图形表示：</p>
+<p><img alt class="post-img b-lazy" data-img="https://image.jiqizhixin.com/uploads/editor/1fe28e0e-94a3-42aa-a1fa-1c46e21cc29d/1526191840278.png" data-index="1" data-src="https://image.jiqizhixin.com/uploads/editor/1fe28e0e-94a3-42aa-a1fa-1c46e21cc29d/1526191840278.png"></p>
+<p>我们希望随机数据点被正确分类的概率最大化，这就是最大似然估计。最大似然估计是统计模型中估计参数的通用方法。</p>
+<p><img alt class="post-img b-lazy" data-img="https://www.zhihu.com/equation?tex=C%28%5Ctheta%29+%3D+%5C%7B_%7B-log%281-h_%5Ctheta%28x%29%29%2C+y%3D0%7D%5E%7B-log%28h_%5Ctheta%28x%29%29%2Cy%3D1%7D%2C+where%3A+h_%5Ctheta%28x%29%3D%5Cfrac%7B1%7D%7B1%2Be%5E%7B-%5Ctheta%5ETx%7D%7D" data-index="2" data-src="https://www.zhihu.com/equation?tex=C%28%5Ctheta%29+%3D+%5C%7B_%7B-log%281-h_%5Ctheta%28x%29%29%2C+y%3D0%7D%5E%7B-log%28h_%5Ctheta%28x%29%29%2Cy%3D1%7D%2C+where%3A+h_%5Ctheta%28x%29%3D%5Cfrac%7B1%7D%7B1%2Be%5E%7B-%5Ctheta%5ETx%7D%7D"></p>
+<p>你可以使用不同的方法（如优化算法）来最大化概率。牛顿法也是其中一种，可用于查找许多不同函数的最大值（或最小值），包括似然函数。也可以用梯度下降法代替牛顿法。</p>
+<h3 id="1-2-Logistic-回归-vs-线性回归"><a href="#1-2-Logistic-回归-vs-线性回归" class="headerlink" title="1.2 Logistic 回归 vs 线性回归"></a>1.2 Logistic 回归 vs 线性回归</h3><p>你可能会好奇：logistic 回归和线性回归之间的区别是什么。逻辑回归得到一个离散的结果，但线性回归得到一个连续的结果。预测房价的模型算是返回连续结果的一个好例子。该值根据房子大小或位置等参数的变化而变化。离散的结果总是一件事（你有癌症）或另一个（你没有癌症）。</p>
+<h3 id="1-3-优缺点"><a href="#1-3-优缺点" class="headerlink" title="1.3 优缺点"></a>1.3 优缺点</h3><p>Logistic 回归是一种被人们广泛使用的算法，因为它非常高效，不需要太大的计算量，又通俗易懂，且很容易调整，并且输出校准好的预测概率。</p>
+<p>与线性回归一样，当你去掉与输出变量无关的属性以及相似度高的属性时，logistic 回归效果确实会更好。因此特征处理在 Logistic 和线性回归的性能方面起着重要的作用。</p>
+<p>Logistic 回归的另一个优点是它非常容易实现，且训练起来很高效。在研究中，我通常以 Logistic 回归模型作为基准，再尝试使用更复杂的算法。</p>
+<p>由于其简单且可快速实现的原因，Logistic 回归也是一个很好的基准，你可以用它来衡量其他更复杂的算法的性能。</p>
+<p>它的一个缺点就是我们不能用 logistic 回归来解决非线性问题，因为它的决策边界是线性的。我们来看看下面的例子，两个类各有俩实例。</p>
+<p><img alt class="post-img b-lazy" data-img="https://image.jiqizhixin.com/uploads/editor/439f4df7-544b-436d-9fc0-582aaa7c097f/1526191840966.png" data-index="3" data-src="https://image.jiqizhixin.com/uploads/editor/439f4df7-544b-436d-9fc0-582aaa7c097f/1526191840966.png"></p>
+<p>显然，我们不可能在不出错的情况下划出一条直线来区分这两个类。使用简单的决策树是个更好的选择。</p>
+<p><img alt class="post-img b-lazy" data-img="https://image.jiqizhixin.com/uploads/editor/c473eda3-cb03-4433-ad89-bd81e88a5f33/1526191840677.png" data-index="4" data-src="https://image.jiqizhixin.com/uploads/editor/c473eda3-cb03-4433-ad89-bd81e88a5f33/1526191840677.png"></p>
+<p>Logistic 回归并非最强大的算法之一，它可以很容易地被更为复杂的算法所超越，另一个缺点是它高度依赖正确的数据表示。</p>
+<p>这意味着逻辑回归在你已经确定了所有重要的自变量之前还不会成为一个有用的工具。由于其结果是离散的，Logistic 回归只能预测分类结果。</p>
+<h3 id="1-4-何时适用"><a href="#1-4-何时适用" class="headerlink" title="1.4 何时适用"></a>1.4 何时适用</h3><p>就像我已经提到的那样，Logistic 回归通过线性边界将你的输入分成两个「区域」，每个类别划分一个区域。因此，你的数据应当是线性可分的，如下图所示的数据点：</p>
+<p><img alt class="post-img b-lazy" data-img="https://image.jiqizhixin.com/uploads/editor/cc1f0a41-fa18-4499-b12b-374da215ebe9/1526191840804.png" data-index="5" data-src="https://image.jiqizhixin.com/uploads/editor/cc1f0a41-fa18-4499-b12b-374da215ebe9/1526191840804.png"></p>
+<p>换句话说：当 Y 变量只有两个值时（例如，当你面临分类问题时），您应该考虑使用逻辑回归。注意，你也可以将 Logistic 回归用于多类别分类，下一节中将会讨论。</p>
+<h3 id="1-5-多分类任务"><a href="#1-5-多分类任务" class="headerlink" title="1.5 多分类任务"></a>1.5 多分类任务</h3><p>优先推荐softmax</p>
+<p><img alt class="post-img b-lazy" data-img="https://wikimedia.org/api/rest_v1/media/math/render/svg/001ce4c2c74e78a66a4d7d04ab92cbd0d0fdec02" data-index="6" data-src="https://wikimedia.org/api/rest_v1/media/math/render/svg/001ce4c2c74e78a66a4d7d04ab92cbd0d0fdec02"></p>
+<p>补充：<br>1）一对多（OVA）<br>按照这个策略，你可以训练 10 个二分类器，每个数字一个。这意味着训练一个分类器来检测 0，一个检测 1，一个检测 2，以此类推。当你想要对图像进行分类时，只需看看哪个分类器的预测分数最高</p>
+<p>2）一对一（OVO）<br>按照这个策略，要为每一对数字训练一个二分类器。这意味着要训练一个可以区分 0s 和 1s 的分类器，一个可以区分 0s 和 2s 的分类器，一个可以区分 1s 和 2s 的分类器，等等。如果有 N 个类别，则需要训练 N×N（N-1）/ 2 个分类器，对于 MNIST 数据集，需要 45 个分类器。</p>
+<p>3) 其它分类算法<br>其他常见的分类算法有朴素贝叶斯、决策树、随机森林、支持向量机、k-近邻等等。我们将在其他文章中讨论它们，但别被这些机器学习算法的数量吓到。请注意，最好能够真正了解 4 或 5 种算法，并将精力集中在特征处理上，这也是未来工作的主题。</p>
+<h3 id="1-6-小结"><a href="#1-6-小结" class="headerlink" title="1.6 小结"></a>1.6 小结</h3><p>在这篇文章中，你已了解什么是 Logistic 回归，以及它是如何工作的。你现在对其优缺点也了有深刻的了解，并且知道何时用它。</p>
+<p>此外，你还探索了使用 Logistic 回归与 sklearn 进行多分类的方法，以及为什么前者是比其他机器学习算法更好的基准算法。</p>
+<p>原文链接：<a href="https://towardsdatascience.com/the-logistic-regression-algorithm-75fe48e21cfa" target="_blank" rel="noopener">https://towardsdatascience.com/the-logistic-regression-algorithm-75fe48e21cfa</a></p>
+<h2 id="Part-2-SVM"><a href="#Part-2-SVM" class="headerlink" title="Part 2 SVM"></a>Part 2 SVM</h2><h3 id="2-1-svm简介"><a href="#2-1-svm简介" class="headerlink" title="2.1 svm简介"></a>2.1 svm简介</h3><ul>
+<li>参考文章：<a href="https://www.zhihu.com/question/21094489/answer/86273196" target="_blank" rel="noopener">《支持向量机(img/svm)是什么意思？》</a></li>
+</ul>
+<p>在很久以前的情人节，大侠要去救他的爱人，但魔鬼和他玩了一个游戏。魔鬼在桌子上似乎有规律放了两种颜色的球，说：“你用一根棍分开它们？要求：尽量在放更多球之后，仍然适用。”</p>
+<p><img alt class="post-img b-lazy" data-img="img/svm1.png" data-index="7" data-src="img/svm1.png"><br>于是大侠这样放，干的不错？<br><img alt class="post-img b-lazy" data-img="img/svm2.png" data-index="8" data-src="img/svm2.png"><br>然后魔鬼，又在桌上放了更多的球，似乎有一个球站错了阵营。<br><img alt class="post-img b-lazy" data-img="img/svm3.png" data-index="9" data-src="img/svm3.png"><br>SVM就是试图把棍放在最佳位置，好让在棍的两边有尽可能大的间隙。<br><img alt class="post-img b-lazy" data-img="img/svm4.png" data-index="10" data-src="img/svm4.png"><br>现在即使魔鬼放了更多的球，棍仍然是一个好的分界线。<br><img alt class="post-img b-lazy" data-img="img/svm5.png" data-index="11" data-src="img/svm5.png"><br>然后，在SVM 工具箱中有另一个更加重要的 trick。 魔鬼看到大侠已经学会了一个trick，于是魔鬼给了大侠一个新的挑战。<br><img alt class="post-img b-lazy" data-img="img/svm6.png" data-index="12" data-src="img/svm6.png"> 现在，大侠没有棍可以很好帮他分开两种球了，现在怎么办呢？当然像所有武侠片中一样大侠桌子一拍，球飞到空中。然后，凭借大侠的轻功，大侠抓起一张纸，插到了两种球的中间。<br><img alt class="post-img b-lazy" data-img="img/svm7.png" data-index="13" data-src="img/svm7.png"></p>
+<p>现在，从魔鬼的角度看这些球，这些球看起来像是被一条曲线分开了。<br><img alt class="post-img b-lazy" data-img="img/svm8.png" data-index="14" data-src="img/svm8.png"></p>
+<p>再之后，无聊的大人们，把这些球叫做 「data」，把棍子 叫做 「classifier」, 最大间隙trick 叫做「optimization」， 拍桌子叫做「kernelling」, 那张纸叫做「hyperplane」。</p>
+<p>图片来源：Support Vector Machines explained well</p>
+<h3 id="2-2-如何计算svm最优超平面"><a href="#2-2-如何计算svm最优超平面" class="headerlink" title="2.2 如何计算svm最优超平面"></a>2.2 如何计算svm最优超平面</h3><ul>
+<li>参考文章：<a href="https://www.cnblogs.com/muchen/p/6297027.html" target="_blank" rel="noopener">《支持向量机 (SVM)分类器原理分析与基本应用》</a></li>
+</ul>
+<ol>
+<li>首先根据算法思想 - “找到具有最小间隔的样本点，然后拟合出一个到这些样本点距离和最大的线段/平面。” 写出目标函数：</li>
+</ol>
+<p><img alt class="post-img b-lazy" data-img="img/svm21.png" data-index="15" data-src="img/svm21.png"></p>
+<p>该式子的解就是待求的回归系数。</p>
+<p>然而，这是一个嵌套优化问题，非常难进行直接优化求解。为了解这个式子，还需要以下步骤。</p>
+<ol start="2">
+<li>不去计算内层的min优化，而是将距离值界定到一个范围 - 大于1，即最近的样本点，也即支持向量到超平面的距离为1。下图可以清楚表示这个意思：</li>
+</ol>
+<p><img alt class="post-img b-lazy" data-img="img/svm22.png" data-index="16" data-src="img/svm22.png"></p>
+<p>去掉min操作，代之以界定：label * (wTx + b) &gt;= 1。</p>
+<ol start="3">
+<li>这样得到的式子就是一个带不等式的优化问题，可以采用拉格朗日乘子法(KKT条件)去求解。</li>
+</ol>
+<p>具体步骤推论本文不给出。推导结果为：</p>
+<p><img alt class="post-img b-lazy" data-img="img/svm23.png" data-index="17" data-src="img/svm23.png"></p>
+<p>另外，可加入松弛系数 C，用于控制 “最大化间隔” 和”保证大部分点的函数间隔小于1.0” 这两个目标的权重。</p>
+<p>将 α &gt;= 0 条件改为 C &gt;= α &gt;= 0 即可。</p>
+<p>α 是用于求解过程中的一个向量，它和要求的结果回归系数是一一对应的关系。</p>
+<p>将其中的 α 解出后，便可依据如下两式子(均为推导过程中出现的式子)进行转换得到回归系数：</p>
+<p><img alt class="post-img b-lazy" data-img="img/svm24.png" data-index="18" data-src="img/svm24.png"><br><img alt class="post-img b-lazy" data-img="img/svm25.png" data-index="19" data-src="img/svm25.png"></p>
+
+                </article>
+                <ul class="tags-postTags">
+                    
+                    <li>
+                        <a href="/tags/nlp/" rel="tag"># nlp</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tags/自然语言处理/" rel="tag"># 自然语言处理</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    
+    <nav id="gobottom" class="pagination">
+        
+        <a class="prev-post" title="NLP系列" href="/2019-03-21/nlp/4Text_Classification/Chapter1_Text_Classification_based_on_Machine_Learning/4.Chinese_news_classification_based_on_Python/">
+            ← NLP系列
+        </a>
+        
+        <span class="prev-next-post">·</span>
+        
+        <a class="next-post" title="NLP系列" href="/2019-03-21/nlp/2NLP_Basics2/lesson1/1.basic_text_processing/">
+            NLP系列 →
+        </a>
+        
+    </nav>
+
+    
+    <div class="inner">
+        <div id="comment"></div>
+    </div>
+    
+</div>
+
+<div class="toc-bar">
+    <div class="toc-btn-bar">
+        <a href="#site-main" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M793.024 710.272a32 32 0 1 0 45.952-44.544l-310.304-320a32 32 0 0 0-46.4 0.48l-297.696 320a32 32 0 0 0 46.848 43.584l274.752-295.328 286.848 295.808z"/></svg>
+        </a>
+        <div class="toc-btn toc-switch">
+            <svg class="toc-open" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M779.776 480h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M779.776 672h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M256 288a32 32 0 1 0 0 64 32 32 0 0 0 0-64M392.576 352h387.2a32 32 0 0 0 0-64h-387.2a32 32 0 0 0 0 64M256 480a32 32 0 1 0 0 64 32 32 0 0 0 0-64M256 672a32 32 0 1 0 0 64 32 32 0 0 0 0-64"/></svg>
+            <svg class="toc-close hide" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M512 960c-247.039484 0-448-200.960516-448-448S264.960516 64 512 64 960 264.960516 960 512 759.039484 960 512 960zM512 128.287273c-211.584464 0-383.712727 172.128262-383.712727 383.712727 0 211.551781 172.128262 383.712727 383.712727 383.712727 211.551781 0 383.712727-172.159226 383.712727-383.712727C895.712727 300.415536 723.551781 128.287273 512 128.287273z"/><path d="M557.05545 513.376159l138.367639-136.864185c12.576374-12.416396 12.672705-32.671738 0.25631-45.248112s-32.704421-12.672705-45.248112-0.25631l-138.560301 137.024163-136.447897-136.864185c-12.512727-12.512727-32.735385-12.576374-45.248112-0.063647-12.512727 12.480043-12.54369 32.735385-0.063647 45.248112l136.255235 136.671523-137.376804 135.904314c-12.576374 12.447359-12.672705 32.671738-0.25631 45.248112 6.271845 6.335493 14.496116 9.504099 22.751351 9.504099 8.12794 0 16.25588-3.103239 22.496761-9.247789l137.567746-136.064292 138.687596 139.136568c6.240882 6.271845 14.432469 9.407768 22.65674 9.407768 8.191587 0 16.352211-3.135923 22.591372-9.34412 12.512727-12.480043 12.54369-32.704421 0.063647-45.248112L557.05545 513.376159z"/></svg>
+        </div>
+        <a href="#gobottom" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M231.424 346.208a32 32 0 0 0-46.848 43.584l297.696 320a32 32 0 0 0 46.4 0.48l310.304-320a32 32 0 1 0-45.952-44.544l-286.848 295.808-274.752-295.36z"/></svg>
+        </a>
+    </div>
+    <div class="toc-main">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#逻辑回归-SVM与文本分类"><span class="toc-text">逻辑回归/SVM与文本分类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Part-1-Logistic-Regression"><span class="toc-text">Part 1 Logistic Regression</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-什么是-Logistic-回归？"><span class="toc-text">1.1 什么是 Logistic 回归？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-Logistic-回归-vs-线性回归"><span class="toc-text">1.2 Logistic 回归 vs 线性回归</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-优缺点"><span class="toc-text">1.3 优缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-何时适用"><span class="toc-text">1.4 何时适用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-多分类任务"><span class="toc-text">1.5 多分类任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-小结"><span class="toc-text">1.6 小结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Part-2-SVM"><span class="toc-text">Part 2 SVM</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-svm简介"><span class="toc-text">2.1 svm简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-如何计算svm最优超平面"><span class="toc-text">2.2 如何计算svm最优超平面</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+	</div>
+	
+
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+  <header class="read-next-card-header">
+    <small class="read-next-card-header-sitetitle">&mdash; Pastor Dean &mdash;</small>
+    <h3 class="read-next-card-header-title">Recent Posts</h3>
+  </header>
+  <div class="read-next-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+      <path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/>
+    </svg>
+  </div>
+  <div class="read-next-card-content">
+    <ul>
+      
+      
+      
+      <li>
+        <a href="/2020-01-16/thinking/Thinking modelBiological thinking Biological thinking looking at the business world from an evolutionary perspective/">Thinking modelBiological thinking Biological thinking: looking at the business world from an evolutionary perspective</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2020-01-13/thinking/Modern Darwin Integrated Model  Biological Thinking Mode Opening God Perspective/">Modern Darwin Integrated Model Biological Thinking Mode Opening God is Perspective</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2020-01-11/thinking/Metacognition Changing the stubborn thinking of the brain/">Metacognition Changing the stubborn thinking of the brain</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <footer class="read-next-card-footer">
+    <a href="/archives">  MORE  → </a>
+  </footer>
+</article>
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+    <header class="read-next-card-header tagcloud-card">
+        <h3 class="read-next-card-header-title">Categories</h3>
+    </header>
+    <div class="read-next-card-content">
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Biological-Thinking/">Biological Thinking</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cognitive-Neuroscience/">Cognitive Neuroscience</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DeepLearning/">DeepLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/FFmpeg/">FFmpeg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MacOS/">MacOS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MachineLearning/">MachineLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PM/">PM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/RPC/">RPC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vim/">Vim</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WebRTC/">WebRTC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/deeplearn/">deeplearn</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/http/">http</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/machineLearning/">machineLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/文摘/">文摘</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构师/">架构师</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/知识图谱/">知识图谱</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/职业规划/">职业规划</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/职业规划/个人提升/">个人提升</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机相关技术资料整理/">计算机相关技术资料整理</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/认知升级/">认知升级</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/财务自由/">财务自由</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/财富自由/">财富自由</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/运维/">运维</a></li></ul>
+    </div>
+</article>
+
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+	<header class="read-next-card-header tagcloud-card">
+		<h3 class="read-next-card-header-title">Tag Cloud</h3>
+	</header>
+	<div class="read-next-card-content-ext">
+		<a href="/tags/AI/" style="font-size: 14px;">AI</a> <a href="/tags/Android/" style="font-size: 14px;">Android</a> <a href="/tags/Biological/" style="font-size: 17.75px;">Biological</a> <a href="/tags/Browser/" style="font-size: 14px;">Browser</a> <a href="/tags/Business/" style="font-size: 16.5px;">Business</a> <a href="/tags/Cognitive/" style="font-size: 17.75px;">Cognitive</a> <a href="/tags/DeepLearning/" style="font-size: 15.25px;">DeepLearning</a> <a href="/tags/Docker/" style="font-size: 14px;">Docker</a> <a href="/tags/FFmpeg/" style="font-size: 21.5px;">FFmpeg</a> <a href="/tags/FastCGI/" style="font-size: 14px;">FastCGI</a> <a href="/tags/IP划分/" style="font-size: 14px;">IP划分</a> <a href="/tags/IP地址/" style="font-size: 14px;">IP地址</a> <a href="/tags/Knowledge-Graph/" style="font-size: 16.5px;">Knowledge Graph</a> <a href="/tags/Linux-Shell/" style="font-size: 14px;">Linux Shell</a> <a href="/tags/MacOS/" style="font-size: 15.25px;">MacOS</a> <a href="/tags/Neuroscience/" style="font-size: 17.75px;">Neuroscience</a> <a href="/tags/RPC/" style="font-size: 14px;">RPC</a> <a href="/tags/Thinking/" style="font-size: 17.75px;">Thinking</a> <a href="/tags/Tutorial/" style="font-size: 20.25px;">Tutorial</a> <a href="/tags/WebRTC/" style="font-size: 21.5px;">WebRTC</a> <a href="/tags/WebSocket/" style="font-size: 14px;">WebSocket</a> <a href="/tags/algorithm/" style="font-size: 15.25px;">algorithm</a> <a href="/tags/config/" style="font-size: 14px;">config</a> <a href="/tags/decisionTree/" style="font-size: 14px;">decisionTree</a> <a href="/tags/git/" style="font-size: 17.75px;">git</a> <a href="/tags/google-adsense/" style="font-size: 14px;">google adsense</a> <a href="/tags/hexo/" style="font-size: 17.75px;">hexo</a> <a href="/tags/http/" style="font-size: 17.75px;">http</a> <a href="/tags/knn/" style="font-size: 14px;">knn</a> <a href="/tags/lighttpd/" style="font-size: 15.25px;">lighttpd</a> <a href="/tags/mxnet/" style="font-size: 14px;">mxnet</a> <a href="/tags/mysql/" style="font-size: 22.75px;">mysql</a> <a href="/tags/nlp/" style="font-size: 24px;">nlp</a> <a href="/tags/nodejs/" style="font-size: 14px;">nodejs</a> <a href="/tags/openvpn/" style="font-size: 14px;">openvpn</a> <a href="/tags/other/" style="font-size: 15.25px;">other</a> <a href="/tags/paddle/" style="font-size: 14px;">paddle</a> <a href="/tags/planning/" style="font-size: 20.25px;">planning</a> <a href="/tags/pracitce/" style="font-size: 15.25px;">pracitce</a> <a href="/tags/rich/" style="font-size: 14px;">rich</a> <a href="/tags/shell/" style="font-size: 14px;">shell</a> <a href="/tags/svn/" style="font-size: 14px;">svn</a> <a href="/tags/ubuntu/" style="font-size: 14px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 16.5px;">vim</a> <a href="/tags/webpack/" style="font-size: 14px;">webpack</a> <a href="/tags/webrtc/" style="font-size: 19px;">webrtc</a> <a href="/tags/个人发展/" style="font-size: 14px;">个人发展</a> <a href="/tags/互联网实事/" style="font-size: 14px;">互联网实事</a> <a href="/tags/外链/" style="font-size: 14px;">外链</a> <a href="/tags/提升个人思维/" style="font-size: 14px;">提升个人思维</a> <a href="/tags/文摘/" style="font-size: 15.25px;">文摘</a> <a href="/tags/斜杠青年/" style="font-size: 14px;">斜杠青年</a> <a href="/tags/机器学习/" style="font-size: 16.5px;">机器学习</a> <a href="/tags/架构师/" style="font-size: 14px;">架构师</a> <a href="/tags/测试工具/" style="font-size: 14px;">测试工具</a> <a href="/tags/睡后成长/" style="font-size: 14px;">睡后成长</a> <a href="/tags/睡后收入/" style="font-size: 14px;">睡后收入</a> <a href="/tags/税后收入/" style="font-size: 14px;">税后收入</a> <a href="/tags/笔记/" style="font-size: 14px;">笔记</a> <a href="/tags/自然语言处理/" style="font-size: 24px;">自然语言处理</a> <a href="/tags/视频流/" style="font-size: 15.25px;">视频流</a> <a href="/tags/计算机相关技术资料整理/" style="font-size: 14px;">计算机相关技术资料整理</a> <a href="/tags/认知升级/" style="font-size: 14px;">认知升级</a> <a href="/tags/限速/" style="font-size: 14px;">限速</a> <a href="/tags/面试/" style="font-size: 14px;">面试</a> <a href="/tags/项目管理/" style="font-size: 14px;">项目管理</a>
+	</div>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+	
+
+
+
+
+<div id="search" class="search-overlay">
+    <div class="search-form">
+        
+        <div class="search-overlay-logo">
+        	<img src="/images/favicon-16x16-next.png" alt="Pastor Dean">
+        </div>
+        
+        <input id="local-search-input" class="search-input" type="text" name="search" placeholder="Search ...">
+        <a class="search-overlay-close" href="#"></a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+<footer class="site-footer outer">
+	<div class="site-footer-content inner">
+		<div class="copyright">
+			<a href="/" title="Pastor Dean">Pastor Dean &copy; 2020</a>
+			
+				
+			        <span hidden="true" id="/2019-03-21/nlp/4Text_Classification/Chapter1_Text_Classification_based_on_Machine_Learning/2.LR_SVM_Text_Classification/" class="leancloud-visitors" data-flag-title="NLP系列">
+			            <span>阅读量 </span>
+			            <span class="leancloud-visitors-count">0</span>
+			        </span>
+	    		
+    		
+		</div>
+		<nav class="site-footer-nav">
+			
+			<a href="https://hexo.io" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+			<a href="https://github.com/xzhih/hexo-theme-casper" title="Casper" target="_blank" rel="noopener">Casper</a>
+		</nav>
+	</div>
+</footer>
+	
+
+
+<script>
+    if(window.navigator && navigator.serviceWorker) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister()
+            }
+        })
+    }
+</script>
+
+
+<script id="scriptLoad" src="/js/allinone.min.js" async></script>
+
+
+<script>
+    document.getElementById('scriptLoad').addEventListener('load', function () {
+        
+        
+            var bLazy = new Blazy();
+        
+
+        
+        
+
+        
+        
+        
+            searchFunc("/");
+        
+        
+    })
+</script>
+
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+
+
+<script id="valineScript" src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+<script>
+    document.getElementById('valineScript').addEventListener("load", function() {
+        new Valine({
+            el: '#comment' ,
+            verify: false,
+            notify: false,
+            appId: '',
+            appKey: '',
+            placeholder: 'Just go go',
+            pageSize: 10,
+            avatar: 'mm',
+            visitor: true
+        })
+    });
+</script>
+
+
+
+
+
+</body>
+</html>

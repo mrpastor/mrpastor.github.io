@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="preconnect" href="//www.googletagmanager.com">
+	<link rel="preconnect" href="//zz.bdstatic.com">
+	<link rel="preconnect" href="//sp0.baidu.com">
+	<link rel="preconnect" href="//www.google-analytics.com">
+	<link rel="preconnect" href="//cdn1.lncld.net">
+	<link rel="preconnect" href="//unpkg.com">
+	<link rel="preconnect" href="//app-router.leancloud.cn">
+	<link rel="preconnect" href="//9qpuwspm.api.lncld.net">
+	<link rel="preconnect" href="//gravatar.loli.net">
+
+	<title>计算机算法--图算法介绍 | Pastor Dean</title>
+
+	<meta name="HandheldFriendly" content="True">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+	<meta name="generator" content="hexo">
+	<meta name="author" content="pastor">
+	<meta name="description" content>
+
+	
+	<meta name="keywords" content>
+	
+
+	
+	<link rel="shortcut icon" href="/images/favicon-16x16-next.png">
+	<link rel="apple-touch-icon" href="/images/favicon-16x16-next.png">
+	
+
+	
+	<meta name="theme-color" content="#3c484e">
+	<meta name="msapplication-TileColor" content="#3c484e">
+	
+
+	
+
+	
+
+	<meta property="og:site_name" content="Pastor Dean">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="计算机算法--图算法介绍 | Pastor Dean">
+	<meta property="og:description" content>
+	<meta property="og:url" content="https://mrpastor.github.io/2018-03-08/reference/graph/">
+
+	
+	<meta property="article:published_time" content="2018-03-08T18:03:00+08:00"> 
+	<meta property="article:author" content="pastor">
+	<meta property="article:published_first" content="Pastor Dean, /2018-03-08/reference/graph/">
+	
+
+	
+	
+	<link rel="stylesheet" href="/css/allinonecss.min.css">
+
+	
+	
+	
+</head>
+<body class="post-template">
+	<div class="site-wrapper">
+		
+
+
+
+
+<header class="site-header post-site-header outer">
+    <div class="inner">
+        
+<nav class="site-nav"> 
+    <div class="site-nav-left">
+        <ul class="nav">
+            <li>
+                
+                
+                <a class="site-nav-logo" href="/" title="Pastor Dean">
+                    <img src="/images/favicon-32x32-next.png" alt="Pastor Dean">
+                </a>
+                
+                
+            </li>
+            
+            
+            <li>
+                <a href="/ || home" title="home">home</a>
+            </li>
+            
+            <li>
+                <a href="/categories/ || th" title="categories">categories</a>
+            </li>
+            
+            <li>
+                <a href="/archives/ || archive" title="archives">archives</a>
+            </li>
+            
+            <li>
+                <a href="/tools/ || tools" title="tools">tools</a>
+            </li>
+            
+            
+        </ul> 
+    </div>
+    
+    <div class="search-button-area">
+        <a href="#search" class="search-button">Search ...</a>
+    </div>
+     
+    <div class="site-nav-right">
+        
+        <a href="#search" class="search-button">Search ...</a>
+         
+        
+<div class="social-links">
+    
+    
+    <a class="social-link" title="github" href="https://github.com/mrpastor" target="_blank" rel="noopener">
+        <svg viewbox="0 0 1049 1024" xmlns="http://www.w3.org/2000/svg"><path d="M524.979332 0C234.676191 0 0 234.676191 0 524.979332c0 232.068678 150.366597 428.501342 358.967656 498.035028 26.075132 5.215026 35.636014-11.299224 35.636014-25.205961 0-12.168395-0.869171-53.888607-0.869171-97.347161-146.020741 31.290159-176.441729-62.580318-176.441729-62.580318-23.467619-60.841976-58.234462-76.487055-58.234463-76.487055-47.804409-32.15933 3.476684-32.15933 3.476685-32.15933 53.019436 3.476684 80.83291 53.888607 80.83291 53.888607 46.935238 79.963739 122.553122 57.365291 152.97411 43.458554 4.345855-33.897672 18.252593-57.365291 33.028501-70.402857-116.468925-12.168395-239.022047-57.365291-239.022047-259.012982 0-57.365291 20.860106-104.300529 53.888607-140.805715-5.215026-13.037566-23.467619-66.926173 5.215027-139.067372 0 0 44.327725-13.906737 144.282399 53.888607 41.720212-11.299224 86.917108-17.383422 131.244833-17.383422s89.524621 6.084198 131.244833 17.383422C756.178839 203.386032 800.506564 217.29277 800.506564 217.29277c28.682646 72.1412 10.430053 126.029806 5.215026 139.067372 33.897672 36.505185 53.888607 83.440424 53.888607 140.805715 0 201.64769-122.553122 245.975415-239.891218 259.012982 19.121764 16.514251 35.636014 47.804409 35.636015 97.347161 0 70.402857-0.869171 126.898978-0.869172 144.282399 0 13.906737 9.560882 30.420988 35.636015 25.205961 208.601059-69.533686 358.967656-265.96635 358.967655-498.035028C1049.958663 234.676191 814.413301 0 524.979332 0z"/></svg>
+    </a>
+    
+    
+    <a class="social-link" title="facebook" href="https://facebook" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+
+    </a>
+    
+    
+    <a class="social-link" title="twitter" href="https://twitter.com" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+    </a>
+    
+    
+    
+    
+</div>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<div id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+        <header class="post-full-header">
+            <div class="post-full-meta">
+                <time class="post-full-meta-date" datetime="2018-03-08T10:02:52.000Z">
+                    2018-03-8
+                </time>
+                
+                <span class="date-divider">/</span>
+                
+                <a href="/categories/algorithm/">algorithm</a>&nbsp;&nbsp;
+                
+                
+            </div>
+            <h1 class="post-full-title">计算机算法--图算法介绍</h1>
+        </header>
+        <div class="post-full no-image">
+            
+            <div class="post-full-content">
+                <article id="photoswipe" class="markdown-body">
+                    <h2 id="图的定义："><a href="#图的定义：" class="headerlink" title="图的定义："></a>图的定义：</h2><p>图（graph）由顶点（vertex）和边（edge）的集合组成，每一条边就是一个点对（v,w)。</p>
+<p>图的种类：地图，电路图，调度图，事物，网络，程序结构</p>
+<p>图的属性：有V个顶点的图最多有V*（V-1）/2条边</p>
+<a id="more"></a>
+<p><img alt class="post-img b-lazy" data-img="/images/imageGraph/graph1.jpg" data-index="0" data-src="/images/imageGraph/graph1.jpg"></p>
+<p><img alt class="post-img b-lazy" data-img="/images/imageGraph/graph2.jpg" data-index="1" data-src="/images/imageGraph/graph2.jpg"></p>
+<h3 id="邻接矩阵："><a href="#邻接矩阵：" class="headerlink" title="邻接矩阵："></a>邻接矩阵：</h3><p>邻接矩阵是一个元素为bool值的V<em>V矩阵，若图中存在一条连接顶点V和W的边，折矩阵adj[v][w]=1,否则为0。占用的空间为V</em>V，当图是稠密时，邻接矩阵是比较合适的表达方法。</p>
+<p><img alt class="post-img b-lazy" data-img="/images/imageGraph/graph3.jpg" data-index="2" data-src="/images/imageGraph/graph3.jpg"></p>
+<h3 id="邻接表的表示"><a href="#邻接表的表示" class="headerlink" title="邻接表的表示"></a>邻接表的表示</h3><p>对于非稠密的图，使用邻接矩阵有点浪费存储空间，可以使用邻接表，我们维护一个链表向量，给定一个顶点时，可以立即访问其链表,占用的空间为O(V+E)。</p>
+<p><img alt class="post-img b-lazy" data-img="/images/imageGraph/graph4.jpg" data-index="3" data-src="/images/imageGraph/graph4.jpg"></p>
+<hr>
+<h2 id="深度优先搜索"><a href="#深度优先搜索" class="headerlink" title="深度优先搜索"></a>深度优先搜索</h2><h3 id="深度优先搜索介绍"><a href="#深度优先搜索介绍" class="headerlink" title="深度优先搜索介绍"></a>深度优先搜索介绍</h3><p>图的深度优先搜索(Depth First Search)，和树的先序遍历比较类似。</p>
+<p>它的思想：假设初始状态是图中所有顶点均未被访问，则从某个顶点v出发，首先访问该顶点，然后依次从它的各个未被访问的邻接点出发深度优先搜索遍历图，直至图中所有和v有路径相通的顶点都被访问到。 若此时尚有其他顶点未被访问到，则另选一个未被访问的顶点作起始点，重复上述过程，直至图中所有顶点都被访问到为止。</p>
+<p>显然，深度优先搜索是一个递归的过程。</p>
+<h3 id="深度优先搜索图解"><a href="#深度优先搜索图解" class="headerlink" title="深度优先搜索图解"></a>深度优先搜索图解</h3><h4 id="无向图的深度优先搜索"><a href="#无向图的深度优先搜索" class="headerlink" title="无向图的深度优先搜索"></a>无向图的深度优先搜索</h4><p>下面以”无向图”为例，来对深度优先搜索进行演示。</p>
+<p><img alt class="post-img b-lazy" data-img="/images/imageGraph/graph5.jpg" data-index="4" data-src="/images/imageGraph/graph5.jpg"></p>
+<p>对上面的图G1进行深度优先遍历，从顶点A开始。</p>
+<p><img alt class="post-img b-lazy" data-img="/images/imageGraph/graph6.jpg" data-index="5" data-src="/images/imageGraph/graph6.jpg"></p>
+<ul>
+<li>第1步：访问A。</li>
+<li><p>第2步：访问(A的邻接点)C。</p>
+<p> 在第1步访问A之后，接下来应该访问的是A的邻接点，即”C,D,F”中的一个。但在本文的实现中，顶点ABCDEFG是按照顺序存储，C在”D和F”的前面，因此，先访问C。 </p>
+</li>
+<li><p>第3步：访问(C的邻接点)B。</p>
+<p> 在第2步访问C之后，接下来应该访问C的邻接点，即”B和D”中一个(A已经被访问过，就不算在内)。而由于B在D之前，先访问B。 </p>
+</li>
+<li><p>第4步：访问(C的邻接点)D。</p>
+<p> 在第3步访问了C的邻接点B之后，B没有未被访问的邻接点；因此，返回到访问C的另一个邻接点D。 </p>
+</li>
+<li><p>第5步：访问(A的邻接点)F。</p>
+<p> 前面已经访问了A，并且访问完了”A的邻接点B的所有邻接点(包括递归的邻接点在内)”；因此，此时返回到访问A的另一个邻接点F。 </p>
+</li>
+<li><p>第6步：访问(F的邻接点)G。</p>
+</li>
+<li><p>第7步：访问(G的邻接点)E。</p>
+</li>
+</ul>
+<p>因此访问顺序是：A -&gt; C -&gt; B -&gt; D -&gt; F -&gt; G -&gt; E</p>
+<h4 id="有向图的深度优先搜索"><a href="#有向图的深度优先搜索" class="headerlink" title="有向图的深度优先搜索"></a>有向图的深度优先搜索</h4><p>下面以”有向图”为例，来对深度优先搜索进行演示。</p>
+<p><img alt class="post-img b-lazy" data-img="/images/imageGraph/graph7.jpg" data-index="6" data-src="/images/imageGraph/graph7.jpg"></p>
+<p>对上面的图G2进行深度优先遍历，从顶点A开始。</p>
+<p><img alt class="post-img b-lazy" data-img="/images/imageGraph/graph8.jpg" data-index="7" data-src="/images/imageGraph/graph8.jpg"></p>
+<ul>
+<li><p>第1步：访问A。</p>
+</li>
+<li><p>第2步：访问B。</p>
+<p> 在访问了A之后，接下来应该访问的是A的出边的另一个顶点，即顶点B。 </p>
+</li>
+<li><p>第3步：访问C。</p>
+<p> 在访问了B之后，接下来应该访问的是B的出边的另一个顶点，即顶点C,E,F。在本文实现的图中，顶点ABCDEFG按照顺序存储，因此先访问C。 </p>
+</li>
+<li><p>第4步：访问E。</p>
+<p> 接下来访问C的出边的另一个顶点，即顶点E。 </p>
+</li>
+<li><p>第5步：访问D。</p>
+<p> 接下来访问E的出边的另一个顶点，即顶点B,D。顶点B已经被访问过，因此访问顶点D。 </p>
+</li>
+<li><p>第6步：访问F。</p>
+<p> 接下应该回溯”访问A的出边的另一个顶点F”。 </p>
+</li>
+<li><p>第7步：访问G。</p>
+</li>
+</ul>
+<p>因此访问顺序是：A -&gt; B -&gt; C -&gt; E -&gt; D -&gt; F -&gt; G</p>
+<hr>
+<h2 id="广度优先搜索"><a href="#广度优先搜索" class="headerlink" title="广度优先搜索"></a>广度优先搜索</h2><h3 id="广度优先搜索介绍"><a href="#广度优先搜索介绍" class="headerlink" title="广度优先搜索介绍"></a>广度优先搜索介绍</h3><p>广度优先搜索算法(Breadth First Search)，又称为”宽度优先搜索”或”横向优先搜索”，简称BFS。</p>
+<p>它的思想是：从图中某顶点v出发，在访问了v之后依次访问v的各个未曾访问过的邻接点，然后分别从这些邻接点出发依次访问它们的邻接点，并使得“先被访问的顶点的邻接点先于后被访问的顶点的邻接点被访问，直至图中所有已被访问的顶点的邻接点都被访问到。如果此时图中尚有顶点未被访问，则需要另选一个未曾被访问过的顶点作为新的起始点，重复上述过程，直至图中所有顶点都被访问到为止。</p>
+<p>换句话说，广度优先搜索遍历图的过程是以v为起点，由近至远，依次访问和v有路径相通且路径长度为1,2…的顶点。</p>
+<h3 id="广度优先搜索图解"><a href="#广度优先搜索图解" class="headerlink" title="广度优先搜索图解"></a>广度优先搜索图解</h3><h4 id="无向图的广度优先搜索"><a href="#无向图的广度优先搜索" class="headerlink" title="无向图的广度优先搜索"></a>无向图的广度优先搜索</h4><p>下面以”无向图”为例，来对广度优先搜索进行演示。还是以上面的图G1为例进行说明。</p>
+<p><img alt class="post-img b-lazy" data-img="/images/imageGraph/graph9.jpg" data-index="8" data-src="/images/imageGraph/graph9.jpg"></p>
+<ul>
+<li>第1步：访问A。</li>
+<li><p>第2步：依次访问C,D,F。</p>
+<p> 在访问了A之后，接下来访问A的邻接点。前面已经说过，在本文实现中，顶点ABCDEFG按照顺序存储的，C在”D和F”的前面，因此，先访问C。再访问完C之后，再依次访问D,F。 </p>
+</li>
+<li><p>第3步：依次访问B,G。</p>
+<p> 在第2步访问完C,D,F之后，再依次访问它们的邻接点。首先访问C的邻接点B，再访问F的邻接点G。 </p>
+</li>
+<li><p>第4步：访问E。</p>
+<p> 在第3步访问完B,G之后，再依次访问它们的邻接点。只有G有邻接点E，因此访问G的邻接点E。</p>
+</li>
+</ul>
+<p>因此访问顺序是：A -&gt; C -&gt; D -&gt; F -&gt; B -&gt; G -&gt; E</p>
+<h4 id="有向图的广度优先搜索"><a href="#有向图的广度优先搜索" class="headerlink" title="有向图的广度优先搜索"></a>有向图的广度优先搜索</h4><p>下面以”有向图”为例，来对广度优先搜索进行演示。还是以上面的图G2为例进行说明。</p>
+<p><img alt class="post-img b-lazy" data-img="/images/imageGraph/graph10.jpg" data-index="9" data-src="/images/imageGraph/graph10.jpg"></p>
+<ul>
+<li><p>第1步：访问A。</p>
+</li>
+<li><p>第2步：访问B。</p>
+</li>
+<li><p>第3步：依次访问C,E,F。</p>
+<p>在访问了B之后，接下来访问B的出边的另一个顶点，即C,E,F。前面已经说过，在本文实现中，顶点ABCDEFG按照顺序存储的，因此会先访问C，再依次访问E,F。 </p>
+</li>
+<li><p>第4步：依次访问D,G。</p>
+<p> 在访问完C,E,F之后，再依次访问它们的出边的另一个顶点。还是按照C,E,F的顺序访问，C的已经全部访问过了，那么就只剩下E,F；先访问E的邻接点D，再访问F的邻接点G。</p>
+</li>
+</ul>
+<p>因此访问顺序是：A -&gt; B -&gt; C -&gt; E -&gt; F -&gt; D -&gt; G</p>
+<h2 id="搜索算法的源码"><a href="#搜索算法的源码" class="headerlink" title="搜索算法的源码"></a>搜索算法的源码</h2><details><summary>1. 邻接矩阵表示的”无向图</summary><br><br><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* C++: 邻接矩阵表示的"无向图(Matrix Undirected Graph)"</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">* @author LippiOuYang</span></span><br><span class="line"><span class="comment">* @date 2013/04/19</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iomanip&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX 100</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MatrixUDG</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">char</span> mVexs[MAX];    <span class="comment">// 顶点集合</span></span><br><span class="line">    <span class="keyword">int</span> mVexNum;             <span class="comment">// 顶点数</span></span><br><span class="line">    <span class="keyword">int</span> mEdgNum;             <span class="comment">// 边数</span></span><br><span class="line">    <span class="keyword">int</span> mMatrix[MAX][MAX];   <span class="comment">// 邻接矩阵</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 创建图(自己输入数据)</span></span><br><span class="line">    MatrixUDG();</span><br><span class="line">    <span class="comment">// 创建图(用已提供的矩阵)</span></span><br><span class="line">    MatrixUDG(<span class="keyword">char</span> vexs[], <span class="keyword">int</span> vlen, <span class="keyword">char</span> edges[][<span class="number">2</span>], <span class="keyword">int</span> elen);</span><br><span class="line">    ~MatrixUDG();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 深度优先搜索遍历图</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">DFS</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">// 广度优先搜索（类似于树的层次遍历）</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">BFS</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">// 打印矩阵队列图</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="comment">// 读取一个输入字符</span></span><br><span class="line">    <span class="function"><span class="keyword">char</span> <span class="title">readChar</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">// 返回ch在mMatrix矩阵中的位置</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getPosition</span><span class="params">(<span class="keyword">char</span> ch)</span></span>;</span><br><span class="line">    <span class="comment">// 返回顶点v的第一个邻接顶点的索引，失败则返回-1</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">firstVertex</span><span class="params">(<span class="keyword">int</span> v)</span></span>;</span><br><span class="line">    <span class="comment">// 返回顶点v相对于w的下一个邻接顶点的索引，失败则返回-1</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">nextVertex</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">int</span> w)</span></span>;</span><br><span class="line">    <span class="comment">// 深度优先搜索遍历图的递归实现</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">DFS</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> *visited)</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment"> * 创建图(自己输入数据)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">MatrixUDG::MatrixUDG()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">char</span> c1, c2;</span><br><span class="line">    <span class="keyword">int</span> i, p1, p2;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 输入"顶点数"和"边数"</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"input vertex number: "</span>;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; mVexNum;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"input edge number: "</span>;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; mEdgNum;</span><br><span class="line">    <span class="keyword">if</span> ( mVexNum &lt; <span class="number">1</span> || mEdgNum &lt; <span class="number">1</span> || (mEdgNum &gt; (mVexNum * (mVexNum<span class="number">-1</span>))))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"input error: invalid parameters!"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化"顶点"</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; mVexNum; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"vertex("</span> &lt;&lt; i &lt;&lt; <span class="string">"): "</span>;</span><br><span class="line">        mVexs[i] = readChar();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化"边"</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; mEdgNum; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 读取边的起始顶点和结束顶点</span></span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"edge("</span> &lt;&lt; i &lt;&lt; <span class="string">"): "</span>;</span><br><span class="line">        c1 = readChar();</span><br><span class="line">        c2 = readChar();</span><br><span class="line"></span><br><span class="line">        p1 = getPosition(c1);</span><br><span class="line">        p2 = getPosition(c2);</span><br><span class="line">        <span class="keyword">if</span> (p1==<span class="number">-1</span> || p2==<span class="number">-1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="string">"input error: invalid edge!"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">            <span class="keyword">return</span> ;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        mMatrix[p1][p2] = <span class="number">1</span>;</span><br><span class="line">        mMatrix[p2][p1] = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 创建图(用已提供的矩阵)</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 参数说明：</span></span><br><span class="line"><span class="comment"> *     vexs  -- 顶点数组</span></span><br><span class="line"><span class="comment"> *     vlen  -- 顶点数组的长度</span></span><br><span class="line"><span class="comment"> *     edges -- 边数组</span></span><br><span class="line"><span class="comment"> *     elen  -- 边数组的长度</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">MatrixUDG::MatrixUDG(<span class="keyword">char</span> vexs[], <span class="keyword">int</span> vlen, <span class="keyword">char</span> edges[][<span class="number">2</span>], <span class="keyword">int</span> elen)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> i, p1, p2;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化"顶点数"和"边数"</span></span><br><span class="line">    mVexNum = vlen;</span><br><span class="line">    mEdgNum = elen;</span><br><span class="line">    <span class="comment">// 初始化"顶点"</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; mVexNum; i++)</span><br><span class="line">        mVexs[i] = vexs[i];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化"边"</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; mEdgNum; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 读取边的起始顶点和结束顶点</span></span><br><span class="line">        p1 = getPosition(edges[i][<span class="number">0</span>]);</span><br><span class="line">        p2 = getPosition(edges[i][<span class="number">1</span>]);</span><br><span class="line"></span><br><span class="line">        mMatrix[p1][p2] = <span class="number">1</span>;</span><br><span class="line">        mMatrix[p2][p1] = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment"> * 析构函数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">MatrixUDG::~MatrixUDG() </span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 返回ch在mMatrix矩阵中的位置</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">int</span> MatrixUDG::getPosition(<span class="keyword">char</span> ch)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;mVexNum; i++)</span><br><span class="line">        <span class="keyword">if</span>(mVexs[i]==ch)</span><br><span class="line">            <span class="keyword">return</span> i;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 读取一个输入字符</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">char</span> MatrixUDG::readChar()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">char</span> ch;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; ch;</span><br><span class="line">    &#125; <span class="keyword">while</span>(!((ch&gt;=<span class="string">'a'</span>&amp;&amp;ch&lt;=<span class="string">'z'</span>) || (ch&gt;=<span class="string">'A'</span>&amp;&amp;ch&lt;=<span class="string">'Z'</span>)));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ch;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* 返回顶点v的第一个邻接顶点的索引，失败则返回-1</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">int</span> MatrixUDG::firstVertex(<span class="keyword">int</span> v)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">if</span> (v&lt;<span class="number">0</span> || v&gt;(mVexNum<span class="number">-1</span>))</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; mVexNum; i++)</span><br><span class="line">        <span class="keyword">if</span> (mMatrix[v][i] == <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> i;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* 返回顶点v相对于w的下一个邻接顶点的索引，失败则返回-1</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">int</span> MatrixUDG::nextVertex(<span class="keyword">int</span> v, <span class="keyword">int</span> w)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">if</span> (v&lt;<span class="number">0</span> || v&gt;(mVexNum<span class="number">-1</span>) || w&lt;<span class="number">0</span> || w&gt;(mVexNum<span class="number">-1</span>))</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = w + <span class="number">1</span>; i &lt; mVexNum; i++)</span><br><span class="line">        <span class="keyword">if</span> (mMatrix[v][i] == <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> i;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 深度优先搜索遍历图的递归实现</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">void</span> MatrixUDG::DFS(<span class="keyword">int</span> i, <span class="keyword">int</span> *visited)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> w;</span><br><span class="line">    visited[i] = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; mVexs[i] &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">    <span class="comment">// 遍历该顶点的所有邻接顶点。若是没有访问过，那么继续往下走</span></span><br><span class="line">    <span class="keyword">for</span> (w = firstVertex(i); w &gt;= <span class="number">0</span>; w = nextVertex(i, w)) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!visited[w])</span><br><span class="line">            DFS(w, visited);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 深度优先搜索遍历图</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">void</span> MatrixUDG::DFS()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">int</span> visited[MAX];       <span class="comment">// 顶点访问标记</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化所有顶点都没有被访问</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; mVexNum; i++)</span><br><span class="line">        visited[i] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"DFS: "</span>;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; mVexNum; i++) &#123;</span><br><span class="line">        <span class="comment">//printf("\n== LOOP(%d)\n", i);</span></span><br><span class="line">        <span class="keyword">if</span> (!visited[i])</span><br><span class="line">            DFS(i, visited);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 广度优先搜索（类似于树的层次遍历）</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">void</span> MatrixUDG::BFS()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> head = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> rear = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> <span class="built_in">queue</span>[MAX];     <span class="comment">// 辅组队列</span></span><br><span class="line">    <span class="keyword">int</span> visited[MAX];   <span class="comment">// 顶点访问标记</span></span><br><span class="line">    <span class="keyword">int</span> i, j, k;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; mVexNum; i++)</span><br><span class="line">        visited[i] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"BFS: "</span>;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; mVexNum; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!visited[i]) &#123;</span><br><span class="line">            visited[i] = <span class="number">1</span>;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; mVexs[i] &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">            <span class="built_in">queue</span>[rear++] = i;  <span class="comment">// 入队列</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (head != rear)  &#123;</span><br><span class="line">            j = <span class="built_in">queue</span>[head++];  <span class="comment">// 出队列</span></span><br><span class="line">            <span class="keyword">for</span> (k = firstVertex(j); k &gt;= <span class="number">0</span>; k = nextVertex(j, k)) &#123; <span class="comment">//k是为访问的邻接顶点</span></span><br><span class="line">                <span class="keyword">if</span> (!visited[k]) &#123;</span><br><span class="line">                    visited[k] = <span class="number">1</span>;</span><br><span class="line">                    <span class="built_in">cout</span> &lt;&lt; mVexs[k] &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">                    <span class="built_in">queue</span>[rear++] = k;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 打印矩阵队列图</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">void</span> MatrixUDG::print()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Martix Graph:"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; mVexNum; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; mVexNum; j++)</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; mMatrix[i][j] &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> vexs[] = &#123;<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>, <span class="string">'D'</span>, <span class="string">'E'</span>, <span class="string">'F'</span>, <span class="string">'G'</span>&#125;;</span><br><span class="line">    <span class="keyword">char</span> edges[][<span class="number">2</span>] = &#123;</span><br><span class="line">        &#123;<span class="string">'A'</span>, <span class="string">'C'</span>&#125;, </span><br><span class="line">        &#123;<span class="string">'A'</span>, <span class="string">'D'</span>&#125;, </span><br><span class="line">        &#123;<span class="string">'A'</span>, <span class="string">'F'</span>&#125;, </span><br><span class="line">        &#123;<span class="string">'B'</span>, <span class="string">'C'</span>&#125;, </span><br><span class="line">        &#123;<span class="string">'C'</span>, <span class="string">'D'</span>&#125;, </span><br><span class="line">        &#123;<span class="string">'E'</span>, <span class="string">'G'</span>&#125;, </span><br><span class="line">        &#123;<span class="string">'F'</span>, <span class="string">'G'</span>&#125;&#125;;</span><br><span class="line">    <span class="keyword">int</span> vlen = <span class="keyword">sizeof</span>(vexs)/<span class="keyword">sizeof</span>(vexs[<span class="number">0</span>]);</span><br><span class="line">    <span class="keyword">int</span> elen = <span class="keyword">sizeof</span>(edges)/<span class="keyword">sizeof</span>(edges[<span class="number">0</span>]);</span><br><span class="line">    MatrixUDG* pG;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 自定义"图"(输入矩阵队列)</span></span><br><span class="line">    <span class="comment">// pG = new MatrixUDG();</span></span><br><span class="line">    <span class="comment">// 采用已有的"图"</span></span><br><span class="line">    pG = <span class="keyword">new</span> MatrixUDG(vexs, vlen, edges, elen);</span><br><span class="line">    pG-&gt;print();   <span class="comment">// 打印图</span></span><br><span class="line">    pG-&gt;DFS();     <span class="comment">// 深度优先遍历</span></span><br><span class="line">    pG-&gt;BFS();     <span class="comment">// 广度优先遍历</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br> </details>
+
+<details><summary>2. 邻接表表示的”无向图</summary><br><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * C++: 邻接表表示的"无向图(List Undirected Graph)"</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * @author LippiOuYang</span></span><br><span class="line"><span class="comment"> * @date 2013/04/19</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iomanip&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX 100</span></span><br><span class="line"><span class="comment">// 邻接表</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ListUDG</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">private</span>: <span class="comment">// 内部类</span></span><br><span class="line">    <span class="comment">// 邻接表中表对应的链表的顶点</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">ENode</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        <span class="keyword">public</span>:</span><br><span class="line">        <span class="keyword">int</span> ivex;           <span class="comment">// 该边所指向的顶点的位置</span></span><br><span class="line">        ENode *nextEdge;    <span class="comment">// 指向下一条弧的指针</span></span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 邻接表中表的顶点</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">VNode</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        <span class="keyword">public</span>:</span><br><span class="line">        <span class="keyword">char</span> data;          <span class="comment">// 顶点信息</span></span><br><span class="line">        ENode *firstEdge;   <span class="comment">// 指向第一条依附该顶点的弧</span></span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>: <span class="comment">// 私有成员</span></span><br><span class="line">    <span class="keyword">int</span> mVexNum;             <span class="comment">// 图的顶点的数目</span></span><br><span class="line">    <span class="keyword">int</span> mEdgNum;             <span class="comment">// 图的边的数目</span></span><br><span class="line">    VNode mVexs[MAX];</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 创建邻接表对应的图(自己输入)</span></span><br><span class="line">    ListUDG();</span><br><span class="line">    <span class="comment">// 创建邻接表对应的图(用已提供的数据)</span></span><br><span class="line">    ListUDG(<span class="keyword">char</span> vexs[], <span class="keyword">int</span> vlen, <span class="keyword">char</span> edges[][<span class="number">2</span>], <span class="keyword">int</span> elen);</span><br><span class="line">    ~ListUDG();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 深度优先搜索遍历图</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">DFS</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">// 广度优先搜索（类似于树的层次遍历）</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">BFS</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">// 打印邻接表图</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="comment">// 读取一个输入字符</span></span><br><span class="line">    <span class="function"><span class="keyword">char</span> <span class="title">readChar</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">// 返回ch的位置</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getPosition</span><span class="params">(<span class="keyword">char</span> ch)</span></span>;</span><br><span class="line">    <span class="comment">// 深度优先搜索遍历图的递归实现</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">DFS</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> *visited)</span></span>;</span><br><span class="line">    <span class="comment">// 将node节点链接到list的最后</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">linkLast</span><span class="params">(ENode *<span class="built_in">list</span>, ENode *node)</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 创建邻接表对应的图(自己输入)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">ListUDG::ListUDG()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">char</span> c1, c2;</span><br><span class="line">    <span class="keyword">int</span> v, e;</span><br><span class="line">    <span class="keyword">int</span> i, p1, p2;</span><br><span class="line">    ENode *node1, *node2;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 输入"顶点数"和"边数"</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"input vertex number: "</span>;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; mVexNum;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"input edge number: "</span>;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; mEdgNum;</span><br><span class="line">    <span class="keyword">if</span> ( mVexNum &lt; <span class="number">1</span> || mEdgNum &lt; <span class="number">1</span> || (mEdgNum &gt; (mVexNum * (mVexNum<span class="number">-1</span>))))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"input error: invalid parameters!"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化"邻接表"的顶点</span></span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;mVexNum; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"vertex("</span> &lt;&lt; i &lt;&lt; <span class="string">"): "</span>;</span><br><span class="line">        mVexs[i].data = readChar();</span><br><span class="line">        mVexs[i].firstEdge = <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化"邻接表"的边</span></span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;mEdgNum; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 读取边的起始顶点和结束顶点</span></span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"edge("</span> &lt;&lt; i &lt;&lt; <span class="string">"): "</span>;</span><br><span class="line">        c1 = readChar();</span><br><span class="line">        c2 = readChar();</span><br><span class="line"></span><br><span class="line">        p1 = getPosition(c1);</span><br><span class="line">        p2 = getPosition(c2);</span><br><span class="line">        <span class="comment">// 初始化node1</span></span><br><span class="line">        node1 = <span class="keyword">new</span> ENode();</span><br><span class="line">        node1-&gt;ivex = p2;</span><br><span class="line">        <span class="comment">// 将node1链接到"p1所在链表的末尾"</span></span><br><span class="line">        <span class="keyword">if</span>(mVexs[p1].firstEdge == <span class="literal">NULL</span>)</span><br><span class="line">            mVexs[p1].firstEdge = node1;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            linkLast(mVexs[p1].firstEdge, node1);</span><br><span class="line">        <span class="comment">// 初始化node2</span></span><br><span class="line">        node2 = <span class="keyword">new</span> ENode();</span><br><span class="line">        node2-&gt;ivex = p1;</span><br><span class="line">        <span class="comment">// 将node2链接到"p2所在链表的末尾"</span></span><br><span class="line">        <span class="keyword">if</span>(mVexs[p2].firstEdge == <span class="literal">NULL</span>)</span><br><span class="line">            mVexs[p2].firstEdge = node2;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            linkLast(mVexs[p2].firstEdge, node2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 创建邻接表对应的图(用已提供的数据)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">ListUDG::ListUDG(<span class="keyword">char</span> vexs[], <span class="keyword">int</span> vlen, <span class="keyword">char</span> edges[][<span class="number">2</span>], <span class="keyword">int</span> elen)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">char</span> c1, c2;</span><br><span class="line">    <span class="keyword">int</span> i, p1, p2;</span><br><span class="line">    ENode *node1, *node2;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化"顶点数"和"边数"</span></span><br><span class="line">    mVexNum = vlen;</span><br><span class="line">    mEdgNum = elen;</span><br><span class="line">    <span class="comment">// 初始化"邻接表"的顶点</span></span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;mVexNum; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        mVexs[i].data = vexs[i];</span><br><span class="line">        mVexs[i].firstEdge = <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化"邻接表"的边</span></span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;mEdgNum; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 读取边的起始顶点和结束顶点</span></span><br><span class="line">        c1 = edges[i][<span class="number">0</span>];</span><br><span class="line">        c2 = edges[i][<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">        p1 = getPosition(c1);</span><br><span class="line">        p2 = getPosition(c2);</span><br><span class="line">        <span class="comment">// 初始化node1</span></span><br><span class="line">        node1 = <span class="keyword">new</span> ENode();</span><br><span class="line">        node1-&gt;ivex = p2;</span><br><span class="line">        <span class="comment">// 将node1链接到"p1所在链表的末尾"</span></span><br><span class="line">        <span class="keyword">if</span>(mVexs[p1].firstEdge == <span class="literal">NULL</span>)</span><br><span class="line">            mVexs[p1].firstEdge = node1;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            linkLast(mVexs[p1].firstEdge, node1);</span><br><span class="line">        <span class="comment">// 初始化node2</span></span><br><span class="line">        node2 = <span class="keyword">new</span> ENode();</span><br><span class="line">        node2-&gt;ivex = p1;</span><br><span class="line">        <span class="comment">// 将node2链接到"p2所在链表的末尾"</span></span><br><span class="line">        <span class="keyword">if</span>(mVexs[p2].firstEdge == <span class="literal">NULL</span>)</span><br><span class="line">            mVexs[p2].firstEdge = node2;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            linkLast(mVexs[p2].firstEdge, node2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment"> * 析构函数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">ListUDG::~ListUDG() </span><br><span class="line">&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 将node节点链接到list的最后</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">void</span> ListUDG::linkLast(ENode *<span class="built_in">list</span>, ENode *node)</span><br><span class="line">&#123;</span><br><span class="line">    ENode *p = <span class="built_in">list</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(p-&gt;nextEdge)</span><br><span class="line">        p = p-&gt;nextEdge;</span><br><span class="line">    p-&gt;nextEdge = node;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 返回ch的位置</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">int</span> ListUDG::getPosition(<span class="keyword">char</span> ch)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;mVexNum; i++)</span><br><span class="line">        <span class="keyword">if</span>(mVexs[i].data==ch)</span><br><span class="line">            <span class="keyword">return</span> i;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 读取一个输入字符</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">char</span> ListUDG::readChar()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">char</span> ch;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; ch;</span><br><span class="line">    &#125; <span class="keyword">while</span>(!((ch&gt;=<span class="string">'a'</span>&amp;&amp;ch&lt;=<span class="string">'z'</span>) || (ch&gt;=<span class="string">'A'</span>&amp;&amp;ch&lt;=<span class="string">'Z'</span>)));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ch;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 深度优先搜索遍历图的递归实现</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">void</span> ListUDG::DFS(<span class="keyword">int</span> i, <span class="keyword">int</span> *visited)</span><br><span class="line">&#123;</span><br><span class="line">    ENode *node;</span><br><span class="line"></span><br><span class="line">    visited[i] = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; mVexs[i].data &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">    node = mVexs[i].firstEdge;</span><br><span class="line">    <span class="keyword">while</span> (node != <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (!visited[node-&gt;ivex])</span><br><span class="line">            DFS(node-&gt;ivex, visited);</span><br><span class="line">        node = node-&gt;nextEdge;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 深度优先搜索遍历图</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">void</span> ListUDG::DFS()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">int</span> visited[MAX];       <span class="comment">// 顶点访问标记</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化所有顶点都没有被访问</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; mVexNum; i++)</span><br><span class="line">        visited[i] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"DFS: "</span>;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; mVexNum; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (!visited[i])</span><br><span class="line">            DFS(i, visited);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line">   </span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 广度优先搜索（类似于树的层次遍历）</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">void</span> ListUDG::BFS()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> head = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> rear = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> <span class="built_in">queue</span>[MAX];     <span class="comment">// 辅组队列</span></span><br><span class="line">    <span class="keyword">int</span> visited[MAX];   <span class="comment">// 顶点访问标记</span></span><br><span class="line">    <span class="keyword">int</span> i, j, k;</span><br><span class="line">    ENode *node;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; mVexNum; i++)</span><br><span class="line">        visited[i] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"BFS: "</span>;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; mVexNum; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (!visited[i])</span><br><span class="line">        &#123;</span><br><span class="line">            visited[i] = <span class="number">1</span>;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; mVexs[i].data &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">            <span class="built_in">queue</span>[rear++] = i;  <span class="comment">// 入队列</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (head != rear) </span><br><span class="line">        &#123;</span><br><span class="line">            j = <span class="built_in">queue</span>[head++];  <span class="comment">// 出队列</span></span><br><span class="line">            node = mVexs[j].firstEdge;</span><br><span class="line">            <span class="keyword">while</span> (node != <span class="literal">NULL</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                k = node-&gt;ivex;</span><br><span class="line">                <span class="keyword">if</span> (!visited[k])</span><br><span class="line">                &#123;</span><br><span class="line">                    visited[k] = <span class="number">1</span>;</span><br><span class="line">                    <span class="built_in">cout</span> &lt;&lt; mVexs[k].data &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">                    <span class="built_in">queue</span>[rear++] = k;</span><br><span class="line">                &#125;</span><br><span class="line">                node = node-&gt;nextEdge;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * 打印邻接表图</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">void</span> ListUDG::print()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j;</span><br><span class="line">    ENode *node;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"List Graph:"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; mVexNum; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="string">"("</span> &lt;&lt; mVexs[i].data &lt;&lt; <span class="string">"): "</span>;</span><br><span class="line">        node = mVexs[i].firstEdge;</span><br><span class="line">        <span class="keyword">while</span> (node != <span class="literal">NULL</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; node-&gt;ivex &lt;&lt; <span class="string">"("</span> &lt;&lt; mVexs[node-&gt;ivex].data &lt;&lt; <span class="string">") "</span>;</span><br><span class="line">            node = node-&gt;nextEdge;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> vexs[] = &#123;<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>, <span class="string">'D'</span>, <span class="string">'E'</span>, <span class="string">'F'</span>, <span class="string">'G'</span>&#125;;</span><br><span class="line">    <span class="keyword">char</span> edges[][<span class="number">2</span>] = &#123;</span><br><span class="line">        &#123;<span class="string">'A'</span>, <span class="string">'C'</span>&#125;, </span><br><span class="line">        &#123;<span class="string">'A'</span>, <span class="string">'D'</span>&#125;, </span><br><span class="line">        &#123;<span class="string">'A'</span>, <span class="string">'F'</span>&#125;, </span><br><span class="line">        &#123;<span class="string">'B'</span>, <span class="string">'C'</span>&#125;, </span><br><span class="line">        &#123;<span class="string">'C'</span>, <span class="string">'D'</span>&#125;, </span><br><span class="line">        &#123;<span class="string">'E'</span>, <span class="string">'G'</span>&#125;, </span><br><span class="line">        &#123;<span class="string">'F'</span>, <span class="string">'G'</span>&#125;&#125;;</span><br><span class="line">    <span class="keyword">int</span> vlen = <span class="keyword">sizeof</span>(vexs)/<span class="keyword">sizeof</span>(vexs[<span class="number">0</span>]);</span><br><span class="line">    <span class="keyword">int</span> elen = <span class="keyword">sizeof</span>(edges)/<span class="keyword">sizeof</span>(edges[<span class="number">0</span>]);</span><br><span class="line">    ListUDG* pG;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 自定义"图"(输入矩阵队列)</span></span><br><span class="line">    <span class="comment">//pG = new ListUDG();</span></span><br><span class="line">    <span class="comment">// 采用已有的"图"</span></span><br><span class="line">    pG = <span class="keyword">new</span> ListUDG(vexs, vlen, edges, elen);</span><br><span class="line"></span><br><span class="line">    pG-&gt;print();   <span class="comment">// 打印图</span></span><br><span class="line">    pG-&gt;DFS();     <span class="comment">// 深度优先遍历</span></span><br><span class="line">    pG-&gt;BFS();     <span class="comment">// 广度优先遍历</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br></details>
+
+<hr>
+<h2 id="迪杰斯特拉算法"><a href="#迪杰斯特拉算法" class="headerlink" title="迪杰斯特拉算法"></a>迪杰斯特拉算法</h2><p>迪杰斯特拉(Dijkstra)算法是典型最短路径算法，用于计算一个节点到其他节点的最短路径。<br>它的主要特点是以起始点为中心向外层层扩展(广度优先搜索思想)，直到扩展到终点为止。</p>
+<h3 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h3><p>通过Dijkstra计算图G中的最短路径时，需要指定起点s(即从顶点s开始计算)。</p>
+<p>此外，引进两个集合S和U。S的作用是记录已求出最短路径的顶点(以及相应的最短路径长度)，而U则是记录还未求出最短路径的顶点(以及该顶点到起点s的距离)。</p>
+<p>初始时，S中只有起点s；U中是除s之外的顶点，并且U中顶点的路径是”起点s到该顶点的路径”。然后，从U中找出路径最短的顶点，并将其加入到S中；接着，更新U中的顶点和顶点对应的路径。 然后，再从U中找出路径最短的顶点，并将其加入到S中；接着，更新U中的顶点和顶点对应的路径。 … 重复该操作，直到遍历完所有顶点。</p>
+<h3 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h3><ul>
+<li><p>(1)</p>
+<p>初始时，S只包含起点s；U包含除s外的其他顶点，且U中顶点的距离为”起点s到该顶点的距离”[例如，U中顶点v的距离为(s,v)的长度，然后s和v不相邻，则v的距离为∞]。</p>
+</li>
+<li><p>(2) 从U中选出”距离最短的顶点k”，并将顶点k加入到S中；同时，从U中移除顶点k。</p>
+</li>
+<li><p>(3)</p>
+<p>更新U中各个顶点到起点s的距离。之所以更新U中顶点的距离，是由于上一步中确定了k是求出最短路径的顶点，从而可以利用k来更新其它顶点的距离；例如，(s,v)的距离可能大于(s,k)+(k,v)的距离。</p>
+</li>
+<li><p>(4) 重复步骤(2)和(3)，直到遍历完所有顶点。</p>
+</li>
+</ul>
+<p>单纯的看上面的理论可能比较难以理解，下面通过实例来对该算法进行说明。</p>
+<p>5.3迪杰斯特拉算法图解</p>
+<p><img alt class="post-img b-lazy" data-img="/images/imageGraph/graph11.jpg" data-index="10" data-src="/images/imageGraph/graph11.jpg"></p>
+<p>以上图G4为例，来对迪杰斯特拉进行算法演示(以第4个顶点D为起点)。</p>
+<p><img alt class="post-img b-lazy" data-img="/images/imageGraph/graph12.jpg" data-index="11" data-src="/images/imageGraph/graph12.jpg"></p>
+<ul>
+<li><p>初始状态：S是已计算出最短路径的顶点集合，U是未计算除最短路径的顶点的集合！</p>
+</li>
+<li><p>第1步：将顶点D加入到S中。</p>
+<p> 此时，S={D(0)}, U={A(∞),B(∞),C(3),E(4),F(∞),G(∞)}。     注:C(3)表示C到起点D的距离是3。</p>
+</li>
+<li><p>第2步：将顶点C加入到S中。</p>
+<p> 上一步操作之后，U中顶点C到起点D的距离最短；因此，将C加入到S中，同时更新U中顶点的距离。以顶点F为例，之前F到D的距离为∞；但是将C加入到S之后，F到D的距离为9=(F,C)+(C,D)。<br> 此时，S={D(0),C(3)}, U={A(∞),B(23),E(4),F(9),G(∞)}。</p>
+</li>
+<li><p>第3步：将顶点E加入到S中。</p>
+<p> 上一步操作之后，U中顶点E到起点D的距离最短；因此，将E加入到S中，同时更新U中顶点的距离。还是以顶点F为例，之前F到D的距离为9；但是将E加入到S之后，F到D的距离为6=(F,E)+(E,D)。 </p>
+<p> 此时，S={D(0),C(3),E(4)}, U={A(∞),B(23),F(6),G(12)}。</p>
+</li>
+<li><p>第4步：将顶点F加入到S中。</p>
+<p> 此时，S={D(0),C(3),E(4),F(6)}, U={A(22),B(13),G(12)}。</p>
+</li>
+<li><p>第5步：将顶点G加入到S中。</p>
+<p> 此时，S={D(0),C(3),E(4),F(6),G(12)}, U={A(22),B(13)}。</p>
+</li>
+<li><p>第6步：将顶点B加入到S中。</p>
+<p> 此时，S={D(0),C(3),E(4),F(6),G(12),B(13)}, U={A(22)}。</p>
+</li>
+<li><p>第7步：将顶点A加入到S中。</p>
+<p> 此时，S={D(0),C(3),E(4),F(6),G(12),B(13),A(22)}。</p>
+</li>
+</ul>
+<p>此时，起点D到各个顶点的最短距离就计算出来了：A(22) B(13) C(3) D(0) E(4) F(6) G(12)。</p>
+<hr>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>本文以”邻接矩阵”为例对迪杰斯特拉算法进行说明，</p>
+<h4 id="基本定义"><a href="#基本定义" class="headerlink" title="基本定义"></a>基本定义</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 邻接矩阵</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">graph</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">char</span> vexs[MAX];       <span class="comment">// 顶点集合</span></span><br><span class="line">    <span class="keyword">int</span> vexnum;           <span class="comment">// 顶点数</span></span><br><span class="line">    <span class="keyword">int</span> edgnum;           <span class="comment">// 边数</span></span><br><span class="line">    <span class="keyword">int</span> matrix[MAX][MAX]; <span class="comment">// 邻接矩阵</span></span><br><span class="line">&#125;Graph, *PGraph;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 边的结构体</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">EdgeData</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">char</span> start; <span class="comment">// 边的起点</span></span><br><span class="line">    <span class="keyword">char</span> end;   <span class="comment">// 边的终点</span></span><br><span class="line">    <span class="keyword">int</span> weight; <span class="comment">// 边的权重</span></span><br><span class="line">&#125;EData;</span><br></pre></td></tr></table></figure>
+<p>Graph是邻接矩阵对应的结构体。 </p>
+<p>vexs用于保存顶点，vexnum是顶点数，edgnum是边数；matrix则是用于保存矩阵信息的二维数组。例如，matrix[i][j]=1，则表示”顶点i(即vexs[i])”和”顶点j(即vexs[j])”是邻接点；matrix[i][j]=0，则表示它们不是邻接点。 </p>
+<p>EData是邻接矩阵边对应的结构体。</p>
+<h4 id="迪杰斯特拉算法-1"><a href="#迪杰斯特拉算法-1" class="headerlink" title="迪杰斯特拉算法"></a>迪杰斯特拉算法</h4><details><summary>代码：</summary><br><br><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * Dijkstra最短路径。</span></span><br><span class="line"><span class="comment"> * 即，统计图(G)中"顶点vs"到其它各个顶点的最短路径。</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * 参数说明：</span></span><br><span class="line"><span class="comment"> *     G -- 图</span></span><br><span class="line"><span class="comment"> *     vs -- 起始顶点(start vertex)。即计算"顶点vs"到其它顶点的最短路径。</span></span><br><span class="line"><span class="comment"> *     prev -- 前驱顶点数组。即，prev[i]的值是"顶点vs"到"顶点i"的最短路径所经历的全部顶点中，位于"顶点i"之前的那个顶点。</span></span><br><span class="line"><span class="comment"> *     dist -- 长度数组。即，dist[i]是"顶点vs"到"顶点i"的最短路径的长度。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dijkstra</span><span class="params">(Graph G, <span class="keyword">int</span> vs, <span class="keyword">int</span> prev[], <span class="keyword">int</span> dist[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j,k;</span><br><span class="line">    <span class="keyword">int</span> min;</span><br><span class="line">    <span class="keyword">int</span> tmp;</span><br><span class="line">    <span class="keyword">int</span> flag[MAX];      <span class="comment">// flag[i]=1表示"顶点vs"到"顶点i"的最短路径已成功获取。</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; G.vexnum; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        flag[i] = <span class="number">0</span>;              <span class="comment">// 顶点i的最短路径还没获取到。</span></span><br><span class="line">        prev[i] = <span class="number">0</span>;              <span class="comment">// 顶点i的前驱顶点为0。</span></span><br><span class="line">        dist[i] = G.matrix[vs][i];<span class="comment">// 顶点i的最短路径为"顶点vs"到"顶点i"的权。</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 对"顶点vs"自身进行</span></span><br><span class="line">    <span class="comment">// 初始化</span></span><br><span class="line">    flag[vs] = <span class="number">1</span>;</span><br><span class="line">    dist[vs] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 遍历G.vexnum-1次；每次找出一个顶点的最短路径。</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt; G.vexnum; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// 寻找当前最小的路径；</span></span><br><span class="line">        <span class="comment">// 即，在未获取最短路径的顶点中，找到离vs最近的顶点(k)。</span></span><br><span class="line">        min = INF;</span><br><span class="line">        <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; G.vexnum; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (flag[j]==<span class="number">0</span> &amp;&amp; dist[j]&lt;min)</span><br><span class="line">            &#123;</span><br><span class="line">                min = dist[j];</span><br><span class="line">                k = j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 标记"顶点k"为已经获取到最短路径</span></span><br><span class="line">        flag[k] = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 修正当前最短路径和前驱顶点</span></span><br><span class="line">        <span class="comment">// 即，当已经"顶点k的最短路径"之后，更新"未获取最短路径的顶点的最短路径和前驱顶点"。</span></span><br><span class="line">        <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; G.vexnum; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            tmp = (G.matrix[k][j]==INF ? INF : (min + G.matrix[k][j])); <span class="comment">// 防止溢出</span></span><br><span class="line">            <span class="keyword">if</span> (flag[j] == <span class="number">0</span> &amp;&amp; (tmp  &lt; dist[j]) )</span><br><span class="line">            &#123;</span><br><span class="line">                dist[j] = tmp;</span><br><span class="line">                prev[j] = k;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 打印dijkstra最短路径的结果</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"dijkstra(%c): \n"</span>, G.vexs[vs]);</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; G.vexnum; i++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"  shortest(%c, %c)=%d\n"</span>, G.vexs[vs], G.vexs[i], dist[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><br></details>
+
+
+                </article>
+                <ul class="tags-postTags">
+                    
+                    <li>
+                        <a href="/tags/algorithm/" rel="tag"># algorithm</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    
+    <nav id="gobottom" class="pagination">
+        
+        <a class="prev-post" title="网络传输基础" href="/2018-03-16/reference/web-transmission-basis/">
+            ← 网络传输基础
+        </a>
+        
+        <span class="prev-next-post">·</span>
+        
+        <a class="next-post" title="Git操作手册|命令速查表" href="/2018-02-27/reference/Git/git-guide/">
+            Git操作手册|命令速查表 →
+        </a>
+        
+    </nav>
+
+    
+    <div class="inner">
+        <div id="comment"></div>
+    </div>
+    
+</div>
+
+<div class="toc-bar">
+    <div class="toc-btn-bar">
+        <a href="#site-main" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M793.024 710.272a32 32 0 1 0 45.952-44.544l-310.304-320a32 32 0 0 0-46.4 0.48l-297.696 320a32 32 0 0 0 46.848 43.584l274.752-295.328 286.848 295.808z"/></svg>
+        </a>
+        <div class="toc-btn toc-switch">
+            <svg class="toc-open" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M779.776 480h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M779.776 672h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M256 288a32 32 0 1 0 0 64 32 32 0 0 0 0-64M392.576 352h387.2a32 32 0 0 0 0-64h-387.2a32 32 0 0 0 0 64M256 480a32 32 0 1 0 0 64 32 32 0 0 0 0-64M256 672a32 32 0 1 0 0 64 32 32 0 0 0 0-64"/></svg>
+            <svg class="toc-close hide" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M512 960c-247.039484 0-448-200.960516-448-448S264.960516 64 512 64 960 264.960516 960 512 759.039484 960 512 960zM512 128.287273c-211.584464 0-383.712727 172.128262-383.712727 383.712727 0 211.551781 172.128262 383.712727 383.712727 383.712727 211.551781 0 383.712727-172.159226 383.712727-383.712727C895.712727 300.415536 723.551781 128.287273 512 128.287273z"/><path d="M557.05545 513.376159l138.367639-136.864185c12.576374-12.416396 12.672705-32.671738 0.25631-45.248112s-32.704421-12.672705-45.248112-0.25631l-138.560301 137.024163-136.447897-136.864185c-12.512727-12.512727-32.735385-12.576374-45.248112-0.063647-12.512727 12.480043-12.54369 32.735385-0.063647 45.248112l136.255235 136.671523-137.376804 135.904314c-12.576374 12.447359-12.672705 32.671738-0.25631 45.248112 6.271845 6.335493 14.496116 9.504099 22.751351 9.504099 8.12794 0 16.25588-3.103239 22.496761-9.247789l137.567746-136.064292 138.687596 139.136568c6.240882 6.271845 14.432469 9.407768 22.65674 9.407768 8.191587 0 16.352211-3.135923 22.591372-9.34412 12.512727-12.480043 12.54369-32.704421 0.063647-45.248112L557.05545 513.376159z"/></svg>
+        </div>
+        <a href="#gobottom" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M231.424 346.208a32 32 0 0 0-46.848 43.584l297.696 320a32 32 0 0 0 46.4 0.48l310.304-320a32 32 0 1 0-45.952-44.544l-286.848 295.808-274.752-295.36z"/></svg>
+        </a>
+    </div>
+    <div class="toc-main">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#图的定义："><span class="toc-text">图的定义：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#邻接矩阵："><span class="toc-text">邻接矩阵：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#邻接表的表示"><span class="toc-text">邻接表的表示</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#深度优先搜索"><span class="toc-text">深度优先搜索</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#深度优先搜索介绍"><span class="toc-text">深度优先搜索介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#深度优先搜索图解"><span class="toc-text">深度优先搜索图解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#无向图的深度优先搜索"><span class="toc-text">无向图的深度优先搜索</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#有向图的深度优先搜索"><span class="toc-text">有向图的深度优先搜索</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#广度优先搜索"><span class="toc-text">广度优先搜索</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#广度优先搜索介绍"><span class="toc-text">广度优先搜索介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#广度优先搜索图解"><span class="toc-text">广度优先搜索图解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#无向图的广度优先搜索"><span class="toc-text">无向图的广度优先搜索</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#有向图的广度优先搜索"><span class="toc-text">有向图的广度优先搜索</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#搜索算法的源码"><span class="toc-text">搜索算法的源码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#迪杰斯特拉算法"><span class="toc-text">迪杰斯特拉算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本思想"><span class="toc-text">基本思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#操作步骤"><span class="toc-text">操作步骤</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本定义"><span class="toc-text">基本定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#迪杰斯特拉算法-1"><span class="toc-text">迪杰斯特拉算法</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+	</div>
+	
+
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+  <header class="read-next-card-header">
+    <small class="read-next-card-header-sitetitle">&mdash; Pastor Dean &mdash;</small>
+    <h3 class="read-next-card-header-title">Recent Posts</h3>
+  </header>
+  <div class="read-next-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+      <path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/>
+    </svg>
+  </div>
+  <div class="read-next-card-content">
+    <ul>
+      
+      
+      
+      <li>
+        <a href="/2020-01-16/thinking/Thinking modelBiological thinking Biological thinking looking at the business world from an evolutionary perspective/">Thinking modelBiological thinking Biological thinking: looking at the business world from an evolutionary perspective</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2020-01-13/thinking/Modern Darwin Integrated Model  Biological Thinking Mode Opening God Perspective/">Modern Darwin Integrated Model Biological Thinking Mode Opening God is Perspective</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2020-01-11/thinking/Metacognition Changing the stubborn thinking of the brain/">Metacognition Changing the stubborn thinking of the brain</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <footer class="read-next-card-footer">
+    <a href="/archives">  MORE  → </a>
+  </footer>
+</article>
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+    <header class="read-next-card-header tagcloud-card">
+        <h3 class="read-next-card-header-title">Categories</h3>
+    </header>
+    <div class="read-next-card-content">
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Biological-Thinking/">Biological Thinking</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cognitive-Neuroscience/">Cognitive Neuroscience</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DeepLearning/">DeepLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/FFmpeg/">FFmpeg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MacOS/">MacOS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MachineLearning/">MachineLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PM/">PM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/RPC/">RPC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vim/">Vim</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WebRTC/">WebRTC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/deeplearn/">deeplearn</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/http/">http</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/machineLearning/">machineLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/文摘/">文摘</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构师/">架构师</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/知识图谱/">知识图谱</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/职业规划/">职业规划</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/职业规划/个人提升/">个人提升</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机相关技术资料整理/">计算机相关技术资料整理</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/认知升级/">认知升级</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/财务自由/">财务自由</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/财富自由/">财富自由</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/运维/">运维</a></li></ul>
+    </div>
+</article>
+
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+	<header class="read-next-card-header tagcloud-card">
+		<h3 class="read-next-card-header-title">Tag Cloud</h3>
+	</header>
+	<div class="read-next-card-content-ext">
+		<a href="/tags/AI/" style="font-size: 14px;">AI</a> <a href="/tags/Android/" style="font-size: 14px;">Android</a> <a href="/tags/Biological/" style="font-size: 17.75px;">Biological</a> <a href="/tags/Browser/" style="font-size: 14px;">Browser</a> <a href="/tags/Business/" style="font-size: 16.5px;">Business</a> <a href="/tags/Cognitive/" style="font-size: 17.75px;">Cognitive</a> <a href="/tags/DeepLearning/" style="font-size: 15.25px;">DeepLearning</a> <a href="/tags/Docker/" style="font-size: 14px;">Docker</a> <a href="/tags/FFmpeg/" style="font-size: 21.5px;">FFmpeg</a> <a href="/tags/FastCGI/" style="font-size: 14px;">FastCGI</a> <a href="/tags/IP划分/" style="font-size: 14px;">IP划分</a> <a href="/tags/IP地址/" style="font-size: 14px;">IP地址</a> <a href="/tags/Knowledge-Graph/" style="font-size: 16.5px;">Knowledge Graph</a> <a href="/tags/Linux-Shell/" style="font-size: 14px;">Linux Shell</a> <a href="/tags/MacOS/" style="font-size: 15.25px;">MacOS</a> <a href="/tags/Neuroscience/" style="font-size: 17.75px;">Neuroscience</a> <a href="/tags/RPC/" style="font-size: 14px;">RPC</a> <a href="/tags/Thinking/" style="font-size: 17.75px;">Thinking</a> <a href="/tags/Tutorial/" style="font-size: 20.25px;">Tutorial</a> <a href="/tags/WebRTC/" style="font-size: 21.5px;">WebRTC</a> <a href="/tags/WebSocket/" style="font-size: 14px;">WebSocket</a> <a href="/tags/algorithm/" style="font-size: 15.25px;">algorithm</a> <a href="/tags/config/" style="font-size: 14px;">config</a> <a href="/tags/decisionTree/" style="font-size: 14px;">decisionTree</a> <a href="/tags/git/" style="font-size: 17.75px;">git</a> <a href="/tags/google-adsense/" style="font-size: 14px;">google adsense</a> <a href="/tags/hexo/" style="font-size: 17.75px;">hexo</a> <a href="/tags/http/" style="font-size: 17.75px;">http</a> <a href="/tags/knn/" style="font-size: 14px;">knn</a> <a href="/tags/lighttpd/" style="font-size: 15.25px;">lighttpd</a> <a href="/tags/mxnet/" style="font-size: 14px;">mxnet</a> <a href="/tags/mysql/" style="font-size: 22.75px;">mysql</a> <a href="/tags/nlp/" style="font-size: 24px;">nlp</a> <a href="/tags/nodejs/" style="font-size: 14px;">nodejs</a> <a href="/tags/openvpn/" style="font-size: 14px;">openvpn</a> <a href="/tags/other/" style="font-size: 15.25px;">other</a> <a href="/tags/paddle/" style="font-size: 14px;">paddle</a> <a href="/tags/planning/" style="font-size: 20.25px;">planning</a> <a href="/tags/pracitce/" style="font-size: 15.25px;">pracitce</a> <a href="/tags/rich/" style="font-size: 14px;">rich</a> <a href="/tags/shell/" style="font-size: 14px;">shell</a> <a href="/tags/svn/" style="font-size: 14px;">svn</a> <a href="/tags/ubuntu/" style="font-size: 14px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 16.5px;">vim</a> <a href="/tags/webpack/" style="font-size: 14px;">webpack</a> <a href="/tags/webrtc/" style="font-size: 19px;">webrtc</a> <a href="/tags/个人发展/" style="font-size: 14px;">个人发展</a> <a href="/tags/互联网实事/" style="font-size: 14px;">互联网实事</a> <a href="/tags/外链/" style="font-size: 14px;">外链</a> <a href="/tags/提升个人思维/" style="font-size: 14px;">提升个人思维</a> <a href="/tags/文摘/" style="font-size: 15.25px;">文摘</a> <a href="/tags/斜杠青年/" style="font-size: 14px;">斜杠青年</a> <a href="/tags/机器学习/" style="font-size: 16.5px;">机器学习</a> <a href="/tags/架构师/" style="font-size: 14px;">架构师</a> <a href="/tags/测试工具/" style="font-size: 14px;">测试工具</a> <a href="/tags/睡后成长/" style="font-size: 14px;">睡后成长</a> <a href="/tags/睡后收入/" style="font-size: 14px;">睡后收入</a> <a href="/tags/税后收入/" style="font-size: 14px;">税后收入</a> <a href="/tags/笔记/" style="font-size: 14px;">笔记</a> <a href="/tags/自然语言处理/" style="font-size: 24px;">自然语言处理</a> <a href="/tags/视频流/" style="font-size: 15.25px;">视频流</a> <a href="/tags/计算机相关技术资料整理/" style="font-size: 14px;">计算机相关技术资料整理</a> <a href="/tags/认知升级/" style="font-size: 14px;">认知升级</a> <a href="/tags/限速/" style="font-size: 14px;">限速</a> <a href="/tags/面试/" style="font-size: 14px;">面试</a> <a href="/tags/项目管理/" style="font-size: 14px;">项目管理</a>
+	</div>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+	
+
+
+
+
+<div id="search" class="search-overlay">
+    <div class="search-form">
+        
+        <div class="search-overlay-logo">
+        	<img src="/images/favicon-16x16-next.png" alt="Pastor Dean">
+        </div>
+        
+        <input id="local-search-input" class="search-input" type="text" name="search" placeholder="Search ...">
+        <a class="search-overlay-close" href="#"></a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+<footer class="site-footer outer">
+	<div class="site-footer-content inner">
+		<div class="copyright">
+			<a href="/" title="Pastor Dean">Pastor Dean &copy; 2020</a>
+			
+				
+			        <span hidden="true" id="/2018-03-08/reference/graph/" class="leancloud-visitors" data-flag-title="计算机算法--图算法介绍">
+			            <span>阅读量 </span>
+			            <span class="leancloud-visitors-count">0</span>
+			        </span>
+	    		
+    		
+		</div>
+		<nav class="site-footer-nav">
+			
+			<a href="https://hexo.io" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+			<a href="https://github.com/xzhih/hexo-theme-casper" title="Casper" target="_blank" rel="noopener">Casper</a>
+		</nav>
+	</div>
+</footer>
+	
+
+
+<script>
+    if(window.navigator && navigator.serviceWorker) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister()
+            }
+        })
+    }
+</script>
+
+
+<script id="scriptLoad" src="/js/allinone.min.js" async></script>
+
+
+<script>
+    document.getElementById('scriptLoad').addEventListener('load', function () {
+        
+        
+            var bLazy = new Blazy();
+        
+
+        
+        
+
+        
+        
+        
+            searchFunc("/");
+        
+        
+    })
+</script>
+
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+
+
+<script id="valineScript" src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+<script>
+    document.getElementById('valineScript').addEventListener("load", function() {
+        new Valine({
+            el: '#comment' ,
+            verify: false,
+            notify: false,
+            appId: '',
+            appKey: '',
+            placeholder: 'Just go go',
+            pageSize: 10,
+            avatar: 'mm',
+            visitor: true
+        })
+    });
+</script>
+
+
+
+
+
+</body>
+</html>

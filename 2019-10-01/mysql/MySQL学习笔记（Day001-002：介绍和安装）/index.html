@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="preconnect" href="//www.googletagmanager.com">
+	<link rel="preconnect" href="//zz.bdstatic.com">
+	<link rel="preconnect" href="//sp0.baidu.com">
+	<link rel="preconnect" href="//www.google-analytics.com">
+	<link rel="preconnect" href="//cdn1.lncld.net">
+	<link rel="preconnect" href="//unpkg.com">
+	<link rel="preconnect" href="//app-router.leancloud.cn">
+	<link rel="preconnect" href="//9qpuwspm.api.lncld.net">
+	<link rel="preconnect" href="//gravatar.loli.net">
+
+	<title>存储引擎二/多实例安装 | Pastor Dean</title>
+
+	<meta name="HandheldFriendly" content="True">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+	<meta name="generator" content="hexo">
+	<meta name="author" content="pastor">
+	<meta name="description" content>
+
+	
+	<meta name="keywords" content>
+	
+
+	
+	<link rel="shortcut icon" href="/images/favicon-16x16-next.png">
+	<link rel="apple-touch-icon" href="/images/favicon-16x16-next.png">
+	
+
+	
+	<meta name="theme-color" content="#3c484e">
+	<meta name="msapplication-TileColor" content="#3c484e">
+	
+
+	
+
+	
+
+	<meta property="og:site_name" content="Pastor Dean">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="存储引擎二/多实例安装 | Pastor Dean">
+	<meta property="og:description" content>
+	<meta property="og:url" content="https://mrpastor.github.io/2019-10-01/mysql/MySQL学习笔记（Day001-002：介绍和安装）/">
+
+	
+	<meta property="article:published_time" content="2019-10-01T19:10:00+08:00"> 
+	<meta property="article:author" content="pastor">
+	<meta property="article:published_first" content="Pastor Dean, /2019-10-01/mysql/MySQL学习笔记（Day001-002：介绍和安装）/">
+	
+
+	
+	
+	<link rel="stylesheet" href="/css/allinonecss.min.css">
+
+	
+	
+	
+</head>
+<body class="post-template">
+	<div class="site-wrapper">
+		
+
+
+
+
+<header class="site-header post-site-header outer">
+    <div class="inner">
+        
+<nav class="site-nav"> 
+    <div class="site-nav-left">
+        <ul class="nav">
+            <li>
+                
+                
+                <a class="site-nav-logo" href="/" title="Pastor Dean">
+                    <img src="/images/favicon-32x32-next.png" alt="Pastor Dean">
+                </a>
+                
+                
+            </li>
+            
+            
+            <li>
+                <a href="/ || home" title="home">home</a>
+            </li>
+            
+            <li>
+                <a href="/categories/ || th" title="categories">categories</a>
+            </li>
+            
+            <li>
+                <a href="/archives/ || archive" title="archives">archives</a>
+            </li>
+            
+            <li>
+                <a href="/tools/ || tools" title="tools">tools</a>
+            </li>
+            
+            
+        </ul> 
+    </div>
+    
+    <div class="search-button-area">
+        <a href="#search" class="search-button">Search ...</a>
+    </div>
+     
+    <div class="site-nav-right">
+        
+        <a href="#search" class="search-button">Search ...</a>
+         
+        
+<div class="social-links">
+    
+    
+    <a class="social-link" title="github" href="https://github.com/mrpastor" target="_blank" rel="noopener">
+        <svg viewbox="0 0 1049 1024" xmlns="http://www.w3.org/2000/svg"><path d="M524.979332 0C234.676191 0 0 234.676191 0 524.979332c0 232.068678 150.366597 428.501342 358.967656 498.035028 26.075132 5.215026 35.636014-11.299224 35.636014-25.205961 0-12.168395-0.869171-53.888607-0.869171-97.347161-146.020741 31.290159-176.441729-62.580318-176.441729-62.580318-23.467619-60.841976-58.234462-76.487055-58.234463-76.487055-47.804409-32.15933 3.476684-32.15933 3.476685-32.15933 53.019436 3.476684 80.83291 53.888607 80.83291 53.888607 46.935238 79.963739 122.553122 57.365291 152.97411 43.458554 4.345855-33.897672 18.252593-57.365291 33.028501-70.402857-116.468925-12.168395-239.022047-57.365291-239.022047-259.012982 0-57.365291 20.860106-104.300529 53.888607-140.805715-5.215026-13.037566-23.467619-66.926173 5.215027-139.067372 0 0 44.327725-13.906737 144.282399 53.888607 41.720212-11.299224 86.917108-17.383422 131.244833-17.383422s89.524621 6.084198 131.244833 17.383422C756.178839 203.386032 800.506564 217.29277 800.506564 217.29277c28.682646 72.1412 10.430053 126.029806 5.215026 139.067372 33.897672 36.505185 53.888607 83.440424 53.888607 140.805715 0 201.64769-122.553122 245.975415-239.891218 259.012982 19.121764 16.514251 35.636014 47.804409 35.636015 97.347161 0 70.402857-0.869171 126.898978-0.869172 144.282399 0 13.906737 9.560882 30.420988 35.636015 25.205961 208.601059-69.533686 358.967656-265.96635 358.967655-498.035028C1049.958663 234.676191 814.413301 0 524.979332 0z"/></svg>
+    </a>
+    
+    
+    <a class="social-link" title="facebook" href="https://facebook" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+
+    </a>
+    
+    
+    <a class="social-link" title="twitter" href="https://twitter.com" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+    </a>
+    
+    
+    
+    
+</div>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<div id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+        <header class="post-full-header">
+            <div class="post-full-meta">
+                <time class="post-full-meta-date" datetime="2019-10-01T11:19:18.000Z">
+                    2019-10-1
+                </time>
+                
+                <span class="date-divider">/</span>
+                
+                <a href="/categories/mysql/">mysql</a>&nbsp;&nbsp;
+                
+                
+            </div>
+            <h1 class="post-full-title">存储引擎二/多实例安装</h1>
+        </header>
+        <div class="post-full no-image">
+            
+            <div class="post-full-content">
+                <article id="photoswipe" class="markdown-body">
+                    <h1 id="MySQL学习笔记（Day001-002：介绍和安装）"><a href="#MySQL学习笔记（Day001-002：介绍和安装）" class="headerlink" title="MySQL学习笔记（Day001-002：介绍和安装）"></a>MySQL学习笔记（Day001-002：介绍和安装）</h1><p>@(MySQL学习)</p>
+<p>[TOC]</p>
+<p>##一.MySQL版本选择</p>
+<ol>
+<li>MySQL5.6以后的版本，推荐使用官方版本。</li>
+<li>Percona：在5.6版本以后，MySQL将Percon之前优化集成到官方版本中;</li>
+<li>MariaDB：无INNODB;且核心代码较老</li>
+<li>MySQL在5.6以后不断重构源码，安装包越来越大，功能和性能在持续改进</li>
+</ol>
+<hr>
+<h2 id="二-MySQL官方网站介绍"><a href="#二-MySQL官方网站介绍" class="headerlink" title="二. MySQL官方网站介绍"></a>二. MySQL官方网站介绍</h2><p>官方网站：<a href="http://www.mysql.com" target="_blank" rel="noopener">http://www.mysql.com</a></p>
+<ol>
+<li><p><strong>Developer Zone</strong>： MySQL开发工程师板块</p>
+<ul>
+<li>Articles： Oracle工程师自己的博客</li>
+<li>Plant MySQL： 和MySQL相关从业人员的博客</li>
+<li>Bugs：MySQL BugList</li>
+<li>Worklog：开发记录</li>
+<li>Labs：MySQL实验性项目</li>
+</ul>
+</li>
+<li><p><strong>Downloads</strong>：MySQL下载</p>
+<ul>
+<li>Enterprise：MySQL企业版本相关，略过</li>
+<li>Community：社区版，我们下载和使用社区版<ul>
+<li>MySQL Community Server：MySQL Server</li>
+<li>MySQL Fabric : 和管理相关的工具</li>
+<li>MySQL Router：路由中间件</li>
+<li>MySQL Utilities：MySQL应用程序包</li>
+<li>MySQL Workbench：官方图型化管理界面</li>
+<li>MySQL Proxy：MySQL代理。Alpha版本，不推荐</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Documentation</strong>：MySQL文档</p>
+<ul>
+<li>官方文档 版面更改，下载离线文档在左侧Menu的下面<ul>
+<li><a href="http://downloads.mysql.com/docs/refman-5.7-en.a4.pdf" target="_blank" rel="noopener">PDF A4</a></li>
+<li><a href="http://downloads.mysql.com/docs/refman-5.7-en.epub" target="_blank" rel="noopener">EPUB</a></li>
+<li><a href="http://downloads.mysql.com/docs/refman-5.7-en.html-chapter.zip" target="_blank" rel="noopener">HTML</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="三-MySQL下载"><a href="#三-MySQL下载" class="headerlink" title="三. MySQL下载"></a>三. MySQL下载</h2><ol>
+<li>推荐下载<code>Linux-Generic</code>版本</li>
+<li><code>Source Code</code>版本主要作用是为了让开发人员研究源码使用，自己编译对性能提升不明显</li>
+<li>不推荐<code>Version 5.5.X</code>，有部分bug</li>
+<li>推荐使用<code>Version 5.6.X</code>和<code>Version 5.7.X</code></li>
+</ol>
+<blockquote>
+<p><em>下载地址：</em><br><a href="http://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.9-linux-glibc2.5-x86_64.tar.gz" target="_blank" rel="noopener">MySQL Community Server 5.7.9 Linux Generic x86-64bit</a><br><a href="http://dev.mysql.com/get/Downloads/MySQL-5.6/mysql-5.6.27-linux-glibc2.5-x86_64.tar.gz" target="_blank" rel="noopener">MySQL Community Server 5.6.27 Linux Generic x86-64bit</a></p>
+</blockquote>
+<hr>
+<h2 id="四-MySQL安装"><a href="#四-MySQL安装" class="headerlink" title="四. MySQL安装"></a>四. MySQL安装</h2><ol>
+<li><p>安装通用步骤：</p>
+<ul>
+<li>解压缩<code>mysql-VERSION-linux-glibc2.5-x86_64.tar.gz</code></li>
+<li>打开<code>INSTALL_BINARY</code> 文件，按照<code>shell&gt;</code>开头的步骤进行操作</li>
+<li>将<code>export PATH=/安装路径/mysql/bin:$PATH</code>添加到<code>/etc/profile</code></li>
+<li><code>chkconfig mysqld on</code>或者<code>chkconfig mysqld.server on</code>视你的环境而定，详细步骤如下</li>
+</ul>
+</li>
+<li><p>MySQL 5.6.X 安装：</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">shell&gt; yum install libaio <span class="comment"># Debain系用户:apt-get install libaio1</span></span><br><span class="line">shell&gt; groupadd mysql</span><br><span class="line">shell&gt; useradd -r -g mysql mysql</span><br><span class="line">shell&gt; <span class="built_in">cd</span> /usr/<span class="built_in">local</span></span><br><span class="line">shell&gt; tar zxvf /path/to/mysql-VERSION-OS.tar.gz</span><br><span class="line">shell&gt; ln -s full-path-to-mysql-VERSION-OS mysql</span><br><span class="line">shell&gt; <span class="built_in">cd</span> mysql</span><br><span class="line">shell&gt; chown -R mysql .</span><br><span class="line">shell&gt; chgrp -R mysql .</span><br><span class="line">shell&gt; scripts/mysql_install_db --user=mysql</span><br><span class="line">shell&gt; chown -R root .</span><br><span class="line">shell&gt; chown -R mysql data</span><br><span class="line">shell&gt; bin/mysqld_safe --user=mysql &amp;</span><br><span class="line"><span class="comment"># Next command is optional</span></span><br><span class="line">shell&gt; cp support-files/mysql.server /etc/init.d/mysql.server</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>MySQL 5.7.X 安装     </p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">shell&gt; groupadd mysql</span><br><span class="line">shell&gt; useradd -r -g mysql mysql</span><br><span class="line">shell&gt; <span class="built_in">cd</span> /usr/<span class="built_in">local</span></span><br><span class="line">shell&gt; tar zxvf /path/to/mysql-VERSION-OS.tar.gz</span><br><span class="line">shell&gt; ln -s full-path-to-mysql-VERSION-OS mysql</span><br><span class="line">shell&gt; <span class="built_in">cd</span> mysql</span><br><span class="line">shell&gt; mkdir mysql-files</span><br><span class="line">shell&gt; chmod 770 mysql-files</span><br><span class="line">shell&gt; chown -R mysql .</span><br><span class="line">shell&gt; chgrp -R mysql .</span><br><span class="line">shell&gt; bin/mysqld --initialize --user=mysql <span class="comment">#该步骤中会产生零时</span></span><br><span class="line">                                            <span class="comment">#root@localhost密码</span></span><br><span class="line">                                            <span class="comment">#需要自己记录下来</span></span><br><span class="line">shell&gt; bin/mysql_ssl_rsa_setup          </span><br><span class="line">shell&gt; chown -R root .</span><br><span class="line">shell&gt; chown -R mysql data mysql-files</span><br><span class="line">shell&gt; bin/mysqld_safe --user=mysql &amp;</span><br><span class="line"><span class="comment"># Next command is optional</span></span><br><span class="line">shell&gt; cp support-files/mysql.server /etc/init.d/mysql.server</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>验证安装</p>
+<ul>
+<li><code>data</code>目录在安装之前是空目录，安装完成后应该有<code>ibXXX</code>等文件</li>
+<li>安装过程中输出的信息中，不应该含有<code>ERROR</code>信息，错误信息<code>默认</code>会写入到<code>$HOSTNAME.err</code>的文件中</li>
+<li>通过<code>bin/mysql</code>命令（<em>5.7.X含有零时密码</em>）可以正常登录</li>
+</ul>
+</li>
+<li><p>MySQL启动</p>
+<ul>
+<li><code>mysqld_safe --user=mysql &amp;</code> 即可启动，<code>mysqld_safe</code>是一个守护<code>mysqld</code>进程的脚本程序，旨在<code>mysqld</code>意外停止时，可以重启<code>mysqld</code>进程</li>
+<li>也可以通过<code>INSTALL_BINARRY</code>中的的步骤，使用<code>/etc/init.d/mysql.server  start</code>进行启动（启动脚本以你复制的实际名字为准，通常改名为<code>mysqld</code>,即<code>/etc/init.d/mysqld start</code>）</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="五-附录"><a href="#五-附录" class="headerlink" title="五. 附录"></a>五. 附录</h2><ol>
+<li><p>姜老师的配置文件<code>my.cnf</code>   </p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line">[client]</span><br><span class="line">user=david</span><br><span class="line">password=88888888</span><br><span class="line"></span><br><span class="line">[mysqld]</span><br><span class="line"><span class="comment">########basic settings########</span></span><br><span class="line">server-id = 11 </span><br><span class="line">port = 3306</span><br><span class="line">user = mysql</span><br><span class="line">bind_address = 10.166.224.32   <span class="comment">#根据实际情况修改</span></span><br><span class="line">autocommit = 0   <span class="comment">#5.6.X安装时，需要注释掉，安装完成后再打开</span></span><br><span class="line">character_set_server=utf8mb4</span><br><span class="line">skip_name_resolve = 1</span><br><span class="line">max_connections = 800</span><br><span class="line">max_connect_errors = 1000</span><br><span class="line">datadir = /data/mysql_data      <span class="comment">#根据实际情况修改,建议和程序分离存放</span></span><br><span class="line">transaction_isolation = READ-COMMITTED</span><br><span class="line">explicit_defaults_for_timestamp = 1</span><br><span class="line">join_buffer_size = 134217728</span><br><span class="line">tmp_table_size = 67108864</span><br><span class="line">tmpdir = /tmp</span><br><span class="line">max_allowed_packet = 16777216</span><br><span class="line">sql_mode = <span class="string">"STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER"</span></span><br><span class="line">interactive_timeout = 1800</span><br><span class="line">wait_timeout = 1800</span><br><span class="line">read_buffer_size = 16777216</span><br><span class="line">read_rnd_buffer_size = 33554432</span><br><span class="line">sort_buffer_size = 33554432</span><br><span class="line"><span class="comment">########log settings########</span></span><br><span class="line">log_error = error.log</span><br><span class="line">slow_query_log = 1</span><br><span class="line">slow_query_log_file = slow.log</span><br><span class="line">log_queries_not_using_indexes = 1</span><br><span class="line">log_slow_admin_statements = 1</span><br><span class="line">log_slow_slave_statements = 1</span><br><span class="line">log_throttle_queries_not_using_indexes = 10</span><br><span class="line">expire_logs_days = 90</span><br><span class="line">long_query_time = 2</span><br><span class="line">min_examined_row_limit = 100</span><br><span class="line"><span class="comment">########replication settings########</span></span><br><span class="line">master_info_repository = TABLE</span><br><span class="line">relay_log_info_repository = TABLE</span><br><span class="line">log_bin = bin.log</span><br><span class="line">sync_binlog = 1</span><br><span class="line">gtid_mode = on</span><br><span class="line">enforce_gtid_consistency = 1</span><br><span class="line">log_slave_updates</span><br><span class="line">binlog_format = row </span><br><span class="line">relay_log = relay.log</span><br><span class="line">relay_log_recovery = 1</span><br><span class="line">binlog_gtid_simple_recovery = 1</span><br><span class="line">slave_skip_errors = ddl_exist_errors</span><br><span class="line"><span class="comment">########innodb settings########</span></span><br><span class="line">innodb_page_size = 8192</span><br><span class="line">innodb_buffer_pool_size = 6G    <span class="comment">#根据实际情况修改</span></span><br><span class="line">innodb_buffer_pool_instances = 8</span><br><span class="line">innodb_buffer_pool_load_at_startup = 1</span><br><span class="line">innodb_buffer_pool_dump_at_shutdown = 1</span><br><span class="line">innodb_lru_scan_depth = 2000</span><br><span class="line">innodb_lock_wait_timeout = 5</span><br><span class="line">innodb_io_capacity = 4000</span><br><span class="line">innodb_io_capacity_max = 8000</span><br><span class="line">innodb_flush_method = O_DIRECT</span><br><span class="line">innodb_file_format = Barracuda</span><br><span class="line">innodb_file_format_max = Barracuda</span><br><span class="line">innodb_log_group_home_dir = /redolog/  <span class="comment">#根据实际情况修改</span></span><br><span class="line">innodb_undo_directory = /undolog/      <span class="comment">#根据实际情况修改</span></span><br><span class="line">innodb_undo_logs = 128</span><br><span class="line">innodb_undo_tablespaces = 3</span><br><span class="line">innodb_flush_neighbors = 1</span><br><span class="line">innodb_log_file_size = 4G               <span class="comment">#根据实际情况修改</span></span><br><span class="line">innodb_log_buffer_size = 16777216</span><br><span class="line">innodb_purge_threads = 4</span><br><span class="line">innodb_large_prefix = 1</span><br><span class="line">innodb_thread_concurrency = 64</span><br><span class="line">innodb_print_all_deadlocks = 1</span><br><span class="line">innodb_strict_mode = 1</span><br><span class="line">innodb_sort_buffer_size = 67108864 </span><br><span class="line"><span class="comment">########semi sync replication settings########</span></span><br><span class="line">plugin_dir=/usr/<span class="built_in">local</span>/mysql/lib/plugin      <span class="comment">#根据实际情况修改</span></span><br><span class="line">plugin_load = <span class="string">"rpl_semi_sync_master=semisync_master.so;rpl_semi_sync_slave=semisync_slave.so"</span></span><br><span class="line">loose_rpl_semi_sync_master_enabled = 1</span><br><span class="line">loose_rpl_semi_sync_slave_enabled = 1</span><br><span class="line">loose_rpl_semi_sync_master_timeout = 5000</span><br><span class="line"></span><br><span class="line">[mysqld-5.7]</span><br><span class="line">innodb_buffer_pool_dump_pct = 40</span><br><span class="line">innodb_page_cleaners = 4</span><br><span class="line">innodb_undo_log_truncate = 1</span><br><span class="line">innodb_max_undo_log_size = 2G</span><br><span class="line">innodb_purge_rseg_truncate_frequency = 128</span><br><span class="line">binlog_gtid_simple_recovery=1</span><br><span class="line">log_timestamps=system</span><br><span class="line">transaction_write_set_extraction=MURMUR32</span><br><span class="line">show_compatibility_56=on</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>几个重要的参数配置和说明 </p>
+<ul>
+<li><p><code>innodb_log_file_size = 4G</code> :做实验可以更改的小点，线上环境推荐用4G，以前5.5和5.1等版本之所以官方给的值很小，是因为太大后有bug，现在bug已经修复</p>
+</li>
+<li><p><code>innodb_undo_logs = 128</code>和<code>innodb_undo_tablespaces = 3</code>建议在安装之前就确定好该值，后续修改比较麻烦</p>
+</li>
+<li><code>[mysqld]</code>，<code>[mysqld-5.7]</code>这种tag表明了下面的配置在什么版本下才生效,<code>[mysqld]</code>下均生效</li>
+<li><code>autocommit</code>,这个参数在5.5.X以后才有，安装5.6.X的时候要注意先把该参数注释掉，等安装完成后，再行打开, 5.7.X无需预先注释</li>
+<li><code>datadir</code>, <code>innodb_log_group_home_dir</code>, <code>innodb_undo_directory</code>一定要注意他的权限是 <code>mysql:mysql</code></li>
+</ul>
+</li>
+</ol>
+<ol start="3">
+<li><code>my.cnf</code>问题<ul>
+<li>使用<code>mysqld --help -vv | grep my.cnf</code>查看mysql的配置文件读取顺序</li>
+<li>后读取的<code>my.cnf</code>中的配置，如果有相同项，会覆盖之前的配置</li>
+<li>使用<code>--defaults-files</code>可指定配置文件</li>
+</ul>
+</li>
+</ol>
+
+                </article>
+                <ul class="tags-postTags">
+                    
+                    <li>
+                        <a href="/tags/mysql/" rel="tag"># mysql</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    
+    <nav id="gobottom" class="pagination">
+        
+        <a class="prev-post" title="触发器下/存储过程/自定义函数" href="/2019-10-01/mysql/MySQL学习笔记(Day014)/">
+            ← 触发器下/存储过程/自定义函数
+        </a>
+        
+        <span class="prev-next-post">·</span>
+        
+        <a class="next-post" title="作业讲解一/Rank/视图/UNION/触发器" href="/2019-10-01/mysql/MySQL学习笔记(Day013)/">
+            作业讲解一/Rank/视图/UNION/触发器 →
+        </a>
+        
+    </nav>
+
+    
+    <div class="inner">
+        <div id="comment"></div>
+    </div>
+    
+</div>
+
+<div class="toc-bar">
+    <div class="toc-btn-bar">
+        <a href="#site-main" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M793.024 710.272a32 32 0 1 0 45.952-44.544l-310.304-320a32 32 0 0 0-46.4 0.48l-297.696 320a32 32 0 0 0 46.848 43.584l274.752-295.328 286.848 295.808z"/></svg>
+        </a>
+        <div class="toc-btn toc-switch">
+            <svg class="toc-open" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M779.776 480h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M779.776 672h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M256 288a32 32 0 1 0 0 64 32 32 0 0 0 0-64M392.576 352h387.2a32 32 0 0 0 0-64h-387.2a32 32 0 0 0 0 64M256 480a32 32 0 1 0 0 64 32 32 0 0 0 0-64M256 672a32 32 0 1 0 0 64 32 32 0 0 0 0-64"/></svg>
+            <svg class="toc-close hide" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M512 960c-247.039484 0-448-200.960516-448-448S264.960516 64 512 64 960 264.960516 960 512 759.039484 960 512 960zM512 128.287273c-211.584464 0-383.712727 172.128262-383.712727 383.712727 0 211.551781 172.128262 383.712727 383.712727 383.712727 211.551781 0 383.712727-172.159226 383.712727-383.712727C895.712727 300.415536 723.551781 128.287273 512 128.287273z"/><path d="M557.05545 513.376159l138.367639-136.864185c12.576374-12.416396 12.672705-32.671738 0.25631-45.248112s-32.704421-12.672705-45.248112-0.25631l-138.560301 137.024163-136.447897-136.864185c-12.512727-12.512727-32.735385-12.576374-45.248112-0.063647-12.512727 12.480043-12.54369 32.735385-0.063647 45.248112l136.255235 136.671523-137.376804 135.904314c-12.576374 12.447359-12.672705 32.671738-0.25631 45.248112 6.271845 6.335493 14.496116 9.504099 22.751351 9.504099 8.12794 0 16.25588-3.103239 22.496761-9.247789l137.567746-136.064292 138.687596 139.136568c6.240882 6.271845 14.432469 9.407768 22.65674 9.407768 8.191587 0 16.352211-3.135923 22.591372-9.34412 12.512727-12.480043 12.54369-32.704421 0.063647-45.248112L557.05545 513.376159z"/></svg>
+        </div>
+        <a href="#gobottom" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M231.424 346.208a32 32 0 0 0-46.848 43.584l297.696 320a32 32 0 0 0 46.4 0.48l310.304-320a32 32 0 1 0-45.952-44.544l-286.848 295.808-274.752-295.36z"/></svg>
+        </a>
+    </div>
+    <div class="toc-main">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MySQL学习笔记（Day001-002：介绍和安装）"><span class="toc-text">MySQL学习笔记（Day001-002：介绍和安装）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#二-MySQL官方网站介绍"><span class="toc-text">二. MySQL官方网站介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三-MySQL下载"><span class="toc-text">三. MySQL下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四-MySQL安装"><span class="toc-text">四. MySQL安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五-附录"><span class="toc-text">五. 附录</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+	</div>
+	
+
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+  <header class="read-next-card-header">
+    <small class="read-next-card-header-sitetitle">&mdash; Pastor Dean &mdash;</small>
+    <h3 class="read-next-card-header-title">Recent Posts</h3>
+  </header>
+  <div class="read-next-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+      <path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/>
+    </svg>
+  </div>
+  <div class="read-next-card-content">
+    <ul>
+      
+      
+      
+      <li>
+        <a href="/2020-01-16/thinking/Thinking modelBiological thinking Biological thinking looking at the business world from an evolutionary perspective/">Thinking modelBiological thinking Biological thinking: looking at the business world from an evolutionary perspective</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2020-01-13/thinking/Modern Darwin Integrated Model  Biological Thinking Mode Opening God Perspective/">Modern Darwin Integrated Model Biological Thinking Mode Opening God is Perspective</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2020-01-11/thinking/Metacognition Changing the stubborn thinking of the brain/">Metacognition Changing the stubborn thinking of the brain</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <footer class="read-next-card-footer">
+    <a href="/archives">  MORE  → </a>
+  </footer>
+</article>
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+    <header class="read-next-card-header tagcloud-card">
+        <h3 class="read-next-card-header-title">Categories</h3>
+    </header>
+    <div class="read-next-card-content">
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Biological-Thinking/">Biological Thinking</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cognitive-Neuroscience/">Cognitive Neuroscience</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DeepLearning/">DeepLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/FFmpeg/">FFmpeg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MacOS/">MacOS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MachineLearning/">MachineLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PM/">PM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/RPC/">RPC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vim/">Vim</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WebRTC/">WebRTC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/deeplearn/">deeplearn</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/http/">http</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/machineLearning/">machineLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/文摘/">文摘</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构师/">架构师</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/知识图谱/">知识图谱</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/职业规划/">职业规划</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/职业规划/个人提升/">个人提升</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机相关技术资料整理/">计算机相关技术资料整理</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/认知升级/">认知升级</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/财务自由/">财务自由</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/财富自由/">财富自由</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/运维/">运维</a></li></ul>
+    </div>
+</article>
+
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+	<header class="read-next-card-header tagcloud-card">
+		<h3 class="read-next-card-header-title">Tag Cloud</h3>
+	</header>
+	<div class="read-next-card-content-ext">
+		<a href="/tags/AI/" style="font-size: 14px;">AI</a> <a href="/tags/Android/" style="font-size: 14px;">Android</a> <a href="/tags/Biological/" style="font-size: 17.75px;">Biological</a> <a href="/tags/Browser/" style="font-size: 14px;">Browser</a> <a href="/tags/Business/" style="font-size: 16.5px;">Business</a> <a href="/tags/Cognitive/" style="font-size: 17.75px;">Cognitive</a> <a href="/tags/DeepLearning/" style="font-size: 15.25px;">DeepLearning</a> <a href="/tags/Docker/" style="font-size: 14px;">Docker</a> <a href="/tags/FFmpeg/" style="font-size: 21.5px;">FFmpeg</a> <a href="/tags/FastCGI/" style="font-size: 14px;">FastCGI</a> <a href="/tags/IP划分/" style="font-size: 14px;">IP划分</a> <a href="/tags/IP地址/" style="font-size: 14px;">IP地址</a> <a href="/tags/Knowledge-Graph/" style="font-size: 16.5px;">Knowledge Graph</a> <a href="/tags/Linux-Shell/" style="font-size: 14px;">Linux Shell</a> <a href="/tags/MacOS/" style="font-size: 15.25px;">MacOS</a> <a href="/tags/Neuroscience/" style="font-size: 17.75px;">Neuroscience</a> <a href="/tags/RPC/" style="font-size: 14px;">RPC</a> <a href="/tags/Thinking/" style="font-size: 17.75px;">Thinking</a> <a href="/tags/Tutorial/" style="font-size: 20.25px;">Tutorial</a> <a href="/tags/WebRTC/" style="font-size: 21.5px;">WebRTC</a> <a href="/tags/WebSocket/" style="font-size: 14px;">WebSocket</a> <a href="/tags/algorithm/" style="font-size: 15.25px;">algorithm</a> <a href="/tags/config/" style="font-size: 14px;">config</a> <a href="/tags/decisionTree/" style="font-size: 14px;">decisionTree</a> <a href="/tags/git/" style="font-size: 17.75px;">git</a> <a href="/tags/google-adsense/" style="font-size: 14px;">google adsense</a> <a href="/tags/hexo/" style="font-size: 17.75px;">hexo</a> <a href="/tags/http/" style="font-size: 17.75px;">http</a> <a href="/tags/knn/" style="font-size: 14px;">knn</a> <a href="/tags/lighttpd/" style="font-size: 15.25px;">lighttpd</a> <a href="/tags/mxnet/" style="font-size: 14px;">mxnet</a> <a href="/tags/mysql/" style="font-size: 22.75px;">mysql</a> <a href="/tags/nlp/" style="font-size: 24px;">nlp</a> <a href="/tags/nodejs/" style="font-size: 14px;">nodejs</a> <a href="/tags/openvpn/" style="font-size: 14px;">openvpn</a> <a href="/tags/other/" style="font-size: 15.25px;">other</a> <a href="/tags/paddle/" style="font-size: 14px;">paddle</a> <a href="/tags/planning/" style="font-size: 20.25px;">planning</a> <a href="/tags/pracitce/" style="font-size: 15.25px;">pracitce</a> <a href="/tags/rich/" style="font-size: 14px;">rich</a> <a href="/tags/shell/" style="font-size: 14px;">shell</a> <a href="/tags/svn/" style="font-size: 14px;">svn</a> <a href="/tags/ubuntu/" style="font-size: 14px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 16.5px;">vim</a> <a href="/tags/webpack/" style="font-size: 14px;">webpack</a> <a href="/tags/webrtc/" style="font-size: 19px;">webrtc</a> <a href="/tags/个人发展/" style="font-size: 14px;">个人发展</a> <a href="/tags/互联网实事/" style="font-size: 14px;">互联网实事</a> <a href="/tags/外链/" style="font-size: 14px;">外链</a> <a href="/tags/提升个人思维/" style="font-size: 14px;">提升个人思维</a> <a href="/tags/文摘/" style="font-size: 15.25px;">文摘</a> <a href="/tags/斜杠青年/" style="font-size: 14px;">斜杠青年</a> <a href="/tags/机器学习/" style="font-size: 16.5px;">机器学习</a> <a href="/tags/架构师/" style="font-size: 14px;">架构师</a> <a href="/tags/测试工具/" style="font-size: 14px;">测试工具</a> <a href="/tags/睡后成长/" style="font-size: 14px;">睡后成长</a> <a href="/tags/睡后收入/" style="font-size: 14px;">睡后收入</a> <a href="/tags/税后收入/" style="font-size: 14px;">税后收入</a> <a href="/tags/笔记/" style="font-size: 14px;">笔记</a> <a href="/tags/自然语言处理/" style="font-size: 24px;">自然语言处理</a> <a href="/tags/视频流/" style="font-size: 15.25px;">视频流</a> <a href="/tags/计算机相关技术资料整理/" style="font-size: 14px;">计算机相关技术资料整理</a> <a href="/tags/认知升级/" style="font-size: 14px;">认知升级</a> <a href="/tags/限速/" style="font-size: 14px;">限速</a> <a href="/tags/面试/" style="font-size: 14px;">面试</a> <a href="/tags/项目管理/" style="font-size: 14px;">项目管理</a>
+	</div>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+	
+
+
+
+
+<div id="search" class="search-overlay">
+    <div class="search-form">
+        
+        <div class="search-overlay-logo">
+        	<img src="/images/favicon-16x16-next.png" alt="Pastor Dean">
+        </div>
+        
+        <input id="local-search-input" class="search-input" type="text" name="search" placeholder="Search ...">
+        <a class="search-overlay-close" href="#"></a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+<footer class="site-footer outer">
+	<div class="site-footer-content inner">
+		<div class="copyright">
+			<a href="/" title="Pastor Dean">Pastor Dean &copy; 2020</a>
+			
+				
+			        <span hidden="true" id="/2019-10-01/mysql/MySQL学习笔记（Day001-002：介绍和安装）/" class="leancloud-visitors" data-flag-title="存储引擎二/多实例安装">
+			            <span>阅读量 </span>
+			            <span class="leancloud-visitors-count">0</span>
+			        </span>
+	    		
+    		
+		</div>
+		<nav class="site-footer-nav">
+			
+			<a href="https://hexo.io" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+			<a href="https://github.com/xzhih/hexo-theme-casper" title="Casper" target="_blank" rel="noopener">Casper</a>
+		</nav>
+	</div>
+</footer>
+	
+
+
+<script>
+    if(window.navigator && navigator.serviceWorker) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister()
+            }
+        })
+    }
+</script>
+
+
+<script id="scriptLoad" src="/js/allinone.min.js" async></script>
+
+
+<script>
+    document.getElementById('scriptLoad').addEventListener('load', function () {
+        
+        
+            var bLazy = new Blazy();
+        
+
+        
+        
+
+        
+        
+        
+            searchFunc("/");
+        
+        
+    })
+</script>
+
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+
+
+<script id="valineScript" src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+<script>
+    document.getElementById('valineScript').addEventListener("load", function() {
+        new Valine({
+            el: '#comment' ,
+            verify: false,
+            notify: false,
+            appId: '',
+            appKey: '',
+            placeholder: 'Just go go',
+            pageSize: 10,
+            avatar: 'mm',
+            visitor: true
+        })
+    });
+</script>
+
+
+
+
+
+</body>
+</html>

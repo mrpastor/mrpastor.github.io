@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+<meta name="referrer" content="no-referrer">
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-32x32-next.png?v=">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=">
+
+
+  <link rel="mask-icon" href="/images/favicon-32x32-next.png?v=" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="nlp,自然语言处理,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="牧师先生" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="逻辑回归/SVM与文本分类 参考文章：《从原理到应用：简述Logistics回归算法》  Part 1 Logistic Regression1.1 什么是 Logistic 回归？和很多其他机器学习算法一样，逻辑回归也是从统计学中借鉴来的，尽管名字里有回归俩字儿，但它不是一个需要预测连续结果的回归算法。 与之相反，Logistic 回归是二分类任务的首选方法。它输出一个 0 到 1 之间的离散二">
+<meta name="keywords" content="nlp,自然语言处理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NLP系列">
+<meta property="og:url" content="https://blog.irudder.me/2019-03-21/nlp/4Text_Classification/Chapter1_Text_Classification_based_on_Machine_Learning/2.LR_SVM_&_Text_Classification/index.html">
+<meta property="og:site_name" content="牧师先生">
+<meta property="og:description" content="逻辑回归/SVM与文本分类 参考文章：《从原理到应用：简述Logistics回归算法》  Part 1 Logistic Regression1.1 什么是 Logistic 回归？和很多其他机器学习算法一样，逻辑回归也是从统计学中借鉴来的，尽管名字里有回归俩字儿，但它不是一个需要预测连续结果的回归算法。 与之相反，Logistic 回归是二分类任务的首选方法。它输出一个 0 到 1 之间的离散二">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://image.jiqizhixin.com/uploads/editor/164bdc1d-46ae-4c67-868f-a36d8c129af0/1526191840515.png">
+<meta property="og:image" content="https://image.jiqizhixin.com/uploads/editor/1fe28e0e-94a3-42aa-a1fa-1c46e21cc29d/1526191840278.png">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=C%28%5Ctheta%29+%3D+%5C%7B_%7B-log%281-h_%5Ctheta%28x%29%29%2C+y%3D0%7D%5E%7B-log%28h_%5Ctheta%28x%29%29%2Cy%3D1%7D%2C+where%3A+h_%5Ctheta%28x%29%3D%5Cfrac%7B1%7D%7B1%2Be%5E%7B-%5Ctheta%5ETx%7D%7D">
+<meta property="og:image" content="https://image.jiqizhixin.com/uploads/editor/439f4df7-544b-436d-9fc0-582aaa7c097f/1526191840966.png">
+<meta property="og:image" content="https://image.jiqizhixin.com/uploads/editor/c473eda3-cb03-4433-ad89-bd81e88a5f33/1526191840677.png">
+<meta property="og:image" content="https://image.jiqizhixin.com/uploads/editor/cc1f0a41-fa18-4499-b12b-374da215ebe9/1526191840804.png">
+<meta property="og:image" content="https://wikimedia.org/api/rest_v1/media/math/render/svg/001ce4c2c74e78a66a4d7d04ab92cbd0d0fdec02">
+<meta property="og:image" content="https://blog.irudder.me/2019-03-21/nlp/4Text_Classification/Chapter1_Text_Classification_based_on_Machine_Learning/2.LR_SVM_&_Text_Classification/img/svm1.png">
+<meta property="og:image" content="https://blog.irudder.me/2019-03-21/nlp/4Text_Classification/Chapter1_Text_Classification_based_on_Machine_Learning/2.LR_SVM_&_Text_Classification/img/svm2.png">
+<meta property="og:image" content="https://blog.irudder.me/2019-03-21/nlp/4Text_Classification/Chapter1_Text_Classification_based_on_Machine_Learning/2.LR_SVM_&_Text_Classification/img/svm3.png">
+<meta property="og:image" content="https://blog.irudder.me/2019-03-21/nlp/4Text_Classification/Chapter1_Text_Classification_based_on_Machine_Learning/2.LR_SVM_&_Text_Classification/img/svm4.png">
+<meta property="og:image" content="https://blog.irudder.me/2019-03-21/nlp/4Text_Classification/Chapter1_Text_Classification_based_on_Machine_Learning/2.LR_SVM_&_Text_Classification/img/svm5.png">
+<meta property="og:image" content="https://blog.irudder.me/2019-03-21/nlp/4Text_Classification/Chapter1_Text_Classification_based_on_Machine_Learning/2.LR_SVM_&_Text_Classification/img/svm6.png">
+<meta property="og:image" content="https://blog.irudder.me/2019-03-21/nlp/4Text_Classification/Chapter1_Text_Classification_based_on_Machine_Learning/2.LR_SVM_&_Text_Classification/img/svm7.png">
+<meta property="og:image" content="https://blog.irudder.me/2019-03-21/nlp/4Text_Classification/Chapter1_Text_Classification_based_on_Machine_Learning/2.LR_SVM_&_Text_Classification/img/svm8.png">
+<meta property="og:image" content="https://blog.irudder.me/2019-03-21/nlp/4Text_Classification/Chapter1_Text_Classification_based_on_Machine_Learning/2.LR_SVM_&_Text_Classification/img/svm21.png">
+<meta property="og:image" content="https://blog.irudder.me/2019-03-21/nlp/4Text_Classification/Chapter1_Text_Classification_based_on_Machine_Learning/2.LR_SVM_&_Text_Classification/img/svm22.png">
+<meta property="og:image" content="https://blog.irudder.me/2019-03-21/nlp/4Text_Classification/Chapter1_Text_Classification_based_on_Machine_Learning/2.LR_SVM_&_Text_Classification/img/svm23.png">
+<meta property="og:image" content="https://blog.irudder.me/2019-03-21/nlp/4Text_Classification/Chapter1_Text_Classification_based_on_Machine_Learning/2.LR_SVM_&_Text_Classification/img/svm24.png">
+<meta property="og:image" content="https://blog.irudder.me/2019-03-21/nlp/4Text_Classification/Chapter1_Text_Classification_based_on_Machine_Learning/2.LR_SVM_&_Text_Classification/img/svm25.png">
+<meta property="og:updated_time" content="2019-10-10T09:48:37.121Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NLP系列">
+<meta name="twitter:description" content="逻辑回归/SVM与文本分类 参考文章：《从原理到应用：简述Logistics回归算法》  Part 1 Logistic Regression1.1 什么是 Logistic 回归？和很多其他机器学习算法一样，逻辑回归也是从统计学中借鉴来的，尽管名字里有回归俩字儿，但它不是一个需要预测连续结果的回归算法。 与之相反，Logistic 回归是二分类任务的首选方法。它输出一个 0 到 1 之间的离散二">
+<meta name="twitter:image" content="https://image.jiqizhixin.com/uploads/editor/164bdc1d-46ae-4c67-868f-a36d8c129af0/1526191840515.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-9246611541606574",
+    enable_page_level_ads: true
+  });
+</script>
+
+
+  <link rel="canonical" href="https://blog.irudder.me/2019-03-21/nlp/4Text_Classification/Chapter1_Text_Classification_based_on_Machine_Learning/2.LR_SVM_&_Text_Classification/">
+
+
+
+
+
+  <title>NLP系列 | 牧师先生</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">牧师先生</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">成长是一场漫长的自我战争</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tools">
+          <a href="/tools/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tools"></i> <br>
+            
+            小工具
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.irudder.me/2019-03-21/nlp/4Text_Classification/Chapter1_Text_Classification_based_on_Machine_Learning/2.LR_SVM_&_Text_Classification/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="pastor">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="http://irudder.me/resume/img/me.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="牧师先生">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">NLP系列</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-21T19:19:18+08:00">
+                2019-03-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/NLP/" itemprop="url" rel="index">
+                    <span itemprop="name">NLP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="逻辑回归-SVM与文本分类"><a href="#逻辑回归-SVM与文本分类" class="headerlink" title="逻辑回归/SVM与文本分类"></a>逻辑回归/SVM与文本分类</h1><ul>
+<li>参考文章：<a href="https://www.jiqizhixin.com/articles/2018-05-13-3" target="_blank" rel="noopener">《从原理到应用：简述Logistics回归算法》</a></li>
+</ul>
+<h2 id="Part-1-Logistic-Regression"><a href="#Part-1-Logistic-Regression" class="headerlink" title="Part 1 Logistic Regression"></a>Part 1 Logistic Regression</h2><h3 id="1-1-什么是-Logistic-回归？"><a href="#1-1-什么是-Logistic-回归？" class="headerlink" title="1.1 什么是 Logistic 回归？"></a>1.1 什么是 Logistic 回归？</h3><p>和很多其他机器学习算法一样，逻辑回归也是从统计学中借鉴来的，尽管名字里有回归俩字儿，但它不是一个需要预测连续结果的回归算法。</p>
+<p>与之相反，Logistic 回归是二分类任务的首选方法。它输出一个 0 到 1 之间的离散二值结果。简单来说，它的结果不是 1 就是 0。</p>
+<p>癌症检测算法可看做是 Logistic 回归问题的一个简单例子，这种算法输入病理图片并且应该辨别患者是患有癌症（1）或没有癌症（0）。</p>
+<p>它是如何工作的?<br>Logistic 回归通过使用其固有的 logistic 函数估计概率，来衡量因变量（我们想要预测的标签）与一个或多个自变量（特征）之间的关系。</p>
+<p>然后这些概率必须二值化才能真地进行预测。这就是 logistic 函数的任务，也称为 Sigmoid 函数。Sigmoid 函数是一个 S 形曲线，它可以将任意实数值映射到介于 0 和 1 之间的值，但并不能取到 0或1。然后使用阈值分类器将 0 和 1 之间的值转换为 0 或 1。</p>
+<p>下面的图片说明了 logistic 回归得出预测所需的所有步骤。</p>
+<p><img src="https://image.jiqizhixin.com/uploads/editor/164bdc1d-46ae-4c67-868f-a36d8c129af0/1526191840515.png" alt></p>
+<p>下面是 logistic 函数（sigmoid 函数）的图形表示：</p>
+<p><img src="https://image.jiqizhixin.com/uploads/editor/1fe28e0e-94a3-42aa-a1fa-1c46e21cc29d/1526191840278.png" alt></p>
+<p>我们希望随机数据点被正确分类的概率最大化，这就是最大似然估计。最大似然估计是统计模型中估计参数的通用方法。</p>
+<p><img src="https://www.zhihu.com/equation?tex=C%28%5Ctheta%29+%3D+%5C%7B_%7B-log%281-h_%5Ctheta%28x%29%29%2C+y%3D0%7D%5E%7B-log%28h_%5Ctheta%28x%29%29%2Cy%3D1%7D%2C+where%3A+h_%5Ctheta%28x%29%3D%5Cfrac%7B1%7D%7B1%2Be%5E%7B-%5Ctheta%5ETx%7D%7D" alt></p>
+<p>你可以使用不同的方法（如优化算法）来最大化概率。牛顿法也是其中一种，可用于查找许多不同函数的最大值（或最小值），包括似然函数。也可以用梯度下降法代替牛顿法。</p>
+<h3 id="1-2-Logistic-回归-vs-线性回归"><a href="#1-2-Logistic-回归-vs-线性回归" class="headerlink" title="1.2 Logistic 回归 vs 线性回归"></a>1.2 Logistic 回归 vs 线性回归</h3><p>你可能会好奇：logistic 回归和线性回归之间的区别是什么。逻辑回归得到一个离散的结果，但线性回归得到一个连续的结果。预测房价的模型算是返回连续结果的一个好例子。该值根据房子大小或位置等参数的变化而变化。离散的结果总是一件事（你有癌症）或另一个（你没有癌症）。</p>
+<h3 id="1-3-优缺点"><a href="#1-3-优缺点" class="headerlink" title="1.3 优缺点"></a>1.3 优缺点</h3><p>Logistic 回归是一种被人们广泛使用的算法，因为它非常高效，不需要太大的计算量，又通俗易懂，且很容易调整，并且输出校准好的预测概率。</p>
+<p>与线性回归一样，当你去掉与输出变量无关的属性以及相似度高的属性时，logistic 回归效果确实会更好。因此特征处理在 Logistic 和线性回归的性能方面起着重要的作用。</p>
+<p>Logistic 回归的另一个优点是它非常容易实现，且训练起来很高效。在研究中，我通常以 Logistic 回归模型作为基准，再尝试使用更复杂的算法。</p>
+<p>由于其简单且可快速实现的原因，Logistic 回归也是一个很好的基准，你可以用它来衡量其他更复杂的算法的性能。</p>
+<p>它的一个缺点就是我们不能用 logistic 回归来解决非线性问题，因为它的决策边界是线性的。我们来看看下面的例子，两个类各有俩实例。</p>
+<p><img src="https://image.jiqizhixin.com/uploads/editor/439f4df7-544b-436d-9fc0-582aaa7c097f/1526191840966.png" alt></p>
+<p>显然，我们不可能在不出错的情况下划出一条直线来区分这两个类。使用简单的决策树是个更好的选择。</p>
+<p><img src="https://image.jiqizhixin.com/uploads/editor/c473eda3-cb03-4433-ad89-bd81e88a5f33/1526191840677.png" alt></p>
+<p>Logistic 回归并非最强大的算法之一，它可以很容易地被更为复杂的算法所超越，另一个缺点是它高度依赖正确的数据表示。</p>
+<p>这意味着逻辑回归在你已经确定了所有重要的自变量之前还不会成为一个有用的工具。由于其结果是离散的，Logistic 回归只能预测分类结果。</p>
+<h3 id="1-4-何时适用"><a href="#1-4-何时适用" class="headerlink" title="1.4 何时适用"></a>1.4 何时适用</h3><p>就像我已经提到的那样，Logistic 回归通过线性边界将你的输入分成两个「区域」，每个类别划分一个区域。因此，你的数据应当是线性可分的，如下图所示的数据点：</p>
+<p><img src="https://image.jiqizhixin.com/uploads/editor/cc1f0a41-fa18-4499-b12b-374da215ebe9/1526191840804.png" alt></p>
+<p>换句话说：当 Y 变量只有两个值时（例如，当你面临分类问题时），您应该考虑使用逻辑回归。注意，你也可以将 Logistic 回归用于多类别分类，下一节中将会讨论。</p>
+<h3 id="1-5-多分类任务"><a href="#1-5-多分类任务" class="headerlink" title="1.5 多分类任务"></a>1.5 多分类任务</h3><p>优先推荐softmax</p>
+<p><img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/001ce4c2c74e78a66a4d7d04ab92cbd0d0fdec02" alt></p>
+<p>补充：<br>1）一对多（OVA）<br>按照这个策略，你可以训练 10 个二分类器，每个数字一个。这意味着训练一个分类器来检测 0，一个检测 1，一个检测 2，以此类推。当你想要对图像进行分类时，只需看看哪个分类器的预测分数最高</p>
+<p>2）一对一（OVO）<br>按照这个策略，要为每一对数字训练一个二分类器。这意味着要训练一个可以区分 0s 和 1s 的分类器，一个可以区分 0s 和 2s 的分类器，一个可以区分 1s 和 2s 的分类器，等等。如果有 N 个类别，则需要训练 N×N（N-1）/ 2 个分类器，对于 MNIST 数据集，需要 45 个分类器。</p>
+<p>3) 其它分类算法<br>其他常见的分类算法有朴素贝叶斯、决策树、随机森林、支持向量机、k-近邻等等。我们将在其他文章中讨论它们，但别被这些机器学习算法的数量吓到。请注意，最好能够真正了解 4 或 5 种算法，并将精力集中在特征处理上，这也是未来工作的主题。</p>
+<h3 id="1-6-小结"><a href="#1-6-小结" class="headerlink" title="1.6 小结"></a>1.6 小结</h3><p>在这篇文章中，你已了解什么是 Logistic 回归，以及它是如何工作的。你现在对其优缺点也了有深刻的了解，并且知道何时用它。</p>
+<p>此外，你还探索了使用 Logistic 回归与 sklearn 进行多分类的方法，以及为什么前者是比其他机器学习算法更好的基准算法。</p>
+<p>原文链接：<a href="https://towardsdatascience.com/the-logistic-regression-algorithm-75fe48e21cfa" target="_blank" rel="noopener">https://towardsdatascience.com/the-logistic-regression-algorithm-75fe48e21cfa</a></p>
+<h2 id="Part-2-SVM"><a href="#Part-2-SVM" class="headerlink" title="Part 2 SVM"></a>Part 2 SVM</h2><h3 id="2-1-svm简介"><a href="#2-1-svm简介" class="headerlink" title="2.1 svm简介"></a>2.1 svm简介</h3><ul>
+<li>参考文章：<a href="https://www.zhihu.com/question/21094489/answer/86273196" target="_blank" rel="noopener">《支持向量机(img/svm)是什么意思？》</a></li>
+</ul>
+<p>在很久以前的情人节，大侠要去救他的爱人，但魔鬼和他玩了一个游戏。魔鬼在桌子上似乎有规律放了两种颜色的球，说：“你用一根棍分开它们？要求：尽量在放更多球之后，仍然适用。”</p>
+<p><img src="img/svm1.png" alt><br>于是大侠这样放，干的不错？<br><img src="img/svm2.png" alt><br>然后魔鬼，又在桌上放了更多的球，似乎有一个球站错了阵营。<br><img src="img/svm3.png" alt><br>SVM就是试图把棍放在最佳位置，好让在棍的两边有尽可能大的间隙。<br><img src="img/svm4.png" alt><br>现在即使魔鬼放了更多的球，棍仍然是一个好的分界线。<br><img src="img/svm5.png" alt><br>然后，在SVM 工具箱中有另一个更加重要的 trick。 魔鬼看到大侠已经学会了一个trick，于是魔鬼给了大侠一个新的挑战。<br><img src="img/svm6.png" alt> 现在，大侠没有棍可以很好帮他分开两种球了，现在怎么办呢？当然像所有武侠片中一样大侠桌子一拍，球飞到空中。然后，凭借大侠的轻功，大侠抓起一张纸，插到了两种球的中间。<br><img src="img/svm7.png" alt></p>
+<p>现在，从魔鬼的角度看这些球，这些球看起来像是被一条曲线分开了。<br><img src="img/svm8.png" alt></p>
+<p>再之后，无聊的大人们，把这些球叫做 「data」，把棍子 叫做 「classifier」, 最大间隙trick 叫做「optimization」， 拍桌子叫做「kernelling」, 那张纸叫做「hyperplane」。</p>
+<p>图片来源：Support Vector Machines explained well</p>
+<h3 id="2-2-如何计算svm最优超平面"><a href="#2-2-如何计算svm最优超平面" class="headerlink" title="2.2 如何计算svm最优超平面"></a>2.2 如何计算svm最优超平面</h3><ul>
+<li>参考文章：<a href="https://www.cnblogs.com/muchen/p/6297027.html" target="_blank" rel="noopener">《支持向量机 (SVM)分类器原理分析与基本应用》</a></li>
+</ul>
+<ol>
+<li>首先根据算法思想 - “找到具有最小间隔的样本点，然后拟合出一个到这些样本点距离和最大的线段/平面。” 写出目标函数：</li>
+</ol>
+<p><img src="img/svm21.png" alt></p>
+<p>该式子的解就是待求的回归系数。</p>
+<p>然而，这是一个嵌套优化问题，非常难进行直接优化求解。为了解这个式子，还需要以下步骤。</p>
+<ol start="2">
+<li>不去计算内层的min优化，而是将距离值界定到一个范围 - 大于1，即最近的样本点，也即支持向量到超平面的距离为1。下图可以清楚表示这个意思：</li>
+</ol>
+<p><img src="img/svm22.png" alt></p>
+<p>去掉min操作，代之以界定：label * (wTx + b) &gt;= 1。</p>
+<ol start="3">
+<li>这样得到的式子就是一个带不等式的优化问题，可以采用拉格朗日乘子法(KKT条件)去求解。</li>
+</ol>
+<p>具体步骤推论本文不给出。推导结果为：</p>
+<p><img src="img/svm23.png" alt></p>
+<p>另外，可加入松弛系数 C，用于控制 “最大化间隔” 和”保证大部分点的函数间隔小于1.0” 这两个目标的权重。</p>
+<p>将 α &gt;= 0 条件改为 C &gt;= α &gt;= 0 即可。</p>
+<p>α 是用于求解过程中的一个向量，它和要求的结果回归系数是一一对应的关系。</p>
+<p>将其中的 α 解出后，便可依据如下两式子(均为推导过程中出现的式子)进行转换得到回归系数：</p>
+<p><img src="img/svm24.png" alt><br><img src="img/svm25.png" alt></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢你对我的支持 让我继续努力分享有用的技术和知识点.</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="pastor 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="pastor 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    pastor
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://blog.irudder.me/2019-03-21/nlp/4Text_Classification/Chapter1_Text_Classification_based_on_Machine_Learning/2.LR_SVM_&_Text_Classification/" title="NLP系列">https://blog.irudder.me/2019-03-21/nlp/4Text_Classification/Chapter1_Text_Classification_based_on_Machine_Learning/2.LR_SVM_&_Text_Classification/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+    
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/nlp/" rel="tag"># nlp</a>
+          
+            <a href="/tags/自然语言处理/" rel="tag"># 自然语言处理</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019-03-21/nlp/2NLP_Basics2/lesson1/2.regular_expression/" rel="next" title="NLP系列">
+                <i class="fa fa-chevron-left"></i> NLP系列
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019-03-21/nlp/4Text_Classification/Chapter1_Text_Classification_based_on_Machine_Learning/1.Naive_bayes&Chinese_text_classification/" rel="prev" title="NLP系列">
+                NLP系列 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://irudder.me/resume/img/me.jpg" alt="pastor">
+            
+              <p class="site-author-name" itemprop="name">pastor</p>
+              <p class="site-description motion-element" itemprop="description">最富内涵的博文,最有哲理的谈论</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">152</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">51</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/irudder" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
+              </a>
+            </div>
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#逻辑回归-SVM与文本分类"><span class="nav-number">1.</span> <span class="nav-text">逻辑回归/SVM与文本分类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Part-1-Logistic-Regression"><span class="nav-number">1.1.</span> <span class="nav-text">Part 1 Logistic Regression</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-什么是-Logistic-回归？"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.1 什么是 Logistic 回归？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-Logistic-回归-vs-线性回归"><span class="nav-number">1.1.2.</span> <span class="nav-text">1.2 Logistic 回归 vs 线性回归</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-优缺点"><span class="nav-number">1.1.3.</span> <span class="nav-text">1.3 优缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-何时适用"><span class="nav-number">1.1.4.</span> <span class="nav-text">1.4 何时适用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-多分类任务"><span class="nav-number">1.1.5.</span> <span class="nav-text">1.5 多分类任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-6-小结"><span class="nav-number">1.1.6.</span> <span class="nav-text">1.6 小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Part-2-SVM"><span class="nav-number">1.2.</span> <span class="nav-text">Part 2 SVM</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-svm简介"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 svm简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-如何计算svm最优超平面"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 如何计算svm最优超平面</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; long long ago &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pastor</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v="></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v="></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v="></script>
+<script type="text/javascript" src="/js/src/post-details.js?v="></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v="></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

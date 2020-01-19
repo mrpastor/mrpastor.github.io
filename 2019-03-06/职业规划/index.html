@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+<meta name="referrer" content="no-referrer">
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-32x32-next.png?v=">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=">
+
+
+  <link rel="mask-icon" href="/images/favicon-32x32-next.png?v=" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="个人发展,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="牧师先生" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="一、关于职业规划定义解读 　　我们先看看什么是职业规划? 　　百度百科上给出的定义是这样的：职业规划是对职业生涯乃至人生进行持续的系统的计划的过程，它包括职业定位、目标设定和通道设计三个要素。对于枯燥的定义，我们需要有一套方法论来分解一下： 　　首先，职业规划是一个过程。我们从毕业走向社会，就开始了属于我们的职业之路，从正常的职业发展路径来看，原地踏步、停滞不前不是职场人应有的状态，毕竟随着自">
+<meta name="keywords" content="个人发展">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webrtc简介">
+<meta property="og:url" content="https://blog.irudder.me/2019-03-06/职业规划/index.html">
+<meta property="og:site_name" content="牧师先生">
+<meta property="og:description" content="一、关于职业规划定义解读 　　我们先看看什么是职业规划? 　　百度百科上给出的定义是这样的：职业规划是对职业生涯乃至人生进行持续的系统的计划的过程，它包括职业定位、目标设定和通道设计三个要素。对于枯燥的定义，我们需要有一套方法论来分解一下： 　　首先，职业规划是一个过程。我们从毕业走向社会，就开始了属于我们的职业之路，从正常的职业发展路径来看，原地踏步、停滞不前不是职场人应有的状态，毕竟随着自">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-01-06T04:23:19.754Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="webrtc简介">
+<meta name="twitter:description" content="一、关于职业规划定义解读 　　我们先看看什么是职业规划? 　　百度百科上给出的定义是这样的：职业规划是对职业生涯乃至人生进行持续的系统的计划的过程，它包括职业定位、目标设定和通道设计三个要素。对于枯燥的定义，我们需要有一套方法论来分解一下： 　　首先，职业规划是一个过程。我们从毕业走向社会，就开始了属于我们的职业之路，从正常的职业发展路径来看，原地踏步、停滞不前不是职场人应有的状态，毕竟随着自">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-9246611541606574",
+    enable_page_level_ads: true
+  });
+</script>
+
+
+
+  <link rel="canonical" href="https://blog.irudder.me/2019-03-06/职业规划/">
+
+
+
+
+
+  <title>webrtc简介 | 牧师先生</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f0f22b4163960ce2a6bb1e14b1162e93";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta custom-logo">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">牧师先生</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">成长是一场漫长的自我战争</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tools">
+          <a href="/tools/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tools"></i> <br>
+            
+            小工具
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.irudder.me/2019-03-06/职业规划/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="pastor">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="http://irudder.me/resume/img/me.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="牧师先生">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">webrtc简介</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-06T19:19:18+08:00">
+                2019-03-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/职业规划/" itemprop="url" rel="index">
+                    <span itemprop="name">职业规划</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>　　一、关于职业规划定义解读</p>
+<p>　　我们先看看什么是职业规划?</p>
+<p>　　百度百科上给出的定义是这样的：职业规划是对职业生涯乃至人生进行持续的系统的计划的过程，它包括职业定位、目标设定和通道设计三个要素。对于枯燥的定义，我们需要有一套方法论来分解一下：</p>
+<p>　　首先，职业规划是一个过程。我们从毕业走向社会，就开始了属于我们的职业之路，从正常的职业发展路径来看，原地踏步、停滞不前不是职场人应有的状态，毕竟随着自身年龄的增长、社会环境的变化、家庭责任的加重，我们的收入也要随之增长，要达到甚至高于当前必要支出才能保证有一个不错的生活环境。那么，收入的增长，靠什么实现?是职位升迁、是平台壮大、是自我综合素质提高、是趋势的超前把握、是机会的合适选择、还是?这就需要我们在职场当中，根据内外环境的变化、不同阶段的机会，不断进行学习成长，进而顺着自己的职业目标调整自身的职业路径，这是个不断设梦、追梦、圆梦的过程，而不是结果，也就是说，职业规划，没有对错之分，只有合适不合适、科学不科学而已。</p>
+<p>　　其次，职业规划的发展是持续的、系统的、有计划的。眼下，大多数刚步入社会的大学生或正在打拼的大部分普通职场人，是没有清晰的职业规划的或者是职业规划是面临困境、无奈时的一种被动选择。真正的职业规划，它应该是一种发自内心的、主动的自我规划，它应该是对自身职业发展不同阶段给予自己的一个交代(是好还是坏)，它应该是充满想象、值得憧憬、朝思暮想且不断为之努力的方向指引。它需要我们每一个职场人去给自己下定义：</p>
+<p>　　我要成为一个什么样的人?</p>
+<p>　　为了这个目标，我近三年要做什么?接下来五年我要如何调整?过了30岁没达到预期怎么办?</p>
+<p>　　设定的目标我如何达成?实现的路径和方法是什么?</p>
+<p>　　我的优势和特长是什么?如何在职场当中得到最大程度的发挥?</p>
+<p>　　眼下我存在哪些不足?不同的不足和短板如何快速成长?</p>
+<p>　　我有哪些可以借力的地方?有哪些资源哪些人能帮到我实现我的职业目标?</p>
+<p>　　这个时代的发展趋势是什么?我的职业发展路径和实现的方式，是顺势而为还是背道而驰?</p>
+<p>　　……</p>
+<p>　　所以，我们谈职业规划，它应该具备持续性，不能一阵一阵;它应该系统，从自身到公司内部到外部环境和资源;它应该有计划性，每一步都在自己的把控当中。</p>
+<p>　　二、理清职业规划的几个核心要点</p>
+<p>　　(一)没有目标的职业规划很难有未来。</p>
+<p>　　我们经常听到的职业规划告诉我们，需要有几步：明确就业方向(先就业后择业还是先择业后就业)、选行业(法律/教育/文化/影视)、选企业(华图 教育/新 东方/好 未来)、给自己职业定位(助理开始还是专员开始还是主管开始)，这个流程是没有错的，我想说，这只是职场的开始，可以说，对所有人都实用，大家的起点都是一样的，不是吗?</p>
+<p>　　然后呢?很多人，同样的时间，同样的起点，等过了几年，有的连升了3级当了经理，有的还原地不动(这样的鸡汤有好多，在这里不做阐述)，差别在哪里?当然，差别有很多，我认为最重要的一条是有没有清晰的职业目标并制定科学的实现方法。</p>
+<p>　　因为，设定了目标，就有了努力的方向，就有了要追求的高度。一个清晰的目标，可以让你自发的去做好各种计划，不断的总结自身的不足并改善，对自己的工作要求会不断的提高，会主动的做工作总结和思考，可以让你的职业成长围绕着一个点去积累经验，而这种日积月累的经验积累，也是你日后升职加薪的筹码。反之，没有目标呢?容易陷入什么都学、什么都做什么都不精、不断的尝试用跳槽来解决问题。</p>
+<p>　　所以，你要做的第一件事，就是找准一个可以为之奋斗3-5年的小目标，可以简单点但一定是明确的。如：3年后，我要做到主管级别，管5-10人的团队;1年后，我的工资翻一番等。当你完成一个又一个小目标的时候，你就比较容易形成好的职业习惯，如吃苦耐劳、勤奋好学、勤于总结、善于解决问题等。</p>
+<p>　　(二)如何科学的做职业规划?</p>
+<p>　　从我学习到的方法有擅长法则、喜好法则、价值发展法。如何理解?</p>
+<p>　　第一、擅长法则：从每个人的优势开始，可以是所学的专业、自己的特长、身边的资源开始梳理，比如，我是市场营销专业的，我的职业发展就是市场推广;我表达能力比较强，我的职业发展是做主持、销售或老师;我的师兄是在互联网公司做总监的，公司不错刚好需要招人等。好的职业起点，能节省试错的时间、少走弯路。</p>
+<p>　　第二、喜好法则：这点很容易理解，比如，我喜欢祖国的山河，所以我的职业是做一名导游;我喜欢篮球，我的职业是做一名篮球教练;我喜欢为人民服务，我的职业是做一名公务员等。心中喜爱的职业，是最长久的、最能激发个人潜能的。</p>
+<p>　　第三、价值发展法则：这一点对于很多人来说比较难，需要具备比较强的综合能力，比如：分析能力、人际关系能力、机会把握能力、系统规划能力等。此法则，是我们能有效识别行业、企业、部门在不同发展阶段的价值，然后顺应发展规律把握机会推动自己职业发展之路加速。如：雾霾严重，我们选择环保企业;公司在跑马圈地开发市场时期，你选择市场部;公司在大力发展分子公司的时候，你主动去开疆扩土;国家在倡导扶贫，你一马当先去做扶贫等。此法则，一般情况下建立在擅长法则或喜好法则基础之上。</p>
+<p>　　(三)争取在最短的时间成为某一方面的专家</p>
+<p>　　伟大是时间的函数，大家可能听说过10000小时定律：不论你想在任何一个领域成功，你都必须至少付出10000个小时的磨练。我们每个职场人留个心眼，去留意周围的职场伙伴，看看有哪些职场规律?</p>
+<p>　　第一、相对成功的公司高管，绝大多数是随着公司发展，一步一步成长并成为公司中流砥柱的;</p>
+<p>　　第二、在职场的前三年过于频繁跳槽的职场伙伴，一般不会有很好的发展;</p>
+<p>　　第三、不断更换行业、工种的职场伙伴，一般没有多大的想象空间;</p>
+<p>　　第四、猎头猎人，一般都要看行业工作经验;</p>
+<p>　　……</p>
+<p>　　大家想想，为什么?</p>
+<p>　　我观点是：对于大多数人而言，大家的智商是差不多的，都在中等水平。这样，就可以下定义，我们的知识是需要一步一步学习的，我们的能力是需要一步一步提高的，我们的视野是需要一步一步开阔的，而每一步，都是需要付出时间成本的，很少有一生下来的天才。</p>
+<p>　　那么，你要在职场当中快速增值，思路和方法是什么?在于聚焦，一点突破形成核心竞争力。如果你聚焦了，一切就会变得非常简单，比如我们学习效果最好的时期是哪个?是高三，因为，你的面前只有高考，你的任务只有学习，在职场当中也是一样的原理。</p>
+<p>　　举例，假设你是做市场工作的，你的任务很简单，就是找到你最强的那一点去吃透，比如你网络营销很厉害，那么你的工作方法论就是如何用网络营销优势来完成你的经营任务，穷尽网络营销一切手段做出业绩，你的每一步总结和规划也都是网络营销，你的成功经验也是基于网络营销来展开，这样，不断的尝试网络营销不同的手法形成自己的一套体系，进而去说服别人用你的方法论，不断的影响别人，慢慢的，你就成为了网络营销的高手、专家，你的职业发展之路，就有了核武器。</p>
+<p>　　给大家的建议是：不要随便的跳槽，如果要跳，也是往更高的平台跳，也是环绕着一个点去跳，也是不断的用沉淀的经验为自己背书去创造更大的价值。争取在最短的时间成为某一方面的专家。</p>
+<p>　　(四)如何做到在职场上弯道超车?</p>
+<p>　　很多职场人的心理，每天都在想，能不能有捷径升职加薪呢?能不能屌丝逆袭一下，一夜成高富帅白富美呢?我想，几率是比较小的，但是有方法是可以实现弯道超车的，关键词是主动、专业、换位思考，列出几条：</p>
+<p>　　1.学会自动报告你的工作内容和进度，主动的让领导知道，争取上级的支持和配合;</p>
+<p>　　2.养成对上司的询问有问必答而且清楚的习惯，让领导对你放心，争取上级交给你更重要的任务;</p>
+<p>　　3.虚心接受批评，不犯三次过错，让领导省事，争取让上级看到你的进步;</p>
+<p>　　4.毫无怨言接受任务，对自己业务主动提出改善计划，给领导分忧，争取上级给你升职加薪的理由;</p>
+<p>　　…………………….</p>
+<p>　　总而言之，就是要养成正向的职业发展习惯，职场，最怕用心两字。</p>
+<p>　　反之，余世维老师关于《职业经理人常犯的11个错误》同样值得我们思考，看看我们是不是在日常的工作中犯了这样的错误，反过来，也是我们弯道超车的招啊：</p>
+<p>　　①拒绝承担个人责任; ②不去启发下属;③只强调结果，不强调思想;④一视同仁的管理方式：⑤忘了公司的命脉：利润：⑥只见问题，不看目标：⑦不当主管，只做哥们：⑧没有设定标准：⑨纵容能力不足的人：⑩眼中只有超级明星：最后，在公司内部形成对立。(本段摘自：余世维时代光华课堂核心观点)</p>
+<p>　　三、职场前五年决定未来职业的高度</p>
+<p>　　个人认为，职场前五年，你的选择、你的能力、你的职业习惯决定你的职业高度。</p>
+<p>　　(一)职场前两年，你需要把握机会选择一个好的行业和企业</p>
+<p>　　个人，是比较反感先就业后择业的观点的，没想清楚，就出发，很容易让一名刚刚步入职场的小鲜肉走偏了路，很容易失去择业的机会。不管是即将毕业的大学生也好，还是在职场当中的老兵也好，个人建议，谋定而后动，想清楚了你要什么?成为什么样的人?是否适合你?你去了是否有发展前景?正确的路径是什么?举例说明：</p>
+<p>　　你去任何企业面试前，你需要做的工作有哪些?</p>
+<p>　　①这个企业在行业中的地位、企业规模多大了?</p>
+<p>　　②这个企业处于什么样的发展阶段?是起步还是高速发展还是夕阳产业?</p>
+<p>　　③这个企业的招聘频率、招聘规模和重点招的职位是哪些?</p>
+<p>　　……</p>
+<p>　　当你去企业面试过程当中，你需要留意的地方在哪里?</p>
+<p>　　①面试官的能力水平，面试官是一个企业的缩影;</p>
+<p>　　②面试流程是规范按流程走，还是比较随意?</p>
+<p>　　③未来上级面试环节，上级是一个什么样的人?是否坦诚、乐观、自信和充满激情?</p>
+<p>　　…….</p>
+<p>　　当你进入企业开始工作的时候，你需要关注这些方面：</p>
+<p>　　①是否有完善的新员工培训制度?进入公司是否有人带?</p>
+<p>　　②企业文化怎么样?老板的人品、能力和管理模式，很大程度决定你的发展速度和高度;</p>
+<p>　　③公司的晋升通道是否开放?上级是否愿意培养你、是否提拔你?</p>
+<p>　　……</p>
+<p>　　当你从面试前，就开始为你的职业铺路的时候，你已经领先于别人了。对应上面曾老师给出的思路，来看看你现在随处的企业，是否符合你的职业发展要求吧。</p>
+<p>　　(二)职场前三年，你需要掌握最基本的职场技能</p>
+<p>　　首先，个人基本能力的掌握。我总结了七项重要的、共性的与大家分享：</p>
+<p>　　1)你的人际关系处理能力：是否可以和同级、上级和睦相处并慢慢形成工作默契;</p>
+<p>　　2)你的听说读写能力：你的表达能力、善于聆听能力、文案撰写能力，这是你的个人名片;</p>
+<p>　　3)你的执行力：所有工作任务，是否能按时、按质、按量完成任务;</p>
+<p>　　4)你的管理能力：时间管理、项目管理、目标管理等;</p>
+<p>　　5)你的学习能力：读书、培训、头脑风暴等方式，去养成爱学习的习惯，善于做笔记;</p>
+<p>　　6)你的工具应用能力：PPT、Word、excel、思维导图、VISO等是否能掌握基本应用;</p>
+<p>　　7)你的计划总结能力：主动规划你的工作，善于总结，这是一个人一辈子的好品质。</p>
+<p>　　基本上，这七项能力，是一个职场人，伴随一生的基础能力，我们所有职场人，需要付出行动去学会。</p>
+<p>　　其次，个人核心能力的把握。我引用了猎头一部分新的，与大家分享：</p>
+<p>　　1)解决问题的逆向思维能力与解决问题的方案制定能力;</p>
+<p>　　2)考虑问题的换位思考能力;</p>
+<p>　　3)信息资料收集与应用能力;</p>
+<p>　　4)目标实现与调整能力;</p>
+<p>　　5)超强的自我安慰与抗打击能力</p>
+<p>　　6)企业文化的适应与岗位变化的承受能力</p>
+<p>　　7)职业精神与不断渴望挑战的精神</p>
+<p>　　想一想，我们在职场前三年，修炼了这里面核心的几块能力，职业通道我们还需要担心吗?</p>
+<p>　　(三)职场前五年，你需要提炼并保持好的职业习惯</p>
+<p>　　我们经常在网络上看到，李克强总理如何艰苦朴素、华为的任正非总如何保持艰苦奋斗、万达的王健林总行程如何如何紧凑，我想说，这不奇怪，我认为，职业越发展到一定的高度，这些好的职业习惯不是可以装出来的，而是一个职场老兵真正由内而外散发出来的职业精神，比如：勤奋、吃苦、节约、平易近人、市场嗅觉、事物判断力等，这些好的职业习惯，我们在职场的前三年，至少要养成几条。</p>
+<p>　　四、画出你所在企业的职业规划路径图</p>
+<p>　　我觉得，一个好的企业，员工是可以知道有多少付出会有多少回报的，员工是可以知道自身的职业发展路径在哪里，员工是可以公平享受企业发展机会的。一年又一年，我给大家分享的第四方面是，我们每一个人，能不能勾画出属于你在所在企业的发展路径图，以华图教育为例，见下图，不展开陈述：</p>
+<p>　　五、结语</p>
+<p>　　如果你的人生还有风雨,那是因为你的心灵飞得还不够高。正确的做法是发现使你上升到云层之上的途径，那里的天空永远是碧蓝的。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢你对我的支持 让我继续努力分享有用的技术和知识点.</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="pastor 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="pastor 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    pastor
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://blog.irudder.me/2019-03-06/职业规划/" title="webrtc简介">https://blog.irudder.me/2019-03-06/职业规划/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+    
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/个人发展/" rel="tag"># 个人发展</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019-03-03/webrtc_tutorial_1/" rel="next" title="webrtc简介">
+                <i class="fa fa-chevron-left"></i> webrtc简介
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019-03-06/webrtc_tutorial_2/" rel="prev" title="webrtc简介">
+                webrtc简介 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="http://irudder.me/resume/img/me.jpg" alt="pastor">
+            
+              <p class="site-author-name" itemprop="name">pastor</p>
+              <p class="site-description motion-element" itemprop="description">最富内涵的博文,最有哲理的谈论</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">157</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/irudder" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons">
+              </a>
+            </div>
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; long long ago &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">pastor</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v="></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v="></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v="></script>
+<script type="text/javascript" src="/js/src/post-details.js?v="></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v="></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

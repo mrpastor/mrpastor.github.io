@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="preconnect" href="//www.googletagmanager.com">
+	<link rel="preconnect" href="//zz.bdstatic.com">
+	<link rel="preconnect" href="//sp0.baidu.com">
+	<link rel="preconnect" href="//www.google-analytics.com">
+	<link rel="preconnect" href="//cdn1.lncld.net">
+	<link rel="preconnect" href="//unpkg.com">
+	<link rel="preconnect" href="//app-router.leancloud.cn">
+	<link rel="preconnect" href="//9qpuwspm.api.lncld.net">
+	<link rel="preconnect" href="//gravatar.loli.net">
+
+	<title>NLP系列 | Pastor Dean</title>
+
+	<meta name="HandheldFriendly" content="True">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+	<meta name="generator" content="hexo">
+	<meta name="author" content="pastor">
+	<meta name="description" content>
+
+	
+	<meta name="keywords" content>
+	
+
+	
+	<link rel="shortcut icon" href="/images/favicon-16x16-next.png">
+	<link rel="apple-touch-icon" href="/images/favicon-16x16-next.png">
+	
+
+	
+	<meta name="theme-color" content="#3c484e">
+	<meta name="msapplication-TileColor" content="#3c484e">
+	
+
+	
+
+	
+
+	<meta property="og:site_name" content="Pastor Dean">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="NLP系列 | Pastor Dean">
+	<meta property="og:description" content>
+	<meta property="og:url" content="https://mrpastor.github.io/2019-03-21/nlp/8Machine_Translation/4.Transformer_Model_from_Google/Transformer_Model_from_Google/">
+
+	
+	<meta property="article:published_time" content="2019-03-21T19:03:00+08:00"> 
+	<meta property="article:author" content="pastor">
+	<meta property="article:published_first" content="Pastor Dean, /2019-03-21/nlp/8Machine_Translation/4.Transformer_Model_from_Google/Transformer_Model_from_Google/">
+	
+
+	
+	
+	<link rel="stylesheet" href="/css/allinonecss.min.css">
+
+	
+	
+	
+</head>
+<body class="post-template">
+	<div class="site-wrapper">
+		
+
+
+
+
+<header class="site-header post-site-header outer">
+    <div class="inner">
+        
+<nav class="site-nav"> 
+    <div class="site-nav-left">
+        <ul class="nav">
+            <li>
+                
+                
+                <a class="site-nav-logo" href="/" title="Pastor Dean">
+                    <img src="/images/favicon-32x32-next.png" alt="Pastor Dean">
+                </a>
+                
+                
+            </li>
+            
+            
+            <li>
+                <a href="/ || home" title="home">home</a>
+            </li>
+            
+            <li>
+                <a href="/categories/ || th" title="categories">categories</a>
+            </li>
+            
+            <li>
+                <a href="/archives/ || archive" title="archives">archives</a>
+            </li>
+            
+            <li>
+                <a href="/tools/ || tools" title="tools">tools</a>
+            </li>
+            
+            
+        </ul> 
+    </div>
+    
+    <div class="search-button-area">
+        <a href="#search" class="search-button">Search ...</a>
+    </div>
+     
+    <div class="site-nav-right">
+        
+        <a href="#search" class="search-button">Search ...</a>
+         
+        
+<div class="social-links">
+    
+    
+    <a class="social-link" title="github" href="https://github.com/mrpastor" target="_blank" rel="noopener">
+        <svg viewbox="0 0 1049 1024" xmlns="http://www.w3.org/2000/svg"><path d="M524.979332 0C234.676191 0 0 234.676191 0 524.979332c0 232.068678 150.366597 428.501342 358.967656 498.035028 26.075132 5.215026 35.636014-11.299224 35.636014-25.205961 0-12.168395-0.869171-53.888607-0.869171-97.347161-146.020741 31.290159-176.441729-62.580318-176.441729-62.580318-23.467619-60.841976-58.234462-76.487055-58.234463-76.487055-47.804409-32.15933 3.476684-32.15933 3.476685-32.15933 53.019436 3.476684 80.83291 53.888607 80.83291 53.888607 46.935238 79.963739 122.553122 57.365291 152.97411 43.458554 4.345855-33.897672 18.252593-57.365291 33.028501-70.402857-116.468925-12.168395-239.022047-57.365291-239.022047-259.012982 0-57.365291 20.860106-104.300529 53.888607-140.805715-5.215026-13.037566-23.467619-66.926173 5.215027-139.067372 0 0 44.327725-13.906737 144.282399 53.888607 41.720212-11.299224 86.917108-17.383422 131.244833-17.383422s89.524621 6.084198 131.244833 17.383422C756.178839 203.386032 800.506564 217.29277 800.506564 217.29277c28.682646 72.1412 10.430053 126.029806 5.215026 139.067372 33.897672 36.505185 53.888607 83.440424 53.888607 140.805715 0 201.64769-122.553122 245.975415-239.891218 259.012982 19.121764 16.514251 35.636014 47.804409 35.636015 97.347161 0 70.402857-0.869171 126.898978-0.869172 144.282399 0 13.906737 9.560882 30.420988 35.636015 25.205961 208.601059-69.533686 358.967656-265.96635 358.967655-498.035028C1049.958663 234.676191 814.413301 0 524.979332 0z"/></svg>
+    </a>
+    
+    
+    <a class="social-link" title="facebook" href="https://facebook" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+
+    </a>
+    
+    
+    <a class="social-link" title="twitter" href="https://twitter.com" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+    </a>
+    
+    
+    
+    
+</div>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<div id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+        <header class="post-full-header">
+            <div class="post-full-meta">
+                <time class="post-full-meta-date" datetime="2019-03-21T11:19:18.000Z">
+                    2019-03-21
+                </time>
+                
+                <span class="date-divider">/</span>
+                
+                <a href="/categories/NLP/">NLP</a>&nbsp;&nbsp;
+                
+                
+            </div>
+            <h1 class="post-full-title">NLP系列</h1>
+        </header>
+        <div class="post-full no-image">
+            
+            <div class="post-full-content">
+                <article id="photoswipe" class="markdown-body">
+                    <h1 id="来自Google的Transformer模型"><a href="#来自Google的Transformer模型" class="headerlink" title="来自Google的Transformer模型"></a>来自Google的Transformer模型</h1><h2 id="本章概述"><a href="#本章概述" class="headerlink" title="本章概述"></a>本章概述</h2><ul>
+<li>Google的Transformer模型<ul>
+<li>编码器，解码器</li>
+<li>传统的注意力机制及Multi-head attention</li>
+<li>基于位置的单词编码，及词向量，输出层</li>
+<li>可视化multi-head attention</li>
+<li>Transformer与RNN和CNN神经翻译模型的对比</li>
+</ul>
+</li>
+<li>Google模型的训练细节<ul>
+<li>优化器选择</li>
+<li>正则化</li>
+<li>label smoothing</li>
+</ul>
+</li>
+<li>实战演示<ul>
+<li>介绍encoder，decoder类及model类</li>
+<li>介绍如何训练模型</li>
+<li>运用OpenNMT开源工具来实战演示</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-来自Google的Transformer模型"><a href="#1-来自Google的Transformer模型" class="headerlink" title="1.来自Google的Transformer模型"></a>1.来自Google的Transformer模型</h2><ul>
+<li><p>序列计算中，传统的RNN在预测下一个符号（token）的时候，会对以往的历史信息有很强的依赖，使得难以充分地并行化，也无法很好地加深网络的层级结构。而对于传统的基于CNN的神经机器翻译模型，两个任意输入与输出位置的信号关联所需要的运算数量与它们的位置距离成正比，Facebook提出的CNN NMT 为线性增长。这两种常见的结构使得学习较远位置的依赖关系（long-term dependency）非常困难。</p>
+</li>
+<li><p>在 Transformer 中，两个任意输入的信号关联的开销会减少到一个固定的运算数量，使用 Multi-Head Attention 注意力机制可以完全脱离RNN及CNN的结构，只使用自注意机制（self-attention)，使得Transformer可以高效地并行化，并堆叠非常多层的深层网络。</p>
+</li>
+<li><p>自注意力（Self-attention），是一种涉及单序列不同位置的注意力机制，并能计算序列的表征。自注意力在多种任务中都有非常成功的应用，例如阅读理解、摘要概括、文字蕴含和语句表征等。自注意力这种在序列内部执行 Attention 的方法可以视为搜索序列内部的隐藏关系，这种内部关系对于翻译以及序列任务的性能非常重要。</p>
+</li>
+</ul>
+<h3 id="1-1-编码器-encoder"><a href="#1-1-编码器-encoder" class="headerlink" title="1.1 编码器 encoder"></a>1.1 编码器 encoder</h3><ul>
+<li>编码器encoder由6层结构一样的网络层组成，每一层有2个子层：<ul>
+<li>第一个子层是multi-head self-attention Layer</li>
+<li>第二个子层是一个基于位置编码的全连接网络层（position-wise fully connected feed-forward network）</li>
+<li>我们会使用残差连接的方式，分别对每个子层的输入加到这个子层的输出上，然后我们再接一个Layer normalization的归一化层。</li>
+<li>所有的embedding及hidden state的维度都是512<br>$$ \text{LayerNorm}(x+\text{Sublayer}(x)) $$</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-2-解码器-decoder"><a href="#1-2-解码器-decoder" class="headerlink" title="1.2 解码器 decoder"></a>1.2 解码器 decoder</h3><ul>
+<li>解码器decoder由6层结构一样的网络层组成，每一层除了跟encode人一样有2个子层以外，还有第3个子层<ul>
+<li>第一个子层是multi-head self-attention Layer</li>
+<li>第二个子层是一个基于位置编码的全连接网络层（position-wise fully connected feed-forward network）</li>
+<li><font color="red">第三个子层用于对encoder的输出向量进行multi-head attention</font></li>
+<li>同样的，我们会使用残差连接的方式，分别对每个子层的输入加到该子层的输出上，然后我们再接一个Layer normalization的归一化层。<br>$$ \text{LayerNorm}(x+\text{Sublayer}(x))\ $$</li>
+<li>decoder还需要将还没有生成的后续序列掩盖掉（masking），这样做是为了防止decoder在做self-attention的时候关注到后续还未生成的单词上去。</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-3-注意力机制"><a href="#1-3-注意力机制" class="headerlink" title="1.3 注意力机制"></a>1.3 注意力机制</h3><ul>
+<li>传统的注意力机制，也称为scaled Dot-Product Attention，可以看成是有一个询问的词（query），去跟一堆哈希表中的键值对（key-value pair）进行匹配，找到最相关的键（key），之后返回该键所对应的值（value）。通常的，如果我们只返回一个key所对应的value，我们称之为hard attention。如果我们对所有的key都计算一个相关系数，（也称之为attention weight），我们可以将所有key对应的value进行加权求和（weighted sum）这样的操作我们称之为soft attention。<br>$$\text{Attention}(Q,K,V) = \text{softmax}\left({QK^T \over \sqrt{d_k}}\right)V$$</li>
+<li>其中所有的query和key都是维度为$d_k$的向量，我们将这些向量分别叠在一起形成 $Q\in\mathbb{R}^{|Q|\times d_k}, K\in\mathbb{R}^{|K|\times d_k}$的矩阵。</li>
+<li>所有的value都是维度为$d_v$的向量，我们将这些向量叠在一起形成$V\in\mathbb{R}^{|V|\times d_k}$</li>
+<li>这里如果维度$d_k$很大的时候，两个向量的乘积会变得很大，使得softmax会得到非常小的数值，所以我们会在这里除以$\sqrt{d_k}$来抵消这个影响<br><img alt class="post-img b-lazy" data-img="./img/attention.png" data-index="0" data-src="./img/attention.png"></li>
+</ul>
+<h3 id="1-4-Multi-Head-Attention"><a href="#1-4-Multi-Head-Attention" class="headerlink" title="1.4 Multi-Head Attention"></a>1.4 Multi-Head Attention</h3><ul>
+<li>这里我们假设$Q,~K,~V\in \mathbb{R}^{d_\text{model}}$都在一个${d_\text{model}}$维度的空间中</li>
+<li>我们使用h个不一样权重的线性映射函数$(QW^Q_i, KW^K_i, VW^V_i)$将Q, K, V分别映射到$d_k,~d_k,~d_v$空间中</li>
+<li>我们对映射之后的Q, K, V 做h次attention，并将h个attention head连接在一起形成一个新的向量</li>
+<li>最后再将这个向量映射到$d_\text{model}$空间，作为下一层的输入</li>
+</ul>
+<p>$$ \text{MultiHead}(Q,K,V) = \text{Concat}(\text{head}_1,\cdots, \text{head}_h) W^O \ \text{head}_i = \text{Attention}(QW^Q_i, KW^K_i, VW^V_i) $$</p>
+<ul>
+<li>其中$W^Q_i\in \mathbb{R}^{d_\text{model}\times d_k}, W^K_i\in \mathbb{R}^{d_\text{model}\times d_k}, W^V_i\in \mathbb{R}^{d_\text{model}\times d_v}, W^O\in \mathbb{R}^{hd_v\times d_\text{model}}$, 常见的我们设置$h=8,d_k=d_v=d_\text{model}/h=64$</li>
+<li>模型图<br><img alt class="post-img b-lazy" data-img="./img/mha.png" data-index="1" data-src="./img/mha.png"></li>
+</ul>
+<h3 id="1-4-Multi-Head-Attention-1"><a href="#1-4-Multi-Head-Attention-1" class="headerlink" title="1.4 Multi-Head Attention"></a>1.4 Multi-Head Attention</h3><ul>
+<li><p>应用</p>
+<ul>
+<li>将decoder上一个时刻的hidden state 作为query，将encoder的最顶层的所有输出的hidden state作为key和value，这样可以类似传统的attention机制一样去发现源语言单词与目标语言单词之间的联系</li>
+<li>encoder本身会对源语言单词进行multi-head self attention，其中query，key，value都是一样的，都是上一层中输出的单词的hidden state，每一个时刻计算出来的context vector都会作为该层输出的新的单词的hidden state，并作为下一层的输入。</li>
+<li>decoder本身也会类似encoder一样去做self attention，不同的是，decoder只对左边已经生成的序列进行attention，对还没有生成的（右边的）序列掩盖掉（masking）</li>
+</ul>
+</li>
+<li><p>完整的模型图<br><img alt class="post-img b-lazy" data-img="./img/transformer.png" data-index="2" data-src="./img/transformer.png"></p>
+</li>
+</ul>
+<h3 id="1-5-基于位置的前向神经网络（Position-wise-Feed-Forward-Networks）"><a href="#1-5-基于位置的前向神经网络（Position-wise-Feed-Forward-Networks）" class="headerlink" title="1.5 基于位置的前向神经网络（Position-wise Feed-Forward Networks）"></a>1.5 基于位置的前向神经网络（Position-wise Feed-Forward Networks）</h3><ul>
+<li>对于encoder和decoder的每个attention层之后，我们还会在连接一个全连接的前向神经网络。这个网络包含了两个线性转换和中间加一个ReLU的激活函数<br>$$FFN(x) =\max(0, xW_1+b_1) W_2+b_2$$</li>
+<li>这里每一层，我们都用不同的$W_1,W_2,b_1,b_2$。</li>
+</ul>
+<p><img alt class="post-img b-lazy" data-img="./img/cnn-encoder.png" data-index="3" data-src="./img/cnn-encoder.png"></p>
+<h3 id="1-6-词向量矩阵及Softmax层"><a href="#1-6-词向量矩阵及Softmax层" class="headerlink" title="1.6 词向量矩阵及Softmax层"></a>1.6 词向量矩阵及Softmax层</h3><ul>
+<li>这里我们使用常见的词向量矩阵，并encoder会把词向量映射到$d_\text{model}$空间上，作为第一层的输入</li>
+<li>在做预测的时候，我们会将输出向量映射到一个词表大小的概率空间中，并使用softmax来归一化到一个$[0,1]$之间的概率值。</li>
+</ul>
+<h3 id="1-7-位置编码（position-embeddings）"><a href="#1-7-位置编码（position-embeddings）" class="headerlink" title="1.7 位置编码（position embeddings）"></a>1.7 位置编码（position embeddings）</h3><ul>
+<li>因为模型没有recurrence及convolution的操作，所以为了让模型能够分辨不同位置的单词，我们需要对单词的位置进行编码。</li>
+</ul>
+<p>$$PE(pos, 2i)=\sin(pos/10000^{2i/d_\text{model}}) \ PE(pos, 2i+1)=\cos(pos/10000^{2i/d_\text{model}})$$</p>
+<ul>
+<li>pos是这个单词在句子中的位置，i是这个位置向量的第i个维度的编号。这样的波长形成了一个从$2\pi$到$1000\cdot 2\pi$的几何级数。这样会使得模型更容易学到相对距离，因为$PE_{pos+k}$可以表示为$PE_{pos}$的一个线性变化。</li>
+</ul>
+<h3 id="1-8-Transformer-对比RNN及CNN"><a href="#1-8-Transformer-对比RNN及CNN" class="headerlink" title="1.8 Transformer 对比RNN及CNN"></a>1.8 Transformer 对比RNN及CNN</h3><ul>
+<li>我们发现RNN需要进行$O(n)$个序列操作，而Transformer和CNN只需要$O(1)$个</li>
+<li>CNN会形成一个层级结构，类似树状，所以任意两个单词到达的最大路径长度是$O(\log_k(n))$</li>
+<li>如果self-attention只对该单词周围r个单词进行attention操作，我们可以得到restricted版本的self-attention， 这样可以减少每一层的计算复杂度，但为增加两个任意词之间到达的最长路径<br><img alt class="post-img b-lazy" data-img="./img/compare.png" data-index="4" data-src="./img/compare.png"></li>
+</ul>
+<h3 id="1-9-可视化attention"><a href="#1-9-可视化attention" class="headerlink" title="1.9 可视化attention"></a>1.9 可视化attention</h3><ul>
+<li>一个例子发现attention能找到长距离的依赖关系“making … more difficult”<br><img alt class="post-img b-lazy" data-img="./img/att-1.png" data-index="5" data-src="./img/att-1.png"></li>
+</ul>
+<h3 id="1-9-可视化attention-1"><a href="#1-9-可视化attention-1" class="headerlink" title="1.9 可视化attention"></a>1.9 可视化attention</h3><ul>
+<li>一个例子发现attention能找到名词的对应关系”Law” 和 “application” 都对应于 “its”<br><img alt class="post-img b-lazy" data-img="./img/att-2.png" data-index="6" data-src="./img/att-2.png"></li>
+</ul>
+<h3 id="1-9-可视化attention-2"><a href="#1-9-可视化attention-2" class="headerlink" title="1.9 可视化attention"></a>1.9 可视化attention</h3><ul>
+<li>一个例子发现attention能找到句子中的结构关系，比如某一些head能发现单词的依赖关系<br><img alt class="post-img b-lazy" data-img="./img/att-3.png" data-index="7" data-src="./img/att-3.png"></li>
+</ul>
+<h2 id="2-Transformer模型的训练细节"><a href="#2-Transformer模型的训练细节" class="headerlink" title="2. Transformer模型的训练细节"></a>2. Transformer模型的训练细节</h2><ul>
+<li>优化方法</li>
+<li>正则化 （regularization） </li>
+<li>label smoothing</li>
+</ul>
+<h3 id="2-1-优化方法"><a href="#2-1-优化方法" class="headerlink" title="2.1 优化方法"></a>2.1 优化方法</h3><ul>
+<li>Adam 优化方法，$\beta_1=0.9, \beta_2=0.98, \epsilon=10^{-9}$</li>
+<li>learning rate是随着训练的过程中，通过以下一个函数进行变化。一开始在前 warmup_steps个训练迭代中learning rate是线性增长的，往后随着步长的增加而下降。 一般会设置 warmup_steps = 4000<br>$$lr = d_\text{model}^{-0.5} \cdot \min(\text{step_num}^{-0.5},\text{step_num}\cdot \text{warmup_steps}^{-1.5}) $$</li>
+</ul>
+<h3 id="2-2-正则化-Regularization"><a href="#2-2-正则化-Regularization" class="headerlink" title="2.2 正则化 Regularization"></a>2.2 正则化 Regularization</h3><ul>
+<li>对每一个子层的输出，在该子层的输出加上该子层的输入之前进行dropout</li>
+<li>对encoder及decoder，词向量和位置向量求和之后都进行dropout</li>
+</ul>
+<h3 id="2-3-Label-Smoothing"><a href="#2-3-Label-Smoothing" class="headerlink" title="2.3 Label Smoothing"></a>2.3 Label Smoothing</h3><ul>
+<li>对于正确的标注label，在其one-hot表达上，加上一个均匀分布的向量，这个smoothing的数值是$\epsilon_{ls}=0.1$</li>
+</ul>
+<h2 id="3-Tranformer源码解析"><a href="#3-Tranformer源码解析" class="headerlink" title="3 Tranformer源码解析"></a>3 Tranformer源码解析</h2><p>我们来看一下基于OpenNMT中Transformer的实现</p>
+<ul>
+<li><a href="https://github.com/tensorflow/models/tree/master/official/transformer" target="_blank" rel="noopener">官方代码</a></li>
+<li><a href="https://github.com/tensorflow/tensor2tensor/blob/master/tensor2tensor/models/transformer.py" target="_blank" rel="noopener">作者代码</a></li>
+<li><a href="https://github.com/OpenNMT/OpenNMT-py/tree/master/onmt" target="_blank" rel="noopener">哈佛NLP组pytorch实现</a></li>
+</ul>
+<h3 id="3-1-编码器encoder"><a href="#3-1-编码器encoder" class="headerlink" title="3.1 编码器encoder"></a>3.1 编码器encoder</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TransformerEncoderLayer</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="string">"""编码器中的一个层 """</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, d_model, heads, d_ff, dropout, max_relative_positions=<span class="number">0</span>)</span>:</span></span><br><span class="line">        self.self_attn = MultiHeadedAttention(</span><br><span class="line">            heads, d_model, dropout=dropout,</span><br><span class="line">            max_relative_positions=max_relative_positions)</span><br><span class="line">        self.feed_forward = PositionwiseFeedForward(d_model, d_ff, dropout)</span><br><span class="line">        self.layer_norm = nn.LayerNorm(d_model, eps=<span class="number">1e-6</span>)</span><br><span class="line">        self.dropout = nn.Dropout(dropout)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, inputs, mask)</span>:</span></span><br><span class="line">        <span class="comment"># 1. LayerNorm 2. self-attention 3. dropout 4. Feed-Forward</span></span><br><span class="line">        input_norm = self.layer_norm(inputs)</span><br><span class="line">        context, _ = self.self_attn(input_norm, input_norm, input_norm, mask=mask, type=<span class="string">"self"</span>)</span><br><span class="line">        out = self.dropout(context) + inputs</span><br><span class="line">        <span class="keyword">return</span> self.feed_forward(out)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TransformerEncoder</span><span class="params">(EncoderBase)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, num_layers, d_model, heads, d_ff, dropout, embeddings, max_relative_positions)</span>:</span></span><br><span class="line">        ...</span><br><span class="line">        self.embeddings = embeddings</span><br><span class="line">        self.transformer = nn.ModuleList([TransformerEncoderLayer(...) <span class="keyword">for</span> i <span class="keyword">in</span> range(num_layers)])</span><br><span class="line">        self.layer_norm = nn.LayerNorm(d_model, eps=<span class="number">1e-6</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, src, lengths=None)</span>:</span></span><br><span class="line">        ...</span><br><span class="line">        <span class="comment"># 单词的编码</span></span><br><span class="line">        emb = self.embeddings(src)</span><br><span class="line"></span><br><span class="line">        out = emb.transpose(<span class="number">0</span>, <span class="number">1</span>).contiguous()</span><br><span class="line">        words = src[:, :, <span class="number">0</span>].transpose(<span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">        w_batch, w_len = words.size()</span><br><span class="line">        padding_idx = self.embeddings.word_padding_idx</span><br><span class="line">        mask = words.data.eq(padding_idx).unsqueeze(<span class="number">1</span>)  <span class="comment"># [B, 1, T]</span></span><br><span class="line">        <span class="comment"># 遍历多层网络</span></span><br><span class="line">        <span class="keyword">for</span> layer <span class="keyword">in</span> self.transformer:</span><br><span class="line">            out = layer(out, mask)</span><br><span class="line">        out = self.layer_norm(out)</span><br><span class="line">        <span class="keyword">return</span> emb, out.transpose(<span class="number">0</span>, <span class="number">1</span>).contiguous(), lengths</span><br></pre></td></tr></table></figure>
+<h3 id="3-2-解码-decoder"><a href="#3-2-解码-decoder" class="headerlink" title="3.2 解码 decoder"></a>3.2 解码 decoder</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TransformerDecoderLayer</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="string">'''解码器中一个单层'''</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, d_model, heads, d_ff, dropout,</span></span></span><br><span class="line"><span class="function"><span class="params">                 self_attn_type=<span class="string">"scaled-dot"</span>, max_relative_positions=<span class="number">0</span>)</span>:</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 定义self-attention类型</span></span><br><span class="line">        <span class="keyword">if</span> self_attn_type == <span class="string">"scaled-dot"</span>:</span><br><span class="line">            self.self_attn = MultiHeadedAttention(heads, d_model, dropout, max_relative_positions)</span><br><span class="line">        <span class="keyword">elif</span> self_attn_type == <span class="string">"average"</span>:</span><br><span class="line">            self.self_attn = AverageAttention(d_model, dropout=dropout)</span><br><span class="line">        <span class="comment"># 定义对encoder所有输出单词的context attention</span></span><br><span class="line">        self.context_attn = MultiHeadedAttention(heads, d_model, dropout)</span><br><span class="line">        self.feed_forward = PositionwiseFeedForward(d_model, d_ff, dropout)</span><br><span class="line">        self.layer_norm_1 = nn.LayerNorm(d_model, eps=<span class="number">1e-6</span>)</span><br><span class="line">        self.layer_norm_2 = nn.LayerNorm(d_model, eps=<span class="number">1e-6</span>)</span><br><span class="line">        self.drop = nn.Dropout(dropout)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, inputs, memory_bank, src_pad_mask, tgt_pad_mask, layer_cache=None, step=None)</span>:</span></span><br><span class="line">        <span class="comment"># 对还未生成的单词做masking</span></span><br><span class="line">        dec_mask = <span class="keyword">None</span></span><br><span class="line">        <span class="keyword">if</span> step <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            tgt_len = tgt_pad_mask.size(<span class="number">-1</span>)</span><br><span class="line">            future_mask = torch.ones(...)</span><br><span class="line">            future_mask = future_mask.triu_(<span class="number">1</span>).view(<span class="number">1</span>, tgt_len, tgt_len)</span><br><span class="line">            dec_mask = torch.gt(tgt_pad_mask + future_mask, <span class="number">0</span>)</span><br><span class="line">        </span><br><span class="line">        input_norm = self.layer_norm_1(inputs)</span><br><span class="line">        <span class="keyword">if</span> isinstance(self.self_attn, MultiHeadedAttention):</span><br><span class="line">            query, attn = self.self_attn(input_norm, input_norm, input_norm, ..., type=<span class="string">"self"</span>)</span><br><span class="line">        <span class="keyword">elif</span> isinstance(self.self_attn, AverageAttention):</span><br><span class="line">            query, attn = self.self_attn(input_norm, mask=dec_mask, layer_cache=layer_cache, step=step)</span><br><span class="line">        <span class="comment"># 对encoder输出做context attention</span></span><br><span class="line">        query = self.drop(query) + inputs</span><br><span class="line">        query_norm = self.layer_norm_2(query)</span><br><span class="line">        mid, attn = self.context_attn(memory_bank, memory_bank, query_norm, ..., type=<span class="string">"context"</span>)</span><br><span class="line">        output = self.feed_forward(self.drop(mid) + query)</span><br><span class="line">        <span class="keyword">return</span> output, attn</span><br><span class="line">        </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TransformerDecoder</span><span class="params">(DecoderBase)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, num_layers, d_model, heads, d_ff, attn_type,</span></span></span><br><span class="line"><span class="function"><span class="params">                 copy_attn, self_attn_type, dropout, embeddings,</span></span></span><br><span class="line"><span class="function"><span class="params">                 max_relative_positions)</span>:</span></span><br><span class="line">        self.embeddings = embeddings</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Decoder State</span></span><br><span class="line">        self.state = &#123;&#125;</span><br><span class="line">        self.transformer_layers = nn.ModuleList([TransformerDecoderLayer(...) <span class="keyword">for</span> i <span class="keyword">in</span> range(num_layers)])</span><br><span class="line"></span><br><span class="line">        self._copy = copy_attn</span><br><span class="line">        self.layer_norm = nn.LayerNorm(d_model, eps=<span class="number">1e-6</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, tgt, memory_bank, step=None, **kwargs)</span>:</span></span><br><span class="line">        ...</span><br><span class="line">        src = self.state[<span class="string">"src"</span>]</span><br><span class="line">        src_words = src[:, :, <span class="number">0</span>].transpose(<span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">        tgt_words = tgt[:, :, <span class="number">0</span>].transpose(<span class="number">0</span>, <span class="number">1</span>)</span><br><span class="line">        src_batch, src_len = src_words.size()</span><br><span class="line">        tgt_batch, tgt_len = tgt_words.size()</span><br><span class="line"></span><br><span class="line">        emb = self.embeddings(tgt, step=step) <span class="comment"># len x batch x embedding_dim</span></span><br><span class="line"></span><br><span class="line">        output = emb.transpose(<span class="number">0</span>, <span class="number">1</span>).contiguous()</span><br><span class="line">        src_memory_bank = memory_bank.transpose(<span class="number">0</span>, <span class="number">1</span>).contiguous()</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># Masking</span></span><br><span class="line">        pad_idx = self.embeddings.word_padding_idx</span><br><span class="line">        src_pad_mask = src_words.data.eq(pad_idx).unsqueeze(<span class="number">1</span>)  <span class="comment"># [B, 1, T_src]</span></span><br><span class="line">        tgt_pad_mask = tgt_words.data.eq(pad_idx).unsqueeze(<span class="number">1</span>)  <span class="comment"># [B, 1, T_tgt]</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i, layer <span class="keyword">in</span> enumerate(self.transformer_layers):</span><br><span class="line">            ...</span><br><span class="line">            <span class="comment"># 多层网络</span></span><br><span class="line">            output, attn = layer(output, src_memory_bank, src_pad_mask, tgt_pad_mask, layer_cache, step)</span><br><span class="line">        output = self.layer_norm(output)</span><br><span class="line">        dec_outs = output.transpose(<span class="number">0</span>, <span class="number">1</span>).contiguous()</span><br><span class="line">        attn = attn.transpose(<span class="number">0</span>, <span class="number">1</span>).contiguous()</span><br><span class="line">        attns = &#123;<span class="string">"std"</span>: attn&#125;</span><br><span class="line">        <span class="keyword">return</span> dec_outs, attns</span><br></pre></td></tr></table></figure>
+<h3 id="3-3-Transformer模型"><a href="#3-3-Transformer模型" class="headerlink" title="3.3 Transformer模型"></a>3.3 Transformer模型</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NMTModel</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, encoder, decoder)</span>:</span></span><br><span class="line">        super(NMTModel, self).__init__()</span><br><span class="line">        self.encoder = encoder</span><br><span class="line">        self.decoder = decoder</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, src, tgt, lengths, bptt=False)</span>:</span></span><br><span class="line">        tgt = tgt[:<span class="number">-1</span>]  <span class="comment"># 从输入中去掉最后一个单词</span></span><br><span class="line">        <span class="comment"># 编码</span></span><br><span class="line">        enc_state, memory_bank, lengths = self.encoder(src, lengths)</span><br><span class="line">        <span class="keyword">if</span> bptt <span class="keyword">is</span> <span class="keyword">False</span>:</span><br><span class="line">            self.decoder.init_state(src, memory_bank, enc_state)</span><br><span class="line">        <span class="comment"># 解码</span></span><br><span class="line">        dec_out, attns = self.decoder(tgt, memory_bank, memory_lengths=lengths)</span><br><span class="line">        <span class="keyword">return</span> dec_out, attns</span><br></pre></td></tr></table></figure>
+<h3 id="3-4-训练"><a href="#3-4-训练" class="headerlink" title="3.4 训练"></a>3.4 训练</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Trainer</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="comment"># 定义训练的类</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, model, train_loss, valid_loss, optim,</span></span></span><br><span class="line"><span class="function"><span class="params">                 trunc_size=<span class="number">0</span>, shard_size=<span class="number">32</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">                 norm_method=<span class="string">"sents"</span>, grad_accum_count=<span class="number">1</span>, n_gpu=<span class="number">1</span>, gpu_rank=<span class="number">1</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">                 gpu_verbose_level=<span class="number">0</span>, report_manager=None, model_saver=None,</span></span></span><br><span class="line"><span class="function"><span class="params">                 average_decay=<span class="number">0</span>, average_every=<span class="number">1</span>)</span>:</span></span><br><span class="line">        ...</span><br><span class="line">        <span class="comment"># 把模型设置成训练状态</span></span><br><span class="line">        self.model.train()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">train</span><span class="params">(self, train_iter, train_steps, save_checkpoint_steps=<span class="number">5000</span>, valid_iter=None, valid_steps=<span class="number">10000</span>)</span>:</span></span><br><span class="line">        ...</span><br><span class="line">        <span class="comment"># 开始遍历每个mini-batch</span></span><br><span class="line">        <span class="keyword">for</span> i, (batches, normalization) <span class="keyword">in</span> enumerate(</span><br><span class="line">                self._accum_batches(train_iter)):</span><br><span class="line">            step = self.optim.training_step</span><br><span class="line">            ...</span><br><span class="line">            <span class="comment"># 累积多个mini-batch算出来的gradient</span></span><br><span class="line">            self._gradient_accumulation(</span><br><span class="line">                batches, normalization, total_stats,</span><br><span class="line">                report_stats)</span><br><span class="line">            <span class="comment"># 把多个gradient求平均值并更新模型参数</span></span><br><span class="line">            <span class="keyword">if</span> self.average_decay &gt; <span class="number">0</span> <span class="keyword">and</span> i % self.average_every == <span class="number">0</span>:</span><br><span class="line">                self._update_average(step)</span><br><span class="line">            ...</span><br><span class="line">            <span class="comment"># 做validation，可用于判断是否需要终止训练</span></span><br><span class="line">            <span class="keyword">if</span> valid_iter <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span> <span class="keyword">and</span> step % valid_steps == <span class="number">0</span>:</span><br><span class="line">                valid_stats = self.validate(valid_iter, moving_average=self.moving_average)</span><br><span class="line">                ...</span><br><span class="line">                </span><br><span class="line">            <span class="comment"># 保存model</span></span><br><span class="line">            <span class="keyword">if</span> (self.model_saver <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span></span><br><span class="line">                <span class="keyword">and</span> (save_checkpoint_steps != <span class="number">0</span></span><br><span class="line">                     <span class="keyword">and</span> step % save_checkpoint_steps == <span class="number">0</span>)):</span><br><span class="line">                self.model_saver.save(step, moving_average=self.moving_average)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> train_steps &gt; <span class="number">0</span> <span class="keyword">and</span> step &gt;= train_steps:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">return</span> total_stats</span><br></pre></td></tr></table></figure>
+<h3 id="3-5-实战例子"><a href="#3-5-实战例子" class="headerlink" title="3.5 实战例子"></a>3.5 实战例子</h3><ul>
+<li>运行预处理句子，<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">python preprocess.py -train_src data/src-train.txt -train_tgt data/tgt-train.txt -valid_src data/src-val.txt -valid_tgt data/tgt-val.txt -save_data data/demo</span><br><span class="line"></span><br><span class="line"> <span class="comment"># 会得到以下三个文件</span></span><br><span class="line">demo.train.pt: serialized PyTorch file containing training data</span><br><span class="line">demo.valid.pt: serialized PyTorch file containing validation data</span><br><span class="line">demo.vocab.pt</span><br><span class="line"></span><br><span class="line"> (2) 训练</span><br><span class="line">python train.py -data data/demo -save_model demo-model \</span><br><span class="line">        -layers 6 -rnn_size 512 -word_vec_size 512 -transformer_ff 2048 -heads 8  \</span><br><span class="line">        -encoder_type transformer -decoder_type transformer -position_encoding \</span><br><span class="line">        -train_steps 200000  -max_generator_batches 2 -dropout 0.1 \</span><br><span class="line">        -batch_size 4096 -batch_type tokens -normalization tokens  -accum_count 2 \</span><br><span class="line">        -optim adam -adam_beta2 0.998 -decay_method noam -warmup_steps 8000 -learning_rate 2 \</span><br><span class="line">        -max_grad_norm 0 -param_init 0  -param_init_glorot \</span><br><span class="line">        -label_smoothing 0.1 -valid_steps 10000 -save_checkpoint_steps 10000 \</span><br><span class="line">        -world_size 4 -gpu_ranks 0 1 2 3 </span><br><span class="line"></span><br><span class="line"> (3) 翻译</span><br><span class="line">python translate.py -model demo-model_acc_XX.XX_ppl_XXX.XX_eX.pt -src data/src-test.txt -output pred.txt -replace_unk -verbose</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="本章小结"><a href="#本章小结" class="headerlink" title="本章小结"></a>本章小结</h2><ul>
+<li>Google的Transformer模型<ul>
+<li>编码器，解码器</li>
+<li>传统的注意力机制及Multi-head attention</li>
+<li>基于位置的单词编码，及词向量，输出层</li>
+<li>可视化multi-head attention</li>
+<li>Transformer与RNN和CNN神经翻译模型的对比</li>
+</ul>
+</li>
+<li>Google模型的训练细节<ul>
+<li>优化器选择</li>
+<li>正则化</li>
+<li>label smoothing</li>
+</ul>
+</li>
+<li>实战演示<ul>
+<li>介绍encoder，decoder类及model类</li>
+<li>介绍如何训练模型</li>
+<li>运用OpenNMT开源工具来实战演示</li>
+</ul>
+</li>
+</ul>
+
+                </article>
+                <ul class="tags-postTags">
+                    
+                    <li>
+                        <a href="/tags/nlp/" rel="tag"># nlp</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tags/自然语言处理/" rel="tag"># 自然语言处理</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    
+    <nav id="gobottom" class="pagination">
+        
+        <a class="prev-post" title="NLP系列" href="/2019-03-21/nlp/3Text_Representation/Chapter2_Advanced_Text_Representation/Advanced_Text_Representation/">
+            ← NLP系列
+        </a>
+        
+        <span class="prev-next-post">·</span>
+        
+        <a class="next-post" title="NLP系列" href="/2019-03-21/nlp/4Text_Classification/Chapter2_Chapter1_Text_Classification_based_on_Deep_Learning/1.text-classification/">
+            NLP系列 →
+        </a>
+        
+    </nav>
+
+    
+    <div class="inner">
+        <div id="comment"></div>
+    </div>
+    
+</div>
+
+<div class="toc-bar">
+    <div class="toc-btn-bar">
+        <a href="#site-main" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M793.024 710.272a32 32 0 1 0 45.952-44.544l-310.304-320a32 32 0 0 0-46.4 0.48l-297.696 320a32 32 0 0 0 46.848 43.584l274.752-295.328 286.848 295.808z"/></svg>
+        </a>
+        <div class="toc-btn toc-switch">
+            <svg class="toc-open" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M779.776 480h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M779.776 672h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M256 288a32 32 0 1 0 0 64 32 32 0 0 0 0-64M392.576 352h387.2a32 32 0 0 0 0-64h-387.2a32 32 0 0 0 0 64M256 480a32 32 0 1 0 0 64 32 32 0 0 0 0-64M256 672a32 32 0 1 0 0 64 32 32 0 0 0 0-64"/></svg>
+            <svg class="toc-close hide" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M512 960c-247.039484 0-448-200.960516-448-448S264.960516 64 512 64 960 264.960516 960 512 759.039484 960 512 960zM512 128.287273c-211.584464 0-383.712727 172.128262-383.712727 383.712727 0 211.551781 172.128262 383.712727 383.712727 383.712727 211.551781 0 383.712727-172.159226 383.712727-383.712727C895.712727 300.415536 723.551781 128.287273 512 128.287273z"/><path d="M557.05545 513.376159l138.367639-136.864185c12.576374-12.416396 12.672705-32.671738 0.25631-45.248112s-32.704421-12.672705-45.248112-0.25631l-138.560301 137.024163-136.447897-136.864185c-12.512727-12.512727-32.735385-12.576374-45.248112-0.063647-12.512727 12.480043-12.54369 32.735385-0.063647 45.248112l136.255235 136.671523-137.376804 135.904314c-12.576374 12.447359-12.672705 32.671738-0.25631 45.248112 6.271845 6.335493 14.496116 9.504099 22.751351 9.504099 8.12794 0 16.25588-3.103239 22.496761-9.247789l137.567746-136.064292 138.687596 139.136568c6.240882 6.271845 14.432469 9.407768 22.65674 9.407768 8.191587 0 16.352211-3.135923 22.591372-9.34412 12.512727-12.480043 12.54369-32.704421 0.063647-45.248112L557.05545 513.376159z"/></svg>
+        </div>
+        <a href="#gobottom" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M231.424 346.208a32 32 0 0 0-46.848 43.584l297.696 320a32 32 0 0 0 46.4 0.48l310.304-320a32 32 0 1 0-45.952-44.544l-286.848 295.808-274.752-295.36z"/></svg>
+        </a>
+    </div>
+    <div class="toc-main">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#来自Google的Transformer模型"><span class="toc-text">来自Google的Transformer模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#本章概述"><span class="toc-text">本章概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-来自Google的Transformer模型"><span class="toc-text">1.来自Google的Transformer模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-编码器-encoder"><span class="toc-text">1.1 编码器 encoder</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-解码器-decoder"><span class="toc-text">1.2 解码器 decoder</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-注意力机制"><span class="toc-text">1.3 注意力机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-Multi-Head-Attention"><span class="toc-text">1.4 Multi-Head Attention</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-Multi-Head-Attention-1"><span class="toc-text">1.4 Multi-Head Attention</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-基于位置的前向神经网络（Position-wise-Feed-Forward-Networks）"><span class="toc-text">1.5 基于位置的前向神经网络（Position-wise Feed-Forward Networks）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-词向量矩阵及Softmax层"><span class="toc-text">1.6 词向量矩阵及Softmax层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-7-位置编码（position-embeddings）"><span class="toc-text">1.7 位置编码（position embeddings）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-8-Transformer-对比RNN及CNN"><span class="toc-text">1.8 Transformer 对比RNN及CNN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-9-可视化attention"><span class="toc-text">1.9 可视化attention</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-9-可视化attention-1"><span class="toc-text">1.9 可视化attention</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-9-可视化attention-2"><span class="toc-text">1.9 可视化attention</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Transformer模型的训练细节"><span class="toc-text">2. Transformer模型的训练细节</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-优化方法"><span class="toc-text">2.1 优化方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-正则化-Regularization"><span class="toc-text">2.2 正则化 Regularization</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-Label-Smoothing"><span class="toc-text">2.3 Label Smoothing</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Tranformer源码解析"><span class="toc-text">3 Tranformer源码解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-编码器encoder"><span class="toc-text">3.1 编码器encoder</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-解码-decoder"><span class="toc-text">3.2 解码 decoder</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-Transformer模型"><span class="toc-text">3.3 Transformer模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-训练"><span class="toc-text">3.4 训练</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-实战例子"><span class="toc-text">3.5 实战例子</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#本章小结"><span class="toc-text">本章小结</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+	</div>
+	
+
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+  <header class="read-next-card-header">
+    <small class="read-next-card-header-sitetitle">&mdash; Pastor Dean &mdash;</small>
+    <h3 class="read-next-card-header-title">Recent Posts</h3>
+  </header>
+  <div class="read-next-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+      <path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/>
+    </svg>
+  </div>
+  <div class="read-next-card-content">
+    <ul>
+      
+      
+      
+      <li>
+        <a href="/2020-01-16/thinking/Thinking modelBiological thinking Biological thinking looking at the business world from an evolutionary perspective/">Thinking modelBiological thinking Biological thinking: looking at the business world from an evolutionary perspective</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2020-01-13/thinking/Modern Darwin Integrated Model  Biological Thinking Mode Opening God Perspective/">Modern Darwin Integrated Model Biological Thinking Mode Opening God is Perspective</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2020-01-11/thinking/Metacognition Changing the stubborn thinking of the brain/">Metacognition Changing the stubborn thinking of the brain</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <footer class="read-next-card-footer">
+    <a href="/archives">  MORE  → </a>
+  </footer>
+</article>
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+    <header class="read-next-card-header tagcloud-card">
+        <h3 class="read-next-card-header-title">Categories</h3>
+    </header>
+    <div class="read-next-card-content">
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Biological-Thinking/">Biological Thinking</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cognitive-Neuroscience/">Cognitive Neuroscience</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DeepLearning/">DeepLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/FFmpeg/">FFmpeg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MacOS/">MacOS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MachineLearning/">MachineLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PM/">PM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/RPC/">RPC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vim/">Vim</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WebRTC/">WebRTC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/deeplearn/">deeplearn</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/http/">http</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/machineLearning/">machineLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/文摘/">文摘</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构师/">架构师</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/知识图谱/">知识图谱</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/职业规划/">职业规划</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/职业规划/个人提升/">个人提升</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机相关技术资料整理/">计算机相关技术资料整理</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/认知升级/">认知升级</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/财务自由/">财务自由</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/财富自由/">财富自由</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/运维/">运维</a></li></ul>
+    </div>
+</article>
+
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+	<header class="read-next-card-header tagcloud-card">
+		<h3 class="read-next-card-header-title">Tag Cloud</h3>
+	</header>
+	<div class="read-next-card-content-ext">
+		<a href="/tags/AI/" style="font-size: 14px;">AI</a> <a href="/tags/Android/" style="font-size: 14px;">Android</a> <a href="/tags/Biological/" style="font-size: 17.75px;">Biological</a> <a href="/tags/Browser/" style="font-size: 14px;">Browser</a> <a href="/tags/Business/" style="font-size: 16.5px;">Business</a> <a href="/tags/Cognitive/" style="font-size: 17.75px;">Cognitive</a> <a href="/tags/DeepLearning/" style="font-size: 15.25px;">DeepLearning</a> <a href="/tags/Docker/" style="font-size: 14px;">Docker</a> <a href="/tags/FFmpeg/" style="font-size: 21.5px;">FFmpeg</a> <a href="/tags/FastCGI/" style="font-size: 14px;">FastCGI</a> <a href="/tags/IP划分/" style="font-size: 14px;">IP划分</a> <a href="/tags/IP地址/" style="font-size: 14px;">IP地址</a> <a href="/tags/Knowledge-Graph/" style="font-size: 16.5px;">Knowledge Graph</a> <a href="/tags/Linux-Shell/" style="font-size: 14px;">Linux Shell</a> <a href="/tags/MacOS/" style="font-size: 15.25px;">MacOS</a> <a href="/tags/Neuroscience/" style="font-size: 17.75px;">Neuroscience</a> <a href="/tags/RPC/" style="font-size: 14px;">RPC</a> <a href="/tags/Thinking/" style="font-size: 17.75px;">Thinking</a> <a href="/tags/Tutorial/" style="font-size: 20.25px;">Tutorial</a> <a href="/tags/WebRTC/" style="font-size: 21.5px;">WebRTC</a> <a href="/tags/WebSocket/" style="font-size: 14px;">WebSocket</a> <a href="/tags/algorithm/" style="font-size: 15.25px;">algorithm</a> <a href="/tags/config/" style="font-size: 14px;">config</a> <a href="/tags/decisionTree/" style="font-size: 14px;">decisionTree</a> <a href="/tags/git/" style="font-size: 17.75px;">git</a> <a href="/tags/google-adsense/" style="font-size: 14px;">google adsense</a> <a href="/tags/hexo/" style="font-size: 17.75px;">hexo</a> <a href="/tags/http/" style="font-size: 17.75px;">http</a> <a href="/tags/knn/" style="font-size: 14px;">knn</a> <a href="/tags/lighttpd/" style="font-size: 15.25px;">lighttpd</a> <a href="/tags/mxnet/" style="font-size: 14px;">mxnet</a> <a href="/tags/mysql/" style="font-size: 22.75px;">mysql</a> <a href="/tags/nlp/" style="font-size: 24px;">nlp</a> <a href="/tags/nodejs/" style="font-size: 14px;">nodejs</a> <a href="/tags/openvpn/" style="font-size: 14px;">openvpn</a> <a href="/tags/other/" style="font-size: 15.25px;">other</a> <a href="/tags/paddle/" style="font-size: 14px;">paddle</a> <a href="/tags/planning/" style="font-size: 20.25px;">planning</a> <a href="/tags/pracitce/" style="font-size: 15.25px;">pracitce</a> <a href="/tags/rich/" style="font-size: 14px;">rich</a> <a href="/tags/shell/" style="font-size: 14px;">shell</a> <a href="/tags/svn/" style="font-size: 14px;">svn</a> <a href="/tags/ubuntu/" style="font-size: 14px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 16.5px;">vim</a> <a href="/tags/webpack/" style="font-size: 14px;">webpack</a> <a href="/tags/webrtc/" style="font-size: 19px;">webrtc</a> <a href="/tags/个人发展/" style="font-size: 14px;">个人发展</a> <a href="/tags/互联网实事/" style="font-size: 14px;">互联网实事</a> <a href="/tags/外链/" style="font-size: 14px;">外链</a> <a href="/tags/提升个人思维/" style="font-size: 14px;">提升个人思维</a> <a href="/tags/文摘/" style="font-size: 15.25px;">文摘</a> <a href="/tags/斜杠青年/" style="font-size: 14px;">斜杠青年</a> <a href="/tags/机器学习/" style="font-size: 16.5px;">机器学习</a> <a href="/tags/架构师/" style="font-size: 14px;">架构师</a> <a href="/tags/测试工具/" style="font-size: 14px;">测试工具</a> <a href="/tags/睡后成长/" style="font-size: 14px;">睡后成长</a> <a href="/tags/睡后收入/" style="font-size: 14px;">睡后收入</a> <a href="/tags/税后收入/" style="font-size: 14px;">税后收入</a> <a href="/tags/笔记/" style="font-size: 14px;">笔记</a> <a href="/tags/自然语言处理/" style="font-size: 24px;">自然语言处理</a> <a href="/tags/视频流/" style="font-size: 15.25px;">视频流</a> <a href="/tags/计算机相关技术资料整理/" style="font-size: 14px;">计算机相关技术资料整理</a> <a href="/tags/认知升级/" style="font-size: 14px;">认知升级</a> <a href="/tags/限速/" style="font-size: 14px;">限速</a> <a href="/tags/面试/" style="font-size: 14px;">面试</a> <a href="/tags/项目管理/" style="font-size: 14px;">项目管理</a>
+	</div>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+	
+
+
+
+
+<div id="search" class="search-overlay">
+    <div class="search-form">
+        
+        <div class="search-overlay-logo">
+        	<img src="/images/favicon-16x16-next.png" alt="Pastor Dean">
+        </div>
+        
+        <input id="local-search-input" class="search-input" type="text" name="search" placeholder="Search ...">
+        <a class="search-overlay-close" href="#"></a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+<footer class="site-footer outer">
+	<div class="site-footer-content inner">
+		<div class="copyright">
+			<a href="/" title="Pastor Dean">Pastor Dean &copy; 2020</a>
+			
+				
+			        <span hidden="true" id="/2019-03-21/nlp/8Machine_Translation/4.Transformer_Model_from_Google/Transformer_Model_from_Google/" class="leancloud-visitors" data-flag-title="NLP系列">
+			            <span>阅读量 </span>
+			            <span class="leancloud-visitors-count">0</span>
+			        </span>
+	    		
+    		
+		</div>
+		<nav class="site-footer-nav">
+			
+			<a href="https://hexo.io" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+			<a href="https://github.com/xzhih/hexo-theme-casper" title="Casper" target="_blank" rel="noopener">Casper</a>
+		</nav>
+	</div>
+</footer>
+	
+
+
+<script>
+    if(window.navigator && navigator.serviceWorker) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister()
+            }
+        })
+    }
+</script>
+
+
+<script id="scriptLoad" src="/js/allinone.min.js" async></script>
+
+
+<script>
+    document.getElementById('scriptLoad').addEventListener('load', function () {
+        
+        
+            var bLazy = new Blazy();
+        
+
+        
+        
+
+        
+        
+        
+            searchFunc("/");
+        
+        
+    })
+</script>
+
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+
+
+<script id="valineScript" src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+<script>
+    document.getElementById('valineScript').addEventListener("load", function() {
+        new Valine({
+            el: '#comment' ,
+            verify: false,
+            notify: false,
+            appId: '',
+            appKey: '',
+            placeholder: 'Just go go',
+            pageSize: 10,
+            avatar: 'mm',
+            visitor: true
+        })
+    });
+</script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="preconnect" href="//www.googletagmanager.com">
+	<link rel="preconnect" href="//zz.bdstatic.com">
+	<link rel="preconnect" href="//sp0.baidu.com">
+	<link rel="preconnect" href="//www.google-analytics.com">
+	<link rel="preconnect" href="//cdn1.lncld.net">
+	<link rel="preconnect" href="//unpkg.com">
+	<link rel="preconnect" href="//app-router.leancloud.cn">
+	<link rel="preconnect" href="//9qpuwspm.api.lncld.net">
+	<link rel="preconnect" href="//gravatar.loli.net">
+
+	<title>Git操作手册|命令速查表 | Pastor Dean</title>
+
+	<meta name="HandheldFriendly" content="True">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+	<meta name="generator" content="hexo">
+	<meta name="author" content="pastor">
+	<meta name="description" content>
+
+	
+	<meta name="keywords" content>
+	
+
+	
+	<link rel="shortcut icon" href="/images/favicon-16x16-next.png">
+	<link rel="apple-touch-icon" href="/images/favicon-16x16-next.png">
+	
+
+	
+	<meta name="theme-color" content="#3c484e">
+	<meta name="msapplication-TileColor" content="#3c484e">
+	
+
+	
+
+	
+
+	<meta property="og:site_name" content="Pastor Dean">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="Git操作手册|命令速查表 | Pastor Dean">
+	<meta property="og:description" content>
+	<meta property="og:url" content="https://mrpastor.github.io/2018-02-27/reference/Git/git-guide/">
+
+	
+	<meta property="article:published_time" content="2018-02-27T18:02:00+08:00"> 
+	<meta property="article:author" content="pastor">
+	<meta property="article:published_first" content="Pastor Dean, /2018-02-27/reference/Git/git-guide/">
+	
+
+	
+	
+	<link rel="stylesheet" href="/css/allinonecss.min.css">
+
+	
+	
+	
+</head>
+<body class="post-template">
+	<div class="site-wrapper">
+		
+
+
+
+
+<header class="site-header post-site-header outer">
+    <div class="inner">
+        
+<nav class="site-nav"> 
+    <div class="site-nav-left">
+        <ul class="nav">
+            <li>
+                
+                
+                <a class="site-nav-logo" href="/" title="Pastor Dean">
+                    <img src="/images/favicon-32x32-next.png" alt="Pastor Dean">
+                </a>
+                
+                
+            </li>
+            
+            
+            <li>
+                <a href="/ || home" title="home">home</a>
+            </li>
+            
+            <li>
+                <a href="/categories/ || th" title="categories">categories</a>
+            </li>
+            
+            <li>
+                <a href="/archives/ || archive" title="archives">archives</a>
+            </li>
+            
+            <li>
+                <a href="/tools/ || tools" title="tools">tools</a>
+            </li>
+            
+            
+        </ul> 
+    </div>
+    
+    <div class="search-button-area">
+        <a href="#search" class="search-button">Search ...</a>
+    </div>
+     
+    <div class="site-nav-right">
+        
+        <a href="#search" class="search-button">Search ...</a>
+         
+        
+<div class="social-links">
+    
+    
+    <a class="social-link" title="github" href="https://github.com/mrpastor" target="_blank" rel="noopener">
+        <svg viewbox="0 0 1049 1024" xmlns="http://www.w3.org/2000/svg"><path d="M524.979332 0C234.676191 0 0 234.676191 0 524.979332c0 232.068678 150.366597 428.501342 358.967656 498.035028 26.075132 5.215026 35.636014-11.299224 35.636014-25.205961 0-12.168395-0.869171-53.888607-0.869171-97.347161-146.020741 31.290159-176.441729-62.580318-176.441729-62.580318-23.467619-60.841976-58.234462-76.487055-58.234463-76.487055-47.804409-32.15933 3.476684-32.15933 3.476685-32.15933 53.019436 3.476684 80.83291 53.888607 80.83291 53.888607 46.935238 79.963739 122.553122 57.365291 152.97411 43.458554 4.345855-33.897672 18.252593-57.365291 33.028501-70.402857-116.468925-12.168395-239.022047-57.365291-239.022047-259.012982 0-57.365291 20.860106-104.300529 53.888607-140.805715-5.215026-13.037566-23.467619-66.926173 5.215027-139.067372 0 0 44.327725-13.906737 144.282399 53.888607 41.720212-11.299224 86.917108-17.383422 131.244833-17.383422s89.524621 6.084198 131.244833 17.383422C756.178839 203.386032 800.506564 217.29277 800.506564 217.29277c28.682646 72.1412 10.430053 126.029806 5.215026 139.067372 33.897672 36.505185 53.888607 83.440424 53.888607 140.805715 0 201.64769-122.553122 245.975415-239.891218 259.012982 19.121764 16.514251 35.636014 47.804409 35.636015 97.347161 0 70.402857-0.869171 126.898978-0.869172 144.282399 0 13.906737 9.560882 30.420988 35.636015 25.205961 208.601059-69.533686 358.967656-265.96635 358.967655-498.035028C1049.958663 234.676191 814.413301 0 524.979332 0z"/></svg>
+    </a>
+    
+    
+    <a class="social-link" title="facebook" href="https://facebook" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+
+    </a>
+    
+    
+    <a class="social-link" title="twitter" href="https://twitter.com" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+    </a>
+    
+    
+    
+    
+</div>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<div id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+        <header class="post-full-header">
+            <div class="post-full-meta">
+                <time class="post-full-meta-date" datetime="2018-02-27T10:02:52.000Z">
+                    2018-02-27
+                </time>
+                
+                <span class="date-divider">/</span>
+                
+                <a href="/categories/git/">git</a>&nbsp;&nbsp;
+                
+                
+            </div>
+            <h1 class="post-full-title">Git操作手册|命令速查表</h1>
+        </header>
+        <div class="post-full no-image">
+            
+            <div class="post-full-content">
+                <article id="photoswipe" class="markdown-body">
+                    <p>这篇文章主要介绍Git分布式版本管理与集中式管理的一些差异，总结下Git常用命令作为日后的速查表，最后介绍Git进阶的一些案例。<br>本文分为以下几个部分：</p>
+<ol>
+<li>Git与SVN差异</li>
+<li>Git常用命令</li>
+<li>Git进阶指南</li>
+</ol>
+<a id="more"></a>
+<h2 id="Git与SVN差异"><a href="#Git与SVN差异" class="headerlink" title="Git与SVN差异"></a>Git与SVN差异</h2><p>Git的第一个版本是Linux之父Linus Torvalds亲手操刀设计和实现的,Git 基于 DAG 结构 (Directed Acyclic Graph)，其运行起来相当的快,它已经是现在的主流。</p>
+<p>Git 和 SVN 思想最大的差别有四个：</p>
+<ul>
+<li>去中心化</li>
+<li>直接记录快照，而非差异</li>
+<li>不一样的分支概念</li>
+<li>三个文件状态</li>
+</ul>
+<p><strong>去中心化</strong></p>
+<p>Git是一个DVCS（分布式版本管理系统），在技术层面上并不存在一个像中心仓库这样的东西 ， 所有的数据都在本地，不存在谁是中心</p>
+<p><img alt class="post-img b-lazy" data-img="/images/images/git.gif" data-index="0" data-src="/images/images/git.gif"></p>
+<p>图中每个开发者拉取(pull)并推送(push)到origin。但除了这种集中式的推送拉取关系，每个开发者也可能会从其他的开发者处拉取代码的变更，从技术上讲，这意味着Alice定义了一个名为bob的Git的remote，它指向了Bob的软件仓库。反之亦然。</p>
+<p><strong>直接记录快照，而非差异</strong></p>
+<p>Git每一个版本都是直接记录快照，而非文件的差异。 下面两个对比图在网上是广为流传大家应该熟悉：</p>
+<p>SVN：</p>
+<p><img alt class="post-img b-lazy" data-img="/images/images/svn.png" data-index="1" data-src="/images/images/svn.png"></p>
+<p>Git:</p>
+<p><img alt class="post-img b-lazy" data-img="/images/images/gitgit.png" data-index="2" data-src="/images/images/gitgit.png"></p>
+<p>Git使用SHA-1算法计算数据的校验和，通过文件的内容或目录计算出SHA-1哈希值，作为指纹字符串，每个Version 都是一个快照。</p>
+<p><strong>不一样的分支概念</strong></p>
+<p>Git的分支本质是一个指向提交快照的指针，是从某个提交快照往回看的历史。当创建/切换分支的时候，只是变换了指针指向而已.而SVN创建一个分支， 是的的确确的复制了一份文件。</p>
+<p><strong>三个文件状态</strong></p>
+<p>在Git中文件有三种状态：</p>
+<ul>
+<li>已提交（committed）：该文件被安全地保存在了本地数据库</li>
+<li>已修改（modified）：修改了某个文件，但还没有保存</li>
+<li>已暂存（staged）：把已修改的文件放下下次保存的清单中</li>
+</ul>
+<h2 id="Git常用命令"><a href="#Git常用命令" class="headerlink" title="Git常用命令"></a>Git常用命令</h2><h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><p>复制一个已创建的仓库:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">clone</span> ssh://user@domain.com/repo.git</span></span><br></pre></td></tr></table></figure>
+<p>创建一个新的本地仓库:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git init</span></span><br></pre></td></tr></table></figure>
+<h3 id="本地修改"><a href="#本地修改" class="headerlink" title="本地修改"></a>本地修改</h3><p>显示工作路径下已修改的文件：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git status</span></span><br></pre></td></tr></table></figure>
+<p>显示与上次提交版本文件的不同：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git diff</span></span><br></pre></td></tr></table></figure>
+<p>把当前所有修改添加到下次提交中：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git add</span></span><br></pre></td></tr></table></figure>
+<p>把对某个文件的修改添加到下次提交中：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git add -p &lt;file&gt;</span></span><br></pre></td></tr></table></figure>
+<p>提交本地的所有修改：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git commit -a</span></span><br></pre></td></tr></table></figure>
+<p>提交之前已标记的变化：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git commit</span></span><br></pre></td></tr></table></figure>
+<p>附加消息提交：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git commit -m <span class="string">'message here'</span></span></span><br></pre></td></tr></table></figure>
+<p>提交，并将提交时间设置为之前的某个日期:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git commit --date=<span class="string">"`date --date='n day ago'`"</span> -am <span class="string">"Commit Message"</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="修改上次提交"><a href="#修改上次提交" class="headerlink" title="修改上次提交"></a>修改上次提交</h3><p>请勿修改已发布的提交记录!</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git commit --amend</span></span><br></pre></td></tr></table></figure>
+<p>把当前分支中未提交的修改移动到其他分支</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git stash</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git checkout branch2</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git stash pop</span></span><br></pre></td></tr></table></figure>
+<h3 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h3><p>从当前目录的所有文件中查找文本内容：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git grep <span class="string">"Hello"</span></span></span><br></pre></td></tr></table></figure>
+<p>在某一版本中搜索文本：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git grep <span class="string">"Hello"</span> v2.5</span></span><br></pre></td></tr></table></figure>
+<h3 id="提交历史"><a href="#提交历史" class="headerlink" title="提交历史"></a>提交历史</h3><p>从最新提交开始，显示所有的提交记录（显示hash， 作者信息，提交的标题和时间）：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">log</span></span></span><br></pre></td></tr></table></figure>
+<p>显示所有提交（仅显示提交的hash和message）：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">log</span> --oneline</span></span><br></pre></td></tr></table></figure>
+<p>显示某个用户的所有提交：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">log</span> --author=<span class="string">"username"</span></span></span><br></pre></td></tr></table></figure>
+<p>显示某个文件的所有修改：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">log</span> -p &lt;file&gt;</span></span><br></pre></td></tr></table></figure>
+<p>谁，在什么时间，修改了文件的什么内容：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git blame &lt;file&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="分支与标签"><a href="#分支与标签" class="headerlink" title="分支与标签"></a>分支与标签</h3><p>列出所有的分支：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git branch</span></span><br></pre></td></tr></table></figure>
+<p>切换分支：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git checkout &lt;branch&gt;</span></span><br></pre></td></tr></table></figure>
+<p>创建并切换到新分支:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git checkout -b &lt;branch&gt;</span></span><br></pre></td></tr></table></figure>
+<p>基于当前分支创建新分支：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git branch &lt;new-branch&gt;</span></span><br></pre></td></tr></table></figure>
+<p>基于远程分支创建新的可追溯的分支：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git branch --track &lt;new-branch&gt; &lt;remote-branch&gt;</span></span><br></pre></td></tr></table></figure>
+<p>删除本地分支:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git branch -d &lt;branch&gt;</span></span><br></pre></td></tr></table></figure>
+<p>给当前版本打标签：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git tag &lt;tag-name&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="更新与发布"><a href="#更新与发布" class="headerlink" title="更新与发布"></a>更新与发布</h3><p>列出当前配置的远程端：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git remote -v</span></span><br></pre></td></tr></table></figure>
+<p>显示远程端的信息：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git remote show &lt;remote&gt;</span></span><br></pre></td></tr></table></figure>
+<p>添加新的远程端：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git remote add &lt;remote&gt; &lt;url&gt;</span></span><br></pre></td></tr></table></figure>
+<p>下载远程端版本，但不合并到HEAD中：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git fetch &lt;remote&gt;</span></span><br></pre></td></tr></table></figure>
+<p>下载远程端版本，并自动与HEAD版本合并：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git remote pull &lt;remote&gt; &lt;url&gt;</span></span><br></pre></td></tr></table></figure>
+<p>将远程端版本合并到本地版本中：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git pull origin master</span></span><br></pre></td></tr></table></figure>
+<p>将本地版本发布到远程端：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git push remote &lt;remote&gt; &lt;branch&gt;</span></span><br></pre></td></tr></table></figure>
+<p>删除远程端分支：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git push &lt;remote&gt; :&lt;branch&gt; (since Git v1.5.0)</span></span><br><span class="line">或</span><br><span class="line"><span class="meta">$</span><span class="bash"> git push &lt;remote&gt; --delete &lt;branch&gt; (since Git v1.7.0)</span></span><br></pre></td></tr></table></figure>
+<p>发布标签:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git push --tags</span></span><br></pre></td></tr></table></figure>
+<h3 id="合并与重置"><a href="#合并与重置" class="headerlink" title="合并与重置"></a>合并与重置</h3><p>将分支合并到当前HEAD中：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git merge &lt;branch&gt;</span></span><br></pre></td></tr></table></figure>
+<p>将当前HEAD版本重置到分支中:<br>请勿重置已发布的提交!</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git rebase &lt;branch&gt;</span></span><br></pre></td></tr></table></figure>
+<p>退出重置:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git rebase --abort</span></span><br></pre></td></tr></table></figure>
+<p>解决冲突后继续重置：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git rebase --<span class="built_in">continue</span></span></span><br></pre></td></tr></table></figure>
+<p>使用配置好的merge tool 解决冲突：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git mergetool</span></span><br></pre></td></tr></table></figure>
+<p>在编辑器中手动解决冲突后，标记文件为已解决冲突</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git add &lt;resolved-file&gt;</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git rm &lt;resolved-file&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="撤销"><a href="#撤销" class="headerlink" title="撤销"></a>撤销</h3><p>放弃工作目录下的所有修改：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git reset --hard HEAD</span></span><br></pre></td></tr></table></figure>
+<p>移除缓存区的所有文件（i.e. 撤销上次git add）:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git reset HEAD</span></span><br></pre></td></tr></table></figure>
+<p>放弃某个文件的所有本地修改：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git checkout HEAD &lt;file&gt;</span></span><br></pre></td></tr></table></figure>
+<p>重置一个提交（通过创建一个截然不同的新提交）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git revert &lt;commit&gt;</span></span><br></pre></td></tr></table></figure>
+<p>将HEAD重置到指定的版本，并抛弃该版本之后的所有修改：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git reset --hard &lt;commit&gt;</span></span><br></pre></td></tr></table></figure>
+<p>将HEAD重置到上一次提交的版本，并将之后的修改标记为未添加到缓存区的修改：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git reset &lt;commit&gt;</span></span><br></pre></td></tr></table></figure>
+<p>将HEAD重置到上一次提交的版本，并保留未提交的本地修改：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git reset --keep &lt;commit&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="Git进阶指南"><a href="#Git进阶指南" class="headerlink" title="Git进阶指南"></a>Git进阶指南</h2><h3 id="问：如何修改-origin-仓库信息？"><a href="#问：如何修改-origin-仓库信息？" class="headerlink" title="问：如何修改 origin 仓库信息？"></a>问：如何修改 origin 仓库信息？</h3><h4 id="1、添加-origin-仓库信息"><a href="#1、添加-origin-仓库信息" class="headerlink" title="1、添加 origin 仓库信息"></a>1、添加 origin 仓库信息</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git remote add origin &lt;git仓库地址&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="2、查看-origin-仓库信息"><a href="#2、查看-origin-仓库信息" class="headerlink" title="2、查看 origin 仓库信息"></a>2、查看 origin 仓库信息</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 以下三种方式均可</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git config get --remote.origin.url</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git remote -v</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git remote show origin</span></span><br></pre></td></tr></table></figure>
+<h4 id="3、删除-origin-仓库信息"><a href="#3、删除-origin-仓库信息" class="headerlink" title="3、删除 origin 仓库信息"></a>3、删除 origin 仓库信息</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git remote rm origin</span></span><br></pre></td></tr></table></figure>
+<h3 id="问：如何配置-git-ssh-keys-？"><a href="#问：如何配置-git-ssh-keys-？" class="headerlink" title="问：如何配置 git ssh keys ？"></a>问：如何配置 git ssh keys ？</h3><p>在本地生成 ssh 私钥 / 公钥 文件</p>
+<p>将「公钥」添加到 git 服务（github、gitlab、coding.net 等）网站后台</p>
+<p>测试 git ssh 连接是否成功</p>
+<p>接下来以添加 github ssh keys 为例，请注意替换 github 文件名。</p>
+<p>注：如果对密钥机制不熟悉，建议不要指定 <code>-f</code> 参数，直接使用默认的 id_rsa 文件名。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 运行以下命令，一直回车，文件名可随意指定</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ssh-keygen -t rsa -b 4096 -C <span class="string">"kaiye@macbook"</span> -f ~/.ssh/github</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 如果不是默认密钥 id_rsa ，则需要以下命令注册密钥文件，-K 参数将密钥存入 Mac Keychain</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ssh-add -K ~/.ssh/github</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 将 pub 公钥的内容粘贴到线上网站的后台</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> cat ~/.ssh/github.pub</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 测试 git ssh 是否连接成功</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ssh -T git@github.com</span></span><br></pre></td></tr></table></figure>
+<h3 id="问：如何撤销修改？"><a href="#问：如何撤销修改？" class="headerlink" title="问：如何撤销修改？"></a>问：如何撤销修改？</h3><p>修改包含四种情况，需单独区分。</p>
+<h4 id="1、新建的文件和目录，且从未提交至版本库"><a href="#1、新建的文件和目录，且从未提交至版本库" class="headerlink" title="1、新建的文件和目录，且从未提交至版本库"></a>1、新建的文件和目录，且从未提交至版本库</h4><p>此类文件的状态为 Untracked files ，撤销方法如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git clean -fd .</span></span><br></pre></td></tr></table></figure>
+<p>其中，. 表示当前目录及所有子目录中的文件，也可以直接指定对应的文件路径，以下其他情况类似。</p>
+<h4 id="2、提交过版本库，但未提交至暂存区的文件（未执行-git-add）"><a href="#2、提交过版本库，但未提交至暂存区的文件（未执行-git-add）" class="headerlink" title="2、提交过版本库，但未提交至暂存区的文件（未执行 git add）"></a>2、提交过版本库，但未提交至暂存区的文件（未执行 git add）</h4><p>此类文件的状态为<code>Changes not staged for commit</code>，撤销方法：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git checkout .</span></span><br></pre></td></tr></table></figure>
+<h4 id="3、已提交至暂存区的文件"><a href="#3、已提交至暂存区的文件" class="headerlink" title="3、已提交至暂存区的文件"></a>3、已提交至暂存区的文件</h4><p>此类文件的状态为 Changes to be committed，撤销方法：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git reset .</span></span><br></pre></td></tr></table></figure>
+<p>执行之后文件将会回到以上的 1 或者 2 状态，可继续按以上步骤执行撤销，若 git reset 同时加上 –hard 参数，将会把修改过的文件也还原成版本库中的版本。</p>
+<h4 id="4、已提交至版本库（执行了-git-commit）"><a href="#4、已提交至版本库（执行了-git-commit）" class="headerlink" title="4、已提交至版本库（执行了 git commit）"></a>4、已提交至版本库（执行了 git commit）</h4><p>每次提交都会生成一个 hash 版本号，通过以下命令可查阅版本号并将其回滚：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">log</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git reset &lt;版本号&gt;</span></span><br></pre></td></tr></table></figure>
+<p>如果需要「回滚至上一次提交」，可直接使用以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git reset head~1</span></span><br></pre></td></tr></table></figure>
+<p>执行之后，再按照 1 或者 2 状态进行处理即可，如果回滚之后的代码同时需要提交至 origin 仓库（即回滚 origin 线上仓库的代码），需要使用 -f 强制提交参数，且当前用户需要具备「强制提交的权限」。</p>
+<h4 id="5、如果回滚了之后又不想回滚了怎么办？"><a href="#5、如果回滚了之后又不想回滚了怎么办？" class="headerlink" title="5、如果回滚了之后又不想回滚了怎么办？"></a>5、如果回滚了之后又不想回滚了怎么办？</h4><p>如果是以上的情况 1 或者 2，只能歇屁了，因为修改没入过版本库，无法回滚。</p>
+<p>如果是情况 4，回滚之后通过 git log 将看不到回滚之前的版本号，但可通过 git reflog 命令（所有使用过的版本号）找到回滚之前的版本号，然后 git reset &lt;版本号&gt; 。</p>
+<h3 id="问：遇到冲突了怎么解决？"><a href="#问：遇到冲突了怎么解决？" class="headerlink" title="问：遇到冲突了怎么解决？"></a>问：遇到冲突了怎么解决？</h3><p>两个分支进行合并时（通常是 git pull 时），可能会遇到冲突，同时被修改的文件会进入 Unmerged 状态，需要解决冲突。</p>
+<h4 id="1、最快的办法"><a href="#1、最快的办法" class="headerlink" title="1、最快的办法"></a>1、最快的办法</h4><p>大部分时候，「最快解决冲突」的办法是：使用当前 HEAD 的版本（ours），或使用合并进来的分支版本（theirs）。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 使用当前分支 HEAD 版本，通常是冲突源文件的 &lt;&lt;&lt;&lt;&lt;&lt;&lt; 标记部分，======= 的上方</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git checkout --ours &lt;文件名&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 使用合并分支版本，通常是源冲突文件的 &gt;&gt;&gt;&gt;&gt;&gt;&gt; 标记部分</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git checkout --theirs &lt;文件名&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 标记为解决状态加入暂存区</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git add &lt;文件名&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="2、最通用的办法"><a href="#2、最通用的办法" class="headerlink" title="2、最通用的办法"></a>2、最通用的办法</h4><p>用编辑器打开冲突的源文件进行修改，可能会发生遗留，且体验不好，通常需要借助 git mergetool 命令。</p>
+<p>在 Mac 系统下，运行 git mergetool &lt;文件名&gt; 可以开启配置的第三方工具进行 merge，默认的是 FileMerge 应用程序，还可以配置成 Meld 或 kdiff3，体验更佳。</p>
+<h4 id="3、最好的习惯"><a href="#3、最好的习惯" class="headerlink" title="3、最好的习惯"></a>3、最好的习惯</h4><p>有三个好的习惯，可以减少代码的冲突：</p>
+<p>在开始修改代码前先 git pull 一下；</p>
+<p>将业务代码进行划分，尽量不要多个人在同一时间段修改同一文件；</p>
+<p>通过Gitflow 工作流也可以提升 git流程效率，减少发生冲突的可能性。</p>
+<h4 id="4、最复杂的情况"><a href="#4、最复杂的情况" class="headerlink" title="4、最复杂的情况"></a>4、最复杂的情况</h4><p>如果你的项目周期比较长，还应该养成「定期 rebase 的习惯」，git pull –rebase 可以让分支的代码和 origin 仓库的代码保持兼容，同时还不会破坏线上代码的可靠性。</p>
+<p>它的大概原理是，先将 origin 仓库的代码按 origin 的时间流在本地分支中提交，再将本地分支的修改记录追加到 origin 分支上。如果发生冲突，则可以即时的发现问题并解决，否则到项目上线时再解决冲突，可能会发生额外的风险。</p>
+<p>rebase 大概的操作步骤如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 将当前分支的版本追加到从远程 pull 回来的节点之后</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git pull --rebase</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 若发生冲突，则按以上其他方法进行解决，解决后继续</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git rebase --<span class="built_in">continue</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 直到所有冲突得以解决，待项目最后上线前再执行</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git push origin</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 若多次提交修改了同一文件，可能需要直接跳过后续提交，按提示操作即可</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git rebase --skip</span></span><br></pre></td></tr></table></figure>
+<h3 id="问：如何在不提交修改的前提下，执行-pull-merge-等操作？"><a href="#问：如何在不提交修改的前提下，执行-pull-merge-等操作？" class="headerlink" title="问：如何在不提交修改的前提下，执行 pull / merge 等操作？"></a>问：如何在不提交修改的前提下，执行 pull / merge 等操作？</h3><p>有些修改没有完全完成之前，可能不需要提交到版本库，圡方法是将修改的文件 copy 到 git 仓库之外的目录临时存放，pull / merge 操作完成之后，再 copy 回来。</p>
+<p>这样的做法一个是效率不高，另外一个可能会遗漏潜在的冲突。此类需求最好是通过 git stash 命令来完成，它可以将当前工作状态（WIP，work in progress）临时存放在 stash 队列中，待操作完成后再从 stash 队列中重新应用这些修改。</p>
+<p>以下是 git stash 常用命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 查看 stash 队列中已暂存了多少 WIP</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git stash list</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 恢复上一次的 WIP 状态，并从队列中移除</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git stash pop</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 添加当前 WIP，注意：未提交到版本库的文件会自动忽略，只要不运行 git clean -fd . 就不会丢失</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git stash</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 恢复指定编号的 WIP，同时从队列中移除</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git stash pop stash@&#123;num&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 恢复指定编号的 WIP，但不从队列中移除</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git stash apply stash@&#123;num&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="问：如何在-git-log-中查看修改的文件列表？"><a href="#问：如何在-git-log-中查看修改的文件列表？" class="headerlink" title="问：如何在 git log 中查看修改的文件列表？"></a>问：如何在 git log 中查看修改的文件列表？</h3><p>默认的 git log 会显示较全的信息，且不包含文件列表。使用 –name-status 可以看到修改的文件列表，使用 –oneline 可以将参数简化成一行。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">log</span> --name-status --oneline</span></span><br></pre></td></tr></table></figure>
+<p>每次手动加上参数很麻烦，可以通过自定义快捷命令的方式来简化操作：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git config --global alias.ls <span class="string">'log --name-status --oneline --graph'</span></span></span><br></pre></td></tr></table></figure>
+<p>运行以上配置后，可通过 git ls 命令来实现「自定义 git log」效果，通过该方法也可以创建 git st 、 git ci 等一系列命令，以便沿用 svn 命令行习惯。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git config --global alias.st <span class="string">'status --porcelain'</span></span></span><br></pre></td></tr></table></figure>
+<p>更多 git log 参数，可通过 git help log 查看手册。</p>
+<p>如果是看上一次提交的版本日志，直接运行 git show 即可。</p>
+<p>此外，如果你的 Mac 安装了zsh（参考《全新Mac安装指南（编程篇），那么可以直接使用 gst、glog 等一系列快捷命令，详情见此列表：Plugin:git 。</p>
+<h3 id="问：git-submodule-update-时出错怎么解决？"><a href="#问：git-submodule-update-时出错怎么解决？" class="headerlink" title="问：git submodule update 时出错怎么解决？"></a>问：git submodule update 时出错怎么解决？</h3><p>例如，在执行 git submodule update 时有以下错误信息：</p>
+<blockquote>
+<p>fatal: reference is not a tree: f869da471c5d8a185cd110bbe4842d6757b002f5<br>Unable to checkout ‘f869da471c5d8a185cd110bbe4842d6757b002f5’ in submodule path ‘source/i18n-php-server’</p>
+</blockquote>
+<p>在此例中，发生以上错误是因为 i18n-php-server 子仓库在某电脑 A 的「本地」commit 了新的版本 「f869da471c5d8a185cd110bbe4842d6757b002f5」，且该次 commit 未 push origin。但其父级仓库 i18n-www 中引用了该子仓库的版本号，且将引用记录 push origin，导致其他客户机无法 update 。</p>
+<p>解决方法，在电脑 A 上将 i18n-php-server 版本库 push origin 后，在其他客户机上执行 git submodule update 。或者用以上提到的 git reset 方法，将子仓库的引用版本号还原成 origin 上存在的最新版本号。</p>
+<h3 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h3><p>设置本地分支与远程分支保持同步，在第一次 git push 的时候带上 <code>-u</code> 参数即可</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git push origin master -u</span></span><br></pre></td></tr></table></figure>
+<p>支持中文目录与文件名的显示（git 默认将非 ASCII 编码的目录与文件名以八进制编码展示）</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git config core.quotepath off</span></span><br></pre></td></tr></table></figure>
+<p>常用的打 tag 操作，更多请查看《Git 基础 - 打标签》</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 列出所有本地 tag</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git tag   </span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 本地新增一个 tag，推送至 origin 服务器</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git tag -a v1.0.0 -m <span class="string">'tag description'</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git push origin v1.0.0</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 删除本地与 origin tag</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git tag -d v1.0.0</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git push origin --delete v1.0.0</span></span><br></pre></td></tr></table></figure>
+<p>使用 git GUI 客户端（如，SoureTree、Github Desktop）能极大的提升分支管理效率。分支合并操作通常只有两种情况：从 origin merge 到本地，使用 git pull 即可；从另外一个本地分支 merge 到当前分支，使用 git merge &lt;分支名&gt;，以下是常用命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 新建分支 branch1，并切换过去</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git checkout -b branch1</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 查看所有本地与远程分支</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git branch -a</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 修改完成后，切换回 master 分支，将 branch1 分支合并进来</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git checkout master</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git merge branch1</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> 删除已完成合并的分支 branch1</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git branch -d branch1</span></span><br></pre></td></tr></table></figure>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><ol>
+<li>Pro Git 简体中文版</li>
+<li>Git权威指南</li>
+<li>命令行man手册</li>
+</ol>
+
+                </article>
+                <ul class="tags-postTags">
+                    
+                    <li>
+                        <a href="/tags/git/" rel="tag"># git</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    
+    <nav id="gobottom" class="pagination">
+        
+        <a class="prev-post" title="计算机算法--图算法介绍" href="/2018-03-08/reference/graph/">
+            ← 计算机算法--图算法介绍
+        </a>
+        
+        <span class="prev-next-post">·</span>
+        
+        <a class="next-post" title="openvpn权限控制配置" href="/2018-02-03/openvpn权限控制配置/">
+            openvpn权限控制配置 →
+        </a>
+        
+    </nav>
+
+    
+    <div class="inner">
+        <div id="comment"></div>
+    </div>
+    
+</div>
+
+<div class="toc-bar">
+    <div class="toc-btn-bar">
+        <a href="#site-main" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M793.024 710.272a32 32 0 1 0 45.952-44.544l-310.304-320a32 32 0 0 0-46.4 0.48l-297.696 320a32 32 0 0 0 46.848 43.584l274.752-295.328 286.848 295.808z"/></svg>
+        </a>
+        <div class="toc-btn toc-switch">
+            <svg class="toc-open" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M779.776 480h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M779.776 672h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M256 288a32 32 0 1 0 0 64 32 32 0 0 0 0-64M392.576 352h387.2a32 32 0 0 0 0-64h-387.2a32 32 0 0 0 0 64M256 480a32 32 0 1 0 0 64 32 32 0 0 0 0-64M256 672a32 32 0 1 0 0 64 32 32 0 0 0 0-64"/></svg>
+            <svg class="toc-close hide" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M512 960c-247.039484 0-448-200.960516-448-448S264.960516 64 512 64 960 264.960516 960 512 759.039484 960 512 960zM512 128.287273c-211.584464 0-383.712727 172.128262-383.712727 383.712727 0 211.551781 172.128262 383.712727 383.712727 383.712727 211.551781 0 383.712727-172.159226 383.712727-383.712727C895.712727 300.415536 723.551781 128.287273 512 128.287273z"/><path d="M557.05545 513.376159l138.367639-136.864185c12.576374-12.416396 12.672705-32.671738 0.25631-45.248112s-32.704421-12.672705-45.248112-0.25631l-138.560301 137.024163-136.447897-136.864185c-12.512727-12.512727-32.735385-12.576374-45.248112-0.063647-12.512727 12.480043-12.54369 32.735385-0.063647 45.248112l136.255235 136.671523-137.376804 135.904314c-12.576374 12.447359-12.672705 32.671738-0.25631 45.248112 6.271845 6.335493 14.496116 9.504099 22.751351 9.504099 8.12794 0 16.25588-3.103239 22.496761-9.247789l137.567746-136.064292 138.687596 139.136568c6.240882 6.271845 14.432469 9.407768 22.65674 9.407768 8.191587 0 16.352211-3.135923 22.591372-9.34412 12.512727-12.480043 12.54369-32.704421 0.063647-45.248112L557.05545 513.376159z"/></svg>
+        </div>
+        <a href="#gobottom" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M231.424 346.208a32 32 0 0 0-46.848 43.584l297.696 320a32 32 0 0 0 46.4 0.48l310.304-320a32 32 0 1 0-45.952-44.544l-286.848 295.808-274.752-295.36z"/></svg>
+        </a>
+    </div>
+    <div class="toc-main">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Git与SVN差异"><span class="toc-text">Git与SVN差异</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git常用命令"><span class="toc-text">Git常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建"><span class="toc-text">创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#本地修改"><span class="toc-text">本地修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改上次提交"><span class="toc-text">修改上次提交</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#搜索"><span class="toc-text">搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#提交历史"><span class="toc-text">提交历史</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分支与标签"><span class="toc-text">分支与标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更新与发布"><span class="toc-text">更新与发布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#合并与重置"><span class="toc-text">合并与重置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#撤销"><span class="toc-text">撤销</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git进阶指南"><span class="toc-text">Git进阶指南</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#问：如何修改-origin-仓库信息？"><span class="toc-text">问：如何修改 origin 仓库信息？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1、添加-origin-仓库信息"><span class="toc-text">1、添加 origin 仓库信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2、查看-origin-仓库信息"><span class="toc-text">2、查看 origin 仓库信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3、删除-origin-仓库信息"><span class="toc-text">3、删除 origin 仓库信息</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问：如何配置-git-ssh-keys-？"><span class="toc-text">问：如何配置 git ssh keys ？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问：如何撤销修改？"><span class="toc-text">问：如何撤销修改？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1、新建的文件和目录，且从未提交至版本库"><span class="toc-text">1、新建的文件和目录，且从未提交至版本库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2、提交过版本库，但未提交至暂存区的文件（未执行-git-add）"><span class="toc-text">2、提交过版本库，但未提交至暂存区的文件（未执行 git add）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3、已提交至暂存区的文件"><span class="toc-text">3、已提交至暂存区的文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4、已提交至版本库（执行了-git-commit）"><span class="toc-text">4、已提交至版本库（执行了 git commit）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5、如果回滚了之后又不想回滚了怎么办？"><span class="toc-text">5、如果回滚了之后又不想回滚了怎么办？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问：遇到冲突了怎么解决？"><span class="toc-text">问：遇到冲突了怎么解决？</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1、最快的办法"><span class="toc-text">1、最快的办法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2、最通用的办法"><span class="toc-text">2、最通用的办法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3、最好的习惯"><span class="toc-text">3、最好的习惯</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4、最复杂的情况"><span class="toc-text">4、最复杂的情况</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问：如何在不提交修改的前提下，执行-pull-merge-等操作？"><span class="toc-text">问：如何在不提交修改的前提下，执行 pull / merge 等操作？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问：如何在-git-log-中查看修改的文件列表？"><span class="toc-text">问：如何在 git log 中查看修改的文件列表？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问：git-submodule-update-时出错怎么解决？"><span class="toc-text">问：git submodule update 时出错怎么解决？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他问题"><span class="toc-text">其他问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考资料"><span class="toc-text">参考资料</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+	</div>
+	
+
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+  <header class="read-next-card-header">
+    <small class="read-next-card-header-sitetitle">&mdash; Pastor Dean &mdash;</small>
+    <h3 class="read-next-card-header-title">Recent Posts</h3>
+  </header>
+  <div class="read-next-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+      <path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/>
+    </svg>
+  </div>
+  <div class="read-next-card-content">
+    <ul>
+      
+      
+      
+      <li>
+        <a href="/2020-01-16/thinking/Thinking modelBiological thinking Biological thinking looking at the business world from an evolutionary perspective/">Thinking modelBiological thinking Biological thinking: looking at the business world from an evolutionary perspective</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2020-01-13/thinking/Modern Darwin Integrated Model  Biological Thinking Mode Opening God Perspective/">Modern Darwin Integrated Model Biological Thinking Mode Opening God is Perspective</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2020-01-11/thinking/Metacognition Changing the stubborn thinking of the brain/">Metacognition Changing the stubborn thinking of the brain</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <footer class="read-next-card-footer">
+    <a href="/archives">  MORE  → </a>
+  </footer>
+</article>
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+    <header class="read-next-card-header tagcloud-card">
+        <h3 class="read-next-card-header-title">Categories</h3>
+    </header>
+    <div class="read-next-card-content">
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Biological-Thinking/">Biological Thinking</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cognitive-Neuroscience/">Cognitive Neuroscience</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DeepLearning/">DeepLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/FFmpeg/">FFmpeg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MacOS/">MacOS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MachineLearning/">MachineLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PM/">PM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/RPC/">RPC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vim/">Vim</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WebRTC/">WebRTC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/deeplearn/">deeplearn</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/http/">http</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/machineLearning/">machineLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/文摘/">文摘</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构师/">架构师</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/知识图谱/">知识图谱</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/职业规划/">职业规划</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/职业规划/个人提升/">个人提升</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机相关技术资料整理/">计算机相关技术资料整理</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/认知升级/">认知升级</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/财务自由/">财务自由</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/财富自由/">财富自由</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/运维/">运维</a></li></ul>
+    </div>
+</article>
+
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+	<header class="read-next-card-header tagcloud-card">
+		<h3 class="read-next-card-header-title">Tag Cloud</h3>
+	</header>
+	<div class="read-next-card-content-ext">
+		<a href="/tags/AI/" style="font-size: 14px;">AI</a> <a href="/tags/Android/" style="font-size: 14px;">Android</a> <a href="/tags/Biological/" style="font-size: 17.75px;">Biological</a> <a href="/tags/Browser/" style="font-size: 14px;">Browser</a> <a href="/tags/Business/" style="font-size: 16.5px;">Business</a> <a href="/tags/Cognitive/" style="font-size: 17.75px;">Cognitive</a> <a href="/tags/DeepLearning/" style="font-size: 15.25px;">DeepLearning</a> <a href="/tags/Docker/" style="font-size: 14px;">Docker</a> <a href="/tags/FFmpeg/" style="font-size: 21.5px;">FFmpeg</a> <a href="/tags/FastCGI/" style="font-size: 14px;">FastCGI</a> <a href="/tags/IP划分/" style="font-size: 14px;">IP划分</a> <a href="/tags/IP地址/" style="font-size: 14px;">IP地址</a> <a href="/tags/Knowledge-Graph/" style="font-size: 16.5px;">Knowledge Graph</a> <a href="/tags/Linux-Shell/" style="font-size: 14px;">Linux Shell</a> <a href="/tags/MacOS/" style="font-size: 15.25px;">MacOS</a> <a href="/tags/Neuroscience/" style="font-size: 17.75px;">Neuroscience</a> <a href="/tags/RPC/" style="font-size: 14px;">RPC</a> <a href="/tags/Thinking/" style="font-size: 17.75px;">Thinking</a> <a href="/tags/Tutorial/" style="font-size: 20.25px;">Tutorial</a> <a href="/tags/WebRTC/" style="font-size: 21.5px;">WebRTC</a> <a href="/tags/WebSocket/" style="font-size: 14px;">WebSocket</a> <a href="/tags/algorithm/" style="font-size: 15.25px;">algorithm</a> <a href="/tags/config/" style="font-size: 14px;">config</a> <a href="/tags/decisionTree/" style="font-size: 14px;">decisionTree</a> <a href="/tags/git/" style="font-size: 17.75px;">git</a> <a href="/tags/google-adsense/" style="font-size: 14px;">google adsense</a> <a href="/tags/hexo/" style="font-size: 17.75px;">hexo</a> <a href="/tags/http/" style="font-size: 17.75px;">http</a> <a href="/tags/knn/" style="font-size: 14px;">knn</a> <a href="/tags/lighttpd/" style="font-size: 15.25px;">lighttpd</a> <a href="/tags/mxnet/" style="font-size: 14px;">mxnet</a> <a href="/tags/mysql/" style="font-size: 22.75px;">mysql</a> <a href="/tags/nlp/" style="font-size: 24px;">nlp</a> <a href="/tags/nodejs/" style="font-size: 14px;">nodejs</a> <a href="/tags/openvpn/" style="font-size: 14px;">openvpn</a> <a href="/tags/other/" style="font-size: 15.25px;">other</a> <a href="/tags/paddle/" style="font-size: 14px;">paddle</a> <a href="/tags/planning/" style="font-size: 20.25px;">planning</a> <a href="/tags/pracitce/" style="font-size: 15.25px;">pracitce</a> <a href="/tags/rich/" style="font-size: 14px;">rich</a> <a href="/tags/shell/" style="font-size: 14px;">shell</a> <a href="/tags/svn/" style="font-size: 14px;">svn</a> <a href="/tags/ubuntu/" style="font-size: 14px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 16.5px;">vim</a> <a href="/tags/webpack/" style="font-size: 14px;">webpack</a> <a href="/tags/webrtc/" style="font-size: 19px;">webrtc</a> <a href="/tags/个人发展/" style="font-size: 14px;">个人发展</a> <a href="/tags/互联网实事/" style="font-size: 14px;">互联网实事</a> <a href="/tags/外链/" style="font-size: 14px;">外链</a> <a href="/tags/提升个人思维/" style="font-size: 14px;">提升个人思维</a> <a href="/tags/文摘/" style="font-size: 15.25px;">文摘</a> <a href="/tags/斜杠青年/" style="font-size: 14px;">斜杠青年</a> <a href="/tags/机器学习/" style="font-size: 16.5px;">机器学习</a> <a href="/tags/架构师/" style="font-size: 14px;">架构师</a> <a href="/tags/测试工具/" style="font-size: 14px;">测试工具</a> <a href="/tags/睡后成长/" style="font-size: 14px;">睡后成长</a> <a href="/tags/睡后收入/" style="font-size: 14px;">睡后收入</a> <a href="/tags/税后收入/" style="font-size: 14px;">税后收入</a> <a href="/tags/笔记/" style="font-size: 14px;">笔记</a> <a href="/tags/自然语言处理/" style="font-size: 24px;">自然语言处理</a> <a href="/tags/视频流/" style="font-size: 15.25px;">视频流</a> <a href="/tags/计算机相关技术资料整理/" style="font-size: 14px;">计算机相关技术资料整理</a> <a href="/tags/认知升级/" style="font-size: 14px;">认知升级</a> <a href="/tags/限速/" style="font-size: 14px;">限速</a> <a href="/tags/面试/" style="font-size: 14px;">面试</a> <a href="/tags/项目管理/" style="font-size: 14px;">项目管理</a>
+	</div>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+	
+
+
+
+
+<div id="search" class="search-overlay">
+    <div class="search-form">
+        
+        <div class="search-overlay-logo">
+        	<img src="/images/favicon-16x16-next.png" alt="Pastor Dean">
+        </div>
+        
+        <input id="local-search-input" class="search-input" type="text" name="search" placeholder="Search ...">
+        <a class="search-overlay-close" href="#"></a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+<footer class="site-footer outer">
+	<div class="site-footer-content inner">
+		<div class="copyright">
+			<a href="/" title="Pastor Dean">Pastor Dean &copy; 2020</a>
+			
+				
+			        <span hidden="true" id="/2018-02-27/reference/Git/git-guide/" class="leancloud-visitors" data-flag-title="Git操作手册|命令速查表">
+			            <span>阅读量 </span>
+			            <span class="leancloud-visitors-count">0</span>
+			        </span>
+	    		
+    		
+		</div>
+		<nav class="site-footer-nav">
+			
+			<a href="https://hexo.io" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+			<a href="https://github.com/xzhih/hexo-theme-casper" title="Casper" target="_blank" rel="noopener">Casper</a>
+		</nav>
+	</div>
+</footer>
+	
+
+
+<script>
+    if(window.navigator && navigator.serviceWorker) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister()
+            }
+        })
+    }
+</script>
+
+
+<script id="scriptLoad" src="/js/allinone.min.js" async></script>
+
+
+<script>
+    document.getElementById('scriptLoad').addEventListener('load', function () {
+        
+        
+            var bLazy = new Blazy();
+        
+
+        
+        
+
+        
+        
+        
+            searchFunc("/");
+        
+        
+    })
+</script>
+
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+
+
+<script id="valineScript" src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+<script>
+    document.getElementById('valineScript').addEventListener("load", function() {
+        new Valine({
+            el: '#comment' ,
+            verify: false,
+            notify: false,
+            appId: '',
+            appKey: '',
+            placeholder: 'Just go go',
+            pageSize: 10,
+            avatar: 'mm',
+            visitor: true
+        })
+    });
+</script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="preconnect" href="//www.googletagmanager.com">
+	<link rel="preconnect" href="//zz.bdstatic.com">
+	<link rel="preconnect" href="//sp0.baidu.com">
+	<link rel="preconnect" href="//www.google-analytics.com">
+	<link rel="preconnect" href="//cdn1.lncld.net">
+	<link rel="preconnect" href="//unpkg.com">
+	<link rel="preconnect" href="//app-router.leancloud.cn">
+	<link rel="preconnect" href="//9qpuwspm.api.lncld.net">
+	<link rel="preconnect" href="//gravatar.loli.net">
+
+	<title>NLP系列 | Pastor Dean</title>
+
+	<meta name="HandheldFriendly" content="True">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+	<meta name="generator" content="hexo">
+	<meta name="author" content="pastor">
+	<meta name="description" content>
+
+	
+	<meta name="keywords" content>
+	
+
+	
+	<link rel="shortcut icon" href="/images/favicon-16x16-next.png">
+	<link rel="apple-touch-icon" href="/images/favicon-16x16-next.png">
+	
+
+	
+	<meta name="theme-color" content="#3c484e">
+	<meta name="msapplication-TileColor" content="#3c484e">
+	
+
+	
+
+	
+
+	<meta property="og:site_name" content="Pastor Dean">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="NLP系列 | Pastor Dean">
+	<meta property="og:description" content>
+	<meta property="og:url" content="https://mrpastor.github.io/2019-03-21/nlp/2NLP_Basics2/lesson3/Chinese_text_analysis_and_processing/">
+
+	
+	<meta property="article:published_time" content="2019-03-21T19:03:00+08:00"> 
+	<meta property="article:author" content="pastor">
+	<meta property="article:published_first" content="Pastor Dean, /2019-03-21/nlp/2NLP_Basics2/lesson3/Chinese_text_analysis_and_processing/">
+	
+
+	
+	
+	<link rel="stylesheet" href="/css/allinonecss.min.css">
+
+	
+	
+	
+</head>
+<body class="post-template">
+	<div class="site-wrapper">
+		
+
+
+
+
+<header class="site-header post-site-header outer">
+    <div class="inner">
+        
+<nav class="site-nav"> 
+    <div class="site-nav-left">
+        <ul class="nav">
+            <li>
+                
+                
+                <a class="site-nav-logo" href="/" title="Pastor Dean">
+                    <img src="/images/favicon-32x32-next.png" alt="Pastor Dean">
+                </a>
+                
+                
+            </li>
+            
+            
+            <li>
+                <a href="/ || home" title="home">home</a>
+            </li>
+            
+            <li>
+                <a href="/categories/ || th" title="categories">categories</a>
+            </li>
+            
+            <li>
+                <a href="/archives/ || archive" title="archives">archives</a>
+            </li>
+            
+            <li>
+                <a href="/tools/ || tools" title="tools">tools</a>
+            </li>
+            
+            
+        </ul> 
+    </div>
+    
+    <div class="search-button-area">
+        <a href="#search" class="search-button">Search ...</a>
+    </div>
+     
+    <div class="site-nav-right">
+        
+        <a href="#search" class="search-button">Search ...</a>
+         
+        
+<div class="social-links">
+    
+    
+    <a class="social-link" title="github" href="https://github.com/mrpastor" target="_blank" rel="noopener">
+        <svg viewbox="0 0 1049 1024" xmlns="http://www.w3.org/2000/svg"><path d="M524.979332 0C234.676191 0 0 234.676191 0 524.979332c0 232.068678 150.366597 428.501342 358.967656 498.035028 26.075132 5.215026 35.636014-11.299224 35.636014-25.205961 0-12.168395-0.869171-53.888607-0.869171-97.347161-146.020741 31.290159-176.441729-62.580318-176.441729-62.580318-23.467619-60.841976-58.234462-76.487055-58.234463-76.487055-47.804409-32.15933 3.476684-32.15933 3.476685-32.15933 53.019436 3.476684 80.83291 53.888607 80.83291 53.888607 46.935238 79.963739 122.553122 57.365291 152.97411 43.458554 4.345855-33.897672 18.252593-57.365291 33.028501-70.402857-116.468925-12.168395-239.022047-57.365291-239.022047-259.012982 0-57.365291 20.860106-104.300529 53.888607-140.805715-5.215026-13.037566-23.467619-66.926173 5.215027-139.067372 0 0 44.327725-13.906737 144.282399 53.888607 41.720212-11.299224 86.917108-17.383422 131.244833-17.383422s89.524621 6.084198 131.244833 17.383422C756.178839 203.386032 800.506564 217.29277 800.506564 217.29277c28.682646 72.1412 10.430053 126.029806 5.215026 139.067372 33.897672 36.505185 53.888607 83.440424 53.888607 140.805715 0 201.64769-122.553122 245.975415-239.891218 259.012982 19.121764 16.514251 35.636014 47.804409 35.636015 97.347161 0 70.402857-0.869171 126.898978-0.869172 144.282399 0 13.906737 9.560882 30.420988 35.636015 25.205961 208.601059-69.533686 358.967656-265.96635 358.967655-498.035028C1049.958663 234.676191 814.413301 0 524.979332 0z"/></svg>
+    </a>
+    
+    
+    <a class="social-link" title="facebook" href="https://facebook" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+
+    </a>
+    
+    
+    <a class="social-link" title="twitter" href="https://twitter.com" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+    </a>
+    
+    
+    
+    
+</div>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<div id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+        <header class="post-full-header">
+            <div class="post-full-meta">
+                <time class="post-full-meta-date" datetime="2019-03-21T11:19:18.000Z">
+                    2019-03-21
+                </time>
+                
+                <span class="date-divider">/</span>
+                
+                <a href="/categories/NLP/">NLP</a>&nbsp;&nbsp;
+                
+                
+            </div>
+            <h1 class="post-full-title">NLP系列</h1>
+        </header>
+        <div class="post-full no-image">
+            
+            <div class="post-full-content">
+                <article id="photoswipe" class="markdown-body">
+                    <h1 id="中文文本基本任务与处理"><a href="#中文文本基本任务与处理" class="headerlink" title="中文文本基本任务与处理"></a>中文文本基本任务与处理</h1><h3 id="1-分词"><a href="#1-分词" class="headerlink" title="1.分词"></a>1.分词</h3><p>对于中文和日文这样的特殊亚洲语系文本而言，字和字之间是紧密相连的，单纯从文本形态上无法区分具备独立含义的词（拉丁语系纯天然由空格分隔不同的word），而不同的词以不同的方式排布，可以表达不同的内容和情感，因此在很多中文任务中，我们需要做的第一个处理叫做<strong>分词</strong>。</p>
+<p>这是一个非常基础的功能，但是会较大程度影响下游任务(机器翻译、情感分析、文本理解)的效果。</p>
+<p>目前主流的分词方法主要是<strong>基于词典匹配的分词方法(正向最大匹配法、逆向最大匹配法和双向匹配分词法等)</strong>和<strong>基于统计的分词方法(HMM、CRF、和深度学习)</strong>；主流的分词工具库包括 中科院计算所NLPIR、哈工大LTP、清华大学THULAC、Hanlp分词器、Python jieba工具库等。</p>
+<p>关于分词方法和工具库更多内容可以参考知乎讨论<a href="https://www.zhihu.com/question/19578687" target="_blank" rel="noopener">有哪些比较好的中文分词方案</a></p>
+<p><img alt class="post-img b-lazy" data-img="../img/L3_word_seg.png" data-index="0" data-src="../img/L3_word_seg.png"></p>
+<h3 id="2-停用词与N-gram"><a href="#2-停用词与N-gram" class="headerlink" title="2.停用词与N-gram"></a>2.停用词与N-gram</h3><h5 id="停用词"><a href="#停用词" class="headerlink" title="停用词"></a>停用词</h5><blockquote>
+<p>在自然语言处理的很多任务中，我们处理的主体“文本”中有一些功能词经常出现，然而对于最后的任务目标并没有帮助，甚至会对统计方法带来一些干扰，我们把这类词叫做<strong>停用词</strong>，通常我们会用一个停用词表把它们过滤出来。比如英语当中的<strong>定冠词/不定冠词</strong>(a,an,the等)。</p>
+</blockquote>
+<blockquote>
+<p>中文当中常用到的停用词词表可以参见<a href="https://github.com/goto456/stopwords" target="_blank" rel="noopener">中文常用停用词表</a></p>
+</blockquote>
+<blockquote>
+<p>关于机器学习中停用词的产出与收集方法，大家可以参见知乎讨论<a href="https://www.zhihu.com/question/34939177" target="_blank" rel="noopener">机器学习中如何收集停用词</a></p>
+</blockquote>
+<h5 id="N-gram"><a href="#N-gram" class="headerlink" title="N-gram"></a>N-gram</h5><blockquote>
+<p>N-gram在中文中叫做n元语法，指文本中连续出现的n个语词。n元语法模型是基于(n-1)阶马尔可夫链的一种概率语言模型，通过n个语词出现的概率来推断语句的结构。关于语言模型的更多内容，我们在后续的课程会详细提到。</p>
+</blockquote>
+<blockquote>
+<p>大家可以简单理解成N-gram是N个词条组成的n元组，也可以阅读<a href="https://zhuanlan.zhihu.com/p/32829048" target="_blank" rel="noopener">自然语言处理中N-Gram模型介绍</a>了解更多内容。</p>
+</blockquote>
+<h3 id="3-更多任务-词性标注、依赖分析、NER、关键词抽取"><a href="#3-更多任务-词性标注、依赖分析、NER、关键词抽取" class="headerlink" title="3.更多任务(词性标注、依赖分析、NER、关键词抽取)"></a>3.更多任务(词性标注、依赖分析、NER、关键词抽取)</h3><h5 id="词性标注"><a href="#词性标注" class="headerlink" title="词性标注"></a>词性标注</h5><blockquote>
+<p>词性（part-of-speech）是词汇基本的语法属性，通常也称为词性。</p>
+</blockquote>
+<blockquote>
+<p>词性标注（part-of-speech tagging）,又称为词类标注或者简称标注，是指为分词结果中的每个单词标注一个正确的词性的程序，也即确定每个词是名词、动词、形容词或者其他词性的过程。</p>
+</blockquote>
+<blockquote>
+<p>词性标注是很多NLP任务的预处理步骤，如句法分析，经过词性标注后的文本会带来很大的便利性，但也不是不可或缺的步骤。</p>
+</blockquote>
+<p><img alt class="post-img b-lazy" data-img="../img/L3_pos.png" data-index="1" data-src="../img/L3_pos.png"></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">代码</th>
+<th style="text-align:left">名称</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">举例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">a</td>
+<td style="text-align:left">形容词</td>
+<td style="text-align:left">取英语形容词adjective的第1个字母</td>
+<td style="text-align:left">最/d 大/a 的/u</td>
+</tr>
+<tr>
+<td style="text-align:left">ad</td>
+<td style="text-align:left">副形词</td>
+<td style="text-align:left">直接作状语的形容词.形容词代码a和副词代码d并在一起</td>
+<td style="text-align:left">一定/d 能够/v 顺利/ad 实现/v 。/w</td>
+</tr>
+<tr>
+<td style="text-align:left">ag</td>
+<td style="text-align:left">形语素</td>
+<td style="text-align:left">形容词性语素。形容词代码为a，语素代码ｇ前面置以a</td>
+<td style="text-align:left">喜/v 煞/ag 人/n</td>
+</tr>
+<tr>
+<td style="text-align:left">an</td>
+<td style="text-align:left">名形词</td>
+<td style="text-align:left">具有名词功能的形容词。形容词代码a和名词代码n并在一起</td>
+<td style="text-align:left">人民/n 的/u 根本/a 利益/n 和/c 国家/n 的/u 安稳/an 。/w</td>
+</tr>
+<tr>
+<td style="text-align:left">b</td>
+<td style="text-align:left">区别词</td>
+<td style="text-align:left">取汉字“别”的声母</td>
+<td style="text-align:left">副/b 书记/n 王/nr 思齐/nr</td>
+</tr>
+<tr>
+<td style="text-align:left">c</td>
+<td style="text-align:left">连词</td>
+<td style="text-align:left">取英语连词conjunction的第1个字母</td>
+<td style="text-align:left">全军/n 和/c 武警/n 先进/a 典型/n 代表/n</td>
+</tr>
+<tr>
+<td style="text-align:left">d</td>
+<td style="text-align:left">副词</td>
+<td style="text-align:left">取adverb的第2个字母，因其第1个字母已用于形容词</td>
+<td style="text-align:left">两侧/f 台柱/n 上/ 分别/d 雄踞/v 着/u</td>
+</tr>
+<tr>
+<td style="text-align:left">dg</td>
+<td style="text-align:left">副语素</td>
+<td style="text-align:left">副词性语素。副词代码为d，语素代码ｇ前面置以d</td>
+<td style="text-align:left">用/v 不/d 甚/dg 流利/a 的/u 中文/nz 主持/v 节目/n 。/w</td>
+</tr>
+<tr>
+<td style="text-align:left">e</td>
+<td style="text-align:left">叹词</td>
+<td style="text-align:left">取英语叹词exclamation的第1个字母</td>
+<td style="text-align:left">嗬/e ！/w</td>
+</tr>
+<tr>
+<td style="text-align:left">f</td>
+<td style="text-align:left">方位词</td>
+<td style="text-align:left">取汉字“方” 的声母</td>
+<td style="text-align:left">从/p 一/m 大/a 堆/q 档案/n 中/f 发现/v 了/u</td>
+</tr>
+<tr>
+<td style="text-align:left">g</td>
+<td style="text-align:left">语素</td>
+<td style="text-align:left">绝大多数语素都能作为合成词的“词根”，取汉字“根”的声母</td>
+<td style="text-align:left">例如dg 或ag</td>
+</tr>
+<tr>
+<td style="text-align:left">h</td>
+<td style="text-align:left">前接成分</td>
+<td style="text-align:left">取英语head的第1个字母</td>
+<td style="text-align:left">目前/t 各种/r 非/h 合作制/n 的/u 农产品/n</td>
+</tr>
+<tr>
+<td style="text-align:left">i</td>
+<td style="text-align:left">成语</td>
+<td style="text-align:left">取英语成语idiom的第1个字母</td>
+<td style="text-align:left">提高/v 农民/n 讨价还价/i 的/u 能力/n 。/w</td>
+</tr>
+<tr>
+<td style="text-align:left">j</td>
+<td style="text-align:left">简称略语</td>
+<td style="text-align:left">取汉字“简”的声母</td>
+<td style="text-align:left">民主/ad 选举/v 村委会/j 的/u 工作/vn</td>
+</tr>
+<tr>
+<td style="text-align:left">k</td>
+<td style="text-align:left">后接成分</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">权责/n 明确/a 的/u 逐级/d 授权/v 制/k</td>
+</tr>
+<tr>
+<td style="text-align:left">l</td>
+<td style="text-align:left">习用语</td>
+<td style="text-align:left">习用语尚未成为成语，有点“临时性”，取“临”的声母</td>
+<td style="text-align:left">是/v 建立/v 社会主义/n 市场经济/n 体制/n 的/u 重要/a 组成部分/l 。/w</td>
+</tr>
+<tr>
+<td style="text-align:left">m</td>
+<td style="text-align:left">数词</td>
+<td style="text-align:left">取英语numeral的第3个字母，n，u已有他用</td>
+<td style="text-align:left">科学技术/n 是/v 第一/m 生产力/n</td>
+</tr>
+<tr>
+<td style="text-align:left">n</td>
+<td style="text-align:left">名词</td>
+<td style="text-align:left">取英语名词noun的第1个字母</td>
+<td style="text-align:left">希望/v 双方/n 在/p 市政/n 规划/vn</td>
+</tr>
+<tr>
+<td style="text-align:left">ng</td>
+<td style="text-align:left">名语素</td>
+<td style="text-align:left">名词性语素。名词代码为n，语素代码ｇ前面置以n</td>
+<td style="text-align:left">就此/d 分析/v 时/Ng 认为/v</td>
+</tr>
+<tr>
+<td style="text-align:left">nr</td>
+<td style="text-align:left">人名</td>
+<td style="text-align:left">名词代码n和“人(ren)”的声母并在一起</td>
+<td style="text-align:left">建设部/nt 部长/n 侯/nr 捷/nr</td>
+</tr>
+<tr>
+<td style="text-align:left">ns</td>
+<td style="text-align:left">地名</td>
+<td style="text-align:left">名词代码n和处所词代码s并在一起</td>
+<td style="text-align:left">北京/ns 经济/n 运行/vn 态势/n 喜人/a</td>
+</tr>
+<tr>
+<td style="text-align:left">nt</td>
+<td style="text-align:left">机构团体</td>
+<td style="text-align:left">“团”的声母为t，名词代码n和t并在一起</td>
+<td style="text-align:left">[冶金/n 工业部/n 洛阳/ns 耐火材料/l 研究院/n]nt</td>
+</tr>
+<tr>
+<td style="text-align:left">nx</td>
+<td style="text-align:left">字母专名</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">ＡＴＭ/nx 交换机/n</td>
+</tr>
+<tr>
+<td style="text-align:left">nz</td>
+<td style="text-align:left">其他专名</td>
+<td style="text-align:left">“专”的声母的第1个字母为z，名词代码n和z并在一起</td>
+<td style="text-align:left">德士古/nz 公司/n</td>
+</tr>
+<tr>
+<td style="text-align:left">o</td>
+<td style="text-align:left">拟声词</td>
+<td style="text-align:left">取英语拟声词onomatopoeia的第1个字母</td>
+<td style="text-align:left">汩汩/o 地/u 流/v 出来/v</td>
+</tr>
+<tr>
+<td style="text-align:left">p</td>
+<td style="text-align:left">介词</td>
+<td style="text-align:left">取英语介词prepositional的第1个字母</td>
+<td style="text-align:left">往/p 基层/n 跑/v 。/w</td>
+</tr>
+<tr>
+<td style="text-align:left">q</td>
+<td style="text-align:left">量词</td>
+<td style="text-align:left">取英语quantity的第1个字母</td>
+<td style="text-align:left">不止/v 一/m 次/q 地/u 听到/v ，/w</td>
+</tr>
+<tr>
+<td style="text-align:left">r</td>
+<td style="text-align:left">代词</td>
+<td style="text-align:left">取英语代词pronoun的第2个字母,因p已用于介词</td>
+<td style="text-align:left">有些/r 部门/n</td>
+</tr>
+<tr>
+<td style="text-align:left">s</td>
+<td style="text-align:left">处所词</td>
+<td style="text-align:left">取英语space的第1个字母</td>
+<td style="text-align:left">移居/v 海外/s 。/w</td>
+</tr>
+<tr>
+<td style="text-align:left">t</td>
+<td style="text-align:left">时间词</td>
+<td style="text-align:left">取英语time的第1个字母</td>
+<td style="text-align:left">当前/t 经济/n 社会/n 情况/n</td>
+</tr>
+<tr>
+<td style="text-align:left">tg</td>
+<td style="text-align:left">时语素</td>
+<td style="text-align:left">时间词性语素。时间词代码为t,在语素的代码g前面置以t</td>
+<td style="text-align:left">秋/Tg 冬/tg 连/d 旱/a</td>
+</tr>
+<tr>
+<td style="text-align:left">u</td>
+<td style="text-align:left">助词</td>
+<td style="text-align:left">取英语助词auxiliary 的第2个字母,因a已用于形容词</td>
+<td style="text-align:left">工作/vn 的/u 政策/n</td>
+</tr>
+<tr>
+<td style="text-align:left">ud</td>
+<td style="text-align:left">结构助词</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">有/v 心/n 栽/v 得/ud 梧桐树/n</td>
+</tr>
+<tr>
+<td style="text-align:left">ug</td>
+<td style="text-align:left">时态助词</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">你/r 想/v 过/ug 没有/v</td>
+</tr>
+<tr>
+<td style="text-align:left">uj</td>
+<td style="text-align:left">结构助词的</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">迈向/v 充满/v 希望/n 的/uj 新/a 世纪/n</td>
+</tr>
+<tr>
+<td style="text-align:left">ul</td>
+<td style="text-align:left">时态助词了</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">完成/v 了/ ul</td>
+</tr>
+<tr>
+<td style="text-align:left">uv</td>
+<td style="text-align:left">结构助词地</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">满怀信心/l 地/uv 开创/v 新/a 的/u 业绩/n</td>
+</tr>
+<tr>
+<td style="text-align:left">uz</td>
+<td style="text-align:left">时态助词着</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">眼看/v 着/uz</td>
+</tr>
+<tr>
+<td style="text-align:left">v</td>
+<td style="text-align:left">动词</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">举行/v 老/a 干部/n 迎春/vn 团拜会/n</td>
+</tr>
+<tr>
+<td style="text-align:left">vd</td>
+<td style="text-align:left">副动词</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">强调/vd 指出/v</td>
+</tr>
+<tr>
+<td style="text-align:left">vg</td>
+<td style="text-align:left">动语素</td>
+<td style="text-align:left">动词性语素。动词代码为v。在语素的代码g前面置以V</td>
+<td style="text-align:left">做好/v 尊/vg 干/j 爱/v 兵/n 工作/vn</td>
+</tr>
+<tr>
+<td style="text-align:left">vn</td>
+<td style="text-align:left">名动词</td>
+<td style="text-align:left">指具有名词功能的动词。动词和名词的代码并在一起</td>
+<td style="text-align:left">股份制/n 这种/r 企业/n 组织/vn 形式/n ，/w</td>
+</tr>
+<tr>
+<td style="text-align:left">w</td>
+<td style="text-align:left">标点符号</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">生产/v 的/u ５Ｇ/nx 、/w ８Ｇ/nx 型/k 燃气/n 热水器/n</td>
+</tr>
+<tr>
+<td style="text-align:left">x</td>
+<td style="text-align:left">非语素字</td>
+<td style="text-align:left">非语素字只是一个符号，字母x通常用于代表未知数、符号</td>
+<td style="text-align:left"></td>
+</tr>
+<tr>
+<td style="text-align:left">y</td>
+<td style="text-align:left">语气词</td>
+<td style="text-align:left">取汉字“语”的声母</td>
+<td style="text-align:left">已经/d ３０/m 多/m 年/q 了/y 。/w</td>
+</tr>
+<tr>
+<td style="text-align:left">z</td>
+<td style="text-align:left">状态词</td>
+<td style="text-align:left">取汉字“状”的声母的前一个字母</td>
+<td style="text-align:left">势头/n 依然/z 强劲/a ；/w</td>
+</tr>
+</tbody>
+</table>
+<h5 id="句法依存分析"><a href="#句法依存分析" class="headerlink" title="句法依存分析"></a>句法依存分析</h5><p>在很多复杂的NLP问题中，我们还需要完成句法分析的任务，更具体一点说，需要<strong>确定句子的句法结构</strong>，<strong>确定句子中各词之间的依存关系。</strong>下图为Stanford nlp parser解析得到的结果(对分完词后的句子)</p>
+<p><img alt class="post-img b-lazy" data-img="../img/L3_syntax.png" data-index="2" data-src="../img/L3_syntax.png"></p>
+<h5 id="命名实体识别"><a href="#命名实体识别" class="headerlink" title="命名实体识别"></a>命名实体识别</h5><p>命名实体识别（Named Entity Recognition, NER）是从一段非结构化文本中找出相关实体（triplet中的主词和宾词），并标注出其位置以及类型，它是NLP领域中一些复杂任务（如<strong>关系抽取</strong>、<strong>信息检索</strong>、<strong>知识问答</strong>、<strong>知识图谱</strong>等）的基础。<br><img alt class="post-img b-lazy" data-img="../img/L3_ner.png" data-index="3" data-src="../img/L3_ner.png"></p>
+<h5 id="关键词抽取"><a href="#关键词抽取" class="headerlink" title="关键词抽取"></a>关键词抽取</h5><p>文本关键词抽取，是对文本信息进行高度凝练的一种有效手段，通过3-5个词语准确概括文本的主题，帮助读者快速理解文本信息。是文本检索、文本摘要等许多下游文本挖掘任务的基础性和必要性的工作。<br><img alt class="post-img b-lazy" data-img="../img/L3_keyword.png" data-index="4" data-src="../img/L3_keyword.png"></p>
+<h3 id="4-jieba工具库使用"><a href="#4-jieba工具库使用" class="headerlink" title="4.jieba工具库使用"></a>4.jieba工具库使用</h3><h4 id="a-基本分词函数与用法"><a href="#a-基本分词函数与用法" class="headerlink" title="a.基本分词函数与用法"></a>a.基本分词函数与用法</h4><p>jieba.cut 以及 jieba.cut_for_search 返回的结构都是一个可迭代的 generator，可以使用 for 循环来获得分词后得到的每一个词语(unicode)</p>
+<p><strong>jieba.cut</strong> 方法接受三个输入参数: </p>
+<ul>
+<li>需要分词的字符串</li>
+<li>cut_all 参数用来控制是否采用全模式</li>
+<li>HMM 参数用来控制是否使用 HMM 模型</li>
+</ul>
+<p><strong>jieba.cut_for_search</strong> 方法接受两个参数</p>
+<ul>
+<li>需要分词的字符串</li>
+<li>是否使用 HMM 模型。</li>
+</ul>
+<p>该方法适合用于搜索引擎构建倒排索引的分词，粒度比较细</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># encoding=utf-8</span></span><br><span class="line"><span class="keyword">import</span> jieba</span><br><span class="line"></span><br><span class="line">seg_list = jieba.cut(<span class="string">"我在网易云课堂学习自然语言处理"</span>, cut_all=<span class="keyword">True</span>)</span><br><span class="line">print(<span class="string">"Full Mode: "</span> + <span class="string">"/ "</span>.join(seg_list))  <span class="comment"># 全模式</span></span><br><span class="line"></span><br><span class="line">seg_list = jieba.cut(<span class="string">"我在网易云课堂学习自然语言处理"</span>, cut_all=<span class="keyword">False</span>)</span><br><span class="line">print(<span class="string">"Default Mode: "</span> + <span class="string">"/ "</span>.join(seg_list))  <span class="comment"># 精确模式</span></span><br><span class="line"></span><br><span class="line">seg_list = jieba.cut(<span class="string">"他毕业于北京航空航天大学，在百度深度学习研究院进行研究"</span>)  <span class="comment"># 默认是精确模式</span></span><br><span class="line">print(<span class="string">", "</span>.join(seg_list))</span><br><span class="line"></span><br><span class="line">seg_list = jieba.cut_for_search(<span class="string">"小明硕士毕业于中国科学院计算所，后在斯坦福大学深造"</span>)  <span class="comment"># 搜索引擎模式</span></span><br><span class="line">print(<span class="string">", "</span>.join(seg_list))</span><br></pre></td></tr></table></figure>
+<pre><code>Building prefix dict from the default dictionary ...
+Dumping model to file cache /tmp/jieba.cache
+Loading model cost 1.774 seconds.
+Prefix dict has been built succesfully.
+
+
+Full Mode: 我/ 在/ 网易/ 云/ 课堂/ 学习/ 自然/ 自然语言/ 语言/ 处理
+Default Mode: 我/ 在/ 网易/ 云/ 课堂/ 学习/ 自然语言/ 处理
+他, 毕业, 于, 北京航空航天大学, ，, 在, 百度, 深度, 学习, 研究院, 进行, 研究
+小明, 硕士, 毕业, 于, 中国, 科学, 学院, 科学院, 中国科学院, 计算, 计算所, ，, 后, 在, 福大, 大学, 斯坦福, 斯坦福大学, 深造
+</code></pre><p>可以使用<strong>jieba.lcut</strong>以及<strong>jieba.lcut_for_search</strong>直接返回 list</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(jieba.lcut(<span class="string">"我在网易云课堂学习自然语言处理"</span>))</span><br><span class="line">print(jieba.lcut_for_search(<span class="string">"小明硕士毕业于中国科学院计算所，后在斯坦福大学深造"</span>))</span><br></pre></td></tr></table></figure>
+<pre><code>[&apos;我&apos;, &apos;在&apos;, &apos;网易&apos;, &apos;云&apos;, &apos;课堂&apos;, &apos;学习&apos;, &apos;自然语言&apos;, &apos;处理&apos;]
+[&apos;小明&apos;, &apos;硕士&apos;, &apos;毕业&apos;, &apos;于&apos;, &apos;中国&apos;, &apos;科学&apos;, &apos;学院&apos;, &apos;科学院&apos;, &apos;中国科学院&apos;, &apos;计算&apos;, &apos;计算所&apos;, &apos;，&apos;, &apos;后&apos;, &apos;在&apos;, &apos;福大&apos;, &apos;大学&apos;, &apos;斯坦福&apos;, &apos;斯坦福大学&apos;, &apos;深造&apos;]
+</code></pre><p><strong>添加用户自定义字典</strong></p>
+<p>很多时候我们需要针对自己的场景进行分词，会有一些领域内的专有词汇。</p>
+<ul>
+<li>1.可以用jieba.load_userdict(file_name)加载用户字典</li>
+<li>2.少量的词汇可以自己用下面方法手动添加：<ul>
+<li>用 add_word(word, freq=None, tag=None) 和 del_word(word) 在程序中动态修改词典</li>
+<li>用 suggest_freq(segment, tune=True) 可调节单个词语的词频，使其能（或不能）被分出来。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'/'</span>.join(jieba.cut(<span class="string">'如果放到旧字典中将出错。'</span>, HMM=<span class="keyword">False</span>)))</span><br></pre></td></tr></table></figure>
+<pre><code>如果/放到/旧/字典/中将/出错/。
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">jieba.suggest_freq((<span class="string">'中'</span>, <span class="string">'将'</span>), <span class="keyword">True</span>)</span><br><span class="line">print(<span class="string">'/'</span>.join(jieba.cut(<span class="string">'如果放到旧字典中将出错。'</span>, HMM=<span class="keyword">False</span>)))</span><br></pre></td></tr></table></figure>
+<pre><code>如果/放到/旧/字典/中/将/出错/。
+</code></pre><h4 id="b-词性标注"><a href="#b-词性标注" class="headerlink" title="b.词性标注"></a>b.词性标注</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> jieba.posseg <span class="keyword">as</span> pseg</span><br><span class="line">words = pseg.cut(<span class="string">"我在网易云课堂学习自然语言处理"</span>)</span><br><span class="line"><span class="keyword">for</span> word, flag <span class="keyword">in</span> words:</span><br><span class="line">    print(<span class="string">'%s %s'</span> % (word, flag))</span><br></pre></td></tr></table></figure>
+<pre><code>我 r
+在 p
+网易 n
+云 ns
+课堂 n
+学习 v
+自然语言 l
+处理 v
+</code></pre><h4 id="c-关键词抽取"><a href="#c-关键词抽取" class="headerlink" title="c.关键词抽取"></a>c.关键词抽取</h4><ul>
+<li><p><strong>基于 TF-IDF 算法的关键词抽取</strong></p>
+<ul>
+<li>import jieba.analyse</li>
+</ul>
+<ul>
+<li>jieba.analyse.extract_tags(sentence, topK=20, withWeight=False, allowPOS=())<ul>
+<li>sentence 为待提取的文本</li>
+<li>topK 为返回几个 TF/IDF 权重最大的关键词，默认值为 20</li>
+<li>withWeight 为是否一并返回关键词权重值，默认值为 False</li>
+<li>allowPOS 仅包括指定词性的词，默认值为空，即不筛选</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> jieba.analyse <span class="keyword">as</span> analyse</span><br><span class="line">lines = open(<span class="string">'data/NBA.txt'</span>, encoding=<span class="string">'utf8'</span>).read()</span><br><span class="line">print(<span class="string">"  "</span>.join(analyse.extract_tags(lines, topK=<span class="number">20</span>, withWeight=<span class="keyword">False</span>, allowPOS=())))</span><br></pre></td></tr></table></figure>
+<pre><code>韦少  杜兰特  全明星  全明星赛  MVP  威少  正赛  科尔  投篮  勇士  球员  斯布鲁克  更衣柜  NBA  三连庄  张卫平  西部  指导  雷霆  明星队
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lines = open(<span class="string">'data/novel.txt'</span>, encoding=<span class="string">'utf8'</span>).read()</span><br><span class="line">print(<span class="string">"  "</span>.join(analyse.extract_tags(lines, topK=<span class="number">20</span>, withWeight=<span class="keyword">False</span>, allowPOS=())))</span><br></pre></td></tr></table></figure>
+<pre><code>行者  八戒  师父  三藏  唐僧  大圣  沙僧  妖精  菩萨  和尚  那怪  那里  长老  呆子  徒弟  怎么  不知  老孙  国王  一个
+</code></pre><ul>
+<li><p><strong>关于TF-IDF 算法的关键词抽取补充</strong></p>
+<ul>
+<li><strong>阅读材料:<a href="http://www.ruanyifeng.com/blog/2013/03/tf-idf.html" target="_blank" rel="noopener">TF-IDF与关键词提取</a></strong></li>
+<li><p>关键词提取所使用逆向文件频率（IDF）文本语料库可以切换成自定义语料库的路径</p>
+<ul>
+<li>用法： jieba.analyse.set_idf_path(file_name) # file_name为自定义语料库的路径<ul>
+<li>自定义语料库示例见<a href="https://github.com/fxsjy/jieba/blob/master/extra_dict/idf.txt.big" target="_blank" rel="noopener">这里</a></li>
+<li>用法示例见<a href="https://github.com/fxsjy/jieba/blob/master/test/extract_tags_idfpath.py" target="_blank" rel="noopener">这里</a></li>
+</ul>
+</li>
+<li>关键词提取所使用停止词（Stop Words）文本语料库可以切换成自定义语料库的路径<ul>
+<li>用法： jieba.analyse.set_stop_words(file_name) # file_name为自定义语料库的路径</li>
+<li>自定义语料库示例见<a href="https://github.com/fxsjy/jieba/blob/master/extra_dict/stop_words.txt" target="_blank" rel="noopener">这里</a></li>
+<li>用法示例见<a href="https://github.com/fxsjy/jieba/blob/master/test/extract_tags_stop_words.py" target="_blank" rel="noopener">这里</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>关键词一并返回关键词权重值示例</p>
+<ul>
+<li>用法示例见<a href="https://github.com/fxsjy/jieba/blob/master/test/extract_tags_with_weight.py" target="_blank" rel="noopener">这里</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>基于 TextRank 算法的关键词抽取</strong></p>
+<ul>
+<li>jieba.analyse.textrank(sentence, topK=20, withWeight=False, allowPOS=(‘ns’, ‘n’, ‘vn’, ‘v’)) 直接使用，接口相同，注意默认过滤词性。</li>
+<li>jieba.analyse.TextRank() 新建自定义 TextRank 实例</li>
+</ul>
+</li>
+<li><p>算法论文： <a href="http://web.eecs.umich.edu/~mihalcea/papers/mihalcea.emnlp04.pdf" target="_blank" rel="noopener">TextRank: Bringing Order into Texts</a></p>
+</li>
+<li><p>基本思想:</p>
+<ul>
+<li>将待抽取关键词的文本进行分词</li>
+<li>以固定窗口大小(默认为5，通过span属性调整)，词之间的共现关系，构建图</li>
+<li>计算图中节点的PageRank，注意是无向带权图</li>
+</ul>
+</li>
+<li>阅读资料：<ul>
+<li><a href="https://blog.csdn.net/zhangf666/article/details/77841845" target="_blank" rel="noopener">基于textrank的关键词抽取方法</a></li>
+<li><a href="https://www.jianshu.com/p/f6d66ab97332" target="_blank" rel="noopener">pagerank算法核心思想</a></li>
+<li><a href="http://blog.codinglabs.org/articles/intro-to-pagerank.html" target="_blank" rel="noopener">浅析PageRank算法</a></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> jieba.analyse <span class="keyword">as</span> analyse</span><br><span class="line">lines = open(<span class="string">'data/NBA.txt'</span>, encoding=<span class="string">'utf8'</span>).read()</span><br><span class="line">print(<span class="string">"  "</span>.join(analyse.textrank(lines, topK=<span class="number">20</span>, withWeight=<span class="keyword">False</span>, allowPOS=(<span class="string">'ns'</span>, <span class="string">'n'</span>, <span class="string">'vn'</span>, <span class="string">'v'</span>))))</span><br><span class="line">print(<span class="string">"---------------------我是分割线----------------"</span>)</span><br><span class="line">print(<span class="string">"  "</span>.join(analyse.textrank(lines, topK=<span class="number">20</span>, withWeight=<span class="keyword">False</span>, allowPOS=(<span class="string">'ns'</span>, <span class="string">'n'</span>))))</span><br></pre></td></tr></table></figure>
+<pre><code>全明星赛  勇士  正赛  指导  对方  投篮  球员  没有  出现  时间  威少  认为  看来  结果  相隔  助攻  现场  三连庄  介绍  嘉宾
+---------------------我是分割线----------------
+勇士  正赛  全明星赛  指导  投篮  玩命  时间  对方  现场  结果  球员  嘉宾  时候  全队  主持人  全程  大伙  肥皂剧  照片  目标
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lines = open(<span class="string">'data/novel.txt'</span>, encoding=<span class="string">'utf8'</span>).read()</span><br><span class="line">print(<span class="string">"  "</span>.join(analyse.textrank(lines, topK=<span class="number">20</span>, withWeight=<span class="keyword">False</span>, allowPOS=(<span class="string">'ns'</span>, <span class="string">'n'</span>, <span class="string">'vn'</span>, <span class="string">'v'</span>))))</span><br></pre></td></tr></table></figure>
+<pre><code>行者  师父  八戒  三藏  大圣  不知  菩萨  妖精  只见  长老  国王  却说  呆子  徒弟  小妖  出来  不得  不见  不能  师徒
+</code></pre><h3 id="5-python中文文本分析与可视化"><a href="#5-python中文文本分析与可视化" class="headerlink" title="5.python中文文本分析与可视化"></a>5.python中文文本分析与可视化</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line">warnings.filterwarnings(<span class="string">"ignore"</span>)</span><br><span class="line"><span class="keyword">import</span> jieba    <span class="comment">#分词包</span></span><br><span class="line"><span class="keyword">import</span> numpy    <span class="comment">#numpy计算包</span></span><br><span class="line"><span class="keyword">import</span> codecs   <span class="comment">#codecs提供的open方法来指定打开的文件的语言编码，它会在读取的时候自动转换为内部unicode </span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd  </span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">%matplotlib inline</span><br><span class="line"><span class="keyword">import</span> matplotlib</span><br><span class="line">matplotlib.rcParams[<span class="string">'figure.figsize'</span>] = (<span class="number">10.0</span>, <span class="number">5.0</span>)</span><br><span class="line"><span class="keyword">from</span> wordcloud <span class="keyword">import</span> WordCloud<span class="comment">#词云包</span></span><br></pre></td></tr></table></figure>
+<h5 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># pandas读取数据</span></span><br><span class="line">df = pd.read_csv(<span class="string">"./data/entertainment_news.csv"</span>, encoding=<span class="string">'utf-8'</span>).dropna()</span><br><span class="line"><span class="comment"># 转成list</span></span><br><span class="line">content=df[<span class="string">"content"</span>].values.tolist()</span><br><span class="line"><span class="comment"># 分词与统计词频</span></span><br><span class="line">segment=[]</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> content:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        segs=jieba.lcut(line)</span><br><span class="line">        <span class="keyword">for</span> seg <span class="keyword">in</span> segs:</span><br><span class="line">            <span class="keyword">if</span> len(seg)&gt;<span class="number">1</span> <span class="keyword">and</span> seg!=<span class="string">'\r\n'</span>:</span><br><span class="line">                segment.append(seg)</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        print(line)</span><br><span class="line">        <span class="keyword">continue</span></span><br></pre></td></tr></table></figure>
+<h5 id="去停用词"><a href="#去停用词" class="headerlink" title="去停用词"></a>去停用词</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">words_df=pd.DataFrame(&#123;<span class="string">'segment'</span>:segment&#125;)</span><br><span class="line">stopwords=pd.read_csv(<span class="string">"data/stopwords.txt"</span>,index_col=<span class="keyword">False</span>,quoting=<span class="number">3</span>,sep=<span class="string">"\t"</span>,names=[<span class="string">'stopword'</span>], encoding=<span class="string">'utf-8'</span>)<span class="comment">#quoting=3全不引用</span></span><br><span class="line">words_df=words_df[~words_df.segment.isin(stopwords.stopword)]</span><br></pre></td></tr></table></figure>
+<h5 id="统计排序"><a href="#统计排序" class="headerlink" title="统计排序"></a>统计排序</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">words_stat=words_df.groupby(by=[<span class="string">'segment'</span>])[<span class="string">'segment'</span>].agg(&#123;<span class="string">"计数"</span>:numpy.size&#125;)</span><br><span class="line">words_stat=words_stat.reset_index().sort_values(by=[<span class="string">"计数"</span>],ascending=<span class="keyword">False</span>)</span><br><span class="line">words_stat.head()</span><br></pre></td></tr></table></figure>
+<div><br><style scoped><br>    .dataframe tbody tr th:only-of-type {<br>        vertical-align: middle;<br>    }<br><br>    .dataframe tbody tr th {<br>        vertical-align: top;<br>    }<br><br>    .dataframe thead th {<br>        text-align: right;<br>    }<br></style><br><table border="1" class="dataframe"><br>  <thead><br>    <tr style="text-align: right;"><br>      <th></th><br>      <th>segment</th><br>      <th>计数</th><br>    </tr><br>  </thead><br>  <tbody><br>    <tr><br>      <th>60810</th><br>      <td>电影</td><br>      <td>10230</td><br>    </tr><br>    <tr><br>      <th>73264</th><br>      <td>观众</td><br>      <td>5574</td><br>    </tr><br>    <tr><br>      <th>8615</th><br>      <td>中国</td><br>      <td>5476</td><br>    </tr><br>    <tr><br>      <th>70480</th><br>      <td>节目</td><br>      <td>4398</td><br>    </tr><br>    <tr><br>      <th>33622</th><br>      <td>导演</td><br>      <td>4197</td><br>    </tr><br>  </tbody><br></table><br></div>
+
+
+
+<h5 id="构建词云"><a href="#构建词云" class="headerlink" title="构建词云"></a>构建词云</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">matplotlib.rcParams[<span class="string">'figure.figsize'</span>] = (<span class="number">10.0</span>, <span class="number">6.0</span>)</span><br><span class="line">wordcloud=WordCloud(font_path=<span class="string">"data/simhei.ttf"</span>,background_color=<span class="string">"black"</span>,max_font_size=<span class="number">80</span>)</span><br><span class="line">word_frequence = &#123;x[<span class="number">0</span>]:x[<span class="number">1</span>] <span class="keyword">for</span> x <span class="keyword">in</span> words_stat.head(<span class="number">1000</span>).values&#125;</span><br><span class="line">wordcloud=wordcloud.fit_words(word_frequence)</span><br><span class="line">plt.imshow(wordcloud)</span><br></pre></td></tr></table></figure>
+<h5 id="自定义背景"><a href="#自定义背景" class="headerlink" title="自定义背景"></a>自定义背景</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy.misc <span class="keyword">import</span> imread</span><br><span class="line">matplotlib.rcParams[<span class="string">'figure.figsize'</span>] = (<span class="number">15.0</span>, <span class="number">15.0</span>)</span><br><span class="line"><span class="keyword">from</span> wordcloud <span class="keyword">import</span> WordCloud,ImageColorGenerator</span><br><span class="line">bimg=imread(<span class="string">'image/entertainment.jpeg'</span>)</span><br><span class="line">wordcloud=WordCloud(background_color=<span class="string">"white"</span>,mask=bimg,font_path=<span class="string">'data/simhei.ttf'</span>,max_font_size=<span class="number">200</span>)</span><br><span class="line">word_frequence = &#123;x[<span class="number">0</span>]:x[<span class="number">1</span>] <span class="keyword">for</span> x <span class="keyword">in</span> words_stat.head(<span class="number">1000</span>).values&#125;</span><br><span class="line">wordcloud=wordcloud.fit_words(word_frequence)</span><br><span class="line">bimgColors=ImageColorGenerator(bimg)</span><br><span class="line">plt.axis(<span class="string">"off"</span>)</span><br><span class="line">plt.imshow(wordcloud.recolor(color_func=bimgColors))</span><br></pre></td></tr></table></figure>
+<h3 id="6-新闻关键词抽取"><a href="#6-新闻关键词抽取" class="headerlink" title="6.新闻关键词抽取"></a>6.新闻关键词抽取</h3><h4 id="TF-IDF"><a href="#TF-IDF" class="headerlink" title="TF-IDF"></a>TF-IDF</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> jieba.analyse <span class="keyword">as</span> analyse</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df = pd.read_csv(<span class="string">"./data/technology_news.csv"</span>, encoding=<span class="string">'utf-8'</span>).dropna()</span><br><span class="line">lines=df.content.values.tolist()</span><br><span class="line">content = <span class="string">""</span>.join(lines)</span><br><span class="line">print(analyse.extract_tags(content, topK=<span class="number">30</span>, withWeight=<span class="keyword">False</span>, allowPOS=()))</span><br></pre></td></tr></table></figure>
+<pre><code>[&apos;用户&apos;, &apos;2016&apos;, &apos;互联网&apos;, &apos;手机&apos;, &apos;平台&apos;, &apos;人工智能&apos;, &apos;百度&apos;, &apos;2017&apos;, &apos;智能&apos;, &apos;技术&apos;, &apos;数据&apos;, &apos;360&apos;, &apos;服务&apos;, &apos;直播&apos;, &apos;产品&apos;, &apos;企业&apos;, &apos;安全&apos;, &apos;视频&apos;, &apos;移动&apos;, &apos;应用&apos;, &apos;网络&apos;, &apos;行业&apos;, &apos;游戏&apos;, &apos;机器人&apos;, &apos;电商&apos;, &apos;内容&apos;, &apos;中国&apos;, &apos;领域&apos;, &apos;通过&apos;, &apos;发展&apos;]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> jieba.analyse <span class="keyword">as</span> analyse</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df = pd.read_csv(<span class="string">"./data/military_news.csv"</span>, encoding=<span class="string">'utf-8'</span>).dropna()</span><br><span class="line">lines=df.content.values.tolist()</span><br><span class="line">content = <span class="string">""</span>.join(lines)</span><br><span class="line">print(analyse.extract_tags(content, topK=<span class="number">30</span>, withWeight=<span class="keyword">False</span>, allowPOS=()))</span><br></pre></td></tr></table></figure>
+<pre><code>[&apos;航母&apos;, &apos;训练&apos;, &apos;海军&apos;, &apos;中国&apos;, &apos;官兵&apos;, &apos;部队&apos;, &apos;编队&apos;, &apos;作战&apos;, &apos;10&apos;, &apos;任务&apos;, &apos;美国&apos;, &apos;导弹&apos;, &apos;能力&apos;, &apos;20&apos;, &apos;2016&apos;, &apos;军事&apos;, &apos;无人机&apos;, &apos;装备&apos;, &apos;进行&apos;, &apos;记者&apos;, &apos;我们&apos;, &apos;军队&apos;, &apos;安全&apos;, &apos;保障&apos;, &apos;12&apos;, &apos;战略&apos;, &apos;军人&apos;, &apos;日本&apos;, &apos;南海&apos;, &apos;战机&apos;]
+</code></pre><h4 id="TextRank"><a href="#TextRank" class="headerlink" title="TextRank"></a>TextRank</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> jieba.analyse <span class="keyword">as</span> analyse</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df = pd.read_csv(<span class="string">"./data/military_news.csv"</span>, encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">df = df.dropna()</span><br><span class="line">lines=df.content.values.tolist()</span><br><span class="line">content = <span class="string">""</span>.join(lines)</span><br><span class="line"></span><br><span class="line">print(analyse.textrank(content, topK=<span class="number">20</span>, withWeight=<span class="keyword">False</span>, allowPOS=(<span class="string">'ns'</span>, <span class="string">'n'</span>, <span class="string">'vn'</span>, <span class="string">'v'</span>)))</span><br><span class="line">print(<span class="string">"---------------------我是分割线----------------"</span>)</span><br><span class="line">print(analyse.textrank(content, topK=<span class="number">20</span>, withWeight=<span class="keyword">False</span>, allowPOS=(<span class="string">'ns'</span>, <span class="string">'n'</span>)))</span><br></pre></td></tr></table></figure>
+<pre><code>[&apos;中国&apos;, &apos;海军&apos;, &apos;训练&apos;, &apos;美国&apos;, &apos;部队&apos;, &apos;进行&apos;, &apos;官兵&apos;, &apos;航母&apos;, &apos;作战&apos;, &apos;任务&apos;, &apos;能力&apos;, &apos;军事&apos;, &apos;发展&apos;, &apos;工作&apos;, &apos;国家&apos;, &apos;问题&apos;, &apos;建设&apos;, &apos;导弹&apos;, &apos;编队&apos;, &apos;记者&apos;]
+---------------------我是分割线----------------
+[&apos;中国&apos;, &apos;海军&apos;, &apos;美国&apos;, &apos;部队&apos;, &apos;官兵&apos;, &apos;航母&apos;, &apos;军事&apos;, &apos;国家&apos;, &apos;任务&apos;, &apos;能力&apos;, &apos;导弹&apos;, &apos;技术&apos;, &apos;问题&apos;, &apos;日本&apos;, &apos;军队&apos;, &apos;编队&apos;, &apos;装备&apos;, &apos;系统&apos;, &apos;记者&apos;, &apos;战略&apos;]
+</code></pre><p><img alt class="post-img b-lazy" data-img="../img/xiniu_neteasy.png" data-index="5" data-src="../img/xiniu_neteasy.png"></p>
+
+                </article>
+                <ul class="tags-postTags">
+                    
+                    <li>
+                        <a href="/tags/nlp/" rel="tag"># nlp</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tags/自然语言处理/" rel="tag"># 自然语言处理</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    
+    <nav id="gobottom" class="pagination">
+        
+        <a class="prev-post" title="NLP系列" href="/2019-03-21/nlp/2NLP_Basics2/lesson1/3.re_example/">
+            ← NLP系列
+        </a>
+        
+        <span class="prev-next-post">·</span>
+        
+        <a class="next-post" title="NLP系列" href="/2019-03-21/nlp/2NLP_Basics2/lesson2/1.English_text_analysis_and_processing-nltk/">
+            NLP系列 →
+        </a>
+        
+    </nav>
+
+    
+    <div class="inner">
+        <div id="comment"></div>
+    </div>
+    
+</div>
+
+<div class="toc-bar">
+    <div class="toc-btn-bar">
+        <a href="#site-main" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M793.024 710.272a32 32 0 1 0 45.952-44.544l-310.304-320a32 32 0 0 0-46.4 0.48l-297.696 320a32 32 0 0 0 46.848 43.584l274.752-295.328 286.848 295.808z"/></svg>
+        </a>
+        <div class="toc-btn toc-switch">
+            <svg class="toc-open" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M779.776 480h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M779.776 672h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M256 288a32 32 0 1 0 0 64 32 32 0 0 0 0-64M392.576 352h387.2a32 32 0 0 0 0-64h-387.2a32 32 0 0 0 0 64M256 480a32 32 0 1 0 0 64 32 32 0 0 0 0-64M256 672a32 32 0 1 0 0 64 32 32 0 0 0 0-64"/></svg>
+            <svg class="toc-close hide" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M512 960c-247.039484 0-448-200.960516-448-448S264.960516 64 512 64 960 264.960516 960 512 759.039484 960 512 960zM512 128.287273c-211.584464 0-383.712727 172.128262-383.712727 383.712727 0 211.551781 172.128262 383.712727 383.712727 383.712727 211.551781 0 383.712727-172.159226 383.712727-383.712727C895.712727 300.415536 723.551781 128.287273 512 128.287273z"/><path d="M557.05545 513.376159l138.367639-136.864185c12.576374-12.416396 12.672705-32.671738 0.25631-45.248112s-32.704421-12.672705-45.248112-0.25631l-138.560301 137.024163-136.447897-136.864185c-12.512727-12.512727-32.735385-12.576374-45.248112-0.063647-12.512727 12.480043-12.54369 32.735385-0.063647 45.248112l136.255235 136.671523-137.376804 135.904314c-12.576374 12.447359-12.672705 32.671738-0.25631 45.248112 6.271845 6.335493 14.496116 9.504099 22.751351 9.504099 8.12794 0 16.25588-3.103239 22.496761-9.247789l137.567746-136.064292 138.687596 139.136568c6.240882 6.271845 14.432469 9.407768 22.65674 9.407768 8.191587 0 16.352211-3.135923 22.591372-9.34412 12.512727-12.480043 12.54369-32.704421 0.063647-45.248112L557.05545 513.376159z"/></svg>
+        </div>
+        <a href="#gobottom" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M231.424 346.208a32 32 0 0 0-46.848 43.584l297.696 320a32 32 0 0 0 46.4 0.48l310.304-320a32 32 0 1 0-45.952-44.544l-286.848 295.808-274.752-295.36z"/></svg>
+        </a>
+    </div>
+    <div class="toc-main">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#中文文本基本任务与处理"><span class="toc-text">中文文本基本任务与处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-分词"><span class="toc-text">1.分词</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-停用词与N-gram"><span class="toc-text">2.停用词与N-gram</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#停用词"><span class="toc-text">停用词</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#N-gram"><span class="toc-text">N-gram</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-更多任务-词性标注、依赖分析、NER、关键词抽取"><span class="toc-text">3.更多任务(词性标注、依赖分析、NER、关键词抽取)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#词性标注"><span class="toc-text">词性标注</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#句法依存分析"><span class="toc-text">句法依存分析</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#命名实体识别"><span class="toc-text">命名实体识别</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#关键词抽取"><span class="toc-text">关键词抽取</span></a></li></ol></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="#4-jieba工具库使用"><span class="toc-text">4.jieba工具库使用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#a-基本分词函数与用法"><span class="toc-text">a.基本分词函数与用法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#b-词性标注"><span class="toc-text">b.词性标注</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#c-关键词抽取"><span class="toc-text">c.关键词抽取</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-python中文文本分析与可视化"><span class="toc-text">5.python中文文本分析与可视化</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#读取数据"><span class="toc-text">读取数据</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#去停用词"><span class="toc-text">去停用词</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#统计排序"><span class="toc-text">统计排序</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#构建词云"><span class="toc-text">构建词云</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#自定义背景"><span class="toc-text">自定义背景</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-新闻关键词抽取"><span class="toc-text">6.新闻关键词抽取</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#TF-IDF"><span class="toc-text">TF-IDF</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TextRank"><span class="toc-text">TextRank</span></a></li></ol></li>
+    </div>
+</div>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+	</div>
+	
+
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+  <header class="read-next-card-header">
+    <small class="read-next-card-header-sitetitle">&mdash; Pastor Dean &mdash;</small>
+    <h3 class="read-next-card-header-title">Recent Posts</h3>
+  </header>
+  <div class="read-next-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+      <path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/>
+    </svg>
+  </div>
+  <div class="read-next-card-content">
+    <ul>
+      
+      
+      
+      <li>
+        <a href="/2020-01-16/thinking/Thinking modelBiological thinking Biological thinking looking at the business world from an evolutionary perspective/">Thinking modelBiological thinking Biological thinking: looking at the business world from an evolutionary perspective</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2020-01-13/thinking/Modern Darwin Integrated Model  Biological Thinking Mode Opening God Perspective/">Modern Darwin Integrated Model Biological Thinking Mode Opening God is Perspective</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2020-01-11/thinking/Metacognition Changing the stubborn thinking of the brain/">Metacognition Changing the stubborn thinking of the brain</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <footer class="read-next-card-footer">
+    <a href="/archives">  MORE  → </a>
+  </footer>
+</article>
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+    <header class="read-next-card-header tagcloud-card">
+        <h3 class="read-next-card-header-title">Categories</h3>
+    </header>
+    <div class="read-next-card-content">
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Biological-Thinking/">Biological Thinking</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cognitive-Neuroscience/">Cognitive Neuroscience</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DeepLearning/">DeepLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/FFmpeg/">FFmpeg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MacOS/">MacOS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MachineLearning/">MachineLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PM/">PM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/RPC/">RPC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vim/">Vim</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WebRTC/">WebRTC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/deeplearn/">deeplearn</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/http/">http</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/machineLearning/">machineLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/文摘/">文摘</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构师/">架构师</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/知识图谱/">知识图谱</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/职业规划/">职业规划</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/职业规划/个人提升/">个人提升</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机相关技术资料整理/">计算机相关技术资料整理</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/认知升级/">认知升级</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/财务自由/">财务自由</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/财富自由/">财富自由</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/运维/">运维</a></li></ul>
+    </div>
+</article>
+
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+	<header class="read-next-card-header tagcloud-card">
+		<h3 class="read-next-card-header-title">Tag Cloud</h3>
+	</header>
+	<div class="read-next-card-content-ext">
+		<a href="/tags/AI/" style="font-size: 14px;">AI</a> <a href="/tags/Android/" style="font-size: 14px;">Android</a> <a href="/tags/Biological/" style="font-size: 17.75px;">Biological</a> <a href="/tags/Browser/" style="font-size: 14px;">Browser</a> <a href="/tags/Business/" style="font-size: 16.5px;">Business</a> <a href="/tags/Cognitive/" style="font-size: 17.75px;">Cognitive</a> <a href="/tags/DeepLearning/" style="font-size: 15.25px;">DeepLearning</a> <a href="/tags/Docker/" style="font-size: 14px;">Docker</a> <a href="/tags/FFmpeg/" style="font-size: 21.5px;">FFmpeg</a> <a href="/tags/FastCGI/" style="font-size: 14px;">FastCGI</a> <a href="/tags/IP划分/" style="font-size: 14px;">IP划分</a> <a href="/tags/IP地址/" style="font-size: 14px;">IP地址</a> <a href="/tags/Knowledge-Graph/" style="font-size: 16.5px;">Knowledge Graph</a> <a href="/tags/Linux-Shell/" style="font-size: 14px;">Linux Shell</a> <a href="/tags/MacOS/" style="font-size: 15.25px;">MacOS</a> <a href="/tags/Neuroscience/" style="font-size: 17.75px;">Neuroscience</a> <a href="/tags/RPC/" style="font-size: 14px;">RPC</a> <a href="/tags/Thinking/" style="font-size: 17.75px;">Thinking</a> <a href="/tags/Tutorial/" style="font-size: 20.25px;">Tutorial</a> <a href="/tags/WebRTC/" style="font-size: 21.5px;">WebRTC</a> <a href="/tags/WebSocket/" style="font-size: 14px;">WebSocket</a> <a href="/tags/algorithm/" style="font-size: 15.25px;">algorithm</a> <a href="/tags/config/" style="font-size: 14px;">config</a> <a href="/tags/decisionTree/" style="font-size: 14px;">decisionTree</a> <a href="/tags/git/" style="font-size: 17.75px;">git</a> <a href="/tags/google-adsense/" style="font-size: 14px;">google adsense</a> <a href="/tags/hexo/" style="font-size: 17.75px;">hexo</a> <a href="/tags/http/" style="font-size: 17.75px;">http</a> <a href="/tags/knn/" style="font-size: 14px;">knn</a> <a href="/tags/lighttpd/" style="font-size: 15.25px;">lighttpd</a> <a href="/tags/mxnet/" style="font-size: 14px;">mxnet</a> <a href="/tags/mysql/" style="font-size: 22.75px;">mysql</a> <a href="/tags/nlp/" style="font-size: 24px;">nlp</a> <a href="/tags/nodejs/" style="font-size: 14px;">nodejs</a> <a href="/tags/openvpn/" style="font-size: 14px;">openvpn</a> <a href="/tags/other/" style="font-size: 15.25px;">other</a> <a href="/tags/paddle/" style="font-size: 14px;">paddle</a> <a href="/tags/planning/" style="font-size: 20.25px;">planning</a> <a href="/tags/pracitce/" style="font-size: 15.25px;">pracitce</a> <a href="/tags/rich/" style="font-size: 14px;">rich</a> <a href="/tags/shell/" style="font-size: 14px;">shell</a> <a href="/tags/svn/" style="font-size: 14px;">svn</a> <a href="/tags/ubuntu/" style="font-size: 14px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 16.5px;">vim</a> <a href="/tags/webpack/" style="font-size: 14px;">webpack</a> <a href="/tags/webrtc/" style="font-size: 19px;">webrtc</a> <a href="/tags/个人发展/" style="font-size: 14px;">个人发展</a> <a href="/tags/互联网实事/" style="font-size: 14px;">互联网实事</a> <a href="/tags/外链/" style="font-size: 14px;">外链</a> <a href="/tags/提升个人思维/" style="font-size: 14px;">提升个人思维</a> <a href="/tags/文摘/" style="font-size: 15.25px;">文摘</a> <a href="/tags/斜杠青年/" style="font-size: 14px;">斜杠青年</a> <a href="/tags/机器学习/" style="font-size: 16.5px;">机器学习</a> <a href="/tags/架构师/" style="font-size: 14px;">架构师</a> <a href="/tags/测试工具/" style="font-size: 14px;">测试工具</a> <a href="/tags/睡后成长/" style="font-size: 14px;">睡后成长</a> <a href="/tags/睡后收入/" style="font-size: 14px;">睡后收入</a> <a href="/tags/税后收入/" style="font-size: 14px;">税后收入</a> <a href="/tags/笔记/" style="font-size: 14px;">笔记</a> <a href="/tags/自然语言处理/" style="font-size: 24px;">自然语言处理</a> <a href="/tags/视频流/" style="font-size: 15.25px;">视频流</a> <a href="/tags/计算机相关技术资料整理/" style="font-size: 14px;">计算机相关技术资料整理</a> <a href="/tags/认知升级/" style="font-size: 14px;">认知升级</a> <a href="/tags/限速/" style="font-size: 14px;">限速</a> <a href="/tags/面试/" style="font-size: 14px;">面试</a> <a href="/tags/项目管理/" style="font-size: 14px;">项目管理</a>
+	</div>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+	
+
+
+
+
+<div id="search" class="search-overlay">
+    <div class="search-form">
+        
+        <div class="search-overlay-logo">
+        	<img src="/images/favicon-16x16-next.png" alt="Pastor Dean">
+        </div>
+        
+        <input id="local-search-input" class="search-input" type="text" name="search" placeholder="Search ...">
+        <a class="search-overlay-close" href="#"></a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+<footer class="site-footer outer">
+	<div class="site-footer-content inner">
+		<div class="copyright">
+			<a href="/" title="Pastor Dean">Pastor Dean &copy; 2020</a>
+			
+				
+			        <span hidden="true" id="/2019-03-21/nlp/2NLP_Basics2/lesson3/Chinese_text_analysis_and_processing/" class="leancloud-visitors" data-flag-title="NLP系列">
+			            <span>阅读量 </span>
+			            <span class="leancloud-visitors-count">0</span>
+			        </span>
+	    		
+    		
+		</div>
+		<nav class="site-footer-nav">
+			
+			<a href="https://hexo.io" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+			<a href="https://github.com/xzhih/hexo-theme-casper" title="Casper" target="_blank" rel="noopener">Casper</a>
+		</nav>
+	</div>
+</footer>
+	
+
+
+<script>
+    if(window.navigator && navigator.serviceWorker) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister()
+            }
+        })
+    }
+</script>
+
+
+<script id="scriptLoad" src="/js/allinone.min.js" async></script>
+
+
+<script>
+    document.getElementById('scriptLoad').addEventListener('load', function () {
+        
+        
+            var bLazy = new Blazy();
+        
+
+        
+        
+
+        
+        
+        
+            searchFunc("/");
+        
+        
+    })
+</script>
+
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+
+
+<script id="valineScript" src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+<script>
+    document.getElementById('valineScript').addEventListener("load", function() {
+        new Valine({
+            el: '#comment' ,
+            verify: false,
+            notify: false,
+            appId: '',
+            appKey: '',
+            placeholder: 'Just go go',
+            pageSize: 10,
+            avatar: 'mm',
+            visitor: true
+        })
+    });
+</script>
+
+
+
+
+
+</body>
+</html>

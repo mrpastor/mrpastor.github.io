@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="preconnect" href="//www.googletagmanager.com">
+	<link rel="preconnect" href="//zz.bdstatic.com">
+	<link rel="preconnect" href="//sp0.baidu.com">
+	<link rel="preconnect" href="//www.google-analytics.com">
+	<link rel="preconnect" href="//cdn1.lncld.net">
+	<link rel="preconnect" href="//unpkg.com">
+	<link rel="preconnect" href="//app-router.leancloud.cn">
+	<link rel="preconnect" href="//9qpuwspm.api.lncld.net">
+	<link rel="preconnect" href="//gravatar.loli.net">
+
+	<title>FFmpeg 源代码结构（编解码解析） | Pastor Dean</title>
+
+	<meta name="HandheldFriendly" content="True">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+	<meta name="generator" content="hexo">
+	<meta name="author" content="pastor">
+	<meta name="description" content>
+
+	
+	<meta name="keywords" content>
+	
+
+	
+	<link rel="shortcut icon" href="/images/favicon-16x16-next.png">
+	<link rel="apple-touch-icon" href="/images/favicon-16x16-next.png">
+	
+
+	
+	<meta name="theme-color" content="#3c484e">
+	<meta name="msapplication-TileColor" content="#3c484e">
+	
+
+	
+
+	
+
+	<meta property="og:site_name" content="Pastor Dean">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="FFmpeg 源代码结构（编解码解析） | Pastor Dean">
+	<meta property="og:description" content>
+	<meta property="og:url" content="https://mrpastor.github.io/2019-05-25/reference/FFmpeg/FFmpeg源代码结构note/">
+
+	
+	<meta property="article:published_time" content="2019-05-25T10:05:00+08:00"> 
+	<meta property="article:author" content="pastor">
+	<meta property="article:published_first" content="Pastor Dean, /2019-05-25/reference/FFmpeg/FFmpeg源代码结构note/">
+	
+
+	
+	
+	<link rel="stylesheet" href="/css/allinonecss.min.css">
+
+	
+	
+	
+</head>
+<body class="post-template">
+	<div class="site-wrapper">
+		
+
+
+
+
+<header class="site-header post-site-header outer">
+    <div class="inner">
+        
+<nav class="site-nav"> 
+    <div class="site-nav-left">
+        <ul class="nav">
+            <li>
+                
+                
+                <a class="site-nav-logo" href="/" title="Pastor Dean">
+                    <img src="/images/favicon-32x32-next.png" alt="Pastor Dean">
+                </a>
+                
+                
+            </li>
+            
+            
+            <li>
+                <a href="/ || home" title="home">home</a>
+            </li>
+            
+            <li>
+                <a href="/categories/ || th" title="categories">categories</a>
+            </li>
+            
+            <li>
+                <a href="/archives/ || archive" title="archives">archives</a>
+            </li>
+            
+            <li>
+                <a href="/tools/ || tools" title="tools">tools</a>
+            </li>
+            
+            
+        </ul> 
+    </div>
+    
+    <div class="search-button-area">
+        <a href="#search" class="search-button">Search ...</a>
+    </div>
+     
+    <div class="site-nav-right">
+        
+        <a href="#search" class="search-button">Search ...</a>
+         
+        
+<div class="social-links">
+    
+    
+    <a class="social-link" title="github" href="https://github.com/mrpastor" target="_blank" rel="noopener">
+        <svg viewbox="0 0 1049 1024" xmlns="http://www.w3.org/2000/svg"><path d="M524.979332 0C234.676191 0 0 234.676191 0 524.979332c0 232.068678 150.366597 428.501342 358.967656 498.035028 26.075132 5.215026 35.636014-11.299224 35.636014-25.205961 0-12.168395-0.869171-53.888607-0.869171-97.347161-146.020741 31.290159-176.441729-62.580318-176.441729-62.580318-23.467619-60.841976-58.234462-76.487055-58.234463-76.487055-47.804409-32.15933 3.476684-32.15933 3.476685-32.15933 53.019436 3.476684 80.83291 53.888607 80.83291 53.888607 46.935238 79.963739 122.553122 57.365291 152.97411 43.458554 4.345855-33.897672 18.252593-57.365291 33.028501-70.402857-116.468925-12.168395-239.022047-57.365291-239.022047-259.012982 0-57.365291 20.860106-104.300529 53.888607-140.805715-5.215026-13.037566-23.467619-66.926173 5.215027-139.067372 0 0 44.327725-13.906737 144.282399 53.888607 41.720212-11.299224 86.917108-17.383422 131.244833-17.383422s89.524621 6.084198 131.244833 17.383422C756.178839 203.386032 800.506564 217.29277 800.506564 217.29277c28.682646 72.1412 10.430053 126.029806 5.215026 139.067372 33.897672 36.505185 53.888607 83.440424 53.888607 140.805715 0 201.64769-122.553122 245.975415-239.891218 259.012982 19.121764 16.514251 35.636014 47.804409 35.636015 97.347161 0 70.402857-0.869171 126.898978-0.869172 144.282399 0 13.906737 9.560882 30.420988 35.636015 25.205961 208.601059-69.533686 358.967656-265.96635 358.967655-498.035028C1049.958663 234.676191 814.413301 0 524.979332 0z"/></svg>
+    </a>
+    
+    
+    <a class="social-link" title="facebook" href="https://facebook" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+
+    </a>
+    
+    
+    <a class="social-link" title="twitter" href="https://twitter.com" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+    </a>
+    
+    
+    
+    
+</div>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<div id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+        <header class="post-full-header">
+            <div class="post-full-meta">
+                <time class="post-full-meta-date" datetime="2019-05-25T02:14:50.000Z">
+                    2019-05-25
+                </time>
+                
+                <span class="date-divider">/</span>
+                
+                <a href="/categories/FFmpeg/">FFmpeg</a>&nbsp;&nbsp;
+                
+                
+            </div>
+            <h1 class="post-full-title">FFmpeg 源代码结构（编解码解析）</h1>
+        </header>
+        <div class="post-full no-image">
+            
+            <div class="post-full-content">
+                <article id="photoswipe" class="markdown-body">
+                    <blockquote>
+<p>特别说明，此文参考至<a href="https://blog.csdn.net/leixiaohua1020/article/details/44220151" target="_blank" rel="noopener">雷神笔记</a>，做一个备忘录。</p>
+</blockquote>
+<h2 id="FFmpeg源代码结构图-解码"><a href="#FFmpeg源代码结构图-解码" class="headerlink" title="FFmpeg源代码结构图 - 解码"></a>FFmpeg源代码结构图 - 解码</h2><p>下图表明了 FFmpeg 在解码一个视频的时候的函数调用流程。为了保证结构清晰，其中仅列出了最关键的函数，剔除了其它不是特别重要的函数。</p>
+<a id="more"></a>
+<p><img alt="FFmpeg源代码结构图 - 解码" class="post-img b-lazy" data-img="/images/imageFFmpeg/Thor/FFmpeg源码API结构图-解码.png" data-index="0" data-src="/images/imageFFmpeg/Thor/FFmpeg源码API结构图-解码.png"></p>
+<p>下面解释一下图中关键标记的含义。</p>
+<h3 id="函数背景色"><a href="#函数背景色" class="headerlink" title="函数背景色"></a>函数背景色</h3><p>函数在图中以方框的形式表现出来。不同的背景色标志了该函数不同的作用：</p>
+<ul>
+<li>粉红色背景函数：FFmpeg 的 API函数。</li>
+<li>白色背景的函数：FFmpeg 的内部函数。</li>
+<li>黄色背景的函数：URLProtocol 结构体中的函数，包含处理协议（Protocol）的功能。</li>
+<li>绿色背景的函数：AVInputFormat 结构体中的函数，包含处理封装格式（Format）的功能。</li>
+<li>蓝色背景的函数：AVCodec 结构体中的函数，包含了编解码器（Codec）的功能。</li>
+</ul>
+<blockquote>
+<p>PS：URLProtocol，AVInputFormat，AVCodec在FFmpeg开始运行并且注册完组件之后，都会分别被连接成一个个的链表。因此实际上是有很多的URLProtocol，AVInputFormat，AVCodec的。图中画出了解码一个输入协议是“文件”（其实就是打开一个文件。“文件”也被当做是一种广义的协议），封装格式为FLV，视频编码格式是H.264的数据的函数调用关系。</p>
+</blockquote>
+<h3 id="区域"><a href="#区域" class="headerlink" title="区域"></a>区域</h3><p>整个架构图可以分为以下几个区域：</p>
+<ul>
+<li><strong>左边区域——架构函数区域</strong>：这些函数并不针对某一特定的视频格式。</li>
+<li><strong>右上方黄色区域——协议处理函数区域</strong>：不同的协议（RTP，RTMP，FILE）会调用不同的协议处理函数。</li>
+<li><strong>右边中间绿色区域——封装格式处理函数区域</strong>：不同的封装格式（MKV，FLV，MPEGTS，AVI）会调用不同的封装格式处理函数。</li>
+<li><strong>右边下方蓝色区域——编解码函数区域</strong>：不同的编码标准（HEVC，H.264，MPEG2）会调用不同的编解码函数。</li>
+</ul>
+<h3 id="箭头线"><a href="#箭头线" class="headerlink" title="箭头线"></a>箭头线</h3><p>为了把调用关系表示的更明显，图中的箭头线也使用了不同的颜色：</p>
+<ul>
+<li><p>黑色箭头线：标志了函数之间的调用关系。</p>
+</li>
+<li><p>红色的箭头线：标志了解码的流程。</p>
+</li>
+<li><p>其他颜色的箭头线：标志了函数之间的调用关系。其中：</p>
+<ul>
+<li>调用 URLProtocol 结构体中的函数用<strong>黄色箭头线</strong>标识；</li>
+<li>调用 AVInputFormat 结构体中的函数用<strong>绿色箭头线</strong>标识；</li>
+<li>调用 AVCodec 结构体中的函数用<strong>蓝色箭头线</strong>标识。</li>
+</ul>
+</li>
+</ul>
+<h3 id="函数所在的文件"><a href="#函数所在的文件" class="headerlink" title="函数所在的文件"></a>函数所在的文件</h3><p>每个函数旁边标识了它所在的文件的路径。</p>
+<p>此外，还有一点需要注意的是，一些 API 函数内部也调用了另一些API函数。也就是说，API函数并不一定全部都调用FFmpeg的内部函数，他也有可能调用其他的API函数。例如从图中可以看出来， <code>avformat_close_input()</code> 调用了 <code>avformat_free_context()</code> 和 <code>avio_close()</code>。这些在内部代码中被调用的API函数也标记为粉红色。</p>
+<h3 id="函数调用关系"><a href="#函数调用关系" class="headerlink" title="函数调用关系"></a>函数调用关系</h3><p>下面简单列出几个区域中函数之间的调用关系（函数之间的调用关系使用缩进的方式表现出来）。详细的函数分析可以参考相关的《FFmpeg源代码分析》系列文章。</p>
+<h4 id="左边区域（FFmpeg架构函数）"><a href="#左边区域（FFmpeg架构函数）" class="headerlink" title="左边区域（FFmpeg架构函数）"></a>左边区域（FFmpeg架构函数）</h4><p><strong><font color="red">1.  av_register_all()【函数简单分析】</font>&gt;</strong></p>
+<ul>
+<li><strong><font color="red">1)  avcodec_register_all()</font></strong><ul>
+<li><strong>(a) REGISTER_HWACCEL()</strong></li>
+<li><strong>(b) REGISTER_ENCODER()</strong></li>
+<li><strong>(c) REGISTER_DECODER()</strong></li>
+<li><strong>(d) REGISTER_PARSER()</strong></li>
+<li><strong>(e) REGISTER_BSF()</strong></li>
+</ul>
+</li>
+<li><strong>2)  REGISTER_MUXER()</strong></li>
+<li><strong>3)  REGISTER_DEMUXER()</strong></li>
+<li><strong>4)  REGISTER_PROTOCOL()</strong></li>
+</ul>
+<p><strong><font color="red">2.  avformat_alloc_context()【函数简单分析】</font></strong></p>
+<ul>
+<li><p><strong>1) av_malloc(sizeof(AVFormatContext))</strong></p>
+</li>
+<li><p><strong>2) avformat_get_context_defaults()</strong></p>
+<ul>
+<li><strong>(a) av_opt_set_defaults()</strong></li>
+</ul>
+</li>
+</ul>
+<p><strong><font color="red">3.  avformat_open_input()【函数简单分析】</font></strong></p>
+<ul>
+<li><strong>1) init_input()</strong><ul>
+<li><strong><font color="red">(a) avio_open2()【函数简单分析】</font></strong><ul>
+<li><strong>a) ffurl_open()</strong><ul>
+<li><strong>i. ffurl_alloc()</strong><ul>
+<li><strong>url_find_protocol()</strong></li>
+<li><strong>url_alloc_for_protocol()</strong></li>
+</ul>
+</li>
+<li><strong>ii. ffurl_connect()</strong><ul>
+<li><strong><font color="#FFC000">URLProtocol-&gt;url_open()</font></strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>b) ffio_fdopen()</strong><ul>
+<li><strong>i. av_malloc(buffer_size)</strong></li>
+<li><strong>ii. <font color="red">avio_alloc_context()</font></strong><ul>
+<li><strong>av_mallocz(sizeof(AVIOContext))</strong></li>
+<li><strong>ffio_init_context()</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong><font color="red">(b) av_probe_input_buffer2()</font></strong><ul>
+<li><strong><font color="red">a) avio_read()</font></strong><ul>
+<li><strong>i.  <font color="#009900">AVInputFormat-&gt;read_packet()</font></strong></li>
+</ul>
+</li>
+<li><strong><font color="red">b) av_probe_input_format2()</font></strong></li>
+<li><strong><font color="red">c) av_probe_input_format3()</font></strong><ul>
+<li><strong>i. <font color="red">av_iformat_next()</font></strong></li>
+<li><strong>ii. <font color="red">av_match_name()</font></strong></li>
+<li><strong>iii. <font color="red">av_match_ext()</font></strong></li>
+<li><strong>iv. <font color="#009900">AVInputFormat-&gt;read_probe()</font></strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>2) <font color="#009900">AVInputFormat-&gt;read_header()</font></strong></li>
+</ul>
+<p><strong><font color="red">4. avformat_find_stream_info()【函数简单分析】</font></strong></p>
+<ul>
+<li><strong>1) find_decoder()</strong><ul>
+<li><strong><font color="red">(a) avcodec_find_decoder()</font></strong></li>
+</ul>
+</li>
+<li><strong><font color="red">2) avcodec_open2()</font></strong></li>
+<li><strong>3) read_frame_internal()</strong></li>
+<li><strong>4) try_decode_frame()</strong><ul>
+<li><strong><font color="red">(a) avcodec_decode_video2()</font></strong></li>
+</ul>
+</li>
+<li><strong><font color="red">5) avcodec_close()</font></strong></li>
+<li><strong>6) estimate_timings()</strong><ul>
+<li><strong>(a)  estimate_timings_from_pts()</strong></li>
+<li><strong>(b)  estimate_timings_from_bit_rate()</strong></li>
+<li><strong>(c)  update_stream_timings()</strong></li>
+</ul>
+</li>
+</ul>
+<p><strong><font color="red">5. avcodec_find_decoder()【函数简单分析】</font></strong></p>
+<ul>
+<li><strong>1) find_encdec()</strong></li>
+</ul>
+<p><strong><font color="red">6. avcodec_open2()【函数简单分析】</font></strong></p>
+<ul>
+<li><strong><font color="#3072C2">1) AVCodec-&gt;init()</font></strong></li>
+</ul>
+<p><strong><font color="red">7. av_read_frame()【函数简单分析】</font></strong></p>
+<ul>
+<li><p><strong>1) read_from_packet_buffer()</strong></p>
+</li>
+<li><p><strong>2) read_frame_internal()</strong></p>
+<ul>
+<li><strong>(a) ff_read_packet()</strong><ul>
+<li><strong><font color="#009900">a) AVInputFormat-&gt;read_packet()</font></strong></li>
+</ul>
+</li>
+<li><strong>(b) parse_packet()</strong><ul>
+<li><strong>a) av_parser_parse2()</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong><font color="red">8. avcodec_decode_video2()【函数简单分析】</font></strong></p>
+<ul>
+<li><p><strong>1) av_packet_split_side_data()</strong></p>
+</li>
+<li><p><strong>2) <font color="#3072C2">AVCodec</font>-&gt; <font color="red">decode()</font></strong></p>
+</li>
+<li><p><strong>3) av_frame_set_pkt_pos()</strong></p>
+</li>
+<li><p><strong>4) av_frame_set_best_effort_timestamp()</strong></p>
+</li>
+</ul>
+<p><strong><font color="red">9. avcodec_close()【函数简单分析】</font></strong></p>
+<ul>
+<li><strong><font color="#3072C2">1) AVCodec-&gt;close()</font></strong></li>
+</ul>
+<p><strong><font color="red">10. avformat_close_input()【函数简单分析】</font></strong></p>
+<ul>
+<li><p><strong><font color="#009900">1) AVInputFormat-&gt;read_close()</font></strong></p>
+</li>
+<li><p><strong>2) avformat_free_context()</strong></p>
+<ul>
+<li><strong>(a) ff_free_stream()</strong></li>
+</ul>
+</li>
+<li><strong>3) avio_close()</strong><ul>
+<li><strong>(a) avio_flush()</strong><ul>
+<li><strong>a) flush_buffer()</strong></li>
+</ul>
+</li>
+<li><strong>(b) ffurl_close()</strong><ul>
+<li><strong>a) ffurl_closep()</strong><ul>
+<li><strong><font color="#FFC000">URLProtocol-&gt;url_close()</font></strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="右上区域（URLProtocol协议处理函数）"><a href="#右上区域（URLProtocol协议处理函数）" class="headerlink" title="右上区域（URLProtocol协议处理函数）"></a>右上区域（URLProtocol协议处理函数）</h4><p>URLProtocol结构体包含如下协议处理函数指针：</p>
+<ul>
+<li><strong><font color="#FFC000">url_open()：打开</font></strong></li>
+<li><strong><font color="#FFC000">url_read()：读取</font></strong></li>
+<li><strong><font color="#FFC000">url_write()：写入</font></strong></li>
+<li><strong><font color="#FFC000">url_seek()：调整进度</font></strong></li>
+<li><strong><font color="#FFC000">url_close()：关闭</font></strong></li>
+</ul>
+<p>【例子】不同的协议对应着上述接口有不同的实现函数，举几个例子：</p>
+<p><strong>File协议（即文件）对应的URLProtocol结构体 <code>ff_file_protocol</code>：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">url_open() -&gt; file_open() -&gt; open()</span><br><span class="line">url_read() -&gt; file_read() -&gt; read()</span><br><span class="line">url_write() -&gt; file_write() -&gt; write()</span><br><span class="line">url_seek() -&gt; file_seek() -&gt; lseek()</span><br><span class="line">url_close() -&gt; file_close() -&gt; close()</span><br></pre></td></tr></table></figure>
+<p><strong>RTMP协议（libRTMP）对应的URLProtocol结构体 <code>ff_librtmp_protocol</code>：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">url_open() -&gt; rtmp_open() -&gt; RTMP_Init(), RTMP_SetupURL(), RTMP_Connect(), RTMP_ConnectStream()</span><br><span class="line">url_read() -&gt; rtmp_read() -&gt; RTMP_Read()</span><br><span class="line">url_write() -&gt; rtmp_write() -&gt; RTMP_Write()</span><br><span class="line">url_seek() -&gt; rtmp_read_seek() -&gt; RTMP_SendSeek()</span><br><span class="line">url_close() -&gt; rtmp_close() -&gt; RTMP_Close()</span><br></pre></td></tr></table></figure>
+<p><strong>UDP协议对应的URLProtocol结构体 <code>ff_udp_protocol</code>：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">url_open() -&gt; udp_open()</span><br><span class="line">url_read() -&gt; udp_read()</span><br><span class="line">url_write() -&gt; udp_write()</span><br><span class="line">url_seek() -&gt; udp_close()</span><br><span class="line">url_close() -&gt; udp_close()</span><br></pre></td></tr></table></figure>
+<h4 id="右中区域（AVInputFormat封装格式处理函数）"><a href="#右中区域（AVInputFormat封装格式处理函数）" class="headerlink" title="右中区域（AVInputFormat封装格式处理函数）"></a>右中区域（AVInputFormat封装格式处理函数）</h4><p>AVInputFormat包含如下封装格式处理函数指针：</p>
+<ul>
+<li><strong><font color="#009900">read_probe()：检查格式</font></strong></li>
+<li><strong><font color="#009900">read_header()：读取文件头</font></strong></li>
+<li><strong><font color="#009900">read_packet()：读取一帧数据</font></strong></li>
+<li><strong><font color="#009900">read_seek()：调整进度</font></strong></li>
+<li><strong><font color="#009900">read_close()：关闭</font></strong></li>
+</ul>
+<p>【例子】不同的封装格式对应着上述接口有不同的实现函数，举几个例子：</p>
+<p><strong>FLV封装格式对应的AVInputFormat结构体 <code>ff_flv_demuxer</code>：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">read_probe() -&gt; flv_probe() –&gt; probe()</span><br><span class="line">read_header() -&gt; flv_read_header() -&gt; create_stream() -&gt; avformat_new_stream()</span><br><span class="line">read_packet() -&gt; flv_read_packet()</span><br><span class="line">read_seek() -&gt; flv_read_seek()</span><br><span class="line">read_close() -&gt; flv_read_close()</span><br></pre></td></tr></table></figure>
+<p><strong>MKV封装格式对应的AVInputFormat结构体 <code>ff_matroska_demuxer</code>：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">read_probe() -&gt; matroska_probe()</span><br><span class="line">read_header() -&gt; matroska_read_header()</span><br><span class="line">read_packet() -&gt; matroska_read_packet()</span><br><span class="line">read_seek() -&gt; matroska_read_seek()</span><br><span class="line">read_close() -&gt; matroska_read_close()</span><br></pre></td></tr></table></figure>
+<p><strong>MPEG2TS封装格式对应的AVInputFormat结构体 <code>ff_mpegts_demuxer</code>：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">read_probe() -&gt; mpegts_probe()</span><br><span class="line">read_header() -&gt; mpegts_read_header()</span><br><span class="line">read_packet() -&gt; mpegts_read_packet() </span><br><span class="line">read_close() -&gt; mpegts_read_close()</span><br></pre></td></tr></table></figure>
+<p><strong>AVI封装格式对应的AVInputFormat结构体 <code>ff_avi_demuxer</code>：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">read_probe() -&gt; avi_probe()</span><br><span class="line">read_header() -&gt; avi_read_header()</span><br><span class="line">read_packet() -&gt; avi_read_packet()</span><br><span class="line">read_seek() -&gt; avi_read_seek()</span><br><span class="line">read_close() -&gt; avi_read_close()</span><br></pre></td></tr></table></figure>
+<h4 id="右下区域（AVCodec编解码函数）"><a href="#右下区域（AVCodec编解码函数）" class="headerlink" title="右下区域（AVCodec编解码函数）"></a>右下区域（AVCodec编解码函数）</h4><p>AVCodec包含如下编解码函数指针：</p>
+<ul>
+<li><strong><font color="#3072C2">init()：初始化</font></strong></li>
+<li><strong><font color="red">decode()</font>：解码一帧数据</strong></li>
+<li><strong><font color="#3072C2">close()：关闭</font></strong></li>
+</ul>
+<p>【例子】不同的编解码器对应着上述接口有不同的实现函数，举几个例子：</p>
+<p><strong>HEVC解码对应的AVCodec结构体 <code>ff_hevc_decoder</code>：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">init() -&gt; hevc_decode_init()</span><br><span class="line">decode() -&gt; hevc_decode_frame() -&gt; decode_nal_units()</span><br><span class="line">close() -&gt; hevc_decode_free()</span><br></pre></td></tr></table></figure>
+<p><strong>H.264解码对应的AVCodec结构体 <code>ff_h264_decoder</code>：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">init() -&gt; ff_h264_decode_init()</span><br><span class="line">decode() -&gt; h264_decode_frame() -&gt; decode_nal_units()</span><br><span class="line">close() -&gt; h264_decode_end()</span><br></pre></td></tr></table></figure>
+<p><strong>VP8解码（libVPX）对应的AVCodec结构体 <code>ff_libvpx_vp8_decoder</code>：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">init() -&gt; vpx_init() -&gt; vpx_codec_dec_init()</span><br><span class="line">decode() -&gt; vp8_decode() -&gt; vpx_codec_decode(), vpx_codec_get_frame()</span><br><span class="line">close() -&gt; vp8_free() -&gt; vpx_codec_destroy()</span><br></pre></td></tr></table></figure>
+<p><strong>MPEG2解码对应的AVCodec结构体 <code>ff_mpeg2video_decoder</code>：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">init() -&gt; mpeg_decode_init()</span><br><span class="line">decode() -&gt; mpeg_decode_frame()</span><br><span class="line">close() -&gt; mpeg_decode_end()</span><br></pre></td></tr></table></figure>
+<h3 id="avformat-open-input-函数"><a href="#avformat-open-input-函数" class="headerlink" title="avformat_open_input() 函数"></a>avformat_open_input() 函数</h3><p><img alt="avformat_open_input" class="post-img b-lazy" data-img="/images/imageFFmpeg/Thor/avformat_open_input.png" data-index="1" data-src="/images/imageFFmpeg/Thor/avformat_open_input.png"></p>
+<h2 id="FFmpeg源代码结构图-编码"><a href="#FFmpeg源代码结构图-编码" class="headerlink" title="FFmpeg源代码结构图 - 编码"></a>FFmpeg源代码结构图 - 编码</h2><h3 id="函数调用关系图"><a href="#函数调用关系图" class="headerlink" title="函数调用关系图"></a>函数调用关系图</h3><p>下图表明了FFmpeg在编码一个视频的时候的函数调用流程。为了保证结构清晰，其中仅列出了最关键的函数，剔除了其它不是特别重要的函数。</p>
+<p><img alt="FFmpeg源代码结构图 - 编码" class="post-img b-lazy" data-img="/images/imageFFmpeg/Thor/FFmpeg源码API结构图-编码.png" data-index="2" data-src="/images/imageFFmpeg/Thor/FFmpeg源码API结构图-编码.png"></p>
+<p>下面解释一下图中关键标记的含义。</p>
+<h3 id="函数背景色-1"><a href="#函数背景色-1" class="headerlink" title="函数背景色"></a>函数背景色</h3><p>函数在图中以方框的形式表现出来。不同的背景色标志了该函数不同的作用：</p>
+<ul>
+<li>粉红色背景函数：FFmpeg 的 API 函数。</li>
+<li>白色背景的函数：FFmpeg 的内部函数。</li>
+<li>黄色背景的函数：URLProtocol 结构体中的函数，包含了读写各种协议的功能。</li>
+<li>绿色背景的函数：AVOutputFormat 结构体中的函数，包含了读写各种封装格式的功能。</li>
+<li>蓝色背景的函数：AVCodec 结构体中的函数，包含了编解码的功能。</li>
+</ul>
+<h3 id="区域-1"><a href="#区域-1" class="headerlink" title="区域"></a>区域</h3><p>整个关系图可以分为以下几个区域：</p>
+<ul>
+<li><strong>左边区域——架构函数区域</strong>：这些函数并不针对某一特定的视频格式。</li>
+<li><strong>右上方黄色区域——协议处理函数区域</strong>：不同的协议（RTP，RTMP，FILE）会调用不同的协议处理函数。</li>
+<li><strong>右边中间绿色区域——封装格式处理函数区域</strong>：不同的封装格式（MKV，FLV，MPEG2TS，AVI）会调用不同的封装格式处理函数。</li>
+<li><strong>右边下方蓝色区域——编解码函数区域</strong>：不同的编码标准（HEVC，H.264，MPEG2）会调用不同的编解码函数。</li>
+</ul>
+<h3 id="箭头线-1"><a href="#箭头线-1" class="headerlink" title="箭头线"></a>箭头线</h3><p>为了把调用关系表示的更明显，图中的箭头线也使用了不同的颜色：</p>
+<ul>
+<li><p>红色的箭头线：标志了编码的流程。</p>
+</li>
+<li><p>其他颜色的箭头线：标志了函数之间的调用关系。其中：</p>
+<ul>
+<li>调用 URLProtocol 结构体中的函数用<strong>黄色箭头线</strong>标识；</li>
+<li>调用 AVOutputFormat 结构体中的函数用<strong>绿色箭头线</strong>标识；</li>
+<li>调用 AVCodec 结构体中的函数用<strong>蓝色箭头线</strong>标识。</li>
+</ul>
+</li>
+</ul>
+<h3 id="函数所在的文件-1"><a href="#函数所在的文件-1" class="headerlink" title="函数所在的文件"></a>函数所在的文件</h3><p>每个函数标识了它所在的文件路径。</p>
+<h3 id="函数功能简述"><a href="#函数功能简述" class="headerlink" title="函数功能简述"></a>函数功能简述</h3><p>下面简单列出几个区域中函数之间的调用关系（函数之间的调用关系使用缩进的方式表现出来）。详细的函数分析可以参考相关的《FFmpeg源代码分析》系列文章。</p>
+<h4 id="左边区域（架构函数）"><a href="#左边区域（架构函数）" class="headerlink" title="左边区域（架构函数）"></a>左边区域（架构函数）</h4><p><strong><font color="red">1. av_register_all()【函数简单分析】</font></strong></p>
+<ul>
+<li><p><strong><font color="red">1) avcodec_register_all()</font></strong></p>
+<ul>
+<li><strong>(a) REGISTER_HWACCEL()</strong></li>
+<li><strong>(b) REGISTER_ENCODER()</strong></li>
+<li><strong>(c) REGISTER_DECODER()</strong></li>
+<li><strong>(d) REGISTER_PARSER()</strong></li>
+<li><strong>(e) REGISTER_BSF()</strong></li>
+</ul>
+</li>
+<li><p><strong>2) REGISTER_MUXER()</strong></p>
+</li>
+<li><p><strong>3) REGISTER_DEMUXER()</strong></p>
+</li>
+<li><p><strong>4) REGISTER_PROTOCOL()</strong></p>
+</li>
+</ul>
+<p><strong><font color="red">2. avformat_alloc_output_context2()【函数简单分析】</font></strong></p>
+<ul>
+<li><p><strong><font color="red">1) avformat_alloc_context()</font></strong></p>
+<ul>
+<li><p><strong>(a) av_malloc(sizeof(AVFormatContext))</strong></p>
+</li>
+<li><p><strong>(b) avformat_get_context_defaults()</strong></p>
+<ul>
+<li><strong>a) av_opt_set_defaults()</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong><font color="red">2) av_guess_format()</font></strong></p>
+<ul>
+<li><strong><font color="red">(a) av_oformat_next()</font></strong></li>
+<li><strong><font color="red">(b) av_match_name()</font></strong></li>
+<li><strong><font color="red">(c) av_match_ext()</font></strong></li>
+</ul>
+</li>
+</ul>
+<p><strong><font color="red">3. avio_open2()【函数简单分析】</font></strong></p>
+<ul>
+<li><p><strong>1) ffurl_open()</strong></p>
+<ul>
+<li><strong>(a) ffurl_alloc()</strong><ul>
+<li><strong>a) url_find_protocol()</strong></li>
+<li><strong>b) url_alloc_for_protocol()</strong></li>
+</ul>
+</li>
+<li><strong>(b) ffurl_connect()</strong><ul>
+<li><strong><font color="#FFC000">a) URLProtocol-&gt;url_open()</font></strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>2) ffio_fdopen()</strong></p>
+<ul>
+<li><strong>(a) av_malloc(buffer_size)</strong></li>
+<li><strong><font color="red">(b) avio_alloc_context()</font></strong><ul>
+<li><strong>a) av_mallocz(sizeof(AVIOContext))</strong></li>
+<li><strong>b) ffio_init_context()</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong><font color="red">4. avformat_new_stream()【函数简单分析】</font></strong></p>
+<ul>
+<li><p><strong>1) av_mallocz(sizeof(AVStream))</strong></p>
+</li>
+<li><p><strong><font color="red">2) avcodec_alloc_context3()</font></strong></p>
+<ul>
+<li><strong>(a) av_malloc(sizeof(AVCodecContext))</strong></li>
+<li><strong>(b) avcodec_get_context_defaults3()</strong></li>
+</ul>
+</li>
+</ul>
+<p><strong><font color="red">5. avcodec_find_encoder()【函数简单分析】</font></strong></p>
+<ul>
+<li><strong>1) find_encdec()</strong></li>
+</ul>
+<p><strong><font color="red">6. avcodec_open2()【函数简单分析】</font></strong></p>
+<ul>
+<li><strong>1) AVCodec-&gt;init()</strong></li>
+</ul>
+<p><strong><font color="red">7. avformat_write_header()【函数简单分析】</font></strong></p>
+<ul>
+<li><p><strong>1) init_muxer()</strong></p>
+</li>
+<li><p><strong><font color="#009900">2) AVOutputFormat-&gt;write_header()</font></strong></p>
+</li>
+<li><p><strong>3) init_pts()</strong></p>
+</li>
+</ul>
+<p><strong><font color="red">8. avcodec_encode_video2()【函数简单分析】</font></strong></p>
+<ul>
+<li><strong><font color="#3072C2">1) AVCodec-&gt;encode2()</font></strong></li>
+</ul>
+<p><strong><font color="red">9. av_write_frame()【函数简单分析】</font></strong></p>
+<ul>
+<li><p><strong>1) check_packet()</strong></p>
+</li>
+<li><p><strong>2) compute_pkt_fields2()</strong></p>
+</li>
+<li><p><strong>3) write_packet()</strong></p>
+<ul>
+<li><strong><font color="#009900">(a) AVOutputFormat-&gt;write_packet()</font></strong></li>
+</ul>
+</li>
+</ul>
+<p><strong><font color="red">10. av_write_trailer()【函数简单分析】</font></strong></p>
+<ul>
+<li><p><strong>1) write_packet()</strong></p>
+</li>
+<li><p><strong><font color="#009900">2) AVOutputFormat-&gt;write_trailer()</font></strong></p>
+</li>
+</ul>
+<p><strong><font color="red">11. avcodec_close()【函数简单分析】</font></strong></p>
+<ul>
+<li><strong><font color="#3072C2">1) AVCodec-&gt;close()</font></strong></li>
+</ul>
+<p><strong><font color="red">12. avformat_free_context()【函数简单分析】</font></strong></p>
+<ul>
+<li><strong>1) ff_free_stream()</strong></li>
+</ul>
+<p><strong><font color="red">13. avio_close()【函数简单分析】</font></strong></p>
+<ul>
+<li><strong>1) avio_flush()</strong><ul>
+<li><strong>(a) flush_buffer()</strong></li>
+</ul>
+</li>
+<li><strong>2) ffurl_close()</strong><ul>
+<li><strong>(a) ffurl_closep()</strong><ul>
+<li><strong><font color="#FFC000">a) URLProtocol-&gt;url_close()</font></strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="右上区域（URLProtocol协议处理函数）-1"><a href="#右上区域（URLProtocol协议处理函数）-1" class="headerlink" title="右上区域（URLProtocol协议处理函数）"></a>右上区域（URLProtocol协议处理函数）</h4><p>URLProtocol结构体包含如下协议处理函数指针：</p>
+<ul>
+<li><strong><font color="#FFC000">url_open()：打开</font></strong></li>
+<li><strong><font color="#FFC000">url_read()：读取</font></strong></li>
+<li><strong><font color="#FFC000">url_write()：写入</font></strong></li>
+<li><strong><font color="#FFC000">url_seek()：调整进度</font></strong></li>
+<li><strong><font color="#FFC000">url_close()：关闭</font></strong></li>
+</ul>
+<p>【例子】不同的协议对应着上述接口有不同的实现函数，举几个例子：</p>
+<p><strong>File协议（即文件）对应的URLProtocol结构体 <code>ff_file_protocol</code>：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">url_open() -&gt; file_open() -&gt; open()</span><br><span class="line">url_read() -&gt; file_read() -&gt; read()</span><br><span class="line">url_write() -&gt; file_write() -&gt; write()</span><br><span class="line">url_seek() -&gt; file_seek() -&gt; lseek()</span><br><span class="line">url_close() -&gt; file_close() -&gt; close()</span><br></pre></td></tr></table></figure>
+<p><strong>RTMP协议（libRTMP）对应的URLProtocol结构体 <code>ff_librtmp_protocol</code>：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">url_open() -&gt; rtmp_open() -&gt; RTMP_Init(), RTMP_SetupURL(), RTMP_Connect(), RTMP_ConnectStream()</span><br><span class="line">url_read() -&gt; rtmp_read() -&gt; RTMP_Read()</span><br><span class="line">url_write() -&gt; rtmp_write() -&gt; RTMP_Write()</span><br><span class="line">url_seek() -&gt; rtmp_read_seek() -&gt; RTMP_SendSeek()</span><br><span class="line">url_close() -&gt; rtmp_close() -&gt; RTMP_Close()</span><br></pre></td></tr></table></figure>
+<p><strong>UDP协议对应的URLProtocol结构体 <code>ff_udp_protocol</code>：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">url_open() -&gt; udp_open()</span><br><span class="line">url_read() -&gt; udp_read()</span><br><span class="line">url_write() -&gt; udp_write()</span><br><span class="line">url_seek() -&gt; udp_close()</span><br><span class="line">url_close() -&gt; udp_close()</span><br></pre></td></tr></table></figure>
+<h4 id="右中区域（AVOutputFormat封装格式处理函数）"><a href="#右中区域（AVOutputFormat封装格式处理函数）" class="headerlink" title="右中区域（AVOutputFormat封装格式处理函数）"></a>右中区域（AVOutputFormat封装格式处理函数）</h4><p>AVOutputFormat包含如下封装格式处理函数指针：</p>
+<ul>
+<li><strong><font color="#009900">write_header()：写文件头</font></strong></li>
+<li><strong><font color="#009900">write_packet()：写一帧数据</font></strong></li>
+<li><strong><font color="#009900">write_trailer()：写文件尾</font></strong></li>
+</ul>
+<p>【例子】不同的封装格式对应着上述接口有不同的实现函数，举几个例子：</p>
+<p><strong>FLV封装格式对应的AVOutputFormat结构体 <code>ff_flv_muxer</code>：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">write_header() -&gt; flv_write_header()</span><br><span class="line">write_packet() –&gt; flv_write_packet()</span><br><span class="line">write_trailer() -&gt; flv_write_trailer()</span><br></pre></td></tr></table></figure>
+<p><strong>MKV封装格式对应的AVOutputFormat结构体 <code>ff_matroska_muxer</code>：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">write_header() -&gt; mkv_write_header()</span><br><span class="line">write_packet() –&gt; mkv_write_flush_packet()</span><br><span class="line">write_trailer() -&gt; mkv_write_trailer()</span><br></pre></td></tr></table></figure>
+<p><strong>MPEG2TS封装格式对应的AVOutputFormat结构体 <code>ff_mpegts_muxer</code>：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">write_header() -&gt; mpegts_write_header()</span><br><span class="line">write_packet() –&gt; mpegts_write_packet()</span><br><span class="line">write_trailer() -&gt; mpegts_write_end()</span><br></pre></td></tr></table></figure>
+<p><strong>AVI封装格式对应的AVOutputFormat结构体 <code>ff_avi_muxer</code>：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">write_header() -&gt; avi_write_header()</span><br><span class="line">write_packet() –&gt; avi_write_packet()</span><br><span class="line">write_trailer() -&gt; avi_write_trailer()</span><br></pre></td></tr></table></figure>
+<h4 id="右下区域（AVCodec编解码函数）-1"><a href="#右下区域（AVCodec编解码函数）-1" class="headerlink" title="右下区域（AVCodec编解码函数）"></a>右下区域（AVCodec编解码函数）</h4><p>AVCodec包含如下编解码函数指针：</p>
+<ul>
+<li><strong><font color="#3072C2">init()：初始化</font></strong></li>
+<li><strong><font color="#3072C2">encode2()：编码一帧数据</font></strong></li>
+<li><strong><font color="#3072C2">close()：关闭</font></strong></li>
+</ul>
+<p>【例子】不同的编解码器对应着上述接口有不同的实现函数，举几个例子：</p>
+<p><strong>HEVC编码器对应的AVCodec结构体 <code>ff_libx265_encoder</code>：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">init() -&gt; libx265_encode_init() -&gt; x265_param_alloc(), x265_param_default_preset(), x265_encoder_open()</span><br><span class="line">encode2() -&gt; libx265_encode_frame() -&gt; x265_encoder_encode()</span><br><span class="line">close() -&gt; libx265_encode_close() -&gt; x265_param_free(), x265_encoder_close()</span><br></pre></td></tr></table></figure>
+<p><strong>H.264编码器对应的AVCodec结构体 <code>ff_libx264_encoder</code>：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">init() -&gt; X264_init() -&gt; x264_param_default(), x264_encoder_open(), x264_encoder_headers()</span><br><span class="line">encode2() -&gt; X264_frame() -&gt; x264_encoder_encode()</span><br><span class="line">close() -&gt; X264_close() -&gt; x264_encoder_close()</span><br></pre></td></tr></table></figure>
+<p><strong>VP8编码器（libVPX）对应的AVCodec结构体 <code>ff_libvpx_vp8_encoder</code>：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">init() -&gt; vpx_init() -&gt; vpx_codec_enc_config_default()</span><br><span class="line">encode2() -&gt; vp8_encode() -&gt; vpx_codec_enc_init(), vpx_codec_encode()</span><br><span class="line">close() -&gt; vp8_free() -&gt; vpx_codec_destroy()</span><br></pre></td></tr></table></figure>
+<p><strong>MPEG2编码器对应的AVCodec结构体 <code>ff_mpeg2video_encoder</code>：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">init() -&gt; encode_init()</span><br><span class="line">encode2() -&gt; ff_mpv_encode_picture()</span><br><span class="line">close() -&gt; ff_mpv_encode_end()</span><br></pre></td></tr></table></figure>
+
+                </article>
+                <ul class="tags-postTags">
+                    
+                    <li>
+                        <a href="/tags/FFmpeg/" rel="tag"># FFmpeg</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    
+    <nav id="gobottom" class="pagination">
+        
+        <a class="prev-post" title="FFmpeg框架详解" href="/2019-05-27/reference/FFmpeg/FFmpeg框架函数分析/">
+            ← FFmpeg框架详解
+        </a>
+        
+        <span class="prev-next-post">·</span>
+        
+        <a class="next-post" title="FFMpeg实时美颜直播推流" href="/2019-05-19/reference/FFmpeg/ffmpeg实时美颜推流/">
+            FFMpeg实时美颜直播推流 →
+        </a>
+        
+    </nav>
+
+    
+    <div class="inner">
+        <div id="comment"></div>
+    </div>
+    
+</div>
+
+<div class="toc-bar">
+    <div class="toc-btn-bar">
+        <a href="#site-main" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M793.024 710.272a32 32 0 1 0 45.952-44.544l-310.304-320a32 32 0 0 0-46.4 0.48l-297.696 320a32 32 0 0 0 46.848 43.584l274.752-295.328 286.848 295.808z"/></svg>
+        </a>
+        <div class="toc-btn toc-switch">
+            <svg class="toc-open" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M779.776 480h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M779.776 672h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M256 288a32 32 0 1 0 0 64 32 32 0 0 0 0-64M392.576 352h387.2a32 32 0 0 0 0-64h-387.2a32 32 0 0 0 0 64M256 480a32 32 0 1 0 0 64 32 32 0 0 0 0-64M256 672a32 32 0 1 0 0 64 32 32 0 0 0 0-64"/></svg>
+            <svg class="toc-close hide" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M512 960c-247.039484 0-448-200.960516-448-448S264.960516 64 512 64 960 264.960516 960 512 759.039484 960 512 960zM512 128.287273c-211.584464 0-383.712727 172.128262-383.712727 383.712727 0 211.551781 172.128262 383.712727 383.712727 383.712727 211.551781 0 383.712727-172.159226 383.712727-383.712727C895.712727 300.415536 723.551781 128.287273 512 128.287273z"/><path d="M557.05545 513.376159l138.367639-136.864185c12.576374-12.416396 12.672705-32.671738 0.25631-45.248112s-32.704421-12.672705-45.248112-0.25631l-138.560301 137.024163-136.447897-136.864185c-12.512727-12.512727-32.735385-12.576374-45.248112-0.063647-12.512727 12.480043-12.54369 32.735385-0.063647 45.248112l136.255235 136.671523-137.376804 135.904314c-12.576374 12.447359-12.672705 32.671738-0.25631 45.248112 6.271845 6.335493 14.496116 9.504099 22.751351 9.504099 8.12794 0 16.25588-3.103239 22.496761-9.247789l137.567746-136.064292 138.687596 139.136568c6.240882 6.271845 14.432469 9.407768 22.65674 9.407768 8.191587 0 16.352211-3.135923 22.591372-9.34412 12.512727-12.480043 12.54369-32.704421 0.063647-45.248112L557.05545 513.376159z"/></svg>
+        </div>
+        <a href="#gobottom" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M231.424 346.208a32 32 0 0 0-46.848 43.584l297.696 320a32 32 0 0 0 46.4 0.48l310.304-320a32 32 0 1 0-45.952-44.544l-286.848 295.808-274.752-295.36z"/></svg>
+        </a>
+    </div>
+    <div class="toc-main">
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#FFmpeg源代码结构图-解码"><span class="toc-text">FFmpeg源代码结构图 - 解码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#函数背景色"><span class="toc-text">函数背景色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#区域"><span class="toc-text">区域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#箭头线"><span class="toc-text">箭头线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数所在的文件"><span class="toc-text">函数所在的文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数调用关系"><span class="toc-text">函数调用关系</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#左边区域（FFmpeg架构函数）"><span class="toc-text">左边区域（FFmpeg架构函数）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#右上区域（URLProtocol协议处理函数）"><span class="toc-text">右上区域（URLProtocol协议处理函数）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#右中区域（AVInputFormat封装格式处理函数）"><span class="toc-text">右中区域（AVInputFormat封装格式处理函数）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#右下区域（AVCodec编解码函数）"><span class="toc-text">右下区域（AVCodec编解码函数）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#avformat-open-input-函数"><span class="toc-text">avformat_open_input() 函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FFmpeg源代码结构图-编码"><span class="toc-text">FFmpeg源代码结构图 - 编码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#函数调用关系图"><span class="toc-text">函数调用关系图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数背景色-1"><span class="toc-text">函数背景色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#区域-1"><span class="toc-text">区域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#箭头线-1"><span class="toc-text">箭头线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数所在的文件-1"><span class="toc-text">函数所在的文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数功能简述"><span class="toc-text">函数功能简述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#左边区域（架构函数）"><span class="toc-text">左边区域（架构函数）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#右上区域（URLProtocol协议处理函数）-1"><span class="toc-text">右上区域（URLProtocol协议处理函数）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#右中区域（AVOutputFormat封装格式处理函数）"><span class="toc-text">右中区域（AVOutputFormat封装格式处理函数）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#右下区域（AVCodec编解码函数）-1"><span class="toc-text">右下区域（AVCodec编解码函数）</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+	</div>
+	
+
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+  <header class="read-next-card-header">
+    <small class="read-next-card-header-sitetitle">&mdash; Pastor Dean &mdash;</small>
+    <h3 class="read-next-card-header-title">Recent Posts</h3>
+  </header>
+  <div class="read-next-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+      <path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/>
+    </svg>
+  </div>
+  <div class="read-next-card-content">
+    <ul>
+      
+      
+      
+      <li>
+        <a href="/2020-01-16/thinking/Thinking modelBiological thinking Biological thinking looking at the business world from an evolutionary perspective/">Thinking modelBiological thinking Biological thinking: looking at the business world from an evolutionary perspective</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2020-01-13/thinking/Modern Darwin Integrated Model  Biological Thinking Mode Opening God Perspective/">Modern Darwin Integrated Model Biological Thinking Mode Opening God is Perspective</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2020-01-11/thinking/Metacognition Changing the stubborn thinking of the brain/">Metacognition Changing the stubborn thinking of the brain</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <footer class="read-next-card-footer">
+    <a href="/archives">  MORE  → </a>
+  </footer>
+</article>
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+    <header class="read-next-card-header tagcloud-card">
+        <h3 class="read-next-card-header-title">Categories</h3>
+    </header>
+    <div class="read-next-card-content">
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Biological-Thinking/">Biological Thinking</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cognitive-Neuroscience/">Cognitive Neuroscience</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DeepLearning/">DeepLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/FFmpeg/">FFmpeg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MacOS/">MacOS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MachineLearning/">MachineLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PM/">PM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/RPC/">RPC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vim/">Vim</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WebRTC/">WebRTC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/deeplearn/">deeplearn</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/http/">http</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/machineLearning/">machineLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/文摘/">文摘</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构师/">架构师</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/知识图谱/">知识图谱</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/职业规划/">职业规划</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/职业规划/个人提升/">个人提升</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机相关技术资料整理/">计算机相关技术资料整理</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/认知升级/">认知升级</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/财务自由/">财务自由</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/财富自由/">财富自由</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/运维/">运维</a></li></ul>
+    </div>
+</article>
+
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+	<header class="read-next-card-header tagcloud-card">
+		<h3 class="read-next-card-header-title">Tag Cloud</h3>
+	</header>
+	<div class="read-next-card-content-ext">
+		<a href="/tags/AI/" style="font-size: 14px;">AI</a> <a href="/tags/Android/" style="font-size: 14px;">Android</a> <a href="/tags/Biological/" style="font-size: 17.75px;">Biological</a> <a href="/tags/Browser/" style="font-size: 14px;">Browser</a> <a href="/tags/Business/" style="font-size: 16.5px;">Business</a> <a href="/tags/Cognitive/" style="font-size: 17.75px;">Cognitive</a> <a href="/tags/DeepLearning/" style="font-size: 15.25px;">DeepLearning</a> <a href="/tags/Docker/" style="font-size: 14px;">Docker</a> <a href="/tags/FFmpeg/" style="font-size: 21.5px;">FFmpeg</a> <a href="/tags/FastCGI/" style="font-size: 14px;">FastCGI</a> <a href="/tags/IP划分/" style="font-size: 14px;">IP划分</a> <a href="/tags/IP地址/" style="font-size: 14px;">IP地址</a> <a href="/tags/Knowledge-Graph/" style="font-size: 16.5px;">Knowledge Graph</a> <a href="/tags/Linux-Shell/" style="font-size: 14px;">Linux Shell</a> <a href="/tags/MacOS/" style="font-size: 15.25px;">MacOS</a> <a href="/tags/Neuroscience/" style="font-size: 17.75px;">Neuroscience</a> <a href="/tags/RPC/" style="font-size: 14px;">RPC</a> <a href="/tags/Thinking/" style="font-size: 17.75px;">Thinking</a> <a href="/tags/Tutorial/" style="font-size: 20.25px;">Tutorial</a> <a href="/tags/WebRTC/" style="font-size: 21.5px;">WebRTC</a> <a href="/tags/WebSocket/" style="font-size: 14px;">WebSocket</a> <a href="/tags/algorithm/" style="font-size: 15.25px;">algorithm</a> <a href="/tags/config/" style="font-size: 14px;">config</a> <a href="/tags/decisionTree/" style="font-size: 14px;">decisionTree</a> <a href="/tags/git/" style="font-size: 17.75px;">git</a> <a href="/tags/google-adsense/" style="font-size: 14px;">google adsense</a> <a href="/tags/hexo/" style="font-size: 17.75px;">hexo</a> <a href="/tags/http/" style="font-size: 17.75px;">http</a> <a href="/tags/knn/" style="font-size: 14px;">knn</a> <a href="/tags/lighttpd/" style="font-size: 15.25px;">lighttpd</a> <a href="/tags/mxnet/" style="font-size: 14px;">mxnet</a> <a href="/tags/mysql/" style="font-size: 22.75px;">mysql</a> <a href="/tags/nlp/" style="font-size: 24px;">nlp</a> <a href="/tags/nodejs/" style="font-size: 14px;">nodejs</a> <a href="/tags/openvpn/" style="font-size: 14px;">openvpn</a> <a href="/tags/other/" style="font-size: 15.25px;">other</a> <a href="/tags/paddle/" style="font-size: 14px;">paddle</a> <a href="/tags/planning/" style="font-size: 20.25px;">planning</a> <a href="/tags/pracitce/" style="font-size: 15.25px;">pracitce</a> <a href="/tags/rich/" style="font-size: 14px;">rich</a> <a href="/tags/shell/" style="font-size: 14px;">shell</a> <a href="/tags/svn/" style="font-size: 14px;">svn</a> <a href="/tags/ubuntu/" style="font-size: 14px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 16.5px;">vim</a> <a href="/tags/webpack/" style="font-size: 14px;">webpack</a> <a href="/tags/webrtc/" style="font-size: 19px;">webrtc</a> <a href="/tags/个人发展/" style="font-size: 14px;">个人发展</a> <a href="/tags/互联网实事/" style="font-size: 14px;">互联网实事</a> <a href="/tags/外链/" style="font-size: 14px;">外链</a> <a href="/tags/提升个人思维/" style="font-size: 14px;">提升个人思维</a> <a href="/tags/文摘/" style="font-size: 15.25px;">文摘</a> <a href="/tags/斜杠青年/" style="font-size: 14px;">斜杠青年</a> <a href="/tags/机器学习/" style="font-size: 16.5px;">机器学习</a> <a href="/tags/架构师/" style="font-size: 14px;">架构师</a> <a href="/tags/测试工具/" style="font-size: 14px;">测试工具</a> <a href="/tags/睡后成长/" style="font-size: 14px;">睡后成长</a> <a href="/tags/睡后收入/" style="font-size: 14px;">睡后收入</a> <a href="/tags/税后收入/" style="font-size: 14px;">税后收入</a> <a href="/tags/笔记/" style="font-size: 14px;">笔记</a> <a href="/tags/自然语言处理/" style="font-size: 24px;">自然语言处理</a> <a href="/tags/视频流/" style="font-size: 15.25px;">视频流</a> <a href="/tags/计算机相关技术资料整理/" style="font-size: 14px;">计算机相关技术资料整理</a> <a href="/tags/认知升级/" style="font-size: 14px;">认知升级</a> <a href="/tags/限速/" style="font-size: 14px;">限速</a> <a href="/tags/面试/" style="font-size: 14px;">面试</a> <a href="/tags/项目管理/" style="font-size: 14px;">项目管理</a>
+	</div>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+	
+
+
+
+
+<div id="search" class="search-overlay">
+    <div class="search-form">
+        
+        <div class="search-overlay-logo">
+        	<img src="/images/favicon-16x16-next.png" alt="Pastor Dean">
+        </div>
+        
+        <input id="local-search-input" class="search-input" type="text" name="search" placeholder="Search ...">
+        <a class="search-overlay-close" href="#"></a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+<footer class="site-footer outer">
+	<div class="site-footer-content inner">
+		<div class="copyright">
+			<a href="/" title="Pastor Dean">Pastor Dean &copy; 2020</a>
+			
+				
+			        <span hidden="true" id="/2019-05-25/reference/FFmpeg/FFmpeg源代码结构note/" class="leancloud-visitors" data-flag-title="FFmpeg 源代码结构（编解码解析）">
+			            <span>阅读量 </span>
+			            <span class="leancloud-visitors-count">0</span>
+			        </span>
+	    		
+    		
+		</div>
+		<nav class="site-footer-nav">
+			
+			<a href="https://hexo.io" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+			<a href="https://github.com/xzhih/hexo-theme-casper" title="Casper" target="_blank" rel="noopener">Casper</a>
+		</nav>
+	</div>
+</footer>
+	
+
+
+<script>
+    if(window.navigator && navigator.serviceWorker) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister()
+            }
+        })
+    }
+</script>
+
+
+<script id="scriptLoad" src="/js/allinone.min.js" async></script>
+
+
+<script>
+    document.getElementById('scriptLoad').addEventListener('load', function () {
+        
+        
+            var bLazy = new Blazy();
+        
+
+        
+        
+
+        
+        
+        
+            searchFunc("/");
+        
+        
+    })
+</script>
+
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+
+
+<script id="valineScript" src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+<script>
+    document.getElementById('valineScript').addEventListener("load", function() {
+        new Valine({
+            el: '#comment' ,
+            verify: false,
+            notify: false,
+            appId: '',
+            appKey: '',
+            placeholder: 'Just go go',
+            pageSize: 10,
+            avatar: 'mm',
+            visitor: true
+        })
+    });
+</script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,4260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="preconnect" href="//www.googletagmanager.com">
+	<link rel="preconnect" href="//zz.bdstatic.com">
+	<link rel="preconnect" href="//sp0.baidu.com">
+	<link rel="preconnect" href="//www.google-analytics.com">
+	<link rel="preconnect" href="//cdn1.lncld.net">
+	<link rel="preconnect" href="//unpkg.com">
+	<link rel="preconnect" href="//app-router.leancloud.cn">
+	<link rel="preconnect" href="//9qpuwspm.api.lncld.net">
+	<link rel="preconnect" href="//gravatar.loli.net">
+
+	<title>NLP系列 | Pastor Dean</title>
+
+	<meta name="HandheldFriendly" content="True">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+	<meta name="generator" content="hexo">
+	<meta name="author" content="pastor">
+	<meta name="description" content>
+
+	
+	<meta name="keywords" content>
+	
+
+	
+	<link rel="shortcut icon" href="/images/favicon-16x16-next.png">
+	<link rel="apple-touch-icon" href="/images/favicon-16x16-next.png">
+	
+
+	
+	<meta name="theme-color" content="#3c484e">
+	<meta name="msapplication-TileColor" content="#3c484e">
+	
+
+	
+
+	
+
+	<meta property="og:site_name" content="Pastor Dean">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="NLP系列 | Pastor Dean">
+	<meta property="og:description" content>
+	<meta property="og:url" content="https://mrpastor.github.io/2019-03-21/nlp/3Text_Representation/Chapter1_Basic_Text_Representation/Representation_of_words_sentences/">
+
+	
+	<meta property="article:published_time" content="2019-03-21T19:03:00+08:00"> 
+	<meta property="article:author" content="pastor">
+	<meta property="article:published_first" content="Pastor Dean, /2019-03-21/nlp/3Text_Representation/Chapter1_Basic_Text_Representation/Representation_of_words_sentences/">
+	
+
+	
+	
+	<link rel="stylesheet" href="/css/allinonecss.min.css">
+
+	
+	
+	
+</head>
+<body class="post-template">
+	<div class="site-wrapper">
+		
+
+
+
+
+<header class="site-header post-site-header outer">
+    <div class="inner">
+        
+<nav class="site-nav"> 
+    <div class="site-nav-left">
+        <ul class="nav">
+            <li>
+                
+                
+                <a class="site-nav-logo" href="/" title="Pastor Dean">
+                    <img src="/images/favicon-32x32-next.png" alt="Pastor Dean">
+                </a>
+                
+                
+            </li>
+            
+            
+            <li>
+                <a href="/ || home" title="home">home</a>
+            </li>
+            
+            <li>
+                <a href="/categories/ || th" title="categories">categories</a>
+            </li>
+            
+            <li>
+                <a href="/archives/ || archive" title="archives">archives</a>
+            </li>
+            
+            <li>
+                <a href="/tools/ || tools" title="tools">tools</a>
+            </li>
+            
+            
+        </ul> 
+    </div>
+    
+    <div class="search-button-area">
+        <a href="#search" class="search-button">Search ...</a>
+    </div>
+     
+    <div class="site-nav-right">
+        
+        <a href="#search" class="search-button">Search ...</a>
+         
+        
+<div class="social-links">
+    
+    
+    <a class="social-link" title="github" href="https://github.com/mrpastor" target="_blank" rel="noopener">
+        <svg viewbox="0 0 1049 1024" xmlns="http://www.w3.org/2000/svg"><path d="M524.979332 0C234.676191 0 0 234.676191 0 524.979332c0 232.068678 150.366597 428.501342 358.967656 498.035028 26.075132 5.215026 35.636014-11.299224 35.636014-25.205961 0-12.168395-0.869171-53.888607-0.869171-97.347161-146.020741 31.290159-176.441729-62.580318-176.441729-62.580318-23.467619-60.841976-58.234462-76.487055-58.234463-76.487055-47.804409-32.15933 3.476684-32.15933 3.476685-32.15933 53.019436 3.476684 80.83291 53.888607 80.83291 53.888607 46.935238 79.963739 122.553122 57.365291 152.97411 43.458554 4.345855-33.897672 18.252593-57.365291 33.028501-70.402857-116.468925-12.168395-239.022047-57.365291-239.022047-259.012982 0-57.365291 20.860106-104.300529 53.888607-140.805715-5.215026-13.037566-23.467619-66.926173 5.215027-139.067372 0 0 44.327725-13.906737 144.282399 53.888607 41.720212-11.299224 86.917108-17.383422 131.244833-17.383422s89.524621 6.084198 131.244833 17.383422C756.178839 203.386032 800.506564 217.29277 800.506564 217.29277c28.682646 72.1412 10.430053 126.029806 5.215026 139.067372 33.897672 36.505185 53.888607 83.440424 53.888607 140.805715 0 201.64769-122.553122 245.975415-239.891218 259.012982 19.121764 16.514251 35.636014 47.804409 35.636015 97.347161 0 70.402857-0.869171 126.898978-0.869172 144.282399 0 13.906737 9.560882 30.420988 35.636015 25.205961 208.601059-69.533686 358.967656-265.96635 358.967655-498.035028C1049.958663 234.676191 814.413301 0 524.979332 0z"/></svg>
+    </a>
+    
+    
+    <a class="social-link" title="facebook" href="https://facebook" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+
+    </a>
+    
+    
+    <a class="social-link" title="twitter" href="https://twitter.com" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+    </a>
+    
+    
+    
+    
+</div>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<div id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+        <header class="post-full-header">
+            <div class="post-full-meta">
+                <time class="post-full-meta-date" datetime="2019-03-21T11:19:18.000Z">
+                    2019-03-21
+                </time>
+                
+                <span class="date-divider">/</span>
+                
+                <a href="/categories/NLP/">NLP</a>&nbsp;&nbsp;
+                
+                
+            </div>
+            <h1 class="post-full-title">NLP系列</h1>
+        </header>
+        <div class="post-full no-image">
+            
+            <div class="post-full-content">
+                <article id="photoswipe" class="markdown-body">
+                    <h1 id="第3门：文本表示"><a href="#第3门：文本表示" class="headerlink" title="第3门：文本表示"></a>第3门：文本表示</h1><h2 id="第1章：文本词与句的表示"><a href="#第1章：文本词与句的表示" class="headerlink" title="第1章：文本词与句的表示"></a>第1章：文本词与句的表示</h2><h2 id="1-文本表示概述"><a href="#1-文本表示概述" class="headerlink" title="1.文本表示概述"></a>1.文本表示概述</h2><p>文本表示，简单的说就是不将文本视为字符串，而视为在<strong>数学上处理起来更为方便的向量</strong>。而怎么把字符串变为向量，就是文本表示的核心问题。</p>
+<h3 id="1-1-为什么要进行文本表示"><a href="#1-1-为什么要进行文本表示" class="headerlink" title="1.1 为什么要进行文本表示"></a>1.1 为什么要进行文本表示</h3><ol>
+<li>根本原因是计算机不方便直接对文本字符串进行处理，因此需要进行数值化或者向量化。</li>
+<li>便于机器学习。不仅传统的机器学习算法需要这个过程，深度学习也需要这个过程。</li>
+<li>良好的文本表示形式可以极大的提升算法效果。</li>
+</ol>
+<h3 id="1-2-文本表示分类（基于粒度）"><a href="#1-2-文本表示分类（基于粒度）" class="headerlink" title="1.2 文本表示分类（基于粒度）"></a>1.2 文本表示分类（基于粒度）</h3><ul>
+<li>文本表示</li>
+<li>句子表示（短文本）</li>
+<li>词表示</li>
+</ul>
+<h3 id="1-3-文本表示分类（基于表示方法）"><a href="#1-3-文本表示分类（基于表示方法）" class="headerlink" title="1.3 文本表示分类（基于表示方法）"></a>1.3 文本表示分类（基于表示方法）</h3><ul>
+<li>离散表示<ul>
+<li>one-hot表示</li>
+<li>multi-hot表示</li>
+</ul>
+</li>
+<li>分布式表示<ul>
+<li>基于矩阵<ul>
+<li>基于降维的方法</li>
+<li>基于聚类的方法</li>
+</ul>
+</li>
+<li>基于神经网络<ul>
+<li>CBOW</li>
+<li>Skip-gram</li>
+<li>NNLM</li>
+<li>C&amp;W</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-文本离散表示：词袋模型与TF-IDF"><a href="#2-文本离散表示：词袋模型与TF-IDF" class="headerlink" title="2. 文本离散表示：词袋模型与TF-IDF"></a>2. 文本离散表示：词袋模型与TF-IDF</h2><h3 id="2-1-最简单的文本表示：词袋子模型（bag-of-words）"><a href="#2-1-最简单的文本表示：词袋子模型（bag-of-words）" class="headerlink" title="2.1 最简单的文本表示：词袋子模型（bag of words）"></a>2.1 最简单的文本表示：词袋子模型（bag of words）</h3><p>词袋子模型是一种非常经典的文本表示。顾名思义，它就是将字符串视为一个 <strong>“装满字符（词）的袋子”</strong> ，袋子里的 <strong>词语是随便摆放的</strong>。而两个词袋子的相似程度就以它们重合的词及其相关分布进行判断。</p>
+<p><img alt="图片" class="post-img b-lazy" data-img="http://ww1.sinaimg.cn/large/b57cc2efly1fxcjker3m9j205k07kq3u.jpg" data-index="0" data-src="http://ww1.sinaimg.cn/large/b57cc2efly1fxcjker3m9j205k07kq3u.jpg"></p>
+<p>举个例子，对于句子：</p>
+<blockquote>
+<p>“我们这些傻傻的路痴走啊走，好不容易找到了饭店的西门”。</p>
+</blockquote>
+<p>我们先进行<strong>分词</strong>，将所有出现的词储存为一个词表。然后依据 <strong>“词语是否出现在词表中”</strong> 可以将这句话变为这样的向量：</p>
+<blockquote>
+<p>[1,0,1,1,1,0,0,1,…]</p>
+</blockquote>
+<blockquote>
+<p>词表：[我们，你们，走，西门，的，吃饭，旅游，找到了,…]</p>
+</blockquote>
+<p>其中向量的<strong>每个维度唯一对应着词表中的一个词</strong>。可见这个向量的大部分位置是0值，这种情况叫作<strong>“稀疏”</strong>。为了减少存储空间，我们也可以只储存非零值的位置。</p>
+<p>在实际应用中，这种方法非常常用。</p>
+<h4 id="2-1-1-词袋子模型的优点"><a href="#2-1-1-词袋子模型的优点" class="headerlink" title="2.1.1 词袋子模型的优点"></a>2.1.1 词袋子模型的优点</h4><ol>
+<li>简单，方便，快速</li>
+<li>在语料充足的前提下，对于简单的自然语言处理任务效果不错。如文本分类。</li>
+</ol>
+<h4 id="2-1-2-词袋子模型的缺点"><a href="#2-1-2-词袋子模型的缺点" class="headerlink" title="2.1.2 词袋子模型的缺点"></a>2.1.2 词袋子模型的缺点</h4><ol>
+<li>其准确率往往比较低。凡是出现在文本中的词一视同仁，不能体现不同词在一句话中的不同的重要性。</li>
+<li><strong>无法关注词语之间的顺序关系，这是词袋子模型最大的缺点</strong>。如“武松打老虎”跟“老虎打武松”在词袋子模型中是认为一样的。</li>
+</ol>
+<h3 id="2-2-对词袋子模型的改进：TF-IDF"><a href="#2-2-对词袋子模型的改进：TF-IDF" class="headerlink" title="2.2 对词袋子模型的改进：TF-IDF"></a>2.2 对词袋子模型的改进：TF-IDF</h3><h4 id="2-2-1-不仅考虑词语是否出现，还考虑其出现的次数或者频率（TF）"><a href="#2-2-1-不仅考虑词语是否出现，还考虑其出现的次数或者频率（TF）" class="headerlink" title="2.2.1 不仅考虑词语是否出现，还考虑其出现的次数或者频率（TF）"></a>2.2.1 不仅考虑词语是否出现，还考虑其出现的次数或者频率（TF）</h4><blockquote>
+<p>[1,0,2,1,2,0,0,1,…]</p>
+</blockquote>
+<blockquote>
+<p>词表：[我们，你们，走，西门，的，吃饭，旅游，找到了,…]</p>
+</blockquote>
+<p>“的”这个次占了词频的很大的比重，而它对确定文本信息几乎没什么用。所以我们应该忽略掉这些词，取消掉它们的影响。一种方法是维护一个停用词表。但这种方式太粗暴。</p>
+<p>改进方式：一个词预测主题的能力越强（与主题的关联程度），权重越大，反之，权重越小。在网页中看到“原子能”这个词，或多或少能够了解网页的主题，而看到“应用”一词，则对主题基本上还是一无所知。因此，“原子能”的权重应该比应用大。<br>容易发现，如果一个关键词只在很少的网页出现，通过它就容易锁定搜索目标，它的权重也就应该比较大。反正，如果一个词在大量的网页中出现，看到它仍然不清楚要找什么内容，因此它的权重应该小。（比如你在搜索“python gensim”，“python”这个关键词会在很多的网页中出现，内容可能是python入门介绍，python官网，python应用，而“gensim”却只会在相对比较少的网页中出现，一般所以gensim的官网，gensim的安装教程，gensim的学习笔记等，而后者是我们更倾向于看到的内容）。</p>
+<h4 id="2-2-2-统计逆文档频率——IDF"><a href="#2-2-2-统计逆文档频率——IDF" class="headerlink" title="2.2.2 统计逆文档频率——IDF"></a>2.2.2 统计逆文档频率——<strong>IDF</strong></h4><p>不仅考虑这个词在当下文本的出现的概率，还考虑出现该词语的文档占总文档出现的频率（DF）。其基本假设是<strong>如果一个词语在不同的文档中反复出现，那么它对于识别该文本并不重要</strong>。如高频词“我们”、“那么”之类。</p>
+<p>严格来说，逆文档频率的公式为-log(出现该词语的文档占总文档出现的频率)</p>
+<p>如关键字“python”在10万个网页中出现，而“gensim”只在1000个网页中出现，那么“gensim”的权重就会比“python”多，这样搜索出来的结果就与你想要的结果越贴近。比如，假定中文网页数是=10亿，停止词的在所有的网页中都出现，即D=10亿，那么它的IDF = log(10亿 / 10亿) = log(1) =0。假如专用词“原子能”在两百万个网页中出现，即Dw=200万，则它的权重IDF=log(500) =2.7。又假定通用词“应用”，出现在五亿个网页中，它的权重IDF = log(2)则只有 0.3。</p>
+<p><img alt="图片" class="post-img b-lazy" data-img="http://ww1.sinaimg.cn/large/b57cc2efly1fxcjkg43yxj218g0pktow.jpg" data-index="1" data-src="http://ww1.sinaimg.cn/large/b57cc2efly1fxcjkg43yxj218g0pktow.jpg"></p>
+<p>TF-IDF的概念被公认为信息检索中最重要的发明。在搜索，文献分类，与其他相关领域有广泛的应用。</p>
+<h2 id="3-文本分布式表示：word2vec"><a href="#3-文本分布式表示：word2vec" class="headerlink" title="3.文本分布式表示：word2vec"></a>3.文本分布式表示：word2vec</h2><ul>
+<li><strong>参考笔记</strong>：<a href="https://blog.csdn.net/longxinchen_ml/article/details/51567960" target="_blank" rel="noopener">斯坦福cs224d Lecture 1</a></li>
+</ul>
+<h3 id="3-1-词向量的one-hot表示"><a href="#3-1-词向量的one-hot表示" class="headerlink" title="3.1 词向量的one-hot表示"></a>3.1 词向量的one-hot表示</h3><p>我们拿英文举例。</p>
+<p>英语中大约有1300万个词组（token，自定义字符串，译作词组），不过他们全部是独立的吗？并不是哦，比如有一些词组，“Feline猫科动物”和“Cat猫”，“Hotel宾馆“和”Motel汽车旅馆”，其实有一定的关联或者相似性在。因此，我们希望用词向量编码词组，使它代表在词组的N维空间中的一个点（而点与点之间有距离的远近等关系，可以体现深层一点的信息）。每一个词向量的维度都可能会表征一些意义（物理含义），这些意义我们用“声明speech”来定义。例如，语义维度可以用来表明时态（过去与现在与未来），计数（单数与复数），和性别（男性与女性）。</p>
+<p>说起来，词向量的编码方式其实挺有讲究的。咱们从最简单的看起，最简单的编码方式叫做one-hot vector：假设我们的词库总共有n个词，那我们开一个1<em>n的高维向量，而每个词都会在某个索引index下取到1，其余位置全部都取值为0.词向量在这种类型的编码中如下图所示：<br>$$ w^{aardcark}=<br>\begin{bmatrix}<br>     1  \<br>     0  \<br>     0 \<br>     \vdots \<br>     0<br>\end{bmatrix} ,<br>w^{a}=<br>\begin{bmatrix}<br>     0  \<br>     1  \<br>     0 \<br>     \vdots \<br>     0<br>\end{bmatrix}<br>w^{at}=<br>\begin{bmatrix}<br>     0  \<br>     0  \<br>     1 \<br>     \vdots \<br>     0<br>\end{bmatrix}<br>\cdots \<br>w^{zebra}=<br>\begin{bmatrix}<br>     0  \<br>     0  \<br>     0 \<br>     \vdots \<br>     1<br>\end{bmatrix}<br>$$<br>这种词向量编码方式简单粗暴，我们将每一个词作为一个完全独立的个体来表达。遗憾的是，这种方式下，我们的词向量没办法给我们任何形式的词组相似性权衡。例如:<br>$$(w^{hotel})^Tw^{motel}=(w^{hotel})^Tw^{cat}=0$$<br>（注：这里$W^{-1}$是$W$的逆矩阵，它们有关系：$W^{-1}</em>W=1$，注意到hotel和motel是近义词）</p>
+<p>究其根本你会发现，是你开了一个极高维度的空间，然后每个词语都会占据一个维度，因此没有办法在空间中关联起来。因此我们可能可以把词向量的维度降低一些，在这样一个子空间中，可能原本没有关联的词就关联起来了。</p>
+<h3 id="3-2-基于SVD降维的表示方法"><a href="#3-2-基于SVD降维的表示方法" class="headerlink" title="3.2 基于SVD降维的表示方法"></a>3.2 基于SVD降维的表示方法</h3><p>这是一种构造词嵌入（即词向量）的方法，我们首先会遍历所有的文本数据集，然后统计词出现的次数，接着用一个矩阵$X$来表示所有的次数情况，紧接着对X进行奇异值分解得到一个$USV^T$的分解。然后用$U$的行（rows）作为所有词表中词的词向量。对于矩阵$X$，我们有几种选择，咱们一起来比较一下。</p>
+<h4 id="3-2-1-词-文档矩阵"><a href="#3-2-1-词-文档矩阵" class="headerlink" title="3.2.1 词-文档矩阵"></a>3.2.1 词-文档矩阵</h4><p>最初的想法是，我们猜测相互关联的词组同时出现在相同的文件中的概率很高。例如，“银行”、“债券”、“股票”、“钱”等都可能出现在一起。但是，“银行”、“章鱼”、“香蕉”和“曲棍球”可能不会一直一起出现。基于这个想法，我们建立一个词组文档矩阵$X$，具体是这么做的：遍历海量的文件，每次词组i出现在文件j中时，将$X_{ij}$的值加1。不过大家可想而知，这会是个很大的矩阵$R^{|V| ×M}$，而且矩阵大小还和文档个数M有关系。所以咱们最好想办法处理和优化一下。</p>
+<h4 id="3-2-2-基于窗口的共现矩阵X"><a href="#3-2-2-基于窗口的共现矩阵X" class="headerlink" title="3.2.2 基于窗口的共现矩阵X"></a>3.2.2 基于窗口的共现矩阵X</h4><p>我们还是用一样的逻辑，不过换一种统计方式，把矩阵$X$记录的词频变成一个相关性矩阵。我们先规定一个固定大小的窗口，然后统计每个词出现在窗口中次数，这个计数是针对整个语料集做的。可能说得有点含糊，咱们一起来看个例子，假定我们有如下的3个句子，同时我们的窗口大小设定为1（把原始的句子分拆成一个一个的词）：</p>
+<ol>
+<li>I enjoy flying.</li>
+<li>I like NLP.</li>
+<li>I like deep learning.<br>由此产生的计数矩阵如下：</li>
+</ol>
+<p><img alt class="post-img b-lazy" data-img="./img/Co-occurrence_matrix.png" data-index="2" data-src="./img/Co-occurrence_matrix.png"></p>
+<p>然后我们对X做奇异值分解，观察观察奇异值（矩阵的对角元素），并根据我们期待保留的百分比来进行截断（只保留前k个维度）：</p>
+<p><img alt class="post-img b-lazy" data-img="./img/Energy_ratio.png" data-index="3" data-src="./img/Energy_ratio.png"></p>
+<p>然后我们把子矩阵$U_{1:|V|,1:k}$视作我们的词嵌入矩阵。也就是说，对于词表中的每一个词，我们都用一个k维的向量来表达了。</p>
+<p>对X采用奇异值分解</p>
+<p><img alt class="post-img b-lazy" data-img="https://pic4.zhimg.com/80/a01cce7a35161a838df99a655c00a823_hd.png" data-index="4" data-src="https://pic4.zhimg.com/80/a01cce7a35161a838df99a655c00a823_hd.png"></p>
+<p>通过选择前K个奇异向量来进行降维：</p>
+<p><img alt class="post-img b-lazy" data-img="https://pic4.zhimg.com/80/44da818d314a1be5b33f8c9c9f9dab33_hd.png" data-index="5" data-src="https://pic4.zhimg.com/80/44da818d314a1be5b33f8c9c9f9dab33_hd.png"></p>
+<p>这两种方法都能产生词向量，它们能够充分地编码语义和句法的信息，但同时也带来了其他的问题：</p>
+<ul>
+<li>矩阵的维度会经常变化（新的词语经常会增加，语料库的大小也会随时变化）。</li>
+<li>矩阵是非常稀疏的，因为大多数词并不同时出现。</li>
+<li>矩阵的维度通常非常高（$≈10^6×10^6$）</li>
+<li>训练需要$O(n^2)$的复杂度（比如SVD）</li>
+<li>需要专门对矩阵X进行特殊处理，以应对词组频率的极度不平衡的状况</li>
+</ul>
+<p>当然，有一些办法可以缓解一下上述提到的问题：</p>
+<ul>
+<li>忽视诸如“he”、“the” 、“has”等功能词。</li>
+<li>应用“倾斜窗口”（ramp window），即:根据文件中词组之间的距离给它们的共现次数增加相应的权重。</li>
+<li>使用皮尔森的相关性（Pearson correlation），将0记为负数，而不是它原来的数值。</li>
+</ul>
+<p>不过缓解终归只是缓解，咱们需要更合理地解决这些问题，这也就是我们马上要提到的基于神经网络的方法。</p>
+<h3 id="3-3-基于神经网络的表示方法"><a href="#3-3-基于神经网络的表示方法" class="headerlink" title="3.3 基于神经网络的表示方法"></a>3.3 基于神经网络的表示方法</h3><p>现在我们退后一步，来尝试一种新的方法。在这里我们并不计算和存储全局信息，因为这会包含太多大型数据集和数十亿句子。我们尝试创建一个模型，它能够一步步迭代地进行学习，并最终得出每个单词基于其上下文的条件概率。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">词语的上下文：</span><br><span class="line">一个词语的上下文是它周围C个词以内的词。如果C=2，句子&quot;The quick brown fox jumped over the lazy dog&quot;中单词&quot;fox&quot;的上下文为 &#123;&quot;quick&quot;, &quot;brown&quot;, &quot;jumped&quot;, &quot;over&quot;&#125;.</span><br></pre></td></tr></table></figure>
+<p>我们想建立一个概率模型，它包含已知和未知参数。每增加一个训练样本，它就能从模型的输入、输出和期望输出（标签），多学到一点点未知参数的信息。</p>
+<p>在每次迭代过程中，这个模型都能够评估其误差，并按照一定的更新规则，惩罚那些导致误差的参数。这种想法可以追溯到1986年（Learning representations by back-propagating errors. David E. Rumelhart, Geoffrey E. Hinton, and Ronald J.Williams (1988)），我们称之为误差“反向传播”法。</p>
+<h4 id="3-3-1-语言模型（1-gram-2-gram等等）"><a href="#3-3-1-语言模型（1-gram-2-gram等等）" class="headerlink" title="3.3.1 语言模型（1-gram,2-gram等等）"></a>3.3.1 语言模型（1-gram,2-gram等等）</h4><p>首先，我们需要建立一个能给“分词序列”分配概率的模型。我们从一个例子开始：</p>
+<p><code>&quot;The cat jumped over the puddle.&quot;（猫 跳 过 水坑）</code></p>
+<p>一个好的语言模型会给这句话以很高的概率，因为这是一个在语法和语义上完全有效的句子。同样地，这句”stock boil fish is toy”（股票 煮 鱼 是 玩具）就应该有一个非常低的概率 ，因为它是没有任何意义的。在数学上，我们可以令任意给定的n个有序的分词序列的概率为：<br> $$P(w_1,w_2,w_3…w_n)$$<br>我们可以采用一元语言模型。它假定词语的出现是完全独立的，于是可以将整个概率拆开相乘：<br> $$P(w_1,w_2,w_3…w_n)=\prod_{i=1}^NP(w_i)$$<br>看到这里，肯定很多同学就要喷了，这不对，词和词之间没有关联吗？确实，我们知道一句话中每一个词语都跟它前面的词语有很强的依赖关系，忽略这一点的话，一些完全无意义的句子，可能会有很高的概率。咱们稍微改一改，让一个词语的概率依赖于它前面一个词语。我们将这种模型称作bigram（2-gram，二元语言模型），表示为：<br> $$P(w_1,w_2,w_3…w_n)=\prod_{i=2}^NP(w_i|w_{i-1})$$<br>看起来还是有点简单？恩，也对，我们只考虑一个词语依赖于其相邻的一个词语的关系，而不是考虑其依赖整个句子的情况。别着急，接下来将会看到，这种方法能让我们有非常显著的进步。考虑到前面 “词-词”矩阵的情况，我们至少可以算出两个词语共同出现的概率。但是，旧话重提，这仍然要求储存和计算一个非常的大数据集里面的全部信息。<br>现在我们理解了“分词序列”的概率（其实就是N-gram语言模型啦），让我们观察一些能够学习到这些概率的例子。</p>
+<h4 id="3-3-2-连续词袋模型（CBOW）"><a href="#3-3-2-连续词袋模型（CBOW）" class="headerlink" title="3.3.2 连续词袋模型（CBOW）"></a>3.3.2 连续词袋模型（CBOW）</h4><p>有种模型是以{“The”, “cat”, ’over”, “the’, “puddle”}为上下文，能够预测或产生它们中心的词语”jumped”，叫做连续词袋模型。</p>
+<p>上面是最粗粒度的描述，咱们来深入一点点，看点细节。</p>
+<p>首先，我们要建立模型的一些已知参数。它们就是将句子表示为一些one-hot向量，作为模型的输入，咱们记为x(c)吧。模型的输出记为y(c)吧。因为连续词袋模型只有一个输出，所以其实我们只需记录它为y。在我们上面举的例子中，y就是我们已经知道的（有标签的）中心词（如本例中的”jumped”）。</p>
+<p>好了，已知参数有了，现在我们一起来定义模型中的未知参数。我们建立两矩阵，$V\in R^{n<em>|V|}$和$U\in R^{|V|</em>n}$ 。其中的n是可以任意指定的，它用来定义我们“嵌入空间”（embedding space）的维度。V是输入词矩阵。当词语$w_i$（译注：$w_i$是只有第i维是1其他维是0的one-hot向量）作为模型的一个输入的时候，V的第i列就是它的n维“嵌入向量”（embedded vector）。我们将V的这一列表示为$v_i$。类似的，U是输出矩阵。当$w_j$作为模型输出的时候，U的第j行就是它的n维“嵌入向量”。我们将U的这一行表示为$u_j$。要注意我们实际上对于每个词语$w_i$学习了两个向量。（作为输入词的向量$v_i$，和作为输出词的向量$u_j$）。</p>
+<p>连续词袋模型（CBOW）中的各个记号：</p>
+<ul>
+<li>$w_i$:单词表V中的第i个单词</li>
+<li>$v\in R^{n*|V|}$：输入词矩阵</li>
+<li>$v_i$：V的第i列，单词$w_i$的输入向量</li>
+<li>$u\in R^{|V|*n}$：输出词矩阵</li>
+<li>$u_i$：U的第i行，单词$w_i$的输出向量</li>
+</ul>
+<p>那这个模型是如何运作的呢？我们把整个过程拆分成以下几步：</p>
+<ol>
+<li>对于m个词长度的输入上下文，我们产生它们的one-hot向量（$x^{(c-m)},\cdots,x^{(c-1)},x^{(c+1)},\cdots,x^{(c+m)}$）。</li>
+<li>我们得到上下文的嵌入词向量（$v_{c-m+1}=Vx^{(c-m+1)},\cdots, $v_{c+m}=Vx^{(c+m)} ）</li>
+<li>将这些向量取平均$\hat v={v_{c-m}+v_{c-m+1}+\cdots+v_{c+m}\over2m}$</li>
+<li>产生一个得分向量 $z=U\hat v$</li>
+<li>将得分向量转换成概率分布形式$\hat y=softmax(z)$</li>
+<li>我们希望我们产生的概率分布 ,与真实概率分布$\hat y$相匹配。而$y$刚好也就是我们期望的真实词语的one-hot向量。</li>
+</ol>
+<p>用一幅图来表示就是下面这个样子：</p>
+<p><img alt class="post-img b-lazy" data-img="http://i.stack.imgur.com/fYxO9.png" data-index="6" data-src="http://i.stack.imgur.com/fYxO9.png"></p>
+<p>通过上面说的种种步骤，我们知道有了矩阵U、V整个过程是如何运作的，那我们怎样找到U和V呢？——我们需要有一个目标函数。通常来说，当我们试图从已知概率学习一个新的概率时，最常见的是从信息论的角度寻找方法来评估两个概率分布的差距。其中广受好评又广泛应用的一个评估差异/损失的函数是交叉熵：</p>
+<p>$$H(\hat y,y)=-\sum_{j=1}^{|V|}y_jlog(\hat y_j)$$</p>
+<p>结合我们当下的例子，y只是一个one-hot向量，于是上面的损失函数就可以简化为：</p>
+<p>$$H(\hat y,y)=-y_ilog(\hat y_i)$$</p>
+<p>我们用c表示y这个one-hot向量取值为1的那个维度的下标。所以在我们预测为准确值的情况下$\hat y_c =1$。于是损失为 −1 log(1) = 0。所以对于一个理想的预测值，因为预测得到的概率分布和真实概率分布完全一样，因此损失为0。现在让我们看一个相反的情况，也就是我们的预测结果非常不理想，此时$\hat y_c =0.01$。计算得到的损失为−1 log(0.01) ≈ 4.605，损失非常大，原本这才是标准结果，可是你给了一个非常低的概率，因此会拿到一个非常大的loss 。可见交叉熵为我们提供了一个很好的衡量两个概率分布的差异的方法。于是我们最终的优化函数为：</p>
+<p><img alt class="post-img b-lazy" data-img="./img/cbow-loss.png" data-index="7" data-src="./img/cbow-loss.png"></p>
+<p>我们用梯度下降法去更新每一个相关的词向量$u_c$和$v_j$ 。</p>
+<h4 id="3-3-3-Skip-Gram-模型"><a href="#3-3-3-Skip-Gram-模型" class="headerlink" title="3.3.3 Skip-Gram 模型"></a>3.3.3 Skip-Gram 模型</h4><p>很上面提到的模型对应的另一种思路，是以中心的词语”jumped”为输入，能够预测或产生它周围的词语”The”, “cat”, ’over”, “the”, “puddle”等。这里我们叫”jumped”为上下文。我们把它叫做Skip-Gram 模型。<br>这个模型的建立与连续词袋模型（CBOM）非常相似，但本质上是交换了输入和输出的位置。我们令输入的one-hot向量（中心词）为x（因为它只有一个），输出向量为y(j)。U和V的定义与连续词袋模型一样。</p>
+<p>Skip-Gram 模型中的各个记号：</p>
+<ul>
+<li>$w_i$:单词表V中的第i个单词</li>
+<li>$v\in R^{n*|V|}$：输入词矩阵</li>
+<li>$v_i$：V的第i列，单词$w_i$的输入向量</li>
+<li>$u\in R^{|V|*n}$：输出词矩阵</li>
+<li>$u_i$：U的第i行，单词$w_i$的输出向量</li>
+</ul>
+<p>对应到上面部分，我们可以把Skip-Gram 模型的运作方式拆分成以下几步：</p>
+<ol>
+<li>生成one-hot输入向量x。</li>
+<li>得到上下文的嵌入词向量$v_c=Vx$。</li>
+<li>因为这里不需要取平均值的操作，所以直接是$\hat v=v_c$。</li>
+<li>通过$u=Uv_c$产生2m个得分向量$u_{c-m},\cdots,u_{c-1},u_{c+1},\cdots,u_{(c+m)}$。</li>
+<li>将得分向量转换成概率分布形式$y=softmax(u)$。</li>
+<li>我们希望我们产生的概率分布与真实概率分布$y^{c-m},\cdots,y^{c-1},,y^{c+1}\cdots,y^{c+m}$ 相匹配，也就是我们真实输出结果的one-hot向量。</li>
+</ol>
+<p>用一幅图来表示这个过程如下：</p>
+<p><img alt class="post-img b-lazy" data-img="http://i.stack.imgur.com/igSuE.png" data-index="8" data-src="http://i.stack.imgur.com/igSuE.png"></p>
+<p>像连续词袋模型一样，我们需要为模型设定一个目标/损失函数。不过不同的地方是我们这里需要引入朴素贝叶斯假设来将联合概率拆分成独立概率相乘。如果你之前不了解它，可以先跳过。这是一个非常强的条件独立性假设。也就是说只要给出了中心词，所有的输出词是完全独立的。</p>
+<p><img alt class="post-img b-lazy" data-img="./img/sg-loss.png" data-index="9" data-src="./img/sg-loss.png"></p>
+<p>我们可以用随机梯度下降法去更新未知参数的梯度。</p>
+<h4 id="3-3-4-负例采样（Negative-Sampling）"><a href="#3-3-4-负例采样（Negative-Sampling）" class="headerlink" title="3.3.4 负例采样（Negative Sampling）"></a>3.3.4 负例采样（Negative Sampling）</h4><p>我们再次观察一下目标函数，注意到对整个单词表|V|求和的计算量是非常巨大的，任何一个对目标函数的更新和求值操作都会有O(|V|)的时间复杂度。我们需要一个思路去简化一下，我们想办法去求它的近似。<br>对于每一步训练，我们不去循环整个单词表，而只是抽象一些负面例子就够了！我们可以从一个噪声分布$(P_n(w))$中抽样，其概率分布与单词表中的频率相匹配。为了将描述问题的公式与负例采样相结合，我们只需要更新我们的：</p>
+<ul>
+<li>目标函数</li>
+<li>梯度</li>
+<li>更新规则</li>
+</ul>
+<p>Mikolov ET AL.在他的《Distributed Representations of Words and Phrases and their Compositionality》中提出了负例采样。虽然负例采样是基于Skip-Gram 模型，它实际上是对一个不同的目标函数进行最优化。考虑一个“词-上下文”对（w,c），令P(D = 1|w, c)为(w, c)来自于语料库的概率。相应的，P(D = 0|w, c) 则是不来自于语料库的概率。我们首先对P(D = 1|w, c)用sigmoid函数建模：<br>$$p(D=1|w,c,\theta)= {1\over{1+e^{(-v_c^Tv_w)}}}$$<br>现在我们需要建立一个新的目标函数。如果(w, c)真是来自于语料库，目标函数能够最大化P(D = 1|w, c)。反之亦然。我们对这两个概率采用一个简单的最大似然法。（这里令θ为模型的参数，在我们的例子中，就是对应的U和V。）</p>
+<p><img alt class="post-img b-lazy" data-img="./img/sgns-loss.png" data-index="10" data-src="./img/sgns-loss.png"></p>
+<p>注意这里的$\widetilde D$表示“错误的”或者“负面的”语料库，像句子”stock boil fish is toy”就是从这样的语料库来的。不自然的句子应该有比较低的发生概率，我们可以从词库中随机采样来产生这样的“负面的”语料库。我们的新目标函数就变成了：</p>
+<p>$$log\sigma(u_(c-m+j)^T.v_c)+\sum_{k=1}^Klog\sigma(-\widetilde u_k^T.v_c)$$</p>
+<p>在这里${\widetilde u_k|k=1,\cdots,K}$是从(Pn(w))中抽样取到的。需要多说一句的是，虽然关于怎么样最好地近似有许多讨论和研究，但是工作效果最好的似乎是指数为3/4的一元语言模型。至于为什么是3/4，下面有几个例子来帮助大家感性地理解一下：</p>
+<p>$$is:0.9^{3/4}=0.92\<br>constitution:0.09^{3/4}=0.16 \<br>bombastic:0.01^{3/4}=0.032$$</p>
+<p>你看，经过3/4这样一个指数处理，”Bombastic”(少见)被采样的概率是之前的3倍，而“is”这个词(多见)被采样的概率只是稍微增长了一点点。</p>
+<h3 id="3-4-词向量的作用与获取"><a href="#3-4-词向量的作用与获取" class="headerlink" title="3.4 词向量的作用与获取"></a>3.4 词向量的作用与获取</h3><p>很多高阶的深度学习自然语言处理任务，都可以用词向量作为基础。我们课程后面的很多任务，可以用预训练好的word2vec初始化。可以从<a href="https://github.com/Embedding/Chinese-Word-Vectors" target="_blank" rel="noopener">开源链接</a>获取。</p>
+<p><img alt class="post-img b-lazy" data-img="./img/Pre-training_word_vector.png" data-index="11" data-src="./img/Pre-training_word_vector.png"></p>
+<h3 id="3-5-词向量为什么有用"><a href="#3-5-词向量为什么有用" class="headerlink" title="3.5 词向量为什么有用"></a>3.5 词向量为什么有用</h3><ul>
+<li>基于词与其他词的某种共现关系<ul>
+<li>sgns 与 PMI矩阵 的等价性证明, 降维版本不等价。《Neural-Word-Embeddings-as-Implicit-Matrix-Factorization》<ul>
+<li>神经网络与SVD的求解方法只是降维方式的不同</li>
+<li>神经网络更像MF，而MF与SVD的降维的约束条件不同，神经网络的目标函数与MF的目标函数也不同</li>
+</ul>
+</li>
+<li>GloVe与MF关系更近<ul>
+<li>目标函数更像</li>
+<li>CBOW没有类似的降维矩阵对应</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>基于语言模型<ul>
+<li>词向量与语言模型本来是两个独立的NLP问题领域，因为深度学习联系在了一起。CBOW。</li>
+<li>基于词向量构建成句子向量进而进而完成语言模型的任务</li>
+</ul>
+</li>
+<li>基于其他监督学习任务<ul>
+<li>词向量并不只是语言模型可以得到，基于有监督学习也可以得到：C&amp;W</li>
+<li>基于词向量构建成句子向量进而进而完成文本分类或文本相似度判断的任务</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-python中文文本向量化表示"><a href="#4-python中文文本向量化表示" class="headerlink" title="4.python中文文本向量化表示"></a>4.python中文文本向量化表示</h2><ul>
+<li><a href="https://github.com/AimeeLee77/keyword_extraction" target="_blank" rel="noopener">参考代码</a></li>
+<li><a href="https://github.com/Jasonnor/tf-idf-python" target="_blank" rel="noopener">python实现tfidf</a></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/python</span></span><br><span class="line"><span class="comment"># coding=utf-8</span></span><br><span class="line"><span class="comment"># 采用TF-IDF方法提取文本关键词</span></span><br><span class="line"><span class="comment"># http://scikit-learn.org/stable/modules/feature_extraction.html#tfidf-term-weighting</span></span><br><span class="line"><span class="keyword">import</span> sys,codecs</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> jieba.posseg</span><br><span class="line"><span class="keyword">import</span> jieba.analyse</span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> feature_extraction</span><br><span class="line"><span class="keyword">from</span> sklearn.feature_extraction.text <span class="keyword">import</span> TfidfTransformer</span><br><span class="line"><span class="keyword">from</span> sklearn.feature_extraction.text <span class="keyword">import</span> CountVectorizer</span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">       TF-IDF权重：</span></span><br><span class="line"><span class="string">           1、CountVectorizer 构建词频矩阵</span></span><br><span class="line"><span class="string">           2、TfidfTransformer 构建tfidf权值计算</span></span><br><span class="line"><span class="string">           3、文本的关键字</span></span><br><span class="line"><span class="string">           4、对应的tfidf矩阵</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="comment"># 数据预处理操作：分词，词性筛选</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dataPrepos</span><span class="params">(text)</span>:</span></span><br><span class="line">    l = []</span><br><span class="line">    pos = [<span class="string">'n'</span>, <span class="string">'nz'</span>, <span class="string">'v'</span>, <span class="string">'vd'</span>, <span class="string">'vn'</span>, <span class="string">'l'</span>, <span class="string">'a'</span>, <span class="string">'d'</span>]  <span class="comment"># 定义选取的词性</span></span><br><span class="line">    seg = jieba.posseg.cut(text)  <span class="comment"># 分词</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> seg:</span><br><span class="line">        <span class="keyword">if</span> i.word <span class="keyword">and</span> i.flag <span class="keyword">in</span> pos:  <span class="comment"># 词性筛选</span></span><br><span class="line">            l.append(i.word)</span><br><span class="line">    <span class="keyword">return</span> l</span><br><span class="line"></span><br><span class="line"><span class="comment"># tf-idf获取文本top10关键词</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getKeywords_tfidf</span><span class="params">(data,topK)</span>:</span></span><br><span class="line">    idList, titleList, abstractList = data[<span class="string">'id'</span>], data[<span class="string">'title'</span>], data[<span class="string">'abstract'</span>]</span><br><span class="line">    corpus = [] <span class="comment"># 将所有文档输出到一个list中，一行就是一个文档</span></span><br><span class="line">    <span class="keyword">for</span> index <span class="keyword">in</span> range(len(idList)):</span><br><span class="line">        text = <span class="string">'%s。%s'</span> % (titleList[index], abstractList[index]) <span class="comment"># 拼接标题和摘要</span></span><br><span class="line">        text = dataPrepos(text) <span class="comment"># 文本预处理</span></span><br><span class="line">        text = <span class="string">" "</span>.join(text) <span class="comment"># 连接成字符串，空格分隔</span></span><br><span class="line">        corpus.append(text)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 1、构建词频矩阵，将文本中的词语转换成词频矩阵</span></span><br><span class="line">    vectorizer = CountVectorizer()</span><br><span class="line">    X = vectorizer.fit_transform(corpus) <span class="comment"># 词频矩阵,a[i][j]:表示j词在第i个文本中的词频</span></span><br><span class="line">    <span class="comment"># 2、统计每个词的tf-idf权值</span></span><br><span class="line">    transformer = TfidfTransformer()</span><br><span class="line">    tfidf = transformer.fit_transform(X)</span><br><span class="line">    <span class="comment"># 3、获取词袋模型中的关键词</span></span><br><span class="line">    word = vectorizer.get_feature_names()</span><br><span class="line">    <span class="comment"># 4、获取tf-idf矩阵，a[i][j]表示j词在i篇文本中的tf-idf权重</span></span><br><span class="line">    weight = tfidf.toarray()</span><br><span class="line">    <span class="comment"># 5、打印词语权重</span></span><br><span class="line">    ids, titles, keys = [], [], []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(weight)):</span><br><span class="line">        print(<span class="string">u"-------这里输出第"</span>, i+<span class="number">1</span> , <span class="string">u"篇文本的词语tf-idf------"</span>)</span><br><span class="line">        ids.append(idList[i])</span><br><span class="line">        titles.append(titleList[i])</span><br><span class="line">        df_word,df_weight = [],[] <span class="comment"># 当前文章的所有词汇列表、词汇对应权重列表</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(word)):</span><br><span class="line">            <span class="keyword">print</span> (word[j],weight[i][j])</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> corpus</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># 读取数据集</span></span><br><span class="line">    dataFile = <span class="string">'/data/NLP/sample_data.csv'</span></span><br><span class="line">    data = pd.read_csv(dataFile)</span><br><span class="line">    <span class="comment"># tf-idf关键词抽取</span></span><br><span class="line">    <span class="keyword">global</span> corpusA</span><br><span class="line">    corpusA = getKeywords_tfidf(data,<span class="number">10</span>)</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">corpusA = []</span><br><span class="line">main()</span><br></pre></td></tr></table></figure>
+<pre><code>Building prefix dict from the default dictionary ...
+Dumping model to file cache /tmp/jieba.cache
+Loading model cost 1.783 seconds.
+Prefix dict has been built succesfully.
+
+
+-------这里输出第 1 篇文本的词语tf-idf------
+一定 0.054830755756848815
+一段时间 0.0
+主体 0.0
+乘客 0.0
+乘车 0.0
+事件 0.0
+二者 0.0
+互相 0.0
+交叉 0.0
+产品 0.0
+产生 0.09322230345997895
+介绍 0.0
+仍然 0.054830755756848815
+仪表板 0.0
+传感器 0.054830755756848815
+估计 0.0
+位置 0.0407792498624949
+作为 0.0
+使得 0.0
+使用 0.0
+使能 0.054830755756848815
+使该 0.0
+信号 0.09322230345997895
+倾斜 0.0
+偏压 0.0
+停转 0.0
+储能 0.0
+元件 0.0
+免受 0.0
+关闭 0.0
+具有 0.0
+内燃机 0.0
+内管 0.0
+凹陷 0.0
+分析 0.0
+分部 0.0
+分隔 0.0
+切换 0.054830755756848815
+利用 0.0
+制动 0.10966151151369763
+制造 0.0
+刹车 0.054830755756848815
+力矩 0.16449226727054644
+功能 0.054830755756848815
+包围 0.0
+包括 0.0
+单元 0.21932302302739526
+卸载 0.0
+参数 0.0
+发生器 0.0
+变型 0.0
+变速器 0.0
+启动 0.0
+吸收 0.0
+命令 0.0
+围绕 0.0
+地向 0.0
+坡道 0.10966151151369763
+基准 0.0
+增加 0.0
+处于 0.054830755756848815
+处在 0.0
+大于 0.054830755756848815
+大巴车 0.10966151151369763
+头枕 0.0
+安排 0.0
+安装 0.0
+定位 0.0
+实施 0.0
+实现 0.054830755756848815
+容量 0.0
+导引 0.0
+小于 0.10966151151369763
+峰值 0.0
+布置 0.0
+座椅 0.0
+延伸 0.0
+开启 0.0
+开始 0.0
+开度 0.10966151151369763
+引到 0.0
+形成 0.0
+总和 0.0
+总成 0.0
+恢复 0.054830755756848815
+悬挂 0.0
+成使 0.0
+手刹 0.054830755756848815
+手动 0.0
+持续 0.054830755756848815
+接到 0.0
+控制 0.3262780621099263
+控制系统 0.0
+描述 0.0
+提供 0.0
+摊开 0.0
+操作 0.0
+支承 0.0
+支撑 0.0
+支架 0.0
+放电 0.0
+数值 0.0
+整车 0.16449226727054644
+斜倚 0.0
+方向 0.0
+方式 0.0
+方法 0.0
+方面 0.0
+旋转 0.0
+无需 0.054830755756848815
+时间 0.054830755756848815
+更改 0.054830755756848815
+最低 0.0
+最靠近 0.0
+本发明 0.026727743968140975
+机动 0.0
+机动车 0.0
+机动车辆 0.0
+条件 0.0
+构件 0.0
+构造 0.0
+枢转 0.0
+枢转地 0.0
+枢轴 0.0
+档位 0.10966151151369763
+检测 0.10966151151369763
+椅背 0.0
+模式 0.0
+横向 0.0
+步骤 0.0
+气囊 0.0
+永磁 0.3289845345410929
+没有 0.0
+油门 0.10966151151369763
+泡沫 0.0
+涉及 0.0
+添加 0.054830755756848815
+溃缩 0.0
+满足 0.0
+特别 0.0
+状态 0.0
+独立 0.0
+用于 0.0
+电动 0.10966151151369763
+电机 0.3838152902979417
+电池 0.0
+电池组 0.0
+电能 0.0
+监测 0.0
+目标 0.054830755756848815
+目的 0.054830755756848815
+直到 0.0
+相交 0.0
+相关联 0.0
+相对 0.0
+着横 0.0
+硬件 0.054830755756848815
+确定 0.0
+碰撞 0.0
+移动 0.0
+空挡 0.0
+竖直 0.0
+端部 0.0
+策略 0.21932302302739526
+系统 0.0
+纵向 0.0
+组件 0.0
+织物 0.0
+结合 0.0
+结合部 0.0
+结构 0.026727743968140975
+继续 0.0
+耦接 0.0
+联接 0.0
+膨胀 0.0
+自动 0.046611151729989475
+行驶 0.0
+表面 0.0
+衬板 0.0
+装置 0.13983345518996843
+装饰 0.0
+覆盖 0.0
+角度 0.0
+触发 0.054830755756848815
+计算 0.0
+设备 0.054830755756848815
+设定值 0.10966151151369763
+设置 0.0407792498624949
+设计 0.0
+评估 0.0
+负荷 0.0
+货物 0.0
+货箱 0.0
+起步 0.10966151151369763
+越过 0.0
+踏板 0.21932302302739526
+踩下 0.10966151151369763
+车厢 0.0
+车身 0.0
+车辆 0.06511929167127112
+车门 0.0
+转速 0.16449226727054644
+轴线 0.0
+辅助 0.054830755756848815
+输出 0.10966151151369763
+过程 0.0
+运行 0.0
+运输工具 0.0
+进入 0.10966151151369763
+远离 0.0
+退出 0.054830755756848815
+速度 0.0
+邻接 0.0
+邻近 0.0
+部上 0.0
+部分 0.0
+部向 0.0
+配置 0.0
+重叠 0.0
+重启 0.0
+铰接 0.0
+闭环控制 0.054830755756848815
+间隔 0.0
+间隙 0.0
+防止 0.0
+防溜 0.3289845345410929
+降低 0.0
+限制 0.054830755756848815
+限定 0.0
+随后 0.0
+靠背 0.0
+靠近 0.0
+面板 0.0
+首先 0.0
+驱动 0.0815584997249898
+驱动器 0.0
+驻车 0.054830755756848815
+-------这里输出第 2 篇文本的词语tf-idf------
+一定 0.0
+一段时间 0.0
+主体 0.0
+乘客 0.0
+乘车 0.1407995509845537
+事件 0.1407995509845537
+二者 0.0
+互相 0.0
+交叉 0.1407995509845537
+产品 0.0
+产生 0.0
+介绍 0.0
+仍然 0.0
+仪表板 0.0
+传感器 0.0
+估计 0.0
+位置 0.0
+作为 0.1407995509845537
+使得 0.0
+使用 0.0
+使能 0.0
+使该 0.0
+信号 0.0
+倾斜 0.0
+偏压 0.0
+停转 0.0
+储能 0.0
+元件 0.1407995509845537
+免受 0.1407995509845537
+关闭 0.0
+具有 0.0686340047223278
+内燃机 0.0
+内管 0.0
+凹陷 0.1407995509845537
+分析 0.0
+分部 0.0
+分隔 0.0
+切换 0.0
+利用 0.0
+制动 0.0
+制造 0.0
+刹车 0.0
+力矩 0.0
+功能 0.0
+包围 0.0
+包括 0.0
+单元 0.0
+卸载 0.0
+参数 0.0
+发生器 0.0
+变型 0.0
+变速器 0.0
+启动 0.0
+吸收 0.1407995509845537
+命令 0.0
+围绕 0.0
+地向 0.0
+坡道 0.0
+基准 0.0
+增加 0.1407995509845537
+处于 0.0
+处在 0.0
+大于 0.0
+大巴车 0.0
+头枕 0.0
+安排 0.1407995509845537
+安装 0.0
+定位 0.0
+实施 0.0
+实现 0.0
+容量 0.0
+导引 0.0
+小于 0.0
+峰值 0.1407995509845537
+布置 0.0
+座椅 0.0
+延伸 0.0
+开启 0.0
+开始 0.0
+开度 0.0
+引到 0.0
+形成 0.0
+总和 0.0
+总成 0.0
+恢复 0.0
+悬挂 0.0
+成使 0.0
+手刹 0.0
+手动 0.0
+持续 0.0
+接到 0.0
+控制 0.0
+控制系统 0.0
+描述 0.0
+提供 0.11969248178082373
+摊开 0.0
+操作 0.0
+支承 0.0
+支撑 0.11969248178082373
+支架 0.0
+放电 0.0
+数值 0.0
+整车 0.0
+斜倚 0.0
+方向 0.0
+方式 0.11969248178082373
+方法 0.0
+方面 0.0
+旋转 0.0
+无需 0.0
+时间 0.0
+更改 0.0
+最低 0.0
+最靠近 0.0
+本发明 0.0
+机动 0.0
+机动车 0.0
+机动车辆 0.2815991019691074
+条件 0.0
+构件 0.0
+构造 0.0
+枢转 0.0
+枢转地 0.0
+枢轴 0.0
+档位 0.0
+检测 0.0
+椅背 0.0
+模式 0.0
+横向 0.0
+步骤 0.0
+气囊 0.0
+永磁 0.0
+没有 0.0
+油门 0.0
+泡沫 0.1407995509845537
+涉及 0.0
+添加 0.0
+溃缩 0.5631982039382148
+满足 0.0
+特别 0.1407995509845537
+状态 0.0
+独立 0.0
+用于 0.09310071944108866
+电动 0.0
+电机 0.0
+电池 0.0
+电池组 0.0
+电能 0.0
+监测 0.0
+目标 0.0
+目的 0.0
+直到 0.0
+相交 0.0
+相关联 0.0
+相对 0.0
+着横 0.0
+硬件 0.0
+确定 0.0
+碰撞 0.1407995509845537
+移动 0.0
+空挡 0.0
+竖直 0.0
+端部 0.0
+策略 0.0
+系统 0.0
+纵向 0.0
+组件 0.0
+织物 0.0
+结合 0.0
+结合部 0.0
+结构 0.2745360188893112
+继续 0.0
+耦接 0.0
+联接 0.0
+膨胀 0.0
+自动 0.0
+行驶 0.0
+表面 0.0
+衬板 0.1407995509845537
+装置 0.0
+装饰 0.11969248178082373
+覆盖 0.1407995509845537
+角度 0.0
+触发 0.0
+计算 0.0
+设备 0.0
+设定值 0.0
+设置 0.0
+设计 0.1407995509845537
+评估 0.0
+负荷 0.1407995509845537
+货物 0.0
+货箱 0.0
+起步 0.0
+越过 0.0
+踏板 0.0
+踩下 0.0
+车厢 0.0
+车身 0.0
+车辆 0.08360970864971078
+车门 0.2815991019691074
+转速 0.0
+轴线 0.0
+辅助 0.0
+输出 0.0
+过程 0.0
+运行 0.0
+运输工具 0.0
+进入 0.0
+远离 0.0
+退出 0.0
+速度 0.0
+邻接 0.0
+邻近 0.0
+部上 0.0
+部分 0.0
+部向 0.0
+配置 0.0
+重叠 0.0
+重启 0.0
+铰接 0.0
+闭环控制 0.0
+间隔 0.0
+间隙 0.0
+防止 0.11969248178082373
+防溜 0.0
+降低 0.0
+限制 0.0
+限定 0.0
+随后 0.0
+靠背 0.0
+靠近 0.0
+面板 0.0
+首先 0.0
+驱动 0.0
+驱动器 0.0
+驻车 0.0
+-------这里输出第 3 篇文本的词语tf-idf------
+一定 0.0
+一段时间 0.0
+主体 0.0
+乘客 0.06978374171377333
+乘车 0.0
+事件 0.0
+二者 0.0
+互相 0.0
+交叉 0.0
+产品 0.0
+产生 0.0
+介绍 0.0
+仍然 0.0
+仪表板 0.2791349668550933
+传感器 0.0
+估计 0.0
+位置 0.0
+作为 0.0
+使得 0.06978374171377333
+使用 0.0
+使能 0.0
+使该 0.0
+信号 0.0
+倾斜 0.0
+偏压 0.2791349668550933
+停转 0.0
+储能 0.0
+元件 0.0
+免受 0.0
+关闭 0.0
+具有 0.03401671116728386
+内燃机 0.0
+内管 0.0
+凹陷 0.0
+分析 0.0
+分部 0.0
+分隔 0.0
+切换 0.0
+利用 0.0
+制动 0.0
+制造 0.0
+刹车 0.0
+力矩 0.0
+功能 0.0
+包围 0.0
+包括 0.08287808124921273
+单元 0.0
+卸载 0.0
+参数 0.0
+发生器 0.0
+变型 0.0
+变速器 0.0
+启动 0.0
+吸收 0.0
+命令 0.0
+围绕 0.0
+地向 0.0
+坡道 0.0
+基准 0.06978374171377333
+增加 0.0
+处于 0.0
+处在 0.0
+大于 0.0
+大巴车 0.0
+头枕 0.0
+安排 0.0
+安装 0.0
+定位 0.06978374171377333
+实施 0.0
+实现 0.0
+容量 0.0
+导引 0.20935122514131996
+小于 0.0
+峰值 0.0
+布置 0.0
+座椅 0.0
+延伸 0.0
+开启 0.0
+开始 0.0
+开度 0.0
+引到 0.0
+形成 0.0
+总和 0.0
+总成 0.0
+恢复 0.0
+悬挂 0.0
+成使 0.0
+手刹 0.0
+手动 0.0
+持续 0.0
+接到 0.13956748342754666
+控制 0.0
+控制系统 0.0
+描述 0.0
+提供 0.0
+摊开 0.0
+操作 0.0
+支承 0.0
+支撑 0.4152578912849576
+支架 0.5582699337101866
+放电 0.0
+数值 0.0
+整车 0.0
+斜倚 0.0
+方向 0.06978374171377333
+方式 0.0
+方法 0.0
+方面 0.0
+旋转 0.0
+无需 0.0
+时间 0.0
+更改 0.0
+最低 0.0
+最靠近 0.0
+本发明 0.03401671116728386
+机动 0.0
+机动车 0.0
+机动车辆 0.0
+条件 0.0
+构件 0.0
+构造 0.0
+枢转 0.0
+枢转地 0.0
+枢轴 0.0
+档位 0.0
+检测 0.0
+椅背 0.0
+模式 0.0
+横向 0.29661277948925546
+步骤 0.0
+气囊 0.0
+永磁 0.0
+没有 0.0
+油门 0.0
+泡沫 0.0
+涉及 0.0
+添加 0.0
+溃缩 0.0
+满足 0.0
+特别 0.0
+状态 0.0
+独立 0.0
+用于 0.04614302043872387
+电动 0.0
+电机 0.0
+电池 0.0
+电池组 0.0
+电能 0.0
+监测 0.0
+目标 0.0
+目的 0.0
+直到 0.06978374171377333
+相交 0.0
+相关联 0.0
+相对 0.0
+着横 0.0
+硬件 0.0
+确定 0.0
+碰撞 0.0
+移动 0.0
+空挡 0.0
+竖直 0.0
+端部 0.2791349668550933
+策略 0.0
+系统 0.0
+纵向 0.0
+组件 0.0
+织物 0.0
+结合 0.0
+结合部 0.0
+结构 0.10205013350185158
+继续 0.0
+耦接 0.0
+联接 0.0
+膨胀 0.0
+自动 0.0
+行驶 0.0
+表面 0.06978374171377333
+衬板 0.0
+装置 0.0
+装饰 0.0
+覆盖 0.0
+角度 0.0
+触发 0.0
+计算 0.0
+设备 0.0
+设定值 0.0
+设置 0.0
+设计 0.0
+评估 0.0
+负荷 0.0
+货物 0.0
+货箱 0.0
+起步 0.0
+越过 0.0
+踏板 0.0
+踩下 0.0
+车厢 0.06978374171377333
+车身 0.13956748342754666
+车辆 0.08287808124921273
+车门 0.0
+转速 0.0
+轴线 0.0
+辅助 0.0
+输出 0.0
+过程 0.0
+运行 0.0
+运输工具 0.0
+进入 0.0
+远离 0.0
+退出 0.0
+速度 0.0
+邻接 0.13956748342754666
+邻近 0.0
+部上 0.0
+部分 0.0
+部向 0.0
+配置 0.06978374171377333
+重叠 0.0
+重启 0.0
+铰接 0.0
+闭环控制 0.0
+间隔 0.0
+间隙 0.0
+防止 0.0
+防溜 0.0
+降低 0.0
+限制 0.0
+限定 0.0
+随后 0.0
+靠背 0.0
+靠近 0.0
+面板 0.13956748342754666
+首先 0.0
+驱动 0.0
+驱动器 0.0
+驻车 0.0
+-------这里输出第 4 篇文本的词语tf-idf------
+一定 0.0
+一段时间 0.0
+主体 0.0
+乘客 0.0
+乘车 0.0
+事件 0.0
+二者 0.06773943981051334
+互相 0.0
+交叉 0.0
+产品 0.0
+产生 0.0
+介绍 0.0
+仍然 0.0
+仪表板 0.0
+传感器 0.0
+估计 0.0
+位置 0.10075963766862049
+作为 0.0
+使得 0.0
+使用 0.0
+使能 0.0
+使该 0.0
+信号 0.0
+倾斜 0.0
+偏压 0.0
+停转 0.0
+储能 0.0
+元件 0.0
+免受 0.0
+关闭 0.0
+具有 0.03302019785810716
+内燃机 0.0
+内管 0.0
+凹陷 0.0
+分析 0.0
+分部 0.0
+分隔 0.0
+切换 0.0
+利用 0.0
+制动 0.0
+制造 0.0
+刹车 0.0
+力矩 0.0
+功能 0.0
+包围 0.06773943981051334
+包括 0.08045018307299812
+单元 0.0
+卸载 0.0
+参数 0.0
+发生器 0.0
+变型 0.0
+变速器 0.0
+启动 0.0
+吸收 0.0
+命令 0.0
+围绕 0.06773943981051334
+地向 0.0
+坡道 0.0
+基准 0.0
+增加 0.0
+处于 0.0
+处在 0.0
+大于 0.0
+大巴车 0.0
+头枕 0.4741760786735933
+安排 0.0
+安装 0.0
+定位 0.0
+实施 0.0
+实现 0.0
+容量 0.0
+导引 0.0
+小于 0.0
+峰值 0.0
+布置 0.0
+座椅 0.3455082750762128
+延伸 0.057584712512702134
+开启 0.0
+开始 0.0
+开度 0.0
+引到 0.0
+形成 0.0
+总和 0.0
+总成 0.11516942502540427
+恢复 0.0
+悬挂 0.0
+成使 0.0
+手刹 0.0
+手动 0.0
+持续 0.0
+接到 0.0
+控制 0.0
+控制系统 0.0
+描述 0.0
+提供 0.0
+摊开 0.0
+操作 0.0
+支承 0.1727541375381064
+支撑 0.0
+支架 0.0
+放电 0.0
+数值 0.0
+整车 0.0
+斜倚 0.0
+方向 0.0
+方式 0.0
+方法 0.0
+方面 0.0
+旋转 0.057584712512702134
+无需 0.0
+时间 0.0
+更改 0.0
+最低 0.0
+最靠近 0.0
+本发明 0.0
+机动 0.0
+机动车 0.0
+机动车辆 0.0
+条件 0.0
+构件 0.5419155184841067
+构造 0.0
+枢转 0.0
+枢转地 0.13547887962102667
+枢轴 0.0
+档位 0.0
+检测 0.0
+椅背 0.0
+模式 0.0
+横向 0.0
+步骤 0.0
+气囊 0.0
+永磁 0.0
+没有 0.0
+油门 0.0
+泡沫 0.0
+涉及 0.0
+添加 0.0
+溃缩 0.0
+满足 0.0
+特别 0.0
+状态 0.0
+独立 0.0
+用于 0.0
+电动 0.0
+电机 0.0
+电池 0.0
+电池组 0.0
+电能 0.0
+监测 0.0
+目标 0.0
+目的 0.0
+直到 0.0
+相交 0.0
+相关联 0.0
+相对 0.0
+着横 0.06773943981051334
+硬件 0.0
+确定 0.0
+碰撞 0.0
+移动 0.06773943981051334
+空挡 0.0
+竖直 0.0
+端部 0.0
+策略 0.0
+系统 0.0
+纵向 0.0
+组件 0.0
+织物 0.0
+结合 0.0
+结合部 0.0
+结构 0.0990605935743215
+继续 0.0
+耦接 0.0
+联接 0.27095775924205334
+膨胀 0.0
+自动 0.0
+行驶 0.0
+表面 0.0
+衬板 0.0
+装置 0.0
+装饰 0.057584712512702134
+覆盖 0.0
+角度 0.13547887962102667
+触发 0.0
+计算 0.0
+设备 0.0
+设定值 0.0
+设置 0.0
+设计 0.0
+评估 0.0
+负荷 0.0
+货物 0.0
+货箱 0.0
+起步 0.0
+越过 0.0
+踏板 0.0
+踩下 0.0
+车厢 0.0
+车身 0.0
+车辆 0.04022509153649906
+车门 0.0
+转速 0.0
+轴线 0.06773943981051334
+辅助 0.0
+输出 0.0
+过程 0.0
+运行 0.0
+运输工具 0.0
+进入 0.0
+远离 0.0
+退出 0.0
+速度 0.0
+邻接 0.0
+邻近 0.0
+部上 0.0
+部分 0.0
+部向 0.0
+配置 0.0
+重叠 0.0
+重启 0.0
+铰接 0.06773943981051334
+闭环控制 0.0
+间隔 0.06773943981051334
+间隙 0.0
+防止 0.0
+防溜 0.0
+降低 0.0
+限制 0.0
+限定 0.0
+随后 0.0
+靠背 0.3386971990525667
+靠近 0.0
+面板 0.0
+首先 0.0
+驱动 0.0
+驱动器 0.13547887962102667
+驻车 0.0
+-------这里输出第 5 篇文本的词语tf-idf------
+一定 0.0
+一段时间 0.06340310784873436
+主体 0.0
+乘客 0.0
+乘车 0.0
+事件 0.0
+二者 0.0
+互相 0.0
+交叉 0.0
+产品 0.0
+产生 0.10779686835599028
+介绍 0.06340310784873436
+仍然 0.0
+仪表板 0.0
+传感器 0.0
+估计 0.06340310784873436
+位置 0.0
+作为 0.0
+使得 0.0
+使用 0.06340310784873436
+使能 0.0
+使该 0.0
+信号 0.0
+倾斜 0.0
+偏压 0.0
+停转 0.0
+储能 0.06340310784873436
+元件 0.0
+免受 0.0
+关闭 0.0
+具有 0.03090641392725522
+内燃机 0.0
+内管 0.0
+凹陷 0.0
+分析 0.06340310784873436
+分部 0.25361243139493744
+分隔 0.0
+切换 0.0
+利用 0.12680621569746872
+制动 0.0
+制造 0.0
+刹车 0.0
+力矩 0.0
+功能 0.0
+包围 0.0
+包括 0.03765008721725557
+单元 0.0
+卸载 0.0
+参数 0.12680621569746872
+发生器 0.0
+变型 0.0
+变速器 0.0
+启动 0.0
+吸收 0.0
+命令 0.06340310784873436
+围绕 0.0
+地向 0.0
+坡道 0.0
+基准 0.0
+增加 0.0
+处于 0.0
+处在 0.0
+大于 0.0
+大巴车 0.0
+头枕 0.0
+安排 0.0
+安装 0.0
+定位 0.0
+实施 0.12680621569746872
+实现 0.0
+容量 0.25361243139493744
+导引 0.0
+小于 0.0
+峰值 0.0
+布置 0.0
+座椅 0.0
+延伸 0.0
+开启 0.0
+开始 0.0
+开度 0.0
+引到 0.0
+形成 0.0
+总和 0.25361243139493744
+总成 0.0
+恢复 0.0
+悬挂 0.0
+成使 0.0
+手刹 0.0
+手动 0.0
+持续 0.0
+接到 0.0
+控制 0.16169530253398542
+控制系统 0.12680621569746872
+描述 0.0
+提供 0.0
+摊开 0.0
+操作 0.04715476088799479
+支承 0.0
+支撑 0.0
+支架 0.0
+放电 0.06340310784873436
+数值 0.12680621569746872
+整车 0.0
+斜倚 0.0
+方向 0.0
+方式 0.0
+方法 0.12577188451756513
+方面 0.06340310784873436
+旋转 0.0
+无需 0.0
+时间 0.0
+更改 0.0
+最低 0.06340310784873436
+最靠近 0.0
+本发明 0.03090641392725522
+机动 0.0
+机动车 0.0
+机动车辆 0.0
+条件 0.0
+构件 0.0
+构造 0.10779686835599028
+枢转 0.0
+枢转地 0.0
+枢轴 0.0
+档位 0.0
+检测 0.0
+椅背 0.0
+模式 0.0
+横向 0.0
+步骤 0.0
+气囊 0.0
+永磁 0.0
+没有 0.0
+油门 0.0
+泡沫 0.0
+涉及 0.05389843417799514
+添加 0.0
+溃缩 0.0
+满足 0.0
+特别 0.0
+状态 0.0
+独立 0.12680621569746872
+用于 0.20961980752927517
+电动 0.0
+电机 0.0
+电池 0.5072248627898749
+电池组 0.06340310784873436
+电能 0.06340310784873436
+监测 0.0
+目标 0.0
+目的 0.0
+直到 0.0
+相交 0.0
+相关联 0.12680621569746872
+相对 0.14146428266398436
+着横 0.0
+硬件 0.0
+确定 0.12680621569746872
+碰撞 0.0
+移动 0.0
+空挡 0.0
+竖直 0.0
+端部 0.0
+策略 0.0
+系统 0.4243928479919531
+纵向 0.0
+组件 0.0
+织物 0.0
+结合 0.0
+结合部 0.0
+结构 0.0
+继续 0.0
+耦接 0.0
+联接 0.0
+膨胀 0.0
+自动 0.0
+行驶 0.0
+表面 0.0
+衬板 0.0
+装置 0.0
+装饰 0.0
+覆盖 0.0
+角度 0.0
+触发 0.0
+计算 0.1902093235462031
+设备 0.0
+设定值 0.0
+设置 0.0
+设计 0.0
+评估 0.12680621569746872
+负荷 0.0
+货物 0.0
+货箱 0.0
+起步 0.0
+越过 0.0
+踏板 0.0
+踩下 0.0
+车厢 0.0
+车身 0.0
+车辆 0.0
+车门 0.0
+转速 0.0
+轴线 0.0
+辅助 0.0
+输出 0.0
+过程 0.0
+运行 0.0
+运输工具 0.0
+进入 0.0
+远离 0.0
+退出 0.0
+速度 0.0
+邻接 0.0
+邻近 0.0
+部上 0.0
+部分 0.0
+部向 0.0
+配置 0.0
+重叠 0.0
+重启 0.0
+铰接 0.0
+闭环控制 0.0
+间隔 0.0
+间隙 0.0
+防止 0.05389843417799514
+防溜 0.0
+降低 0.0
+限制 0.0
+限定 0.0
+随后 0.0
+靠背 0.0
+靠近 0.0
+面板 0.0
+首先 0.0
+驱动 0.0
+驱动器 0.0
+驻车 0.0
+-------这里输出第 6 篇文本的词语tf-idf------
+一定 0.0
+一段时间 0.0
+主体 0.17677438626880906
+乘客 0.0
+乘车 0.0
+事件 0.0
+二者 0.0
+互相 0.08838719313440453
+交叉 0.0
+产品 0.0
+产生 0.0
+介绍 0.0
+仍然 0.0
+仪表板 0.0
+传感器 0.0
+估计 0.0
+位置 0.0
+作为 0.0
+使得 0.0
+使用 0.0
+使能 0.0
+使该 0.10397375775779942
+信号 0.0
+倾斜 0.0
+偏压 0.0
+停转 0.0
+储能 0.0
+元件 0.0
+免受 0.0
+关闭 0.0
+具有 0.05068294132365404
+内燃机 0.0
+内管 0.20794751551559884
+凹陷 0.0
+分析 0.0
+分部 0.0
+分隔 0.20794751551559884
+切换 0.0
+利用 0.0
+制动 0.0
+制造 0.0
+刹车 0.0
+力矩 0.0
+功能 0.0
+包围 0.0
+包括 0.0
+单元 0.0
+卸载 0.0
+参数 0.0
+发生器 0.0
+变型 0.0
+变速器 0.0
+启动 0.0
+吸收 0.0
+命令 0.0
+围绕 0.0
+地向 0.0
+坡道 0.0
+基准 0.0
+增加 0.0
+处于 0.0
+处在 0.0
+大于 0.0
+大巴车 0.0
+头枕 0.0
+安排 0.0
+安装 0.0
+定位 0.0
+实施 0.0
+实现 0.0
+容量 0.0
+导引 0.0
+小于 0.0
+峰值 0.0
+布置 0.0
+座椅 0.0
+延伸 0.08838719313440453
+开启 0.0
+开始 0.0
+开度 0.0
+引到 0.0
+形成 0.10397375775779942
+总和 0.0
+总成 0.0
+恢复 0.0
+悬挂 0.0
+成使 0.0
+手刹 0.0
+手动 0.0
+持续 0.0
+接到 0.0
+控制 0.0
+控制系统 0.0
+描述 0.0
+提供 0.0
+摊开 0.0
+操作 0.0
+支承 0.0
+支撑 0.0
+支架 0.0
+放电 0.0
+数值 0.0
+整车 0.0
+斜倚 0.0
+方向 0.0
+方式 0.0
+方法 0.0
+方面 0.0
+旋转 0.0
+无需 0.0
+时间 0.0
+更改 0.0
+最低 0.0
+最靠近 0.0
+本发明 0.05068294132365404
+机动 0.0
+机动车 0.0
+机动车辆 0.0
+条件 0.0
+构件 0.0
+构造 0.0
+枢转 0.0
+枢转地 0.0
+枢轴 0.0
+档位 0.0
+检测 0.0
+椅背 0.0
+模式 0.0
+横向 0.17677438626880906
+步骤 0.0
+气囊 0.17677438626880906
+永磁 0.0
+没有 0.0
+油门 0.0
+泡沫 0.0
+涉及 0.0
+添加 0.0
+溃缩 0.0
+满足 0.0
+特别 0.0
+状态 0.0
+独立 0.0
+用于 0.0
+电动 0.0
+电机 0.0
+电池 0.0
+电池组 0.0
+电能 0.0
+监测 0.0
+目标 0.0
+目的 0.0
+直到 0.0
+相交 0.10397375775779942
+相关联 0.0
+相对 0.0
+着横 0.0
+硬件 0.0
+确定 0.0
+碰撞 0.0
+移动 0.0
+空挡 0.0
+竖直 0.0
+端部 0.0
+策略 0.0
+系统 0.0
+纵向 0.0
+组件 0.0
+织物 0.6187103519408317
+结合 0.35354877253761813
+结合部 0.31192127327339825
+结构 0.2534147066182702
+继续 0.0
+耦接 0.0
+联接 0.0
+膨胀 0.20794751551559884
+自动 0.0
+行驶 0.0
+表面 0.0
+衬板 0.0
+装置 0.17677438626880906
+装饰 0.0
+覆盖 0.0
+角度 0.0
+触发 0.0
+计算 0.0
+设备 0.0
+设定值 0.0
+设置 0.07732834954072673
+设计 0.0
+评估 0.0
+负荷 0.0
+货物 0.0
+货箱 0.0
+起步 0.0
+越过 0.10397375775779942
+踏板 0.0
+踩下 0.0
+车厢 0.0
+车身 0.0
+车辆 0.0
+车门 0.0
+转速 0.0
+轴线 0.0
+辅助 0.0
+输出 0.0
+过程 0.0
+运行 0.0
+运输工具 0.0
+进入 0.0
+远离 0.0
+退出 0.0
+速度 0.0
+邻接 0.0
+邻近 0.0
+部上 0.0
+部分 0.07732834954072673
+部向 0.0
+配置 0.0
+重叠 0.0
+重启 0.0
+铰接 0.0
+闭环控制 0.0
+间隔 0.0
+间隙 0.0
+防止 0.0
+防溜 0.0
+降低 0.0
+限制 0.0
+限定 0.0
+随后 0.0
+靠背 0.0
+靠近 0.0
+面板 0.0
+首先 0.0
+驱动 0.0
+驱动器 0.0
+驻车 0.0
+-------这里输出第 7 篇文本的词语tf-idf------
+一定 0.0
+一段时间 0.0
+主体 0.28055482201972454
+乘客 0.0
+乘车 0.0
+事件 0.0
+二者 0.0
+互相 0.07013870550493113
+交叉 0.0
+产品 0.0
+产生 0.0
+介绍 0.0
+仍然 0.0
+仪表板 0.0
+传感器 0.0
+估计 0.0
+位置 0.0
+作为 0.0
+使得 0.0
+使用 0.0
+使能 0.0
+使该 0.0
+信号 0.0
+倾斜 0.0
+偏压 0.0
+停转 0.0
+储能 0.0
+元件 0.0
+免受 0.0
+关闭 0.0
+具有 0.0
+内燃机 0.0
+内管 0.0
+凹陷 0.0
+分析 0.0
+分部 0.0
+分隔 0.0
+切换 0.0
+利用 0.0
+制动 0.0
+制造 0.16501451210303722
+刹车 0.0
+力矩 0.0
+功能 0.0
+包围 0.0
+包括 0.0
+单元 0.0
+卸载 0.0
+参数 0.0
+发生器 0.0
+变型 0.0
+变速器 0.0
+启动 0.0
+吸收 0.0
+命令 0.0
+围绕 0.0
+地向 0.0
+坡道 0.0
+基准 0.0
+增加 0.0
+处于 0.0
+处在 0.0
+大于 0.0
+大巴车 0.0
+头枕 0.0
+安排 0.0
+安装 0.16501451210303722
+定位 0.0
+实施 0.0
+实现 0.0
+容量 0.0
+导引 0.0
+小于 0.0
+峰值 0.0
+布置 0.0
+座椅 0.0
+延伸 0.0
+开启 0.0
+开始 0.0
+开度 0.0
+引到 0.08250725605151861
+形成 0.0
+总和 0.0
+总成 0.0
+恢复 0.0
+悬挂 0.0
+成使 0.0
+手刹 0.0
+手动 0.0
+持续 0.0
+接到 0.0
+控制 0.0
+控制系统 0.0
+描述 0.0
+提供 0.0
+摊开 0.08250725605151861
+操作 0.0
+支承 0.0
+支撑 0.0
+支架 0.0
+放电 0.0
+数值 0.0
+整车 0.0
+斜倚 0.0
+方向 0.0
+方式 0.07013870550493113
+方法 0.0545561746738041
+方面 0.0
+旋转 0.0
+无需 0.0
+时间 0.0
+更改 0.0
+最低 0.0
+最靠近 0.0
+本发明 0.04021890241743363
+机动 0.0
+机动车 0.0
+机动车辆 0.0
+条件 0.0
+构件 0.0
+构造 0.0
+枢转 0.0
+枢转地 0.0
+枢轴 0.0
+档位 0.0
+检测 0.0
+椅背 0.0
+模式 0.0
+横向 0.0
+步骤 0.21041611651479342
+气囊 0.14027741100986227
+永磁 0.0
+没有 0.08250725605151861
+油门 0.0
+泡沫 0.0
+涉及 0.0
+添加 0.0
+溃缩 0.0
+满足 0.0
+特别 0.0
+状态 0.07013870550493113
+独立 0.0
+用于 0.0
+电动 0.0
+电机 0.0
+电池 0.0
+电池组 0.0
+电能 0.0
+监测 0.0
+目标 0.0
+目的 0.0
+直到 0.0
+相交 0.0
+相关联 0.0
+相对 0.0
+着横 0.0
+硬件 0.0
+确定 0.0
+碰撞 0.0
+移动 0.0
+空挡 0.0
+竖直 0.0
+端部 0.0
+策略 0.0
+系统 0.0
+纵向 0.0
+组件 0.0
+织物 0.6312483495443802
+结合 0.49097093853451795
+结合部 0.0
+结构 0.20109451208716816
+继续 0.0
+耦接 0.0
+联接 0.0
+膨胀 0.0
+自动 0.0
+行驶 0.0
+表面 0.0
+衬板 0.0
+装置 0.0
+装饰 0.0
+覆盖 0.0
+角度 0.0
+触发 0.0
+计算 0.0
+设备 0.0
+设定值 0.0
+设置 0.0
+设计 0.0
+评估 0.0
+负荷 0.0
+货物 0.0
+货箱 0.0
+起步 0.0
+越过 0.0
+踏板 0.0
+踩下 0.0
+车厢 0.0
+车身 0.0
+车辆 0.0
+车门 0.0
+转速 0.0
+轴线 0.0
+辅助 0.0
+输出 0.0
+过程 0.0
+运行 0.0
+运输工具 0.0
+进入 0.0
+远离 0.08250725605151861
+退出 0.0
+速度 0.0
+邻接 0.0
+邻近 0.0
+部上 0.16501451210303722
+部分 0.12272615846895224
+部向 0.0
+配置 0.0
+重叠 0.16501451210303722
+重启 0.0
+铰接 0.0
+闭环控制 0.0
+间隔 0.0
+间隙 0.0
+防止 0.0
+防溜 0.0
+降低 0.0
+限制 0.0
+限定 0.0
+随后 0.0
+靠背 0.0
+靠近 0.08250725605151861
+面板 0.0
+首先 0.0
+驱动 0.0
+驱动器 0.0
+驻车 0.0
+-------这里输出第 8 篇文本的词语tf-idf------
+一定 0.0
+一段时间 0.0
+主体 0.0
+乘客 0.0
+乘车 0.0
+事件 0.0
+二者 0.0
+互相 0.0
+交叉 0.0
+产品 0.0
+产生 0.0
+介绍 0.0
+仍然 0.0
+仪表板 0.0
+传感器 0.0
+估计 0.0
+位置 0.22847664899512088
+作为 0.0
+使得 0.0
+使用 0.0
+使能 0.0
+使该 0.0
+信号 0.0
+倾斜 0.0
+偏压 0.0
+停转 0.0
+储能 0.0
+元件 0.0
+免受 0.0
+关闭 0.0
+具有 0.0
+内燃机 0.0
+内管 0.0
+凹陷 0.0
+分析 0.0
+分部 0.0
+分隔 0.0
+切换 0.0
+利用 0.0
+制动 0.0
+制造 0.0
+刹车 0.0
+力矩 0.0
+功能 0.0
+包围 0.0
+包括 0.03648482401259563
+单元 0.0
+卸载 0.0
+参数 0.0
+发生器 0.0
+变型 0.0
+变速器 0.0
+启动 0.0
+吸收 0.0
+命令 0.0
+围绕 0.0
+地向 0.06144079343998167
+坡道 0.0
+基准 0.0
+增加 0.0
+处于 0.0
+处在 0.12288158687996334
+大于 0.0
+大巴车 0.0
+头枕 0.0
+安排 0.0
+安装 0.0
+定位 0.0
+实施 0.0
+实现 0.0
+容量 0.0
+导引 0.0
+小于 0.0
+峰值 0.0
+布置 0.0
+座椅 0.05223028765355313
+延伸 0.0
+开启 0.0
+开始 0.0
+开度 0.0
+引到 0.0
+形成 0.0
+总和 0.0
+总成 0.10446057530710626
+恢复 0.0
+悬挂 0.24576317375992668
+成使 0.0
+手刹 0.0
+手动 0.0
+持续 0.0
+接到 0.0
+控制 0.0
+控制系统 0.0
+描述 0.0
+提供 0.0
+摊开 0.0
+操作 0.09139065959804835
+支承 0.1566908629606594
+支撑 0.0
+支架 0.0
+放电 0.0
+数值 0.0
+整车 0.0
+斜倚 0.12288158687996334
+方向 0.0
+方式 0.0
+方法 0.0
+方面 0.0
+旋转 0.05223028765355313
+无需 0.0
+时间 0.0
+更改 0.0
+最低 0.0
+最靠近 0.0
+本发明 0.0
+机动 0.06144079343998167
+机动车 0.0
+机动车辆 0.0
+条件 0.0
+构件 0.0
+构造 0.0
+枢转 0.12288158687996334
+枢转地 0.0
+枢轴 0.36864476063989005
+档位 0.0
+检测 0.0
+椅背 0.6758487278397984
+模式 0.0
+横向 0.0
+步骤 0.0
+气囊 0.0
+永磁 0.0
+没有 0.0
+油门 0.0
+泡沫 0.0
+涉及 0.0
+添加 0.0
+溃缩 0.0
+满足 0.0
+特别 0.0
+状态 0.0
+独立 0.0
+用于 0.0
+电动 0.0
+电机 0.0
+电池 0.0
+电池组 0.0
+电能 0.0
+监测 0.0
+目标 0.0
+目的 0.0
+直到 0.0
+相交 0.0
+相关联 0.0
+相对 0.09139065959804835
+着横 0.0
+硬件 0.0
+确定 0.0
+碰撞 0.0
+移动 0.0
+空挡 0.0
+竖直 0.12288158687996334
+端部 0.0
+策略 0.0
+系统 0.04569532979902417
+纵向 0.0
+组件 0.24576317375992668
+织物 0.0
+结合 0.0
+结合部 0.0
+结构 0.17969919694840006
+继续 0.0
+耦接 0.18432238031994502
+联接 0.0
+膨胀 0.0
+自动 0.10446057530710626
+行驶 0.0
+表面 0.0
+衬板 0.0
+装置 0.0
+装饰 0.0
+覆盖 0.0
+角度 0.0
+触发 0.0
+计算 0.0
+设备 0.0
+设定值 0.0
+设置 0.04569532979902417
+设计 0.0
+评估 0.0
+负荷 0.0
+货物 0.0
+货箱 0.0
+起步 0.0
+越过 0.0
+踏板 0.0
+踩下 0.0
+车厢 0.0
+车身 0.0
+车辆 0.03648482401259563
+车门 0.0
+转速 0.0
+轴线 0.0
+辅助 0.0
+输出 0.0
+过程 0.0
+运行 0.0
+运输工具 0.0
+进入 0.0
+远离 0.0
+退出 0.0
+速度 0.0
+邻接 0.0
+邻近 0.0
+部上 0.0
+部分 0.0
+部向 0.06144079343998167
+配置 0.0
+重叠 0.0
+重启 0.0
+铰接 0.0
+闭环控制 0.0
+间隔 0.0
+间隙 0.06144079343998167
+防止 0.0
+防溜 0.0
+降低 0.0
+限制 0.0
+限定 0.12288158687996334
+随后 0.0
+靠背 0.0
+靠近 0.0
+面板 0.0
+首先 0.0
+驱动 0.04569532979902417
+驱动器 0.0
+驻车 0.0
+-------这里输出第 9 篇文本的词语tf-idf------
+一定 0.0
+一段时间 0.0
+主体 0.0
+乘客 0.0
+乘车 0.0
+事件 0.0
+二者 0.0
+互相 0.0
+交叉 0.0
+产品 0.0
+产生 0.0
+介绍 0.0
+仍然 0.0
+仪表板 0.0
+传感器 0.0
+估计 0.0
+位置 0.0
+作为 0.0
+使得 0.0
+使用 0.0
+使能 0.0
+使该 0.0
+信号 0.07308042017969112
+倾斜 0.0
+偏压 0.0
+停转 0.17193544981221315
+储能 0.0
+元件 0.0
+免受 0.0
+关闭 0.25790317471831975
+具有 0.08381147803263639
+内燃机 0.5158063494366395
+内管 0.0
+凹陷 0.0
+分析 0.0
+分部 0.0
+分隔 0.0
+切换 0.0
+利用 0.0
+制动 0.0
+制造 0.0
+刹车 0.0
+力矩 0.0
+功能 0.0
+包围 0.0
+包括 0.0
+单元 0.0
+卸载 0.0
+参数 0.0
+发生器 0.17193544981221315
+变型 0.0
+变速器 0.17193544981221315
+启动 0.25790317471831975
+吸收 0.0
+命令 0.0
+围绕 0.0
+地向 0.0
+坡道 0.0
+基准 0.0
+增加 0.0
+处于 0.0
+处在 0.0
+大于 0.0
+大巴车 0.0
+头枕 0.0
+安排 0.0
+安装 0.0
+定位 0.0
+实施 0.0
+实现 0.0
+容量 0.0
+导引 0.0
+小于 0.0
+峰值 0.0
+布置 0.0
+座椅 0.0
+延伸 0.0
+开启 0.08596772490610657
+开始 0.17193544981221315
+开度 0.0
+引到 0.0
+形成 0.0
+总和 0.0
+总成 0.0
+恢复 0.0
+悬挂 0.0
+成使 0.0
+手刹 0.0
+手动 0.17193544981221315
+持续 0.0
+接到 0.0
+控制 0.0
+控制系统 0.0
+描述 0.08596772490610657
+提供 0.0
+摊开 0.0
+操作 0.06393673196121238
+支承 0.0
+支撑 0.0
+支架 0.0
+放电 0.0
+数值 0.0
+整车 0.0
+斜倚 0.0
+方向 0.0
+方式 0.0
+方法 0.28422168186992836
+方面 0.0
+旋转 0.0
+无需 0.0
+时间 0.0
+更改 0.0
+最低 0.0
+最靠近 0.0
+本发明 0.041905739016318194
+机动 0.0
+机动车 0.3438708996244263
+机动车辆 0.0
+条件 0.08596772490610657
+构件 0.0
+构造 0.0
+枢转 0.0
+枢转地 0.0
+枢轴 0.0
+档位 0.0
+检测 0.0
+椅背 0.0
+模式 0.08596772490610657
+横向 0.0
+步骤 0.07308042017969112
+气囊 0.0
+永磁 0.0
+没有 0.0
+油门 0.0
+泡沫 0.0
+涉及 0.0
+添加 0.0
+溃缩 0.0
+满足 0.08596772490610657
+特别 0.0
+状态 0.14616084035938223
+独立 0.0
+用于 0.11368867274797136
+电动 0.0
+电机 0.0
+电池 0.0
+电池组 0.0
+电能 0.0
+监测 0.08596772490610657
+目标 0.0
+目的 0.0
+直到 0.0
+相交 0.0
+相关联 0.0
+相对 0.0
+着横 0.0
+硬件 0.0
+确定 0.0
+碰撞 0.0
+移动 0.0
+空挡 0.08596772490610657
+竖直 0.0
+端部 0.0
+策略 0.0
+系统 0.0
+纵向 0.0
+组件 0.0
+织物 0.0
+结合 0.0
+结合部 0.0
+结构 0.0
+继续 0.08596772490610657
+耦接 0.0
+联接 0.0
+膨胀 0.0
+自动 0.0
+行驶 0.25790317471831975
+表面 0.0
+衬板 0.0
+装置 0.0
+装饰 0.0
+覆盖 0.0
+角度 0.0
+触发 0.0
+计算 0.0
+设备 0.0
+设定值 0.0
+设置 0.0
+设计 0.0
+评估 0.0
+负荷 0.0
+货物 0.0
+货箱 0.0
+起步 0.0
+越过 0.0
+踏板 0.0
+踩下 0.0
+车厢 0.0
+车身 0.0
+车辆 0.0
+车门 0.0
+转速 0.0
+轴线 0.0
+辅助 0.0
+输出 0.0
+过程 0.17193544981221315
+运行 0.08596772490610657
+运输工具 0.0
+进入 0.0
+远离 0.0
+退出 0.0
+速度 0.08596772490610657
+邻接 0.0
+邻近 0.0
+部上 0.0
+部分 0.0
+部向 0.0
+配置 0.0
+重叠 0.0
+重启 0.08596772490610657
+铰接 0.0
+闭环控制 0.0
+间隔 0.0
+间隙 0.0
+防止 0.0
+防溜 0.0
+降低 0.0
+限制 0.0
+限定 0.0
+随后 0.08596772490610657
+靠背 0.0
+靠近 0.0
+面板 0.0
+首先 0.08596772490610657
+驱动 0.06393673196121238
+驱动器 0.0
+驻车 0.0
+-------这里输出第 10 篇文本的词语tf-idf------
+一定 0.0
+一段时间 0.0
+主体 0.0
+乘客 0.0
+乘车 0.0
+事件 0.0
+二者 0.0
+互相 0.0
+交叉 0.0
+产品 0.04425175534721659
+产生 0.0
+介绍 0.0
+仍然 0.0
+仪表板 0.0
+传感器 0.0
+估计 0.0
+位置 0.0
+作为 0.0
+使得 0.0
+使用 0.0
+使能 0.0
+使该 0.0
+信号 0.0
+倾斜 0.5752728195138157
+偏压 0.0
+停转 0.0
+储能 0.0
+元件 0.0
+免受 0.0
+关闭 0.0
+具有 0.10785457639013879
+内燃机 0.0
+内管 0.0
+凹陷 0.0
+分析 0.0
+分部 0.0
+分隔 0.0
+切换 0.0
+利用 0.0
+制动 0.0
+制造 0.0
+刹车 0.0
+力矩 0.0
+功能 0.0
+包围 0.0
+包括 0.18394330394970265
+单元 0.0
+卸载 0.13275526604164978
+参数 0.0
+发生器 0.0
+变型 0.08850351069443319
+变速器 0.0
+启动 0.0
+吸收 0.0
+命令 0.0
+围绕 0.0
+地向 0.0
+坡道 0.0
+基准 0.0
+增加 0.0
+处于 0.0
+处在 0.0
+大于 0.0
+大巴车 0.0
+头枕 0.0
+安排 0.0
+安装 0.0
+定位 0.0
+实施 0.0
+实现 0.0
+容量 0.0
+导引 0.0
+小于 0.0
+峰值 0.0
+布置 0.08850351069443319
+座椅 0.0
+延伸 0.0
+开启 0.0
+开始 0.0
+开度 0.0
+引到 0.0
+形成 0.0
+总和 0.0
+总成 0.0
+恢复 0.0
+悬挂 0.0
+成使 0.08850351069443319
+手刹 0.0
+手动 0.0
+持续 0.0
+接到 0.0
+控制 0.0
+控制系统 0.0
+描述 0.0
+提供 0.03761803488455194
+摊开 0.0
+操作 0.0
+支承 0.0
+支撑 0.0
+支架 0.0
+放电 0.0
+数值 0.0
+整车 0.0
+斜倚 0.0
+方向 0.0
+方式 0.0
+方法 0.02926053549566272
+方面 0.0
+旋转 0.0
+无需 0.0
+时间 0.0
+更改 0.0
+最低 0.0
+最靠近 0.22125877673608296
+本发明 0.021570915278027757
+机动 0.0
+机动车 0.0
+机动车辆 0.0
+条件 0.0
+构件 0.0
+构造 0.07523606976910388
+枢转 0.0
+枢转地 0.0
+枢轴 0.0
+档位 0.0
+检测 0.0
+椅背 0.0
+模式 0.0
+横向 0.0
+步骤 0.0
+气囊 0.0
+永磁 0.0
+没有 0.0
+油门 0.0
+泡沫 0.0
+涉及 0.03761803488455194
+添加 0.0
+溃缩 0.0
+满足 0.0
+特别 0.0
+状态 0.0
+独立 0.0
+用于 0.0
+电动 0.0
+电机 0.0
+电池 0.0
+电池组 0.0
+电能 0.0
+监测 0.0
+目标 0.0
+目的 0.0
+直到 0.0
+相交 0.0
+相关联 0.0
+相对 0.19746801187573307
+着横 0.0
+硬件 0.0
+确定 0.0
+碰撞 0.0
+移动 0.0
+空挡 0.0
+竖直 0.0
+端部 0.0
+策略 0.0
+系统 0.06582267062524436
+纵向 0.35401404277773274
+组件 0.0
+织物 0.0
+结合 0.0
+结合部 0.0
+结构 0.0
+继续 0.0
+耦接 0.0
+联接 0.0
+膨胀 0.0
+自动 0.0
+行驶 0.0
+表面 0.0
+衬板 0.0
+装置 0.0
+装饰 0.0
+覆盖 0.0
+角度 0.0
+触发 0.0
+计算 0.0
+设备 0.0
+设定值 0.0
+设置 0.0
+设计 0.0
+评估 0.0
+负荷 0.0
+货物 0.08850351069443319
+货箱 0.4425175534721659
+起步 0.0
+越过 0.0
+踏板 0.0
+踩下 0.0
+车厢 0.0
+车身 0.0
+车辆 0.0
+车门 0.0
+转速 0.0
+轴线 0.0
+辅助 0.0
+输出 0.0
+过程 0.0
+运行 0.0
+运输工具 0.17700702138886637
+进入 0.0
+远离 0.0
+退出 0.0
+速度 0.0
+邻接 0.0
+邻近 0.04425175534721659
+部上 0.0
+部分 0.32911335312622175
+部向 0.0
+配置 0.0
+重叠 0.0
+重启 0.0
+铰接 0.0
+闭环控制 0.0
+间隔 0.0
+间隙 0.0
+防止 0.0
+防溜 0.0
+降低 0.08850351069443319
+限制 0.0
+限定 0.0
+随后 0.0
+靠背 0.0
+靠近 0.0
+面板 0.0
+首先 0.0
+驱动 0.0
+驱动器 0.0
+驻车 0.0
+</code></pre><h2 id="5-基于gensim的中文文本词向量训练与相似度匹配"><a href="#5-基于gensim的中文文本词向量训练与相似度匹配" class="headerlink" title="5.基于gensim的中文文本词向量训练与相似度匹配"></a>5.基于gensim的中文文本词向量训练与相似度匹配</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> gensim.test.utils <span class="keyword">import</span> common_texts, get_tmpfile</span><br><span class="line"><span class="keyword">from</span> gensim.models <span class="keyword">import</span> Word2Vec</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">corpusA = [i.split(<span class="string">" "</span>) <span class="keyword">for</span> i <span class="keyword">in</span> corpusA]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">corpusA</span><br></pre></td></tr></table></figure>
+<pre><code>[[&apos;永磁&apos;,
+  &apos;电机&apos;,
+  &apos;驱动&apos;,
+  &apos;纯&apos;,
+  &apos;电动&apos;,
+  &apos;大巴车&apos;,
+  &apos;坡道&apos;,
+  &apos;起步&apos;,
+  &apos;防溜&apos;,
+  &apos;策略&apos;,
+  &apos;本发明&apos;,
+  &apos;永磁&apos;,
+  &apos;电机&apos;,
+  &apos;驱动&apos;,
+  &apos;纯&apos;,
+  &apos;电动&apos;,
+  &apos;大巴车&apos;,
+  &apos;坡道&apos;,
+  &apos;起步&apos;,
+  &apos;防溜&apos;,
+  &apos;策略&apos;,
+  &apos;即&apos;,
+  &apos;策略&apos;,
+  &apos;制动&apos;,
+  &apos;踏板&apos;,
+  &apos;已&apos;,
+  &apos;踩下&apos;,
+  &apos;永磁&apos;,
+  &apos;电机&apos;,
+  &apos;转速&apos;,
+  &apos;小于&apos;,
+  &apos;设定值&apos;,
+  &apos;持续&apos;,
+  &apos;一定&apos;,
+  &apos;时间&apos;,
+  &apos;整车&apos;,
+  &apos;控制&apos;,
+  &apos;单元&apos;,
+  &apos;产生&apos;,
+  &apos;刹车&apos;,
+  &apos;触发&apos;,
+  &apos;信号&apos;,
+  &apos;油门&apos;,
+  &apos;踏板&apos;,
+  &apos;开度&apos;,
+  &apos;小于&apos;,
+  &apos;设定值&apos;,
+  &apos;档位&apos;,
+  &apos;装置&apos;,
+  &apos;时&apos;,
+  &apos;电机&apos;,
+  &apos;控制&apos;,
+  &apos;单元&apos;,
+  &apos;产生&apos;,
+  &apos;防溜&apos;,
+  &apos;功能&apos;,
+  &apos;使能&apos;,
+  &apos;信号&apos;,
+  &apos;自动&apos;,
+  &apos;进入&apos;,
+  &apos;防溜&apos;,
+  &apos;控制&apos;,
+  &apos;使&apos;,
+  &apos;永磁&apos;,
+  &apos;电机&apos;,
+  &apos;进入&apos;,
+  &apos;转速&apos;,
+  &apos;闭环控制&apos;,
+  &apos;目标&apos;,
+  &apos;转速&apos;,
+  &apos;整车&apos;,
+  &apos;控制&apos;,
+  &apos;单元&apos;,
+  &apos;检测&apos;,
+  &apos;到&apos;,
+  &apos;制动&apos;,
+  &apos;踏板&apos;,
+  &apos;仍然&apos;,
+  &apos;踩下&apos;,
+  &apos;则&apos;,
+  &apos;限制&apos;,
+  &apos;永磁&apos;,
+  &apos;电机&apos;,
+  &apos;输出&apos;,
+  &apos;力矩&apos;,
+  &apos;恢复&apos;,
+  &apos;永磁&apos;,
+  &apos;电机&apos;,
+  &apos;输出&apos;,
+  &apos;力矩&apos;,
+  &apos;整车&apos;,
+  &apos;控制&apos;,
+  &apos;单元&apos;,
+  &apos;检测&apos;,
+  &apos;到&apos;,
+  &apos;油门&apos;,
+  &apos;踏板&apos;,
+  &apos;开度&apos;,
+  &apos;大于&apos;,
+  &apos;设置&apos;,
+  &apos;值&apos;,
+  &apos;档位&apos;,
+  &apos;装置&apos;,
+  &apos;手刹&apos;,
+  &apos;装置&apos;,
+  &apos;处于&apos;,
+  &apos;驻车&apos;,
+  &apos;位置&apos;,
+  &apos;则&apos;,
+  &apos;退出&apos;,
+  &apos;防溜&apos;,
+  &apos;控制&apos;,
+  &apos;切换&apos;,
+  &apos;到&apos;,
+  &apos;力矩&apos;,
+  &apos;控制&apos;,
+  &apos;策略&apos;,
+  &apos;无需&apos;,
+  &apos;更改&apos;,
+  &apos;车辆&apos;,
+  &apos;结构&apos;,
+  &apos;添加&apos;,
+  &apos;辅助&apos;,
+  &apos;传感器&apos;,
+  &apos;硬件&apos;,
+  &apos;设备&apos;,
+  &apos;实现&apos;,
+  &apos;车辆&apos;,
+  &apos;防溜&apos;,
+  &apos;目的&apos;],
+ [&apos;机动车辆&apos;,
+  &apos;车门&apos;,
+  &apos;靠&apos;,
+  &apos;溃缩&apos;,
+  &apos;结构&apos;,
+  &apos;是&apos;,
+  &apos;作为&apos;,
+  &apos;支撑&apos;,
+  &apos;提供&apos;,
+  &apos;机动车辆&apos;,
+  &apos;车门&apos;,
+  &apos;衬板&apos;,
+  &apos;靠&apos;,
+  &apos;溃缩&apos;,
+  &apos;结构&apos;,
+  &apos;具有&apos;,
+  &apos;交叉&apos;,
+  &apos;形&apos;,
+  &apos;方式&apos;,
+  &apos;设计&apos;,
+  &apos;凹陷&apos;,
+  &apos;装饰&apos;,
+  &apos;覆盖&apos;,
+  &apos;泡沫&apos;,
+  &apos;元件&apos;,
+  &apos;安排&apos;,
+  &apos;溃缩&apos;,
+  &apos;结构&apos;,
+  &apos;溃缩&apos;,
+  &apos;结构&apos;,
+  &apos;特别&apos;,
+  &apos;用于&apos;,
+  &apos;吸收&apos;,
+  &apos;碰撞&apos;,
+  &apos;事件&apos;,
+  &apos;负荷&apos;,
+  &apos;防止&apos;,
+  &apos;车辆&apos;,
+  &apos;乘车&apos;,
+  &apos;免受&apos;,
+  &apos;增加&apos;,
+  &apos;力&apos;,
+  &apos;峰值&apos;],
+ [&apos;仪表板&apos;,
+  &apos;支撑&apos;,
+  &apos;结构&apos;,
+  &apos;本发明&apos;,
+  &apos;支撑&apos;,
+  &apos;结构&apos;,
+  &apos;配置&apos;,
+  &apos;用于&apos;,
+  &apos;车辆&apos;,
+  &apos;乘客&apos;,
+  &apos;车厢&apos;,
+  &apos;内&apos;,
+  &apos;定位&apos;,
+  &apos;仪表板&apos;,
+  &apos;支撑&apos;,
+  &apos;结构&apos;,
+  &apos;包括&apos;,
+  &apos;支撑&apos;,
+  &apos;支架&apos;,
+  &apos;端部&apos;,
+  &apos;支架&apos;,
+  &apos;支撑&apos;,
+  &apos;支架&apos;,
+  &apos;附&apos;,
+  &apos;接到&apos;,
+  &apos;车辆&apos;,
+  &apos;车身&apos;,
+  &apos;面板&apos;,
+  &apos;支撑&apos;,
+  &apos;支架&apos;,
+  &apos;包括&apos;,
+  &apos;横向&apos;,
+  &apos;偏压&apos;,
+  &apos;导引&apos;,
+  &apos;端部&apos;,
+  &apos;支架&apos;,
+  &apos;附&apos;,
+  &apos;接到&apos;,
+  &apos;仪表板&apos;,
+  &apos;端部&apos;,
+  &apos;支架&apos;,
+  &apos;具有&apos;,
+  &apos;邻接&apos;,
+  &apos;支撑&apos;,
+  &apos;支架&apos;,
+  &apos;横向&apos;,
+  &apos;偏压&apos;,
+  &apos;导引&apos;,
+  &apos;使得&apos;,
+  &apos;横向&apos;,
+  &apos;偏压&apos;,
+  &apos;导引&apos;,
+  &apos;横向&apos;,
+  &apos;方向&apos;,
+  &apos;偏压&apos;,
+  &apos;仪表板&apos;,
+  &apos;直到&apos;,
+  &apos;端部&apos;,
+  &apos;支架&apos;,
+  &apos;邻接&apos;,
+  &apos;车身&apos;,
+  &apos;面板&apos;,
+  &apos;横向&apos;,
+  &apos;基准&apos;,
+  &apos;表面&apos;],
+ [&apos;铰接&apos;,
+  &apos;头枕&apos;,
+  &apos;总成&apos;,
+  &apos;车辆&apos;,
+  &apos;座椅&apos;,
+  &apos;总成&apos;,
+  &apos;包括&apos;,
+  &apos;座椅&apos;,
+  &apos;靠背&apos;,
+  &apos;头枕&apos;,
+  &apos;支承&apos;,
+  &apos;结构&apos;,
+  &apos;支承&apos;,
+  &apos;结构&apos;,
+  &apos;头枕&apos;,
+  &apos;座椅&apos;,
+  &apos;靠背&apos;,
+  &apos;延伸&apos;,
+  &apos;支承&apos;,
+  &apos;结构&apos;,
+  &apos;包括&apos;,
+  &apos;构件&apos;,
+  &apos;构件&apos;,
+  &apos;包围&apos;,
+  &apos;构件&apos;,
+  &apos;装饰&apos;,
+  &apos;构件&apos;,
+  &apos;头枕&apos;,
+  &apos;座椅&apos;,
+  &apos;靠背&apos;,
+  &apos;枢转地&apos;,
+  &apos;联接&apos;,
+  &apos;构件&apos;,
+  &apos;具有&apos;,
+  &apos;围绕&apos;,
+  &apos;着横&apos;,
+  &apos;轴线&apos;,
+  &apos;头枕&apos;,
+  &apos;枢转地&apos;,
+  &apos;联接&apos;,
+  &apos;构件&apos;,
+  &apos;间隔&apos;,
+  &apos;开&apos;,
+  &apos;驱动器&apos;,
+  &apos;构件&apos;,
+  &apos;座椅&apos;,
+  &apos;靠背&apos;,
+  &apos;二者&apos;,
+  &apos;联接&apos;,
+  &apos;位置&apos;,
+  &apos;位置&apos;,
+  &apos;旋转&apos;,
+  &apos;头枕&apos;,
+  &apos;驱动器&apos;,
+  &apos;联接&apos;,
+  &apos;构件&apos;,
+  &apos;座椅&apos;,
+  &apos;靠背&apos;,
+  &apos;角度&apos;,
+  &apos;角度&apos;,
+  &apos;移动&apos;,
+  &apos;头枕&apos;],
+ [&apos;用于&apos;,
+  &apos;评估&apos;,
+  &apos;控制&apos;,
+  &apos;电池&apos;,
+  &apos;系统&apos;,
+  &apos;系统&apos;,
+  &apos;方法&apos;,
+  &apos;本发明&apos;,
+  &apos;涉及&apos;,
+  &apos;用于&apos;,
+  &apos;评估&apos;,
+  &apos;控制&apos;,
+  &apos;电池&apos;,
+  &apos;系统&apos;,
+  &apos;系统&apos;,
+  &apos;方法&apos;,
+  &apos;介绍&apos;,
+  &apos;用于&apos;,
+  &apos;估计&apos;,
+  &apos;电池&apos;,
+  &apos;系统&apos;,
+  &apos;独立&apos;,
+  &apos;电池&apos;,
+  &apos;分部&apos;,
+  &apos;相对&apos;,
+  &apos;容量&apos;,
+  &apos;系统&apos;,
+  &apos;方法&apos;,
+  &apos;实施&apos;,
+  &apos;例&apos;,
+  &apos;系统&apos;,
+  &apos;可&apos;,
+  &apos;包括&apos;,
+  &apos;构造&apos;,
+  &apos;成&apos;,
+  &apos;分析&apos;,
+  &apos;电&apos;,
+  &apos;参数&apos;,
+  &apos;计算&apos;,
+  &apos;系统&apos;,
+  &apos;产生&apos;,
+  &apos;一段时间&apos;,
+  &apos;参数&apos;,
+  &apos;导&apos;,
+  &apos;数值&apos;,
+  &apos;计算&apos;,
+  &apos;系统&apos;,
+  &apos;还&apos;,
+  &apos;可&apos;,
+  &apos;导&apos;,
+  &apos;数值&apos;,
+  &apos;计算&apos;,
+  &apos;独立&apos;,
+  &apos;电池&apos;,
+  &apos;分部&apos;,
+  &apos;相关联&apos;,
+  &apos;总和&apos;,
+  &apos;值&apos;,
+  &apos;电池&apos;,
+  &apos;控制系统&apos;,
+  &apos;可&apos;,
+  &apos;利用&apos;,
+  &apos;总和&apos;,
+  &apos;值&apos;,
+  &apos;产生&apos;,
+  &apos;构造&apos;,
+  &apos;成&apos;,
+  &apos;利用&apos;,
+  &apos;总和&apos;,
+  &apos;值&apos;,
+  &apos;控制&apos;,
+  &apos;电池组&apos;,
+  &apos;操作&apos;,
+  &apos;方面&apos;,
+  &apos;命令&apos;,
+  &apos;实施&apos;,
+  &apos;例&apos;,
+  &apos;电池&apos;,
+  &apos;分部&apos;,
+  &apos;相关联&apos;,
+  &apos;总和&apos;,
+  &apos;值&apos;,
+  &apos;可&apos;,
+  &apos;用于&apos;,
+  &apos;确定&apos;,
+  &apos;用于&apos;,
+  &apos;电能&apos;,
+  &apos;相对&apos;,
+  &apos;容量&apos;,
+  &apos;相对&apos;,
+  &apos;容量&apos;,
+  &apos;确定&apos;,
+  &apos;可&apos;,
+  &apos;控制系统&apos;,
+  &apos;使用&apos;,
+  &apos;防止&apos;,
+  &apos;具有&apos;,
+  &apos;最低&apos;,
+  &apos;储能&apos;,
+  &apos;容量&apos;,
+  &apos;电池&apos;,
+  &apos;分部&apos;,
+  &apos;过&apos;,
+  &apos;放电&apos;],
+ [&apos;侧&apos;,
+  &apos;气囊&apos;,
+  &apos;装置&apos;,
+  &apos;本发明&apos;,
+  &apos;侧&apos;,
+  &apos;气囊&apos;,
+  &apos;装置&apos;,
+  &apos;横向&apos;,
+  &apos;分隔&apos;,
+  &apos;结构&apos;,
+  &apos;织物&apos;,
+  &apos;部&apos;,
+  &apos;形成&apos;,
+  &apos;结构&apos;,
+  &apos;织物&apos;,
+  &apos;部&apos;,
+  &apos;具有&apos;,
+  &apos;部&apos;,
+  &apos;结构&apos;,
+  &apos;织物&apos;,
+  &apos;部&apos;,
+  &apos;主体&apos;,
+  &apos;织物&apos;,
+  &apos;部&apos;,
+  &apos;结合&apos;,
+  &apos;部&apos;,
+  &apos;设置&apos;,
+  &apos;结合部&apos;,
+  &apos;使&apos;,
+  &apos;结构&apos;,
+  &apos;织物&apos;,
+  &apos;部&apos;,
+  &apos;互相&apos;,
+  &apos;结合&apos;,
+  &apos;内管&apos;,
+  &apos;延伸&apos;,
+  &apos;越过&apos;,
+  &apos;膨胀&apos;,
+  &apos;室&apos;,
+  &apos;下&apos;,
+  &apos;膨胀&apos;,
+  &apos;室&apos;,
+  &apos;横向&apos;,
+  &apos;分隔&apos;,
+  &apos;相交&apos;,
+  &apos;结合部&apos;,
+  &apos;使&apos;,
+  &apos;内管&apos;,
+  &apos;后&apos;,
+  &apos;主体&apos;,
+  &apos;织物&apos;,
+  &apos;部&apos;,
+  &apos;结合&apos;,
+  &apos;结合部&apos;,
+  &apos;使该&apos;,
+  &apos;部分&apos;,
+  &apos;前&apos;,
+  &apos;结构&apos;,
+  &apos;织物&apos;,
+  &apos;部&apos;,
+  &apos;结合&apos;],
+ [&apos;制造&apos;,
+  &apos;气囊&apos;,
+  &apos;方法&apos;,
+  &apos;本发明&apos;,
+  &apos;方式&apos;,
+  &apos;制造&apos;,
+  &apos;气囊&apos;,
+  &apos;结合&apos;,
+  &apos;步骤&apos;,
+  &apos;使&apos;,
+  &apos;结构&apos;,
+  &apos;织物&apos;,
+  &apos;安装&apos;,
+  &apos;引到&apos;,
+  &apos;更&apos;,
+  &apos;靠近&apos;,
+  &apos;主体&apos;,
+  &apos;织物&apos;,
+  &apos;摊开&apos;,
+  &apos;状态&apos;,
+  &apos;主体&apos;,
+  &apos;织物&apos;,
+  &apos;部&apos;,
+  &apos;结合&apos;,
+  &apos;结合&apos;,
+  &apos;步骤&apos;,
+  &apos;使&apos;,
+  &apos;没有&apos;,
+  &apos;重叠&apos;,
+  &apos;到&apos;,
+  &apos;结构&apos;,
+  &apos;织物&apos;,
+  &apos;部上&apos;,
+  &apos;部分&apos;,
+  &apos;主体&apos;,
+  &apos;织物&apos;,
+  &apos;部&apos;,
+  &apos;结合&apos;,
+  &apos;使&apos;,
+  &apos;重叠&apos;,
+  &apos;到&apos;,
+  &apos;结构&apos;,
+  &apos;织物&apos;,
+  &apos;部上&apos;,
+  &apos;部分&apos;,
+  &apos;只&apos;,
+  &apos;结构&apos;,
+  &apos;织物&apos;,
+  &apos;部&apos;,
+  &apos;结合&apos;,
+  &apos;结合&apos;,
+  &apos;步骤&apos;,
+  &apos;使&apos;,
+  &apos;结构&apos;,
+  &apos;织物&apos;,
+  &apos;安装&apos;,
+  &apos;时&apos;,
+  &apos;远离&apos;,
+  &apos;主体&apos;,
+  &apos;织物&apos;,
+  &apos;部&apos;,
+  &apos;互相&apos;,
+  &apos;结合&apos;],
+ [&apos;椅背&apos;,
+  &apos;枢轴&apos;,
+  &apos;系统&apos;,
+  &apos;车辆&apos;,
+  &apos;座椅&apos;,
+  &apos;总成&apos;,
+  &apos;包括&apos;,
+  &apos;侧&apos;,
+  &apos;支承&apos;,
+  &apos;部&apos;,
+  &apos;侧&apos;,
+  &apos;支承&apos;,
+  &apos;部&apos;,
+  &apos;限定&apos;,
+  &apos;椅背&apos;,
+  &apos;结构&apos;,
+  &apos;椅背&apos;,
+  &apos;结构&apos;,
+  &apos;竖直&apos;,
+  &apos;斜倚&apos;,
+  &apos;位置&apos;,
+  &apos;可&apos;,
+  &apos;操作&apos;,
+  &apos;机动&apos;,
+  &apos;化&apos;,
+  &apos;驱动&apos;,
+  &apos;总成&apos;,
+  &apos;设置&apos;,
+  &apos;侧&apos;,
+  &apos;支承&apos;,
+  &apos;部&apos;,
+  &apos;可&apos;,
+  &apos;操作&apos;,
+  &apos;耦接&apos;,
+  &apos;枢轴&apos;,
+  &apos;枢轴&apos;,
+  &apos;椅背&apos;,
+  &apos;结构&apos;,
+  &apos;可&apos;,
+  &apos;旋转&apos;,
+  &apos;耦接&apos;,
+  &apos;椅背&apos;,
+  &apos;悬挂&apos;,
+  &apos;组件&apos;,
+  &apos;耦接&apos;,
+  &apos;枢轴&apos;,
+  &apos;椅背&apos;,
+  &apos;结构&apos;,
+  &apos;处在&apos;,
+  &apos;竖直&apos;,
+  &apos;位置&apos;,
+  &apos;时&apos;,
+  &apos;椅背&apos;,
+  &apos;悬挂&apos;,
+  &apos;组件&apos;,
+  &apos;相对&apos;,
+  &apos;枢轴&apos;,
+  &apos;自动&apos;,
+  &apos;地向&apos;,
+  &apos;位置&apos;,
+  &apos;枢转&apos;,
+  &apos;椅背&apos;,
+  &apos;结构&apos;,
+  &apos;处在&apos;,
+  &apos;斜倚&apos;,
+  &apos;位置&apos;,
+  &apos;时&apos;,
+  &apos;椅背&apos;,
+  &apos;悬挂&apos;,
+  &apos;组件&apos;,
+  &apos;相对&apos;,
+  &apos;枢轴&apos;,
+  &apos;自动&apos;,
+  &apos;部向&apos;,
+  &apos;位置&apos;,
+  &apos;枢转&apos;,
+  &apos;间隙&apos;,
+  &apos;限定&apos;,
+  &apos;椅背&apos;,
+  &apos;悬挂&apos;,
+  &apos;组件&apos;,
+  &apos;椅背&apos;,
+  &apos;结构&apos;],
+ [&apos;用于&apos;,
+  &apos;机动车&apos;,
+  &apos;行驶&apos;,
+  &apos;过程&apos;,
+  &apos;关闭&apos;,
+  &apos;启动&apos;,
+  &apos;内燃机&apos;,
+  &apos;方法&apos;,
+  &apos;本发明&apos;,
+  &apos;描述&apos;,
+  &apos;用于&apos;,
+  &apos;具有&apos;,
+  &apos;手动&apos;,
+  &apos;变速器&apos;,
+  &apos;机动车&apos;,
+  &apos;行驶&apos;,
+  &apos;过程&apos;,
+  &apos;关闭&apos;,
+  &apos;开启&apos;,
+  &apos;内燃机&apos;,
+  &apos;方法&apos;,
+  &apos;方法&apos;,
+  &apos;具有&apos;,
+  &apos;方法&apos;,
+  &apos;步骤&apos;,
+  &apos;首先&apos;,
+  &apos;机动车&apos;,
+  &apos;速度&apos;,
+  &apos;满足&apos;,
+  &apos;手动&apos;,
+  &apos;变速器&apos;,
+  &apos;空挡&apos;,
+  &apos;条件&apos;,
+  &apos;时&apos;,
+  &apos;开始&apos;,
+  &apos;方法&apos;,
+  &apos;随后&apos;,
+  &apos;关闭&apos;,
+  &apos;机动车&apos;,
+  &apos;内燃机&apos;,
+  &apos;内燃机&apos;,
+  &apos;停转&apos;,
+  &apos;状态&apos;,
+  &apos;无&apos;,
+  &apos;驱动&apos;,
+  &apos;运行&apos;,
+  &apos;模式&apos;,
+  &apos;继续&apos;,
+  &apos;行驶&apos;,
+  &apos;内燃机&apos;,
+  &apos;停转&apos;,
+  &apos;状态&apos;,
+  &apos;监测&apos;,
+  &apos;启动&apos;,
+  &apos;发生器&apos;,
+  &apos;启动&apos;,
+  &apos;信号&apos;,
+  &apos;发生器&apos;,
+  &apos;操作&apos;,
+  &apos;时&apos;,
+  &apos;开始&apos;,
+  &apos;重启&apos;,
+  &apos;内燃机&apos;],
+ [&apos;倾斜&apos;,
+  &apos;货箱&apos;,
+  &apos;卸载&apos;,
+  &apos;系统&apos;,
+  &apos;本发明&apos;,
+  &apos;涉及&apos;,
+  &apos;倾斜&apos;,
+  &apos;货箱&apos;,
+  &apos;卸载&apos;,
+  &apos;系统&apos;,
+  &apos;变型&apos;,
+  &apos;可&apos;,
+  &apos;包括&apos;,
+  &apos;产品&apos;,
+  &apos;包括&apos;,
+  &apos;运输工具&apos;,
+  &apos;包括&apos;,
+  &apos;具有&apos;,
+  &apos;倾斜&apos;,
+  &apos;部分&apos;,
+  &apos;倾斜&apos;,
+  &apos;部分&apos;,
+  &apos;货箱&apos;,
+  &apos;运输工具&apos;,
+  &apos;具有&apos;,
+  &apos;纵向&apos;,
+  &apos;侧&apos;,
+  &apos;相对&apos;,
+  &apos;纵向&apos;,
+  &apos;侧&apos;,
+  &apos;倾斜&apos;,
+  &apos;部分&apos;,
+  &apos;构造&apos;,
+  &apos;布置&apos;,
+  &apos;成使&apos;,
+  &apos;最靠近&apos;,
+  &apos;纵向&apos;,
+  &apos;侧&apos;,
+  &apos;可&apos;,
+  &apos;相对&apos;,
+  &apos;最靠近&apos;,
+  &apos;纵向&apos;,
+  &apos;侧&apos;,
+  &apos;相对&apos;,
+  &apos;侧&apos;,
+  &apos;降低&apos;,
+  &apos;变型&apos;,
+  &apos;可&apos;,
+  &apos;包括&apos;,
+  &apos;方法&apos;,
+  &apos;包括&apos;,
+  &apos;提供&apos;,
+  &apos;包括&apos;,
+  &apos;具有&apos;,
+  &apos;倾斜&apos;,
+  &apos;部分&apos;,
+  &apos;倾斜&apos;,
+  &apos;部分&apos;,
+  &apos;货箱&apos;,
+  &apos;运输工具&apos;,
+  &apos;运输工具&apos;,
+  &apos;具有&apos;,
+  &apos;纵向&apos;,
+  &apos;侧&apos;,
+  &apos;相对&apos;,
+  &apos;纵向&apos;,
+  &apos;侧&apos;,
+  &apos;倾斜&apos;,
+  &apos;部分&apos;,
+  &apos;构造&apos;,
+  &apos;布置&apos;,
+  &apos;成使&apos;,
+  &apos;最靠近&apos;,
+  &apos;纵向&apos;,
+  &apos;侧&apos;,
+  &apos;可&apos;,
+  &apos;相对&apos;,
+  &apos;最靠近&apos;,
+  &apos;纵向&apos;,
+  &apos;侧&apos;,
+  &apos;相对&apos;,
+  &apos;侧&apos;,
+  &apos;降低&apos;,
+  &apos;货箱&apos;,
+  &apos;具有&apos;,
+  &apos;倾斜&apos;,
+  &apos;部分&apos;,
+  &apos;最靠近&apos;,
+  &apos;货箱&apos;,
+  &apos;倾斜&apos;,
+  &apos;部分&apos;,
+  &apos;邻近&apos;,
+  &apos;倾斜&apos;,
+  &apos;部分&apos;,
+  &apos;将&apos;,
+  &apos;货物&apos;,
+  &apos;货箱&apos;,
+  &apos;到&apos;,
+  &apos;货箱&apos;,
+  &apos;将&apos;,
+  &apos;货物&apos;,
+  &apos;货箱&apos;,
+  &apos;卸载&apos;,
+  &apos;包括&apos;,
+  &apos;使&apos;,
+  &apos;货箱&apos;,
+  &apos;倾斜&apos;,
+  &apos;部分&apos;,
+  &apos;倾斜&apos;]]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model = Word2Vec(corpusA, size=<span class="number">100</span>, window=<span class="number">5</span>, min_count=<span class="number">1</span>, workers=<span class="number">4</span>, sg = <span class="number">1</span>, negative = <span class="number">5</span>, ns_exponent = <span class="number">0.75</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.most_similar(<span class="string">'最靠近'</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>/usr/local/lib/python3.5/dist-packages/ipykernel_launcher.py:1: DeprecationWarning: Call to deprecated `most_similar` (Method will be removed in 4.0.0, use self.wv.most_similar() instead).
+  &quot;&quot;&quot;Entry point for launching an IPython kernel.
+/usr/local/lib/python3.5/dist-packages/gensim/matutils.py:737: FutureWarning: Conversion of the second argument of issubdtype from `int` to `np.signedinteger` is deprecated. In future, it will be treated as `np.int64 == np.dtype(int).type`.
+  if np.issubdtype(vec.dtype, np.int):
+
+
+
+
+
+[(&apos;椅背&apos;, 0.43153685331344604),
+ (&apos;具有&apos;, 0.424590140581131),
+ (&apos;手动&apos;, 0.4134489595890045),
+ (&apos;驱动器&apos;, 0.4102057218551636),
+ (&apos;方式&apos;, 0.39596235752105713),
+ (&apos;操作&apos;, 0.3881428837776184),
+ (&apos;自动&apos;, 0.3764950931072235),
+ (&apos;方法&apos;, 0.3684544563293457),
+ (&apos;确定&apos;, 0.3612304925918579),
+ (&apos;转速&apos;, 0.3547886610031128)]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.save(<span class="string">"data/w2v"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="6-Tensorflow训练中文词向量，并可视化"><a href="#6-Tensorflow训练中文词向量，并可视化" class="headerlink" title="6.Tensorflow训练中文词向量，并可视化"></a>6.Tensorflow训练中文词向量，并可视化</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># These are all the modules we'll be using later. Make sure you can import them</span></span><br><span class="line"><span class="comment"># before proceeding further.</span></span><br><span class="line">%matplotlib inline</span><br><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> print_function</span><br><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">import</span> zipfile</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pylab</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> font_manager</span><br><span class="line"><span class="keyword">from</span> six.moves <span class="keyword">import</span> range</span><br><span class="line"><span class="keyword">from</span> six.moves.urllib.request <span class="keyword">import</span> urlretrieve</span><br><span class="line"><span class="keyword">from</span> six.moves <span class="keyword">import</span> cPickle <span class="keyword">as</span> pickle</span><br><span class="line"><span class="keyword">from</span> sklearn.manifold <span class="keyword">import</span> TSNE</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">vocabulary_size = <span class="number">3000</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_dataset</span><span class="params">(words)</span>:</span></span><br><span class="line">  count = [[<span class="string">'UNK'</span>, <span class="number">-1</span>]]</span><br><span class="line">  count.extend(collections.Counter(words).most_common(vocabulary_size - <span class="number">1</span>))</span><br><span class="line">  dictionary = dict()</span><br><span class="line">  <span class="keyword">for</span> word, _ <span class="keyword">in</span> count:</span><br><span class="line">    dictionary[word] = len(dictionary)</span><br><span class="line">  data = list()</span><br><span class="line">  unk_count = <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">    <span class="keyword">if</span> word <span class="keyword">in</span> dictionary:</span><br><span class="line">      index = dictionary[word]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">      index = <span class="number">0</span>  <span class="comment"># dictionary['UNK']</span></span><br><span class="line">      unk_count = unk_count + <span class="number">1</span></span><br><span class="line">    data.append(index)</span><br><span class="line">  count[<span class="number">0</span>][<span class="number">1</span>] = unk_count</span><br><span class="line">  reverse_dictionary = dict(zip(dictionary.values(), dictionary.keys())) </span><br><span class="line">  <span class="keyword">return</span> data, count, dictionary, reverse_dictionary</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">maybe_pickle</span><span class="params">(target_data, set_filename, force=False)</span>:</span></span><br><span class="line">  <span class="keyword">if</span> os.path.exists(set_filename) <span class="keyword">and</span> <span class="keyword">not</span> force:</span><br><span class="line">    <span class="keyword">if</span> os.path.getsize(set_filename) &gt; <span class="number">0</span>:</span><br><span class="line">      <span class="comment"># You may override by setting force=True.</span></span><br><span class="line">      print(<span class="string">'%s already present - Skipping pickling.'</span> % set_filename)</span><br><span class="line">      <span class="keyword">return</span> set_filename</span><br><span class="line">  print(<span class="string">'Pickling %s.'</span> % set_filename)</span><br><span class="line">  <span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">with</span> open(set_filename, <span class="string">'wb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">      pickle.dump(target_data, f, pickle.HIGHEST_PROTOCOL)</span><br><span class="line">  <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">    print(<span class="string">'Unable to save data to'</span>, set_filename, <span class="string">':'</span>, e)</span><br><span class="line"></span><br><span class="line"><span class="comment">#with open("wiki_cn_chunk.txt", 'r') as f:</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">loadData</span><span class="params">(data_file=<span class="string">"./datat/data.pickle"</span>, count_file=<span class="string">"./data/count.pickle"</span>, dict_file=<span class="string">"./data/dictionary.pickle"</span>, rev_dict_file=<span class="string">"./data/reverse_dictionary.pickle"</span>, force=False)</span>:</span></span><br><span class="line">  <span class="keyword">if</span> os.path.exists(data_file) <span class="keyword">and</span> os.path.exists(count_file) <span class="keyword">and</span> os.path.exists(dict_file) <span class="keyword">and</span> os.path.exists(rev_dict_file) <span class="keyword">and</span> <span class="keyword">not</span> force:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">      print(<span class="string">"Pickle files found, try to load data from pickle files..."</span>)</span><br><span class="line">      <span class="keyword">with</span> open(data_file, <span class="string">'rb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        data = pickle.load(f)</span><br><span class="line">      <span class="keyword">with</span> open(count_file, <span class="string">'rb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        count = pickle.load(f)</span><br><span class="line">      <span class="keyword">with</span> open(dict_file, <span class="string">'rb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        dictionary = pickle.load(f)</span><br><span class="line">      <span class="keyword">with</span> open(rev_dict_file, <span class="string">'rb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">        reverse_dictionary = pickle.load(f)</span><br><span class="line">      print(<span class="string">"Data loaded from pickle files successfully"</span>)</span><br><span class="line">      print(<span class="string">'Most common words (+UNK)'</span>, count[:<span class="number">5</span>])</span><br><span class="line">      print(<span class="string">'Least common words'</span>, count[<span class="number">-10</span>:])</span><br><span class="line">      print(<span class="string">'Sample data'</span>, data[:<span class="number">10</span>])</span><br><span class="line">      <span class="keyword">return</span> data, count, dictionary, reverse_dictionary</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">      print(<span class="string">'Unable to load data'</span>, <span class="string">':'</span>, e)</span><br><span class="line">  <span class="keyword">else</span>:</span><br><span class="line">    <span class="comment">#lines = tf.compat.as_str(f.read().decode("utf-8")).strip().split()</span></span><br><span class="line">    <span class="comment">#lines = f.read().strip().decode("utf-8", "ignore").split()</span></span><br><span class="line">    <span class="comment">#print(lines[:10])</span></span><br><span class="line">    <span class="keyword">global</span> corpusA</span><br><span class="line">    words = []</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> corpusA:</span><br><span class="line">        words.extend(list(line))</span><br><span class="line">    print(<span class="string">'Data size %d'</span> % len(words))</span><br><span class="line">    print(words[:<span class="number">10</span>])</span><br><span class="line"></span><br><span class="line">    print(<span class="string">"Cooking data from words loaded..."</span>)</span><br><span class="line">    data, count, dictionary, reverse_dictionary = build_dataset(words)</span><br><span class="line">    print(<span class="string">'Most common words (+UNK)'</span>, count[:<span class="number">5</span>])</span><br><span class="line">    print(<span class="string">'Least common words'</span>, count[<span class="number">-10</span>:])</span><br><span class="line">    print(<span class="string">'Sample data'</span>, data[:<span class="number">10</span>])</span><br><span class="line">    <span class="keyword">del</span> words  <span class="comment"># Hint to reduce memory.</span></span><br><span class="line"></span><br><span class="line">    print(<span class="string">"Saving cooked data into pickle files..."</span>)</span><br><span class="line">    maybe_pickle(dictionary, <span class="string">"dictionary.pickle"</span>)</span><br><span class="line">    maybe_pickle(reverse_dictionary, <span class="string">"reverse_dictionary.pickle"</span>)</span><br><span class="line">    maybe_pickle(count, <span class="string">"count.pickle"</span>)</span><br><span class="line">    maybe_pickle(data, <span class="string">"data.pickle"</span>)</span><br><span class="line">  <span class="keyword">return</span> data, count, dictionary, reverse_dictionary</span><br><span class="line"></span><br><span class="line">data, count, dictionary, reverse_dictionary = loadData()</span><br></pre></td></tr></table></figure>
+<pre><code>Data size 783
+[&apos;永磁&apos;, &apos;电机&apos;, &apos;驱动&apos;, &apos;纯&apos;, &apos;电动&apos;, &apos;大巴车&apos;, &apos;坡道&apos;, &apos;起步&apos;, &apos;防溜&apos;, &apos;策略&apos;]
+Cooking data from words loaded...
+Most common words (+UNK) [[&apos;UNK&apos;, 0], (&apos;结构&apos;, 27), (&apos;部&apos;, 16), (&apos;织物&apos;, 16), (&apos;侧&apos;, 15)]
+Least common words [(&apos;使能&apos;, 1), (&apos;更改&apos;, 1), (&apos;恢复&apos;, 1), (&apos;二者&apos;, 1), (&apos;监测&apos;, 1), (&apos;设备&apos;, 1), (&apos;相交&apos;, 1), (&apos;定位&apos;, 1), (&apos;间隙&apos;, 1), (&apos;配置&apos;, 1)]
+Sample data [36, 29, 51, 143, 142, 104, 88, 145, 33, 43]
+Saving cooked data into pickle files...
+Pickling dictionary.pickle.
+Pickling reverse_dictionary.pickle.
+Pickling count.pickle.
+Pickling data.pickle.
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">data_index = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">generate_batch</span><span class="params">(batch_size, num_skips, skip_window)</span>:</span></span><br><span class="line">  <span class="keyword">global</span> data_index</span><br><span class="line">  <span class="keyword">assert</span> batch_size % num_skips == <span class="number">0</span></span><br><span class="line">  <span class="keyword">assert</span> num_skips &lt;= <span class="number">2</span> * skip_window</span><br><span class="line">  batch = np.ndarray(shape=(batch_size), dtype=np.int32)</span><br><span class="line">  labels = np.ndarray(shape=(batch_size, <span class="number">1</span>), dtype=np.int32)</span><br><span class="line">  span = <span class="number">2</span> * skip_window + <span class="number">1</span> <span class="comment"># [ skip_window target skip_window ]</span></span><br><span class="line">  buffer = collections.deque(maxlen=span)</span><br><span class="line">  <span class="keyword">for</span> _ <span class="keyword">in</span> range(span):</span><br><span class="line">    buffer.append(data[data_index])</span><br><span class="line">    data_index = (data_index + <span class="number">1</span>) % len(data)</span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> range(batch_size // num_skips):</span><br><span class="line">    target = skip_window  <span class="comment"># target label at the center of the buffer</span></span><br><span class="line">    targets_to_avoid = [ skip_window ]</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(num_skips):</span><br><span class="line">      <span class="keyword">while</span> target <span class="keyword">in</span> targets_to_avoid:</span><br><span class="line">        target = random.randint(<span class="number">0</span>, span - <span class="number">1</span>)</span><br><span class="line">      targets_to_avoid.append(target)</span><br><span class="line">      batch[i * num_skips + j] = buffer[skip_window]</span><br><span class="line">      labels[i * num_skips + j, <span class="number">0</span>] = buffer[target]</span><br><span class="line">    buffer.append(data[data_index])</span><br><span class="line">    data_index = (data_index + <span class="number">1</span>) % len(data)</span><br><span class="line">  <span class="keyword">return</span> batch, labels</span><br><span class="line"></span><br><span class="line">print(<span class="string">'data:'</span>, [reverse_dictionary[di] <span class="keyword">for</span> di <span class="keyword">in</span> data[:<span class="number">8</span>]])</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> num_skips, skip_window <span class="keyword">in</span> [(<span class="number">2</span>, <span class="number">1</span>), (<span class="number">4</span>, <span class="number">2</span>)]:</span><br><span class="line">    data_index = <span class="number">0</span></span><br><span class="line">    batch, labels = generate_batch(batch_size=<span class="number">16</span>, num_skips=num_skips, skip_window=skip_window)</span><br><span class="line">    print(<span class="string">'\nwith num_skips = %d and skip_window = %d:'</span> % (num_skips, skip_window))</span><br><span class="line">    print(<span class="string">'    batch:'</span>, [reverse_dictionary[bi] <span class="keyword">for</span> bi <span class="keyword">in</span> batch])</span><br><span class="line">    print(<span class="string">'    labels:'</span>, [reverse_dictionary[li] <span class="keyword">for</span> li <span class="keyword">in</span> labels.reshape(<span class="number">16</span>)])</span><br></pre></td></tr></table></figure>
+<pre><code>data: [&apos;永磁&apos;, &apos;电机&apos;, &apos;驱动&apos;, &apos;纯&apos;, &apos;电动&apos;, &apos;大巴车&apos;, &apos;坡道&apos;, &apos;起步&apos;]
+
+with num_skips = 2 and skip_window = 1:
+    batch: [&apos;电机&apos;, &apos;电机&apos;, &apos;驱动&apos;, &apos;驱动&apos;, &apos;纯&apos;, &apos;纯&apos;, &apos;电动&apos;, &apos;电动&apos;, &apos;大巴车&apos;, &apos;大巴车&apos;, &apos;坡道&apos;, &apos;坡道&apos;, &apos;起步&apos;, &apos;起步&apos;, &apos;防溜&apos;, &apos;防溜&apos;]
+    labels: [&apos;驱动&apos;, &apos;永磁&apos;, &apos;电机&apos;, &apos;纯&apos;, &apos;电动&apos;, &apos;驱动&apos;, &apos;大巴车&apos;, &apos;纯&apos;, &apos;坡道&apos;, &apos;电动&apos;, &apos;大巴车&apos;, &apos;起步&apos;, &apos;防溜&apos;, &apos;坡道&apos;, &apos;策略&apos;, &apos;起步&apos;]
+
+with num_skips = 4 and skip_window = 2:
+    batch: [&apos;驱动&apos;, &apos;驱动&apos;, &apos;驱动&apos;, &apos;驱动&apos;, &apos;纯&apos;, &apos;纯&apos;, &apos;纯&apos;, &apos;纯&apos;, &apos;电动&apos;, &apos;电动&apos;, &apos;电动&apos;, &apos;电动&apos;, &apos;大巴车&apos;, &apos;大巴车&apos;, &apos;大巴车&apos;, &apos;大巴车&apos;]
+    labels: [&apos;电动&apos;, &apos;纯&apos;, &apos;永磁&apos;, &apos;电机&apos;, &apos;驱动&apos;, &apos;电动&apos;, &apos;电机&apos;, &apos;大巴车&apos;, &apos;纯&apos;, &apos;大巴车&apos;, &apos;坡道&apos;, &apos;驱动&apos;, &apos;起步&apos;, &apos;纯&apos;, &apos;电动&apos;, &apos;坡道&apos;]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">batch_size = <span class="number">128</span></span><br><span class="line">embedding_size = <span class="number">128</span> <span class="comment"># Dimension of the embedding vector.</span></span><br><span class="line">skip_window = <span class="number">2</span> <span class="comment"># How many words to consider left and right.</span></span><br><span class="line">num_skips = <span class="number">4</span> <span class="comment"># How many times to reuse an input to generate a label.</span></span><br><span class="line"><span class="comment"># We pick a random validation set to sample nearest neighbors. here we limit the</span></span><br><span class="line"><span class="comment"># validation samples to the words that have a low numeric ID, which by</span></span><br><span class="line"><span class="comment"># construction are also the most frequent. </span></span><br><span class="line">valid_size = <span class="number">16</span> <span class="comment"># Random set of words to evaluate similarity on.</span></span><br><span class="line">valid_window = <span class="number">100</span> <span class="comment"># Only pick dev samples in the head of the distribution.</span></span><br><span class="line">valid_examples = np.array(random.sample(range(valid_window), valid_size))</span><br><span class="line">num_sampled = <span class="number">64</span> <span class="comment"># Number of negative examples to sample.</span></span><br><span class="line"></span><br><span class="line">graph = tf.Graph()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> graph.as_default(), tf.device(<span class="string">'/cpu:0'</span>):</span><br><span class="line"></span><br><span class="line">  <span class="comment"># Input data.</span></span><br><span class="line">  train_dataset = tf.placeholder(tf.int32, shape=[batch_size])</span><br><span class="line">  train_labels = tf.placeholder(tf.float32, shape=[batch_size, <span class="number">1</span>])</span><br><span class="line">  valid_dataset = tf.constant(valid_examples, dtype=tf.int32)</span><br><span class="line">  </span><br><span class="line">  <span class="comment"># Variables.</span></span><br><span class="line">  embeddings = tf.Variable(</span><br><span class="line">    tf.random_uniform([vocabulary_size, embedding_size], <span class="number">-1.0</span>, <span class="number">1.0</span>))</span><br><span class="line">  softmax_weights = tf.Variable(</span><br><span class="line">    tf.truncated_normal([vocabulary_size, embedding_size],</span><br><span class="line">                         stddev=<span class="number">1.0</span> / math.sqrt(embedding_size)))</span><br><span class="line">  softmax_biases = tf.Variable(tf.zeros([vocabulary_size]))</span><br><span class="line">  </span><br><span class="line">  <span class="comment"># Model.</span></span><br><span class="line">  <span class="comment"># Look up embeddings for inputs.</span></span><br><span class="line">  embed = tf.nn.embedding_lookup(embeddings, train_dataset)</span><br><span class="line">  <span class="comment"># Compute the softmax loss, using a sample of the negative labels each time.</span></span><br><span class="line">  loss = tf.reduce_mean(</span><br><span class="line">    tf.nn.sampled_softmax_loss(softmax_weights, softmax_biases, train_labels,  embed,</span><br><span class="line">                               num_sampled, vocabulary_size))</span><br><span class="line"></span><br><span class="line">  <span class="comment"># Optimizer.</span></span><br><span class="line">  <span class="comment"># Note: The optimizer will optimize the softmax_weights AND the embeddings.</span></span><br><span class="line">  <span class="comment"># This is because the embeddings are defined as a variable quantity and the</span></span><br><span class="line">  <span class="comment"># optimizer's `minimize` method will by default modify all variable quantities </span></span><br><span class="line">  <span class="comment"># that contribute to the tensor it is passed.</span></span><br><span class="line">  <span class="comment"># See docs on `tf.train.Optimizer.minimize()` for more details.</span></span><br><span class="line">  optimizer = tf.train.AdagradOptimizer(<span class="number">1.0</span>).minimize(loss)</span><br><span class="line">  </span><br><span class="line">  norm = tf.sqrt(tf.reduce_sum(tf.square(embeddings), <span class="number">1</span>, keep_dims=<span class="keyword">True</span>))</span><br><span class="line">  normalized_embeddings = embeddings / norm</span><br></pre></td></tr></table></figure>
+<pre><code>WARNING:tensorflow:From &lt;ipython-input-11-e91213785cb7&gt;:46: calling reduce_sum (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">num_steps = <span class="number">6001</span></span><br><span class="line"><span class="comment">#num_steps = 100001</span></span><br><span class="line"><span class="comment">#num_steps = 5000001</span></span><br><span class="line"><span class="comment">#max_steps = len(data) * num_skips - 100</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session(graph=graph) <span class="keyword">as</span> session:</span><br><span class="line">  tf.initialize_all_variables().run()</span><br><span class="line">  print(<span class="string">'Initialized'</span>)</span><br><span class="line">  average_loss = <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span> step <span class="keyword">in</span> range(num_steps):</span><br><span class="line">    batch_data, batch_labels = generate_batch(</span><br><span class="line">      batch_size, num_skips, skip_window)</span><br><span class="line">    feed_dict = &#123;train_dataset : batch_data, train_labels : batch_labels&#125;</span><br><span class="line">    _, l = session.run([optimizer, loss], feed_dict=feed_dict)</span><br><span class="line">    average_loss += l</span><br><span class="line">    <span class="keyword">if</span> step % <span class="number">2000</span> == <span class="number">0</span>:</span><br><span class="line">      <span class="keyword">if</span> step &gt; <span class="number">0</span>:</span><br><span class="line">        average_loss = average_loss / <span class="number">2000</span></span><br><span class="line">      <span class="comment"># The average loss is an estimate of the loss over the last 2000 batches.</span></span><br><span class="line">      print(<span class="string">'Average loss at step %d: %f'</span> % (step, average_loss))</span><br><span class="line">      average_loss = <span class="number">0</span></span><br><span class="line">  final_embeddings = normalized_embeddings.eval()</span><br></pre></td></tr></table></figure>
+<pre><code>WARNING:tensorflow:From /usr/local/lib/python3.5/dist-packages/tensorflow/python/util/tf_should_use.py:189: initialize_all_variables (from tensorflow.python.ops.variables) is deprecated and will be removed after 2017-03-02.
+Instructions for updating:
+Use `tf.global_variables_initializer` instead.
+Initialized
+Average loss at step 0: 5.761660
+Average loss at step 2000: 1.798778
+Average loss at step 4000: 1.446995
+Average loss at step 6000: 1.372941
+</code></pre><h2 id="7-中文词向量可视化"><a href="#7-中文词向量可视化" class="headerlink" title="7.中文词向量可视化"></a>7.中文词向量可视化</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">num_points = <span class="number">200</span></span><br><span class="line"></span><br><span class="line">tsne = TSNE(perplexity=<span class="number">30</span>, n_components=<span class="number">2</span>, init=<span class="string">'pca'</span>, n_iter=<span class="number">5000</span>)</span><br><span class="line">two_d_embeddings = tsne.fit_transform(final_embeddings[<span class="number">1</span>:num_points+<span class="number">1</span>, :])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">myfont = font_manager.FontProperties(fname=<span class="string">'/usr/share/fonts/zh/STKAITI.TTF'</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot</span><span class="params">(embeddings, labels)</span>:</span></span><br><span class="line">  <span class="keyword">assert</span> embeddings.shape[<span class="number">0</span>] &gt;= len(labels), <span class="string">'More labels than embeddings'</span></span><br><span class="line">  pylab.figure(figsize=(<span class="number">15</span>,<span class="number">15</span>))  <span class="comment"># in inches</span></span><br><span class="line">  <span class="keyword">for</span> i, label <span class="keyword">in</span> enumerate(labels):</span><br><span class="line">    x, y = embeddings[i,:]</span><br><span class="line">    pylab.scatter(x, y)</span><br><span class="line">    pylab.annotate(label, xy=(x, y), xytext=(<span class="number">5</span>, <span class="number">2</span>), textcoords=<span class="string">'offset points'</span>,</span><br><span class="line">                   ha=<span class="string">'right'</span>, va=<span class="string">'bottom'</span>,fontproperties=myfont)</span><br><span class="line">  pylab.show()</span><br><span class="line"></span><br><span class="line">words = [reverse_dictionary[i] <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, num_points+<span class="number">1</span>)]</span><br><span class="line">plot(two_d_embeddings, words)</span><br></pre></td></tr></table></figure>
+<p><img alt="png" class="post-img b-lazy" data-img="Representation_of_words_%26_sentences_files/Representation_of_words_%26_sentences_20_0.png" data-index="12" data-src="Representation_of_words_%26_sentences_files/Representation_of_words_%26_sentences_20_0.png"></p>
+
+                </article>
+                <ul class="tags-postTags">
+                    
+                    <li>
+                        <a href="/tags/nlp/" rel="tag"># nlp</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tags/自然语言处理/" rel="tag"># 自然语言处理</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    
+    <nav id="gobottom" class="pagination">
+        
+        <a class="prev-post" title="NLP系列" href="/2019-03-21/nlp/5Text_topic_extraction_and_representation_v2/2_LDA/">
+            ← NLP系列
+        </a>
+        
+        <span class="prev-next-post">·</span>
+        
+        <a class="next-post" title="NLP系列" href="/2019-03-21/nlp/6seq2seq_v2/1.seq2seq_visualization/">
+            NLP系列 →
+        </a>
+        
+    </nav>
+
+    
+    <div class="inner">
+        <div id="comment"></div>
+    </div>
+    
+</div>
+
+<div class="toc-bar">
+    <div class="toc-btn-bar">
+        <a href="#site-main" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M793.024 710.272a32 32 0 1 0 45.952-44.544l-310.304-320a32 32 0 0 0-46.4 0.48l-297.696 320a32 32 0 0 0 46.848 43.584l274.752-295.328 286.848 295.808z"/></svg>
+        </a>
+        <div class="toc-btn toc-switch">
+            <svg class="toc-open" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M779.776 480h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M779.776 672h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M256 288a32 32 0 1 0 0 64 32 32 0 0 0 0-64M392.576 352h387.2a32 32 0 0 0 0-64h-387.2a32 32 0 0 0 0 64M256 480a32 32 0 1 0 0 64 32 32 0 0 0 0-64M256 672a32 32 0 1 0 0 64 32 32 0 0 0 0-64"/></svg>
+            <svg class="toc-close hide" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M512 960c-247.039484 0-448-200.960516-448-448S264.960516 64 512 64 960 264.960516 960 512 759.039484 960 512 960zM512 128.287273c-211.584464 0-383.712727 172.128262-383.712727 383.712727 0 211.551781 172.128262 383.712727 383.712727 383.712727 211.551781 0 383.712727-172.159226 383.712727-383.712727C895.712727 300.415536 723.551781 128.287273 512 128.287273z"/><path d="M557.05545 513.376159l138.367639-136.864185c12.576374-12.416396 12.672705-32.671738 0.25631-45.248112s-32.704421-12.672705-45.248112-0.25631l-138.560301 137.024163-136.447897-136.864185c-12.512727-12.512727-32.735385-12.576374-45.248112-0.063647-12.512727 12.480043-12.54369 32.735385-0.063647 45.248112l136.255235 136.671523-137.376804 135.904314c-12.576374 12.447359-12.672705 32.671738-0.25631 45.248112 6.271845 6.335493 14.496116 9.504099 22.751351 9.504099 8.12794 0 16.25588-3.103239 22.496761-9.247789l137.567746-136.064292 138.687596 139.136568c6.240882 6.271845 14.432469 9.407768 22.65674 9.407768 8.191587 0 16.352211-3.135923 22.591372-9.34412 12.512727-12.480043 12.54369-32.704421 0.063647-45.248112L557.05545 513.376159z"/></svg>
+        </div>
+        <a href="#gobottom" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M231.424 346.208a32 32 0 0 0-46.848 43.584l297.696 320a32 32 0 0 0 46.4 0.48l310.304-320a32 32 0 1 0-45.952-44.544l-286.848 295.808-274.752-295.36z"/></svg>
+        </a>
+    </div>
+    <div class="toc-main">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第3门：文本表示"><span class="toc-text">第3门：文本表示</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#第1章：文本词与句的表示"><span class="toc-text">第1章：文本词与句的表示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-文本表示概述"><span class="toc-text">1.文本表示概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-为什么要进行文本表示"><span class="toc-text">1.1 为什么要进行文本表示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-文本表示分类（基于粒度）"><span class="toc-text">1.2 文本表示分类（基于粒度）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-文本表示分类（基于表示方法）"><span class="toc-text">1.3 文本表示分类（基于表示方法）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-文本离散表示：词袋模型与TF-IDF"><span class="toc-text">2. 文本离散表示：词袋模型与TF-IDF</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-最简单的文本表示：词袋子模型（bag-of-words）"><span class="toc-text">2.1 最简单的文本表示：词袋子模型（bag of words）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-1-词袋子模型的优点"><span class="toc-text">2.1.1 词袋子模型的优点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-2-词袋子模型的缺点"><span class="toc-text">2.1.2 词袋子模型的缺点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-对词袋子模型的改进：TF-IDF"><span class="toc-text">2.2 对词袋子模型的改进：TF-IDF</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-1-不仅考虑词语是否出现，还考虑其出现的次数或者频率（TF）"><span class="toc-text">2.2.1 不仅考虑词语是否出现，还考虑其出现的次数或者频率（TF）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-2-统计逆文档频率——IDF"><span class="toc-text">2.2.2 统计逆文档频率——IDF</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-文本分布式表示：word2vec"><span class="toc-text">3.文本分布式表示：word2vec</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-词向量的one-hot表示"><span class="toc-text">3.1 词向量的one-hot表示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-基于SVD降维的表示方法"><span class="toc-text">3.2 基于SVD降维的表示方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-1-词-文档矩阵"><span class="toc-text">3.2.1 词-文档矩阵</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-2-基于窗口的共现矩阵X"><span class="toc-text">3.2.2 基于窗口的共现矩阵X</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-基于神经网络的表示方法"><span class="toc-text">3.3 基于神经网络的表示方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-1-语言模型（1-gram-2-gram等等）"><span class="toc-text">3.3.1 语言模型（1-gram,2-gram等等）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-2-连续词袋模型（CBOW）"><span class="toc-text">3.3.2 连续词袋模型（CBOW）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-3-Skip-Gram-模型"><span class="toc-text">3.3.3 Skip-Gram 模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-4-负例采样（Negative-Sampling）"><span class="toc-text">3.3.4 负例采样（Negative Sampling）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-词向量的作用与获取"><span class="toc-text">3.4 词向量的作用与获取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-词向量为什么有用"><span class="toc-text">3.5 词向量为什么有用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-python中文文本向量化表示"><span class="toc-text">4.python中文文本向量化表示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-基于gensim的中文文本词向量训练与相似度匹配"><span class="toc-text">5.基于gensim的中文文本词向量训练与相似度匹配</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Tensorflow训练中文词向量，并可视化"><span class="toc-text">6.Tensorflow训练中文词向量，并可视化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-中文词向量可视化"><span class="toc-text">7.中文词向量可视化</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+	</div>
+	
+
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+  <header class="read-next-card-header">
+    <small class="read-next-card-header-sitetitle">&mdash; Pastor Dean &mdash;</small>
+    <h3 class="read-next-card-header-title">Recent Posts</h3>
+  </header>
+  <div class="read-next-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+      <path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/>
+    </svg>
+  </div>
+  <div class="read-next-card-content">
+    <ul>
+      
+      
+      
+      <li>
+        <a href="/2020-01-16/thinking/Thinking modelBiological thinking Biological thinking looking at the business world from an evolutionary perspective/">Thinking modelBiological thinking Biological thinking: looking at the business world from an evolutionary perspective</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2020-01-13/thinking/Modern Darwin Integrated Model  Biological Thinking Mode Opening God Perspective/">Modern Darwin Integrated Model Biological Thinking Mode Opening God is Perspective</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2020-01-11/thinking/Metacognition Changing the stubborn thinking of the brain/">Metacognition Changing the stubborn thinking of the brain</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <footer class="read-next-card-footer">
+    <a href="/archives">  MORE  → </a>
+  </footer>
+</article>
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+    <header class="read-next-card-header tagcloud-card">
+        <h3 class="read-next-card-header-title">Categories</h3>
+    </header>
+    <div class="read-next-card-content">
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Biological-Thinking/">Biological Thinking</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cognitive-Neuroscience/">Cognitive Neuroscience</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DeepLearning/">DeepLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/FFmpeg/">FFmpeg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MacOS/">MacOS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MachineLearning/">MachineLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PM/">PM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/RPC/">RPC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vim/">Vim</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WebRTC/">WebRTC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/deeplearn/">deeplearn</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/http/">http</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/machineLearning/">machineLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/文摘/">文摘</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构师/">架构师</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/知识图谱/">知识图谱</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/职业规划/">职业规划</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/职业规划/个人提升/">个人提升</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机相关技术资料整理/">计算机相关技术资料整理</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/认知升级/">认知升级</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/财务自由/">财务自由</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/财富自由/">财富自由</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/运维/">运维</a></li></ul>
+    </div>
+</article>
+
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+	<header class="read-next-card-header tagcloud-card">
+		<h3 class="read-next-card-header-title">Tag Cloud</h3>
+	</header>
+	<div class="read-next-card-content-ext">
+		<a href="/tags/AI/" style="font-size: 14px;">AI</a> <a href="/tags/Android/" style="font-size: 14px;">Android</a> <a href="/tags/Biological/" style="font-size: 17.75px;">Biological</a> <a href="/tags/Browser/" style="font-size: 14px;">Browser</a> <a href="/tags/Business/" style="font-size: 16.5px;">Business</a> <a href="/tags/Cognitive/" style="font-size: 17.75px;">Cognitive</a> <a href="/tags/DeepLearning/" style="font-size: 15.25px;">DeepLearning</a> <a href="/tags/Docker/" style="font-size: 14px;">Docker</a> <a href="/tags/FFmpeg/" style="font-size: 21.5px;">FFmpeg</a> <a href="/tags/FastCGI/" style="font-size: 14px;">FastCGI</a> <a href="/tags/IP划分/" style="font-size: 14px;">IP划分</a> <a href="/tags/IP地址/" style="font-size: 14px;">IP地址</a> <a href="/tags/Knowledge-Graph/" style="font-size: 16.5px;">Knowledge Graph</a> <a href="/tags/Linux-Shell/" style="font-size: 14px;">Linux Shell</a> <a href="/tags/MacOS/" style="font-size: 15.25px;">MacOS</a> <a href="/tags/Neuroscience/" style="font-size: 17.75px;">Neuroscience</a> <a href="/tags/RPC/" style="font-size: 14px;">RPC</a> <a href="/tags/Thinking/" style="font-size: 17.75px;">Thinking</a> <a href="/tags/Tutorial/" style="font-size: 20.25px;">Tutorial</a> <a href="/tags/WebRTC/" style="font-size: 21.5px;">WebRTC</a> <a href="/tags/WebSocket/" style="font-size: 14px;">WebSocket</a> <a href="/tags/algorithm/" style="font-size: 15.25px;">algorithm</a> <a href="/tags/config/" style="font-size: 14px;">config</a> <a href="/tags/decisionTree/" style="font-size: 14px;">decisionTree</a> <a href="/tags/git/" style="font-size: 17.75px;">git</a> <a href="/tags/google-adsense/" style="font-size: 14px;">google adsense</a> <a href="/tags/hexo/" style="font-size: 17.75px;">hexo</a> <a href="/tags/http/" style="font-size: 17.75px;">http</a> <a href="/tags/knn/" style="font-size: 14px;">knn</a> <a href="/tags/lighttpd/" style="font-size: 15.25px;">lighttpd</a> <a href="/tags/mxnet/" style="font-size: 14px;">mxnet</a> <a href="/tags/mysql/" style="font-size: 22.75px;">mysql</a> <a href="/tags/nlp/" style="font-size: 24px;">nlp</a> <a href="/tags/nodejs/" style="font-size: 14px;">nodejs</a> <a href="/tags/openvpn/" style="font-size: 14px;">openvpn</a> <a href="/tags/other/" style="font-size: 15.25px;">other</a> <a href="/tags/paddle/" style="font-size: 14px;">paddle</a> <a href="/tags/planning/" style="font-size: 20.25px;">planning</a> <a href="/tags/pracitce/" style="font-size: 15.25px;">pracitce</a> <a href="/tags/rich/" style="font-size: 14px;">rich</a> <a href="/tags/shell/" style="font-size: 14px;">shell</a> <a href="/tags/svn/" style="font-size: 14px;">svn</a> <a href="/tags/ubuntu/" style="font-size: 14px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 16.5px;">vim</a> <a href="/tags/webpack/" style="font-size: 14px;">webpack</a> <a href="/tags/webrtc/" style="font-size: 19px;">webrtc</a> <a href="/tags/个人发展/" style="font-size: 14px;">个人发展</a> <a href="/tags/互联网实事/" style="font-size: 14px;">互联网实事</a> <a href="/tags/外链/" style="font-size: 14px;">外链</a> <a href="/tags/提升个人思维/" style="font-size: 14px;">提升个人思维</a> <a href="/tags/文摘/" style="font-size: 15.25px;">文摘</a> <a href="/tags/斜杠青年/" style="font-size: 14px;">斜杠青年</a> <a href="/tags/机器学习/" style="font-size: 16.5px;">机器学习</a> <a href="/tags/架构师/" style="font-size: 14px;">架构师</a> <a href="/tags/测试工具/" style="font-size: 14px;">测试工具</a> <a href="/tags/睡后成长/" style="font-size: 14px;">睡后成长</a> <a href="/tags/睡后收入/" style="font-size: 14px;">睡后收入</a> <a href="/tags/税后收入/" style="font-size: 14px;">税后收入</a> <a href="/tags/笔记/" style="font-size: 14px;">笔记</a> <a href="/tags/自然语言处理/" style="font-size: 24px;">自然语言处理</a> <a href="/tags/视频流/" style="font-size: 15.25px;">视频流</a> <a href="/tags/计算机相关技术资料整理/" style="font-size: 14px;">计算机相关技术资料整理</a> <a href="/tags/认知升级/" style="font-size: 14px;">认知升级</a> <a href="/tags/限速/" style="font-size: 14px;">限速</a> <a href="/tags/面试/" style="font-size: 14px;">面试</a> <a href="/tags/项目管理/" style="font-size: 14px;">项目管理</a>
+	</div>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+	
+
+
+
+
+<div id="search" class="search-overlay">
+    <div class="search-form">
+        
+        <div class="search-overlay-logo">
+        	<img src="/images/favicon-16x16-next.png" alt="Pastor Dean">
+        </div>
+        
+        <input id="local-search-input" class="search-input" type="text" name="search" placeholder="Search ...">
+        <a class="search-overlay-close" href="#"></a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+<footer class="site-footer outer">
+	<div class="site-footer-content inner">
+		<div class="copyright">
+			<a href="/" title="Pastor Dean">Pastor Dean &copy; 2020</a>
+			
+				
+			        <span hidden="true" id="/2019-03-21/nlp/3Text_Representation/Chapter1_Basic_Text_Representation/Representation_of_words_sentences/" class="leancloud-visitors" data-flag-title="NLP系列">
+			            <span>阅读量 </span>
+			            <span class="leancloud-visitors-count">0</span>
+			        </span>
+	    		
+    		
+		</div>
+		<nav class="site-footer-nav">
+			
+			<a href="https://hexo.io" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+			<a href="https://github.com/xzhih/hexo-theme-casper" title="Casper" target="_blank" rel="noopener">Casper</a>
+		</nav>
+	</div>
+</footer>
+	
+
+
+<script>
+    if(window.navigator && navigator.serviceWorker) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister()
+            }
+        })
+    }
+</script>
+
+
+<script id="scriptLoad" src="/js/allinone.min.js" async></script>
+
+
+<script>
+    document.getElementById('scriptLoad').addEventListener('load', function () {
+        
+        
+            var bLazy = new Blazy();
+        
+
+        
+        
+
+        
+        
+        
+            searchFunc("/");
+        
+        
+    })
+</script>
+
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+
+
+<script id="valineScript" src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+<script>
+    document.getElementById('valineScript').addEventListener("load", function() {
+        new Valine({
+            el: '#comment' ,
+            verify: false,
+            notify: false,
+            appId: '',
+            appKey: '',
+            placeholder: 'Just go go',
+            pageSize: 10,
+            avatar: 'mm',
+            visitor: true
+        })
+    });
+</script>
+
+
+
+
+
+</body>
+</html>

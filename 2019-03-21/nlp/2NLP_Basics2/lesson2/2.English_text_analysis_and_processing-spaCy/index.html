@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="preconnect" href="//www.googletagmanager.com">
+	<link rel="preconnect" href="//zz.bdstatic.com">
+	<link rel="preconnect" href="//sp0.baidu.com">
+	<link rel="preconnect" href="//www.google-analytics.com">
+	<link rel="preconnect" href="//cdn1.lncld.net">
+	<link rel="preconnect" href="//unpkg.com">
+	<link rel="preconnect" href="//app-router.leancloud.cn">
+	<link rel="preconnect" href="//9qpuwspm.api.lncld.net">
+	<link rel="preconnect" href="//gravatar.loli.net">
+
+	<title>NLP系列 | Pastor Dean</title>
+
+	<meta name="HandheldFriendly" content="True">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+	<meta name="generator" content="hexo">
+	<meta name="author" content="pastor">
+	<meta name="description" content>
+
+	
+	<meta name="keywords" content>
+	
+
+	
+	<link rel="shortcut icon" href="/images/favicon-16x16-next.png">
+	<link rel="apple-touch-icon" href="/images/favicon-16x16-next.png">
+	
+
+	
+	<meta name="theme-color" content="#3c484e">
+	<meta name="msapplication-TileColor" content="#3c484e">
+	
+
+	
+
+	
+
+	<meta property="og:site_name" content="Pastor Dean">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="NLP系列 | Pastor Dean">
+	<meta property="og:description" content>
+	<meta property="og:url" content="https://mrpastor.github.io/2019-03-21/nlp/2NLP_Basics2/lesson2/2.English_text_analysis_and_processing-spaCy/">
+
+	
+	<meta property="article:published_time" content="2019-03-21T19:03:00+08:00"> 
+	<meta property="article:author" content="pastor">
+	<meta property="article:published_first" content="Pastor Dean, /2019-03-21/nlp/2NLP_Basics2/lesson2/2.English_text_analysis_and_processing-spaCy/">
+	
+
+	
+	
+	<link rel="stylesheet" href="/css/allinonecss.min.css">
+
+	
+	
+	
+</head>
+<body class="post-template">
+	<div class="site-wrapper">
+		
+
+
+
+
+<header class="site-header post-site-header outer">
+    <div class="inner">
+        
+<nav class="site-nav"> 
+    <div class="site-nav-left">
+        <ul class="nav">
+            <li>
+                
+                
+                <a class="site-nav-logo" href="/" title="Pastor Dean">
+                    <img src="/images/favicon-32x32-next.png" alt="Pastor Dean">
+                </a>
+                
+                
+            </li>
+            
+            
+            <li>
+                <a href="/ || home" title="home">home</a>
+            </li>
+            
+            <li>
+                <a href="/categories/ || th" title="categories">categories</a>
+            </li>
+            
+            <li>
+                <a href="/archives/ || archive" title="archives">archives</a>
+            </li>
+            
+            <li>
+                <a href="/tools/ || tools" title="tools">tools</a>
+            </li>
+            
+            
+        </ul> 
+    </div>
+    
+    <div class="search-button-area">
+        <a href="#search" class="search-button">Search ...</a>
+    </div>
+     
+    <div class="site-nav-right">
+        
+        <a href="#search" class="search-button">Search ...</a>
+         
+        
+<div class="social-links">
+    
+    
+    <a class="social-link" title="github" href="https://github.com/mrpastor" target="_blank" rel="noopener">
+        <svg viewbox="0 0 1049 1024" xmlns="http://www.w3.org/2000/svg"><path d="M524.979332 0C234.676191 0 0 234.676191 0 524.979332c0 232.068678 150.366597 428.501342 358.967656 498.035028 26.075132 5.215026 35.636014-11.299224 35.636014-25.205961 0-12.168395-0.869171-53.888607-0.869171-97.347161-146.020741 31.290159-176.441729-62.580318-176.441729-62.580318-23.467619-60.841976-58.234462-76.487055-58.234463-76.487055-47.804409-32.15933 3.476684-32.15933 3.476685-32.15933 53.019436 3.476684 80.83291 53.888607 80.83291 53.888607 46.935238 79.963739 122.553122 57.365291 152.97411 43.458554 4.345855-33.897672 18.252593-57.365291 33.028501-70.402857-116.468925-12.168395-239.022047-57.365291-239.022047-259.012982 0-57.365291 20.860106-104.300529 53.888607-140.805715-5.215026-13.037566-23.467619-66.926173 5.215027-139.067372 0 0 44.327725-13.906737 144.282399 53.888607 41.720212-11.299224 86.917108-17.383422 131.244833-17.383422s89.524621 6.084198 131.244833 17.383422C756.178839 203.386032 800.506564 217.29277 800.506564 217.29277c28.682646 72.1412 10.430053 126.029806 5.215026 139.067372 33.897672 36.505185 53.888607 83.440424 53.888607 140.805715 0 201.64769-122.553122 245.975415-239.891218 259.012982 19.121764 16.514251 35.636014 47.804409 35.636015 97.347161 0 70.402857-0.869171 126.898978-0.869172 144.282399 0 13.906737 9.560882 30.420988 35.636015 25.205961 208.601059-69.533686 358.967656-265.96635 358.967655-498.035028C1049.958663 234.676191 814.413301 0 524.979332 0z"/></svg>
+    </a>
+    
+    
+    <a class="social-link" title="facebook" href="https://facebook" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+
+    </a>
+    
+    
+    <a class="social-link" title="twitter" href="https://twitter.com" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+    </a>
+    
+    
+    
+    
+</div>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<div id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+        <header class="post-full-header">
+            <div class="post-full-meta">
+                <time class="post-full-meta-date" datetime="2019-03-21T11:19:18.000Z">
+                    2019-03-21
+                </time>
+                
+                <span class="date-divider">/</span>
+                
+                <a href="/categories/NLP/">NLP</a>&nbsp;&nbsp;
+                
+                
+            </div>
+            <h1 class="post-full-title">NLP系列</h1>
+        </header>
+        <div class="post-full no-image">
+            
+            <div class="post-full-content">
+                <article id="photoswipe" class="markdown-body">
+                    <h1 id="英文文本处理与spaCy"><a href="#英文文本处理与spaCy" class="headerlink" title="英文文本处理与spaCy"></a>英文文本处理与<a href="https://spacy.io/" target="_blank" rel="noopener">spaCy</a></h1><p><a href="https://spacy.io/" target="_blank" rel="noopener">spaCy</a>是Python和Cython中的高级自然语言处理库，它建立在最新的研究基础之上，从一开始就设计用于实际产品。spaCy 带有预先训练的统计模型和单词向量，目前支持 20 多种语言的标记。它具有世界上速度最快的句法分析器，用于标签的卷积神经网络模型，解析和命名实体识别以及与深度学习整合。</p>
+<p><img alt class="post-img b-lazy" data-img="../img/L2_spaCy.png" data-index="0" data-src="../img/L2_spaCy.png"></p>
+<h3 id="0-英文Tokenization-标记化-分词"><a href="#0-英文Tokenization-标记化-分词" class="headerlink" title="0.英文Tokenization(标记化/分词)"></a>0.英文Tokenization(标记化/分词)</h3><blockquote>
+<p>文本是不能成段送入模型中进行分析的，我们通常会把文本切成有独立含义的字、词或者短语，这个过程叫做tokenization，这通常是大家解决自然语言处理问题的第一步。在spaCY中同样可以很方便地完成Tokenization。</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> spacy</span><br><span class="line">nlp = spacy.load(<span class="string">'en'</span>)</span><br><span class="line">doc = nlp(<span class="string">'Hello World! My name is pastor'</span>)</span><br><span class="line"><span class="keyword">for</span> token <span class="keyword">in</span> doc:</span><br><span class="line">    print(<span class="string">'"'</span> + token.text + <span class="string">'"'</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>&quot;Hello&quot;
+&quot;World&quot;
+&quot;!&quot;
+&quot;My&quot;
+&quot;name&quot;
+&quot;is&quot;
+&quot;pastor&quot;
+</code></pre><p>每个token对象有着非常丰富的属性，如下的方式可以取出其中的部分属性。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">doc = nlp(<span class="string">"Next week I'll   be in Shanghai."</span>)</span><br><span class="line"><span class="keyword">for</span> token <span class="keyword">in</span> doc:</span><br><span class="line">    print(<span class="string">"&#123;0&#125;\t&#123;1&#125;\t&#123;2&#125;\t&#123;3&#125;\t&#123;4&#125;\t&#123;5&#125;\t&#123;6&#125;\t&#123;7&#125;"</span>.format(</span><br><span class="line">        token.text,</span><br><span class="line">        token.idx,</span><br><span class="line">        token.lemma_,</span><br><span class="line">        token.is_punct,</span><br><span class="line">        token.is_space,</span><br><span class="line">        token.shape_,</span><br><span class="line">        token.pos_,</span><br><span class="line">        token.tag_</span><br><span class="line">    ))</span><br></pre></td></tr></table></figure>
+<pre><code>Next    0    next    False    False    Xxxx    ADJ    JJ
+week    5    week    False    False    xxxx    NOUN    NN
+I    10    -PRON-    False    False    X    PRON    PRP
+&apos;ll    11    will    False    False    &apos;xx    VERB    MD
+      15          False    True          SPACE    _SP
+be    17    be    False    False    xx    VERB    VB
+in    20    in    False    False    xx    ADP    IN
+Shanghai    23    shanghai    False    False    Xxxxx    PROPN    NNP
+.    31    .    True    False    .    PUNCT    .
+</code></pre><p>断句功能在spaCy中也有体现，如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 断句</span></span><br><span class="line">doc = nlp(<span class="string">"Hello World! My name is pastor"</span>)</span><br><span class="line"><span class="keyword">for</span> sent <span class="keyword">in</span> doc.sents:</span><br><span class="line">    print(sent)</span><br></pre></td></tr></table></figure>
+<pre><code>Hello World!
+My name is pastor
+</code></pre><h3 id="1-词性标注"><a href="#1-词性标注" class="headerlink" title="1.词性标注"></a>1.词性标注</h3><blockquote>
+<p>词性（part-of-speech）是词汇基本的语法属性，通常也称为词性。</p>
+</blockquote>
+<blockquote>
+<p>词性标注（part-of-speech tagging）,又称为词类标注或者简称标注，是指为分词结果中的每个单词标注一个正确的词性的程序，也即确定每个词是名词、动词、形容词或者其他词性的过程。</p>
+</blockquote>
+<blockquote>
+<p>词性标注是很多NLP任务的预处理步骤，如句法分析，经过词性标注后的文本会带来很大的便利性，但也不是不可或缺的步骤。<br>词性标注的最简单做法是选取最高频词性，主流的做法可以分为基于规则和基于统计的方法，包括：</p>
+<ul>
+<li>基于最大熵的词性标注</li>
+<li>基于统计最大概率输出词性</li>
+<li>基于HMM的词性标注</li>
+</ul>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 词性标注</span></span><br><span class="line">doc = nlp(<span class="string">"Next week I'll be in Shanghai."</span>)</span><br><span class="line">print([(token.text, token.tag_) <span class="keyword">for</span> token <span class="keyword">in</span> doc])</span><br></pre></td></tr></table></figure>
+<pre><code>[(&apos;Next&apos;, &apos;JJ&apos;), (&apos;week&apos;, &apos;NN&apos;), (&apos;I&apos;, &apos;PRP&apos;), (&quot;&apos;ll&quot;, &apos;MD&apos;), (&apos;be&apos;, &apos;VB&apos;), (&apos;in&apos;, &apos;IN&apos;), (&apos;Shanghai&apos;, &apos;NNP&apos;), (&apos;.&apos;, &apos;.&apos;)]
+</code></pre><p>具体的词性标注编码和含义见如下对应表：</p>
+<table>
+<thead>
+<tr>
+<th>POS Tag</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CC</td>
+<td>coordinating conjunction</td>
+<td>and</td>
+</tr>
+<tr>
+<td>CD</td>
+<td>cardinal number</td>
+<td>1, third</td>
+</tr>
+<tr>
+<td>DT</td>
+<td>determiner</td>
+<td>the</td>
+</tr>
+<tr>
+<td>EX</td>
+<td>existential there</td>
+<td>there, is</td>
+</tr>
+<tr>
+<td>FW</td>
+<td>foreign word</td>
+<td>d’hoevre</td>
+</tr>
+<tr>
+<td>IN</td>
+<td>preposition or subordinating conjunction</td>
+<td>in, of, like</td>
+</tr>
+<tr>
+<td>JJ</td>
+<td>adjective</td>
+<td>big</td>
+</tr>
+<tr>
+<td>JJR</td>
+<td>adjective, comparative</td>
+<td>bigger</td>
+</tr>
+<tr>
+<td>JJS</td>
+<td>adjective, superlative</td>
+<td>biggest</td>
+</tr>
+<tr>
+<td>LS</td>
+<td>list marker</td>
+<td>1)</td>
+</tr>
+<tr>
+<td>MD</td>
+<td>modal</td>
+<td>could, will</td>
+</tr>
+<tr>
+<td>NN</td>
+<td>noun, singular or mass</td>
+<td>door</td>
+</tr>
+<tr>
+<td>NNS</td>
+<td>noun plural</td>
+<td>doors</td>
+</tr>
+<tr>
+<td>NNP</td>
+<td>proper noun, singular</td>
+<td>John</td>
+</tr>
+<tr>
+<td>NNPS</td>
+<td>proper noun, plural</td>
+<td>Vikings</td>
+</tr>
+<tr>
+<td>PDT</td>
+<td>predeterminer</td>
+<td>both the boys</td>
+</tr>
+<tr>
+<td>POS</td>
+<td>possessive ending</td>
+<td>friend‘s</td>
+</tr>
+<tr>
+<td>PRP</td>
+<td>personal pronoun</td>
+<td>I, he, it</td>
+</tr>
+<tr>
+<td>PRP$</td>
+<td>possessive pronoun</td>
+<td>my, his</td>
+</tr>
+<tr>
+<td>RB</td>
+<td>adverb</td>
+<td>however, usually, naturally, here, good</td>
+</tr>
+<tr>
+<td>RBR</td>
+<td>adverb, comparative</td>
+<td>better</td>
+</tr>
+<tr>
+<td>RBS</td>
+<td>adverb, superlative</td>
+<td>best</td>
+</tr>
+<tr>
+<td>RP</td>
+<td>particle</td>
+<td>give up</td>
+</tr>
+<tr>
+<td>TO</td>
+<td>to</td>
+<td>to go, to him</td>
+</tr>
+<tr>
+<td>UH</td>
+<td>interjection</td>
+<td>uhhuhhuhh</td>
+</tr>
+<tr>
+<td>VB</td>
+<td>verb, base form</td>
+<td>take</td>
+</tr>
+<tr>
+<td>VBD</td>
+<td>verb, past tense</td>
+<td>took</td>
+</tr>
+<tr>
+<td>VBG</td>
+<td>verb, gerund or present participle</td>
+<td>taking</td>
+</tr>
+<tr>
+<td>VBN</td>
+<td>verb, past participle</td>
+<td>taken</td>
+</tr>
+<tr>
+<td>VBP</td>
+<td>verb, sing. present, non-3d</td>
+<td>take</td>
+</tr>
+<tr>
+<td>VBZ</td>
+<td>verb, 3rd person sing. present</td>
+<td>takes</td>
+</tr>
+<tr>
+<td>WDT</td>
+<td>wh-determiner</td>
+<td>which</td>
+</tr>
+<tr>
+<td>WP</td>
+<td>wh-pronoun</td>
+<td>who, what</td>
+</tr>
+<tr>
+<td>WP\$</td>
+<td>possessive wh-pronoun</td>
+<td>whose</td>
+</tr>
+<tr>
+<td>WRB</td>
+<td>wh-abverb</td>
+<td>where, when</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-命名实体识别"><a href="#2-命名实体识别" class="headerlink" title="2.命名实体识别"></a>2.命名实体识别</h3><p>命名实体识别（Named Entity Recognition，简称NER），又称作“专名识别”，是指识别文本中具有特定意义的实体，主要包括人名、地名、机构名、专有名词等。通常包括两部分：1) 实体边界识别；2) 确定实体类别（人名、地名、机构名或其他）。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">doc = nlp(<span class="string">"Next week I'll be in Shanghai."</span>)</span><br><span class="line"><span class="keyword">for</span> ent <span class="keyword">in</span> doc.ents:</span><br><span class="line">    print(ent.text, ent.label_)</span><br></pre></td></tr></table></figure>
+<pre><code>Next week DATE
+Shanghai GPE
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.chunk <span class="keyword">import</span> conlltags2tree</span><br><span class="line"></span><br><span class="line">doc = nlp(<span class="string">"Next week I'll be in Shanghai."</span>)</span><br><span class="line">iob_tagged = [</span><br><span class="line">    (</span><br><span class="line">        token.text, </span><br><span class="line">        token.tag_, </span><br><span class="line">        <span class="string">"&#123;0&#125;-&#123;1&#125;"</span>.format(token.ent_iob_, token.ent_type_) <span class="keyword">if</span> token.ent_iob_ != <span class="string">'O'</span> <span class="keyword">else</span> token.ent_iob_</span><br><span class="line">    ) <span class="keyword">for</span> token <span class="keyword">in</span> doc</span><br><span class="line">]</span><br><span class="line"> </span><br><span class="line">print(iob_tagged)</span><br><span class="line"><span class="comment"># 按照nltk.Tree的格式显示</span></span><br><span class="line">print(conlltags2tree(iob_tagged))</span><br></pre></td></tr></table></figure>
+<pre><code>[(&apos;Next&apos;, &apos;JJ&apos;, &apos;B-DATE&apos;), (&apos;week&apos;, &apos;NN&apos;, &apos;I-DATE&apos;), (&apos;I&apos;, &apos;PRP&apos;, &apos;O&apos;), (&quot;&apos;ll&quot;, &apos;MD&apos;, &apos;O&apos;), (&apos;be&apos;, &apos;VB&apos;, &apos;O&apos;), (&apos;in&apos;, &apos;IN&apos;, &apos;O&apos;), (&apos;Shanghai&apos;, &apos;NNP&apos;, &apos;B-GPE&apos;), (&apos;.&apos;, &apos;.&apos;, &apos;O&apos;)]
+(S
+  (DATE Next/JJ week/NN)
+  I/PRP
+  &apos;ll/MD
+  be/VB
+  in/IN
+  (GPE Shanghai/NNP)
+  ./.)
+</code></pre><p>spaCy中包含的命名实体非常丰富，如下例所示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">doc = nlp(<span class="string">"I just bought 2 shares at 9 a.m. because the stock went up 30% in just 2 days according to the WSJ"</span>)</span><br><span class="line"><span class="keyword">for</span> ent <span class="keyword">in</span> doc.ents:</span><br><span class="line">    print(ent.text, ent.label_)</span><br></pre></td></tr></table></figure>
+<pre><code>2 CARDINAL
+9 a.m. TIME
+30% PERCENT
+just 2 days DATE
+WSJ ORG
+</code></pre><p>还可以用非常漂亮的可视化做显示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> spacy <span class="keyword">import</span> displacy</span><br><span class="line"> </span><br><span class="line">doc = nlp(<span class="string">'I just bought 2 shares at 9 a.m. because the stock went up 30% in just 2 days according to the WSJ'</span>)</span><br><span class="line">displacy.render(doc, style=<span class="string">'ent'</span>, jupyter=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
+<div class="entities" style="line-height: 2.5">I just bought<br><mark class="entity" style="background: #e4e7d2; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em; box-decoration-break: clone; -webkit-box-decoration-break: clone"><br>    2<br>    <span style="font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; text-transform: uppercase; vertical-align: middle; margin-left: 0.5rem">CARDINAL</span><br></mark><br> shares at<br><mark class="entity" style="background: #bfe1d9; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em; box-decoration-break: clone; -webkit-box-decoration-break: clone"><br>    9 a.m.<br>    <span style="font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; text-transform: uppercase; vertical-align: middle; margin-left: 0.5rem">TIME</span><br></mark><br> because the stock went up<br><mark class="entity" style="background: #e4e7d2; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em; box-decoration-break: clone; -webkit-box-decoration-break: clone"><br>    30%<br>    <span style="font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; text-transform: uppercase; vertical-align: middle; margin-left: 0.5rem">PERCENT</span><br></mark><br> in<br><mark class="entity" style="background: #bfe1d9; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em; box-decoration-break: clone; -webkit-box-decoration-break: clone"><br>    just 2 days<br>    <span style="font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; text-transform: uppercase; vertical-align: middle; margin-left: 0.5rem">DATE</span><br></mark><br> according to the<br><mark class="entity" style="background: #7aecec; padding: 0.45em 0.6em; margin: 0 0.25em; line-height: 1; border-radius: 0.35em; box-decoration-break: clone; -webkit-box-decoration-break: clone"><br>    WSJ<br>    <span style="font-size: 0.8em; font-weight: bold; line-height: 1; border-radius: 0.35em; text-transform: uppercase; vertical-align: middle; margin-left: 0.5rem">ORG</span><br></mark><br></div>
+
+
+<h3 id="3-chunking-组块分析"><a href="#3-chunking-组块分析" class="headerlink" title="3.chunking/组块分析"></a>3.chunking/组块分析</h3><p>spaCy可以自动检测名词短语，并输出根(root)词，比如下面的”Journal”,”piece”,”currencies”</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">doc = nlp(<span class="string">"Wall Street Journal just published an interesting piece on crypto currencies"</span>)</span><br><span class="line"><span class="keyword">for</span> chunk <span class="keyword">in</span> doc.noun_chunks:</span><br><span class="line">    print(chunk.text, chunk.label_, chunk.root.text)</span><br></pre></td></tr></table></figure>
+<pre><code>Wall Street Journal NP Journal
+an interesting piece NP piece
+crypto currencies NP currencies
+</code></pre><h3 id="4-句法依存解析"><a href="#4-句法依存解析" class="headerlink" title="4.句法依存解析"></a>4.句法依存解析</h3><p>spaCy有着非常强大的句法依存解析功能，可以试试对句子进行解析。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">doc = nlp(<span class="string">'Wall Street Journal just published an interesting piece on crypto currencies'</span>)</span><br><span class="line"> </span><br><span class="line"><span class="keyword">for</span> token <span class="keyword">in</span> doc:</span><br><span class="line">    print(<span class="string">"&#123;0&#125;/&#123;1&#125; &lt;--&#123;2&#125;-- &#123;3&#125;/&#123;4&#125;"</span>.format(</span><br><span class="line">        token.text, token.tag_, token.dep_, token.head.text, token.head.tag_))</span><br></pre></td></tr></table></figure>
+<pre><code>Wall/NNP &lt;--compound-- Street/NNP
+Street/NNP &lt;--compound-- Journal/NNP
+Journal/NNP &lt;--nsubj-- published/VBD
+just/RB &lt;--advmod-- published/VBD
+published/VBD &lt;--ROOT-- published/VBD
+an/DT &lt;--det-- piece/NN
+interesting/JJ &lt;--amod-- piece/NN
+piece/NN &lt;--dobj-- published/VBD
+on/IN &lt;--prep-- piece/NN
+crypto/JJ &lt;--compound-- currencies/NNS
+currencies/NNS &lt;--pobj-- on/IN
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> spacy <span class="keyword">import</span> displacy</span><br><span class="line"> </span><br><span class="line">doc = nlp(<span class="string">'Wall Street Journal just published an interesting piece on crypto currencies'</span>)</span><br><span class="line">displacy.render(doc, style=<span class="string">'dep'</span>, jupyter=<span class="keyword">True</span>, options=&#123;<span class="string">'distance'</span>: <span class="number">90</span>&#125;)</span><br></pre></td></tr></table></figure>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="675-0" class="displacy" width="1040" height="272.0" style="max-width: none; height: 272.0px; color: #000000; background: #ffffff; font-family: Arial"><br/><text class="displacy-token" fill="currentColor" text-anchor="middle" y="182.0"><br/>    <tspan class="displacy-word" fill="currentColor" x="50">Wall</tspan><br/>    <tspan class="displacy-tag" dy="2em" fill="currentColor" x="50">PROPN</tspan><br/></text><br/><br/><text class="displacy-token" fill="currentColor" text-anchor="middle" y="182.0"><br/>    <tspan class="displacy-word" fill="currentColor" x="140">Street</tspan><br/>    <tspan class="displacy-tag" dy="2em" fill="currentColor" x="140">PROPN</tspan><br/></text><br/><br/><text class="displacy-token" fill="currentColor" text-anchor="middle" y="182.0"><br/>    <tspan class="displacy-word" fill="currentColor" x="230">Journal</tspan><br/>    <tspan class="displacy-tag" dy="2em" fill="currentColor" x="230">PROPN</tspan><br/></text><br/><br/><text class="displacy-token" fill="currentColor" text-anchor="middle" y="182.0"><br/>    <tspan class="displacy-word" fill="currentColor" x="320">just</tspan><br/>    <tspan class="displacy-tag" dy="2em" fill="currentColor" x="320">ADV</tspan><br/></text><br/><br/><text class="displacy-token" fill="currentColor" text-anchor="middle" y="182.0"><br/>    <tspan class="displacy-word" fill="currentColor" x="410">published</tspan><br/>    <tspan class="displacy-tag" dy="2em" fill="currentColor" x="410">VERB</tspan><br/></text><br/><br/><text class="displacy-token" fill="currentColor" text-anchor="middle" y="182.0"><br/>    <tspan class="displacy-word" fill="currentColor" x="500">an</tspan><br/>    <tspan class="displacy-tag" dy="2em" fill="currentColor" x="500">DET</tspan><br/></text><br/><br/><text class="displacy-token" fill="currentColor" text-anchor="middle" y="182.0"><br/>    <tspan class="displacy-word" fill="currentColor" x="590">interesting</tspan><br/>    <tspan class="displacy-tag" dy="2em" fill="currentColor" x="590">ADJ</tspan><br/></text><br/><br/><text class="displacy-token" fill="currentColor" text-anchor="middle" y="182.0"><br/>    <tspan class="displacy-word" fill="currentColor" x="680">piece</tspan><br/>    <tspan class="displacy-tag" dy="2em" fill="currentColor" x="680">NOUN</tspan><br/></text><br/><br/><text class="displacy-token" fill="currentColor" text-anchor="middle" y="182.0"><br/>    <tspan class="displacy-word" fill="currentColor" x="770">on</tspan><br/>    <tspan class="displacy-tag" dy="2em" fill="currentColor" x="770">ADP</tspan><br/></text><br/><br/><text class="displacy-token" fill="currentColor" text-anchor="middle" y="182.0"><br/>    <tspan class="displacy-word" fill="currentColor" x="860">crypto</tspan><br/>    <tspan class="displacy-tag" dy="2em" fill="currentColor" x="860">ADJ</tspan><br/></text><br/><br/><text class="displacy-token" fill="currentColor" text-anchor="middle" y="182.0"><br/>    <tspan class="displacy-word" fill="currentColor" x="950">currencies</tspan><br/>    <tspan class="displacy-tag" dy="2em" fill="currentColor" x="950">NOUN</tspan><br/></text><br/><br/><g class="displacy-arrow"><br/>    <path class="displacy-arc" id="arrow-675-0-0" stroke-width="2px" d="M70,137.0 C70,92.0 130.0,92.0 130.0,137.0" fill="none" stroke="currentColor"/><br/>    <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px"><br/>        <textpath xlink:href="#arrow-675-0-0" class="displacy-label" startoffset="50%" fill="currentColor" text-anchor="middle">compound</textpath><br/>    </text><br/>    <path class="displacy-arrowhead" d="M70,139.0 L62,127.0 78,127.0" fill="currentColor"/><br/></g><br/><br/><g class="displacy-arrow"><br/>    <path class="displacy-arc" id="arrow-675-0-1" stroke-width="2px" d="M160,137.0 C160,92.0 220.0,92.0 220.0,137.0" fill="none" stroke="currentColor"/><br/>    <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px"><br/>        <textpath xlink:href="#arrow-675-0-1" class="displacy-label" startoffset="50%" fill="currentColor" text-anchor="middle">compound</textpath><br/>    </text><br/>    <path class="displacy-arrowhead" d="M160,139.0 L152,127.0 168,127.0" fill="currentColor"/><br/></g><br/><br/><g class="displacy-arrow"><br/>    <path class="displacy-arc" id="arrow-675-0-2" stroke-width="2px" d="M250,137.0 C250,47.0 405.0,47.0 405.0,137.0" fill="none" stroke="currentColor"/><br/>    <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px"><br/>        <textpath xlink:href="#arrow-675-0-2" class="displacy-label" startoffset="50%" fill="currentColor" text-anchor="middle">nsubj</textpath><br/>    </text><br/>    <path class="displacy-arrowhead" d="M250,139.0 L242,127.0 258,127.0" fill="currentColor"/><br/></g><br/><br/><g class="displacy-arrow"><br/>    <path class="displacy-arc" id="arrow-675-0-3" stroke-width="2px" d="M340,137.0 C340,92.0 400.0,92.0 400.0,137.0" fill="none" stroke="currentColor"/><br/>    <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px"><br/>        <textpath xlink:href="#arrow-675-0-3" class="displacy-label" startoffset="50%" fill="currentColor" text-anchor="middle">advmod</textpath><br/>    </text><br/>    <path class="displacy-arrowhead" d="M340,139.0 L332,127.0 348,127.0" fill="currentColor"/><br/></g><br/><br/><g class="displacy-arrow"><br/>    <path class="displacy-arc" id="arrow-675-0-4" stroke-width="2px" d="M520,137.0 C520,47.0 675.0,47.0 675.0,137.0" fill="none" stroke="currentColor"/><br/>    <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px"><br/>        <textpath xlink:href="#arrow-675-0-4" class="displacy-label" startoffset="50%" fill="currentColor" text-anchor="middle">det</textpath><br/>    </text><br/>    <path class="displacy-arrowhead" d="M520,139.0 L512,127.0 528,127.0" fill="currentColor"/><br/></g><br/><br/><g class="displacy-arrow"><br/>    <path class="displacy-arc" id="arrow-675-0-5" stroke-width="2px" d="M610,137.0 C610,92.0 670.0,92.0 670.0,137.0" fill="none" stroke="currentColor"/><br/>    <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px"><br/>        <textpath xlink:href="#arrow-675-0-5" class="displacy-label" startoffset="50%" fill="currentColor" text-anchor="middle">amod</textpath><br/>    </text><br/>    <path class="displacy-arrowhead" d="M610,139.0 L602,127.0 618,127.0" fill="currentColor"/><br/></g><br/><br/><g class="displacy-arrow"><br/>    <path class="displacy-arc" id="arrow-675-0-6" stroke-width="2px" d="M430,137.0 C430,2.0 680.0,2.0 680.0,137.0" fill="none" stroke="currentColor"/><br/>    <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px"><br/>        <textpath xlink:href="#arrow-675-0-6" class="displacy-label" startoffset="50%" fill="currentColor" text-anchor="middle">dobj</textpath><br/>    </text><br/>    <path class="displacy-arrowhead" d="M680.0,139.0 L688.0,127.0 672.0,127.0" fill="currentColor"/><br/></g><br/><br/><g class="displacy-arrow"><br/>    <path class="displacy-arc" id="arrow-675-0-7" stroke-width="2px" d="M700,137.0 C700,92.0 760.0,92.0 760.0,137.0" fill="none" stroke="currentColor"/><br/>    <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px"><br/>        <textpath xlink:href="#arrow-675-0-7" class="displacy-label" startoffset="50%" fill="currentColor" text-anchor="middle">prep</textpath><br/>    </text><br/>    <path class="displacy-arrowhead" d="M760.0,139.0 L768.0,127.0 752.0,127.0" fill="currentColor"/><br/></g><br/><br/><g class="displacy-arrow"><br/>    <path class="displacy-arc" id="arrow-675-0-8" stroke-width="2px" d="M880,137.0 C880,92.0 940.0,92.0 940.0,137.0" fill="none" stroke="currentColor"/><br/>    <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px"><br/>        <textpath xlink:href="#arrow-675-0-8" class="displacy-label" startoffset="50%" fill="currentColor" text-anchor="middle">compound</textpath><br/>    </text><br/>    <path class="displacy-arrowhead" d="M880,139.0 L872,127.0 888,127.0" fill="currentColor"/><br/></g><br/><br/><g class="displacy-arrow"><br/>    <path class="displacy-arc" id="arrow-675-0-9" stroke-width="2px" d="M790,137.0 C790,47.0 945.0,47.0 945.0,137.0" fill="none" stroke="currentColor"/><br/>    <text dy="1.25em" style="font-size: 0.8em; letter-spacing: 1px"><br/>        <textpath xlink:href="#arrow-675-0-9" class="displacy-label" startoffset="50%" fill="currentColor" text-anchor="middle">pobj</textpath><br/>    </text><br/>    <path class="displacy-arrowhead" d="M945.0,139.0 L953.0,127.0 937.0,127.0" fill="currentColor"/><br/></g><br/></svg>
+
+
+<h3 id="5-词向量使用"><a href="#5-词向量使用" class="headerlink" title="5.词向量使用"></a>5.词向量使用</h3><p>NLP中有一个非常强大的文本表示学习方法叫做word2vec，通过词的上下文学习到词语的稠密向量化表示，同时在这个表示形态下，语义相关的词在向量空间中会比较接近。也有类似<code>v(爷爷)-v(奶奶) ≈ v(男人)-v(女人)</code>的关系。</p>
+<p>如果大家要使用英文的词向量，需要先下载预先训练好的结果。</p>
+<p>命令：!python3 -m spacy download en_core_web_lg</p>
+<p><em>注：实验平台已预先下载好，可直接调用</em></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nlp = spacy.load(<span class="string">'en_core_web_lg'</span>)</span><br><span class="line">print(nlp.vocab[<span class="string">'banana'</span>].vector)</span><br></pre></td></tr></table></figure>
+<pre><code>[ 2.0228e-01 -7.6618e-02  3.7032e-01  3.2845e-02 -4.1957e-01  7.2069e-02
+ -3.7476e-01  5.7460e-02 -1.2401e-02  5.2949e-01 -5.2380e-01 -1.9771e-01
+ -3.4147e-01  5.3317e-01 -2.5331e-02  1.7380e-01  1.6772e-01  8.3984e-01
+  5.5107e-02  1.0547e-01  3.7872e-01  2.4275e-01  1.4745e-02  5.5951e-01
+  1.2521e-01 -6.7596e-01  3.5842e-01 -4.0028e-02  9.5949e-02 -5.0690e-01
+ -8.5318e-02  1.7980e-01  3.3867e-01  1.3230e-01  3.1021e-01  2.1878e-01
+  1.6853e-01  1.9874e-01 -5.7385e-01 -1.0649e-01  2.6669e-01  1.2838e-01
+ -1.2803e-01 -1.3284e-01  1.2657e-01  8.6723e-01  9.6721e-02  4.8306e-01
+  2.1271e-01 -5.4990e-02 -8.2425e-02  2.2408e-01  2.3975e-01 -6.2260e-02
+  6.2194e-01 -5.9900e-01  4.3201e-01  2.8143e-01  3.3842e-02 -4.8815e-01
+ -2.1359e-01  2.7401e-01  2.4095e-01  4.5950e-01 -1.8605e-01 -1.0497e+00
+ -9.7305e-02 -1.8908e-01 -7.0929e-01  4.0195e-01 -1.8768e-01  5.1687e-01
+  1.2520e-01  8.4150e-01  1.2097e-01  8.8239e-02 -2.9196e-02  1.2151e-03
+  5.6825e-02 -2.7421e-01  2.5564e-01  6.9793e-02 -2.2258e-01 -3.6006e-01
+ -2.2402e-01 -5.3699e-02  1.2022e+00  5.4535e-01 -5.7998e-01  1.0905e-01
+  4.2167e-01  2.0662e-01  1.2936e-01 -4.1457e-02 -6.6777e-01  4.0467e-01
+ -1.5218e-02 -2.7640e-01 -1.5611e-01 -7.9198e-02  4.0037e-02 -1.2944e-01
+ -2.4090e-04 -2.6785e-01 -3.8115e-01 -9.7245e-01  3.1726e-01 -4.3951e-01
+  4.1934e-01  1.8353e-01 -1.5260e-01 -1.0808e-01 -1.0358e+00  7.6217e-02
+  1.6519e-01  2.6526e-04  1.6616e-01 -1.5281e-01  1.8123e-01  7.0274e-01
+  5.7956e-03  5.1664e-02 -5.9745e-02 -2.7551e-01 -3.9049e-01  6.1132e-02
+  5.5430e-01 -8.7997e-02 -4.1681e-01  3.2826e-01 -5.2549e-01 -4.4288e-01
+  8.2183e-03  2.4486e-01 -2.2982e-01 -3.4981e-01  2.6894e-01  3.9166e-01
+ -4.1904e-01  1.6191e-01 -2.6263e+00  6.4134e-01  3.9743e-01 -1.2868e-01
+ -3.1946e-01 -2.5633e-01 -1.2220e-01  3.2275e-01 -7.9933e-02 -1.5348e-01
+  3.1505e-01  3.0591e-01  2.6012e-01  1.8553e-01 -2.4043e-01  4.2886e-02
+  4.0622e-01 -2.4256e-01  6.3870e-01  6.9983e-01 -1.4043e-01  2.5209e-01
+  4.8984e-01 -6.1067e-02 -3.6766e-01 -5.5089e-01 -3.8265e-01 -2.0843e-01
+  2.2832e-01  5.1218e-01  2.7868e-01  4.7652e-01  4.7951e-02 -3.4008e-01
+ -3.2873e-01 -4.1967e-01 -7.5499e-02 -3.8954e-01 -2.9622e-02 -3.4070e-01
+  2.2170e-01 -6.2856e-02 -5.1903e-01 -3.7774e-01 -4.3477e-03 -5.8301e-01
+ -8.7546e-02 -2.3929e-01 -2.4711e-01 -2.5887e-01 -2.9894e-01  1.3715e-01
+  2.9892e-02  3.6544e-02 -4.9665e-01 -1.8160e-01  5.2939e-01  2.1992e-01
+ -4.4514e-01  3.7798e-01 -5.7062e-01 -4.6946e-02  8.1806e-02  1.9279e-02
+  3.3246e-01 -1.4620e-01  1.7156e-01  3.9981e-01  3.6217e-01  1.2816e-01
+  3.1644e-01  3.7569e-01 -7.4690e-02 -4.8480e-02 -3.1401e-01 -1.9286e-01
+ -3.1294e-01 -1.7553e-02 -1.7514e-01 -2.7587e-02 -1.0000e+00  1.8387e-01
+  8.1434e-01 -1.8913e-01  5.0999e-01 -9.1960e-03 -1.9295e-03  2.8189e-01
+  2.7247e-02  4.3409e-01 -5.4967e-01 -9.7426e-02 -2.4540e-01 -1.7203e-01
+ -8.8650e-02 -3.0298e-01 -1.3591e-01 -2.7765e-01  3.1286e-03  2.0556e-01
+ -1.5772e-01 -5.2308e-01 -6.4701e-01 -3.7014e-01  6.9393e-02  1.1401e-01
+  2.7594e-01 -1.3875e-01 -2.7268e-01  6.6891e-01 -5.6454e-02  2.4017e-01
+ -2.6730e-01  2.9860e-01  1.0083e-01  5.5592e-01  3.2849e-01  7.6858e-02
+  1.5528e-01  2.5636e-01 -1.0772e-01 -1.2359e-01  1.1827e-01 -9.9029e-02
+ -3.4328e-01  1.1502e-01 -3.7808e-01 -3.9012e-02 -3.4593e-01 -1.9404e-01
+ -3.3580e-01 -6.2334e-02  2.8919e-01  2.8032e-01 -5.3741e-01  6.2794e-01
+  5.6955e-02  6.2147e-01 -2.5282e-01  4.1670e-01 -1.0108e-02 -2.5434e-01
+  4.0003e-01  4.2432e-01  2.2672e-01  1.7553e-01  2.3049e-01  2.8323e-01
+  1.3882e-01  3.1218e-03  1.7057e-01  3.6685e-01  2.5247e-03 -6.4009e-01
+ -2.9765e-01  7.8943e-01  3.3168e-01 -1.1966e+00 -4.7156e-02  5.3175e-01]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> spatial</span><br><span class="line"></span><br><span class="line"><span class="comment"># 余弦相似度计算</span></span><br><span class="line">cosine_similarity = <span class="keyword">lambda</span> x, y: <span class="number">1</span> - spatial.distance.cosine(x, y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 男人、女人、国王、女王 的词向量</span></span><br><span class="line">man = nlp.vocab[<span class="string">'man'</span>].vector</span><br><span class="line">woman = nlp.vocab[<span class="string">'woman'</span>].vector</span><br><span class="line">queen = nlp.vocab[<span class="string">'queen'</span>].vector</span><br><span class="line">king = nlp.vocab[<span class="string">'king'</span>].vector</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 我们对向量做一个简单的计算，"man" - "woman" + "queen"</span></span><br><span class="line">maybe_king = man - woman + queen</span><br><span class="line">computed_similarities = []</span><br><span class="line"></span><br><span class="line"><span class="comment"># 扫描整个词库的词向量做比对，召回最接近的词向量</span></span><br><span class="line"><span class="keyword">for</span> word <span class="keyword">in</span> nlp.vocab:</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> word.has_vector:</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line"> </span><br><span class="line">    similarity = cosine_similarity(maybe_king, word.vector)</span><br><span class="line">    computed_similarities.append((word, similarity))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 排序与最接近结果展示</span></span><br><span class="line">computed_similarities = sorted(computed_similarities, key=<span class="keyword">lambda</span> item: -item[<span class="number">1</span>])</span><br><span class="line">print([w[<span class="number">0</span>].text <span class="keyword">for</span> w <span class="keyword">in</span> computed_similarities[:<span class="number">10</span>]])</span><br></pre></td></tr></table></figure>
+<pre><code>[&apos;Queen&apos;, &apos;QUEEN&apos;, &apos;queen&apos;, &apos;King&apos;, &apos;KING&apos;, &apos;king&apos;, &apos;KIng&apos;, &apos;Kings&apos;, &apos;KINGS&apos;, &apos;kings&apos;]
+</code></pre><h3 id="6-词汇与文本相似度"><a href="#6-词汇与文本相似度" class="headerlink" title="6.词汇与文本相似度"></a>6.词汇与文本相似度</h3><p>在词向量的基础上，spaCy提供了从词到文档的相似度计算的方法，下面的例子是它的使用方法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 词汇语义相似度(关联性)</span></span><br><span class="line">banana = nlp.vocab[<span class="string">'banana'</span>]</span><br><span class="line">dog = nlp.vocab[<span class="string">'dog'</span>]</span><br><span class="line">fruit = nlp.vocab[<span class="string">'fruit'</span>]</span><br><span class="line">animal = nlp.vocab[<span class="string">'animal'</span>]</span><br><span class="line"> </span><br><span class="line">print(dog.similarity(animal), dog.similarity(fruit)) <span class="comment"># 0.6618534 0.23552845</span></span><br><span class="line">print(banana.similarity(fruit), banana.similarity(animal)) <span class="comment"># 0.67148364 0.2427285</span></span><br></pre></td></tr></table></figure>
+<pre><code>0.66185343 0.23552851
+0.67148364 0.24272855
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 文本语义相似度(关联性)</span></span><br><span class="line">target = nlp(<span class="string">"Cats are beautiful animals."</span>)</span><br><span class="line"> </span><br><span class="line">doc1 = nlp(<span class="string">"Dogs are awesome."</span>)</span><br><span class="line">doc2 = nlp(<span class="string">"Some gorgeous creatures are felines."</span>)</span><br><span class="line">doc3 = nlp(<span class="string">"Dolphins are swimming mammals."</span>)</span><br><span class="line"> </span><br><span class="line">print(target.similarity(doc1))  <span class="comment"># 0.8901765218466683</span></span><br><span class="line">print(target.similarity(doc2))  <span class="comment"># 0.9115828449161616</span></span><br><span class="line">print(target.similarity(doc3))  <span class="comment"># 0.7822956752876101</span></span><br></pre></td></tr></table></figure>
+<pre><code>0.8901766262114666
+0.9115828449161616
+0.7822956256736615
+</code></pre><p><img alt class="post-img b-lazy" data-img="../img/xiniu_neteasy.png" data-index="1" data-src="../img/xiniu_neteasy.png"></p>
+
+                </article>
+                <ul class="tags-postTags">
+                    
+                    <li>
+                        <a href="/tags/nlp/" rel="tag"># nlp</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tags/自然语言处理/" rel="tag"># 自然语言处理</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    
+    <nav id="gobottom" class="pagination">
+        
+        <a class="prev-post" title="NLP系列" href="/2019-03-21/nlp/10Visual_Text_Task_Image_Caption_and_VQA/Chapter2_Visual_Q_A/VQA/">
+            ← NLP系列
+        </a>
+        
+        <span class="prev-next-post">·</span>
+        
+        <a class="next-post" title="NLP系列" href="/2019-03-21/nlp/11Text_similarity_calculation_and_text_matching/Chapter1_Text_similarity_and_its_application/01Edit_Distance_Calculation_based_on_Python/">
+            NLP系列 →
+        </a>
+        
+    </nav>
+
+    
+    <div class="inner">
+        <div id="comment"></div>
+    </div>
+    
+</div>
+
+<div class="toc-bar">
+    <div class="toc-btn-bar">
+        <a href="#site-main" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M793.024 710.272a32 32 0 1 0 45.952-44.544l-310.304-320a32 32 0 0 0-46.4 0.48l-297.696 320a32 32 0 0 0 46.848 43.584l274.752-295.328 286.848 295.808z"/></svg>
+        </a>
+        <div class="toc-btn toc-switch">
+            <svg class="toc-open" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M779.776 480h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M779.776 672h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M256 288a32 32 0 1 0 0 64 32 32 0 0 0 0-64M392.576 352h387.2a32 32 0 0 0 0-64h-387.2a32 32 0 0 0 0 64M256 480a32 32 0 1 0 0 64 32 32 0 0 0 0-64M256 672a32 32 0 1 0 0 64 32 32 0 0 0 0-64"/></svg>
+            <svg class="toc-close hide" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M512 960c-247.039484 0-448-200.960516-448-448S264.960516 64 512 64 960 264.960516 960 512 759.039484 960 512 960zM512 128.287273c-211.584464 0-383.712727 172.128262-383.712727 383.712727 0 211.551781 172.128262 383.712727 383.712727 383.712727 211.551781 0 383.712727-172.159226 383.712727-383.712727C895.712727 300.415536 723.551781 128.287273 512 128.287273z"/><path d="M557.05545 513.376159l138.367639-136.864185c12.576374-12.416396 12.672705-32.671738 0.25631-45.248112s-32.704421-12.672705-45.248112-0.25631l-138.560301 137.024163-136.447897-136.864185c-12.512727-12.512727-32.735385-12.576374-45.248112-0.063647-12.512727 12.480043-12.54369 32.735385-0.063647 45.248112l136.255235 136.671523-137.376804 135.904314c-12.576374 12.447359-12.672705 32.671738-0.25631 45.248112 6.271845 6.335493 14.496116 9.504099 22.751351 9.504099 8.12794 0 16.25588-3.103239 22.496761-9.247789l137.567746-136.064292 138.687596 139.136568c6.240882 6.271845 14.432469 9.407768 22.65674 9.407768 8.191587 0 16.352211-3.135923 22.591372-9.34412 12.512727-12.480043 12.54369-32.704421 0.063647-45.248112L557.05545 513.376159z"/></svg>
+        </div>
+        <a href="#gobottom" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M231.424 346.208a32 32 0 0 0-46.848 43.584l297.696 320a32 32 0 0 0 46.4 0.48l310.304-320a32 32 0 1 0-45.952-44.544l-286.848 295.808-274.752-295.36z"/></svg>
+        </a>
+    </div>
+    <div class="toc-main">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#英文文本处理与spaCy"><span class="toc-text">英文文本处理与spaCy</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#0-英文Tokenization-标记化-分词"><span class="toc-text">0.英文Tokenization(标记化/分词)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-词性标注"><span class="toc-text">1.词性标注</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-命名实体识别"><span class="toc-text">2.命名实体识别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-chunking-组块分析"><span class="toc-text">3.chunking/组块分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-句法依存解析"><span class="toc-text">4.句法依存解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-词向量使用"><span class="toc-text">5.词向量使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-词汇与文本相似度"><span class="toc-text">6.词汇与文本相似度</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+	</div>
+	
+
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+  <header class="read-next-card-header">
+    <small class="read-next-card-header-sitetitle">&mdash; Pastor Dean &mdash;</small>
+    <h3 class="read-next-card-header-title">Recent Posts</h3>
+  </header>
+  <div class="read-next-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+      <path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/>
+    </svg>
+  </div>
+  <div class="read-next-card-content">
+    <ul>
+      
+      
+      
+      <li>
+        <a href="/2020-01-16/thinking/Thinking modelBiological thinking Biological thinking looking at the business world from an evolutionary perspective/">Thinking modelBiological thinking Biological thinking: looking at the business world from an evolutionary perspective</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2020-01-13/thinking/Modern Darwin Integrated Model  Biological Thinking Mode Opening God Perspective/">Modern Darwin Integrated Model Biological Thinking Mode Opening God is Perspective</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2020-01-11/thinking/Metacognition Changing the stubborn thinking of the brain/">Metacognition Changing the stubborn thinking of the brain</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <footer class="read-next-card-footer">
+    <a href="/archives">  MORE  → </a>
+  </footer>
+</article>
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+    <header class="read-next-card-header tagcloud-card">
+        <h3 class="read-next-card-header-title">Categories</h3>
+    </header>
+    <div class="read-next-card-content">
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Biological-Thinking/">Biological Thinking</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cognitive-Neuroscience/">Cognitive Neuroscience</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DeepLearning/">DeepLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/FFmpeg/">FFmpeg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MacOS/">MacOS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MachineLearning/">MachineLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PM/">PM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/RPC/">RPC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vim/">Vim</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WebRTC/">WebRTC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/deeplearn/">deeplearn</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/http/">http</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/machineLearning/">machineLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/文摘/">文摘</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构师/">架构师</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/知识图谱/">知识图谱</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/职业规划/">职业规划</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/职业规划/个人提升/">个人提升</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机相关技术资料整理/">计算机相关技术资料整理</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/认知升级/">认知升级</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/财务自由/">财务自由</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/财富自由/">财富自由</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/运维/">运维</a></li></ul>
+    </div>
+</article>
+
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+	<header class="read-next-card-header tagcloud-card">
+		<h3 class="read-next-card-header-title">Tag Cloud</h3>
+	</header>
+	<div class="read-next-card-content-ext">
+		<a href="/tags/AI/" style="font-size: 14px;">AI</a> <a href="/tags/Android/" style="font-size: 14px;">Android</a> <a href="/tags/Biological/" style="font-size: 17.75px;">Biological</a> <a href="/tags/Browser/" style="font-size: 14px;">Browser</a> <a href="/tags/Business/" style="font-size: 16.5px;">Business</a> <a href="/tags/Cognitive/" style="font-size: 17.75px;">Cognitive</a> <a href="/tags/DeepLearning/" style="font-size: 15.25px;">DeepLearning</a> <a href="/tags/Docker/" style="font-size: 14px;">Docker</a> <a href="/tags/FFmpeg/" style="font-size: 21.5px;">FFmpeg</a> <a href="/tags/FastCGI/" style="font-size: 14px;">FastCGI</a> <a href="/tags/IP划分/" style="font-size: 14px;">IP划分</a> <a href="/tags/IP地址/" style="font-size: 14px;">IP地址</a> <a href="/tags/Knowledge-Graph/" style="font-size: 16.5px;">Knowledge Graph</a> <a href="/tags/Linux-Shell/" style="font-size: 14px;">Linux Shell</a> <a href="/tags/MacOS/" style="font-size: 15.25px;">MacOS</a> <a href="/tags/Neuroscience/" style="font-size: 17.75px;">Neuroscience</a> <a href="/tags/RPC/" style="font-size: 14px;">RPC</a> <a href="/tags/Thinking/" style="font-size: 17.75px;">Thinking</a> <a href="/tags/Tutorial/" style="font-size: 20.25px;">Tutorial</a> <a href="/tags/WebRTC/" style="font-size: 21.5px;">WebRTC</a> <a href="/tags/WebSocket/" style="font-size: 14px;">WebSocket</a> <a href="/tags/algorithm/" style="font-size: 15.25px;">algorithm</a> <a href="/tags/config/" style="font-size: 14px;">config</a> <a href="/tags/decisionTree/" style="font-size: 14px;">decisionTree</a> <a href="/tags/git/" style="font-size: 17.75px;">git</a> <a href="/tags/google-adsense/" style="font-size: 14px;">google adsense</a> <a href="/tags/hexo/" style="font-size: 17.75px;">hexo</a> <a href="/tags/http/" style="font-size: 17.75px;">http</a> <a href="/tags/knn/" style="font-size: 14px;">knn</a> <a href="/tags/lighttpd/" style="font-size: 15.25px;">lighttpd</a> <a href="/tags/mxnet/" style="font-size: 14px;">mxnet</a> <a href="/tags/mysql/" style="font-size: 22.75px;">mysql</a> <a href="/tags/nlp/" style="font-size: 24px;">nlp</a> <a href="/tags/nodejs/" style="font-size: 14px;">nodejs</a> <a href="/tags/openvpn/" style="font-size: 14px;">openvpn</a> <a href="/tags/other/" style="font-size: 15.25px;">other</a> <a href="/tags/paddle/" style="font-size: 14px;">paddle</a> <a href="/tags/planning/" style="font-size: 20.25px;">planning</a> <a href="/tags/pracitce/" style="font-size: 15.25px;">pracitce</a> <a href="/tags/rich/" style="font-size: 14px;">rich</a> <a href="/tags/shell/" style="font-size: 14px;">shell</a> <a href="/tags/svn/" style="font-size: 14px;">svn</a> <a href="/tags/ubuntu/" style="font-size: 14px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 16.5px;">vim</a> <a href="/tags/webpack/" style="font-size: 14px;">webpack</a> <a href="/tags/webrtc/" style="font-size: 19px;">webrtc</a> <a href="/tags/个人发展/" style="font-size: 14px;">个人发展</a> <a href="/tags/互联网实事/" style="font-size: 14px;">互联网实事</a> <a href="/tags/外链/" style="font-size: 14px;">外链</a> <a href="/tags/提升个人思维/" style="font-size: 14px;">提升个人思维</a> <a href="/tags/文摘/" style="font-size: 15.25px;">文摘</a> <a href="/tags/斜杠青年/" style="font-size: 14px;">斜杠青年</a> <a href="/tags/机器学习/" style="font-size: 16.5px;">机器学习</a> <a href="/tags/架构师/" style="font-size: 14px;">架构师</a> <a href="/tags/测试工具/" style="font-size: 14px;">测试工具</a> <a href="/tags/睡后成长/" style="font-size: 14px;">睡后成长</a> <a href="/tags/睡后收入/" style="font-size: 14px;">睡后收入</a> <a href="/tags/税后收入/" style="font-size: 14px;">税后收入</a> <a href="/tags/笔记/" style="font-size: 14px;">笔记</a> <a href="/tags/自然语言处理/" style="font-size: 24px;">自然语言处理</a> <a href="/tags/视频流/" style="font-size: 15.25px;">视频流</a> <a href="/tags/计算机相关技术资料整理/" style="font-size: 14px;">计算机相关技术资料整理</a> <a href="/tags/认知升级/" style="font-size: 14px;">认知升级</a> <a href="/tags/限速/" style="font-size: 14px;">限速</a> <a href="/tags/面试/" style="font-size: 14px;">面试</a> <a href="/tags/项目管理/" style="font-size: 14px;">项目管理</a>
+	</div>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+	
+
+
+
+
+<div id="search" class="search-overlay">
+    <div class="search-form">
+        
+        <div class="search-overlay-logo">
+        	<img src="/images/favicon-16x16-next.png" alt="Pastor Dean">
+        </div>
+        
+        <input id="local-search-input" class="search-input" type="text" name="search" placeholder="Search ...">
+        <a class="search-overlay-close" href="#"></a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+<footer class="site-footer outer">
+	<div class="site-footer-content inner">
+		<div class="copyright">
+			<a href="/" title="Pastor Dean">Pastor Dean &copy; 2020</a>
+			
+				
+			        <span hidden="true" id="/2019-03-21/nlp/2NLP_Basics2/lesson2/2.English_text_analysis_and_processing-spaCy/" class="leancloud-visitors" data-flag-title="NLP系列">
+			            <span>阅读量 </span>
+			            <span class="leancloud-visitors-count">0</span>
+			        </span>
+	    		
+    		
+		</div>
+		<nav class="site-footer-nav">
+			
+			<a href="https://hexo.io" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+			<a href="https://github.com/xzhih/hexo-theme-casper" title="Casper" target="_blank" rel="noopener">Casper</a>
+		</nav>
+	</div>
+</footer>
+	
+
+
+<script>
+    if(window.navigator && navigator.serviceWorker) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister()
+            }
+        })
+    }
+</script>
+
+
+<script id="scriptLoad" src="/js/allinone.min.js" async></script>
+
+
+<script>
+    document.getElementById('scriptLoad').addEventListener('load', function () {
+        
+        
+            var bLazy = new Blazy();
+        
+
+        
+        
+
+        
+        
+        
+            searchFunc("/");
+        
+        
+    })
+</script>
+
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+
+
+<script id="valineScript" src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+<script>
+    document.getElementById('valineScript').addEventListener("load", function() {
+        new Valine({
+            el: '#comment' ,
+            verify: false,
+            notify: false,
+            appId: '',
+            appKey: '',
+            placeholder: 'Just go go',
+            pageSize: 10,
+            avatar: 'mm',
+            visitor: true
+        })
+    });
+</script>
+
+
+
+
+
+</body>
+</html>

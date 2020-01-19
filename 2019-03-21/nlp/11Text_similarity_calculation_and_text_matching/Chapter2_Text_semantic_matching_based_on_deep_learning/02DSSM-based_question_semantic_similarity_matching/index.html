@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="preconnect" href="//www.googletagmanager.com">
+	<link rel="preconnect" href="//zz.bdstatic.com">
+	<link rel="preconnect" href="//sp0.baidu.com">
+	<link rel="preconnect" href="//www.google-analytics.com">
+	<link rel="preconnect" href="//cdn1.lncld.net">
+	<link rel="preconnect" href="//unpkg.com">
+	<link rel="preconnect" href="//app-router.leancloud.cn">
+	<link rel="preconnect" href="//9qpuwspm.api.lncld.net">
+	<link rel="preconnect" href="//gravatar.loli.net">
+
+	<title>NLP系列 | Pastor Dean</title>
+
+	<meta name="HandheldFriendly" content="True">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+	<meta name="generator" content="hexo">
+	<meta name="author" content="pastor">
+	<meta name="description" content>
+
+	
+	<meta name="keywords" content>
+	
+
+	
+	<link rel="shortcut icon" href="/images/favicon-16x16-next.png">
+	<link rel="apple-touch-icon" href="/images/favicon-16x16-next.png">
+	
+
+	
+	<meta name="theme-color" content="#3c484e">
+	<meta name="msapplication-TileColor" content="#3c484e">
+	
+
+	
+
+	
+
+	<meta property="og:site_name" content="Pastor Dean">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="NLP系列 | Pastor Dean">
+	<meta property="og:description" content>
+	<meta property="og:url" content="https://mrpastor.github.io/2019-03-21/nlp/11Text_similarity_calculation_and_text_matching/Chapter2_Text_semantic_matching_based_on_deep_learning/02DSSM-based_question_semantic_similarity_matching/">
+
+	
+	<meta property="article:published_time" content="2019-03-21T19:03:00+08:00"> 
+	<meta property="article:author" content="pastor">
+	<meta property="article:published_first" content="Pastor Dean, /2019-03-21/nlp/11Text_similarity_calculation_and_text_matching/Chapter2_Text_semantic_matching_based_on_deep_learning/02DSSM-based_question_semantic_similarity_matching/">
+	
+
+	
+	
+	<link rel="stylesheet" href="/css/allinonecss.min.css">
+
+	
+	
+	
+</head>
+<body class="post-template">
+	<div class="site-wrapper">
+		
+
+
+
+
+<header class="site-header post-site-header outer">
+    <div class="inner">
+        
+<nav class="site-nav"> 
+    <div class="site-nav-left">
+        <ul class="nav">
+            <li>
+                
+                
+                <a class="site-nav-logo" href="/" title="Pastor Dean">
+                    <img src="/images/favicon-32x32-next.png" alt="Pastor Dean">
+                </a>
+                
+                
+            </li>
+            
+            
+            <li>
+                <a href="/ || home" title="home">home</a>
+            </li>
+            
+            <li>
+                <a href="/categories/ || th" title="categories">categories</a>
+            </li>
+            
+            <li>
+                <a href="/archives/ || archive" title="archives">archives</a>
+            </li>
+            
+            <li>
+                <a href="/tools/ || tools" title="tools">tools</a>
+            </li>
+            
+            
+        </ul> 
+    </div>
+    
+    <div class="search-button-area">
+        <a href="#search" class="search-button">Search ...</a>
+    </div>
+     
+    <div class="site-nav-right">
+        
+        <a href="#search" class="search-button">Search ...</a>
+         
+        
+<div class="social-links">
+    
+    
+    <a class="social-link" title="github" href="https://github.com/mrpastor" target="_blank" rel="noopener">
+        <svg viewbox="0 0 1049 1024" xmlns="http://www.w3.org/2000/svg"><path d="M524.979332 0C234.676191 0 0 234.676191 0 524.979332c0 232.068678 150.366597 428.501342 358.967656 498.035028 26.075132 5.215026 35.636014-11.299224 35.636014-25.205961 0-12.168395-0.869171-53.888607-0.869171-97.347161-146.020741 31.290159-176.441729-62.580318-176.441729-62.580318-23.467619-60.841976-58.234462-76.487055-58.234463-76.487055-47.804409-32.15933 3.476684-32.15933 3.476685-32.15933 53.019436 3.476684 80.83291 53.888607 80.83291 53.888607 46.935238 79.963739 122.553122 57.365291 152.97411 43.458554 4.345855-33.897672 18.252593-57.365291 33.028501-70.402857-116.468925-12.168395-239.022047-57.365291-239.022047-259.012982 0-57.365291 20.860106-104.300529 53.888607-140.805715-5.215026-13.037566-23.467619-66.926173 5.215027-139.067372 0 0 44.327725-13.906737 144.282399 53.888607 41.720212-11.299224 86.917108-17.383422 131.244833-17.383422s89.524621 6.084198 131.244833 17.383422C756.178839 203.386032 800.506564 217.29277 800.506564 217.29277c28.682646 72.1412 10.430053 126.029806 5.215026 139.067372 33.897672 36.505185 53.888607 83.440424 53.888607 140.805715 0 201.64769-122.553122 245.975415-239.891218 259.012982 19.121764 16.514251 35.636014 47.804409 35.636015 97.347161 0 70.402857-0.869171 126.898978-0.869172 144.282399 0 13.906737 9.560882 30.420988 35.636015 25.205961 208.601059-69.533686 358.967656-265.96635 358.967655-498.035028C1049.958663 234.676191 814.413301 0 524.979332 0z"/></svg>
+    </a>
+    
+    
+    <a class="social-link" title="facebook" href="https://facebook" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"/></svg>
+
+    </a>
+    
+    
+    <a class="social-link" title="twitter" href="https://twitter.com" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 32 32"><path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"/></svg>
+
+    </a>
+    
+    
+    
+    
+</div>
+    </div>
+</nav>
+    </div>
+</header>
+
+
+<div id="site-main" class="site-main outer" role="main">
+    <div class="inner">
+        <header class="post-full-header">
+            <div class="post-full-meta">
+                <time class="post-full-meta-date" datetime="2019-03-21T11:19:18.000Z">
+                    2019-03-21
+                </time>
+                
+                <span class="date-divider">/</span>
+                
+                <a href="/categories/NLP/">NLP</a>&nbsp;&nbsp;
+                
+                
+            </div>
+            <h1 class="post-full-title">NLP系列</h1>
+        </header>
+        <div class="post-full no-image">
+            
+            <div class="post-full-content">
+                <article id="photoswipe" class="markdown-body">
+                    <h1 id="基于DSSM的问题语义相似度匹配"><a href="#基于DSSM的问题语义相似度匹配" class="headerlink" title="基于DSSM的问题语义相似度匹配"></a>基于DSSM的问题语义相似度匹配</h1><h2 id="CNTK-303-Deep-Structured-Semantic-Modeling-with-LSTM-Networks"><a href="#CNTK-303-Deep-Structured-Semantic-Modeling-with-LSTM-Networks" class="headerlink" title="CNTK 303: Deep Structured Semantic Modeling with LSTM Networks"></a>CNTK 303: Deep Structured Semantic Modeling with LSTM Networks</h2><p>DSSM的全称是Deep Structured Semantic Model或者Deep Semantic Similarity Model。<br>DSSM由微软研究院深度学习研究中心开发，是一个利用深度神经网络把文本（句子，queries，实体等）表示成向量，并且计算文本相似度的模型和方法。<br>DSSM在信息检索和网络文本排序中有广泛的应用(<a href="https://www.microsoft.com/en-us/research/publication/learning-deep-structured-semantic-models-for-web-search-using-clickthrough-data/" target="_blank" rel="noopener">Huang et al. 2013</a>; <a href="https://www.microsoft.com/en-us/research/publication/learning-semantic-representations-using-convolutional-neural-networks-for-web-search/" target="_blank" rel="noopener">Shen et al. 2014a</a>,<a href="https://www.microsoft.com/en-us/research/publication/a-latent-semantic-model-with-convolutional-pooling-structure-for-information-retrieval/" target="_blank" rel="noopener">2014b</a>; <a href="https://www.microsoft.com/en-us/research/publication/deep-sentence-embedding-using-long-short-term-memory-networks-analysis-application-information-retrieval/" target="_blank" rel="noopener">Palangi et al. 2016</a>), 广告相关性, 实体搜索和有趣性任务(<a href="https://www.microsoft.com/en-us/research/publication/modeling-interestingness-with-deep-neural-networks/" target="_blank" rel="noopener">Gao et al. 2014a</a>, 问答(<a href="https://www.microsoft.com/en-us/research/publication/semantic-parsing-for-single-relation-question-answering/" target="_blank" rel="noopener">Yih et al., 2014</a>), 图片描述(<a href="https://arxiv.org/abs/1411.4952" target="_blank" rel="noopener">Fang et al., 2014</a>), 以及机器翻译 (<a href="https://www.microsoft.com/en-us/research/publication/learning-continuous-phrase-representations-for-translation-modeling/" target="_blank" rel="noopener">Gao et al., 2014b</a>) etc. </p>
+<p>DSSM可以被用作开发latent semantic models，把不同的实体投影到同一个低维度的语义空间，然后用于文本分类，排序等任务。举例来说，在网络搜索任务中，文本和搜索短语的相关性可以用vector之间的距离表示。<a href="https://www.microsoft.com/en-us/research/publication/deep-learning-for-natural-language-processing-theory-and-practice-tutorial/" target="_blank" rel="noopener">He et al., 2014</a>.</p>
+<h2 id="Goal"><a href="#Goal" class="headerlink" title="Goal"></a>Goal</h2><p>给定一对文本，例如搜索一个关键词和一组网络文本，模型会把他们分别转化成低维的连续向量，然后用cosine相似度来计算文本的相似性。</p>
+<p><img alt class="post-img b-lazy" data-img="http://kubicode.me/img/Study-With-Deep-Structured-Semantic-Model/dssm_arch.png" data-index="0" data-src="http://kubicode.me/img/Study-With-Deep-Structured-Semantic-Model/dssm_arch.png"></p>
+<p>从上图中我们看到，给定一个query($Q$)和一组文档($D_1, D_2, \ldots, D_n$)，模型可以生成一组隐向量表示(semantic features)，然后这些semantic features就可以用来计算文本相似度，最终用于文本排序。</p>
+<p>从上图中我们看到，query和document都被编码成了向量。<br>虽然<a href="https://en.wikipedia.org/wiki/Bag-of-words_model" target="_blank" rel="noopener">bag of word</a>是人们常用的文本表示方式，但是它丢失了文本中单词之间的位置关系信息。<br>卷积或者循环神经网络，由于它们编码单词位置信息的能力，在很多NLP问题上有更好的表现。在这份材料中，我们会使用LSTM模型来编码term vector <a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2017/02/LSTM_DSSM_IEEE_TASLP.pdf" target="_blank" rel="noopener">Palangi et. al.</a>。</p>
+<p>我们使用一个比较小的问答数据集来训练这个模型。这份notebook的作用是展示如何构建一个DSSM模型，而不是为了用它达到State-of-the-art的表现。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Import the relevant libraries</span></span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> print_function <span class="comment"># Use a function definition from future version (say 3.x from 2.7 interpreter)</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># import cntk as C</span></span><br><span class="line"><span class="comment"># import cntk.tests.test_utils</span></span><br><span class="line"><span class="comment"># cntk.tests.test_utils.set_device_from_pytest_env() # (only needed for our build system)</span></span><br><span class="line"><span class="comment"># C.cntk_py.set_fixed_random_seed(1) # fix a random seed for CNTK components</span></span><br></pre></td></tr></table></figure>
+<h2 id="Data-Preparation"><a href="#Data-Preparation" class="headerlink" title="Data Preparation"></a>Data Preparation</h2><h3 id="Download"><a href="#Download" class="headerlink" title="Download"></a>Download</h3><p>我们使用一组问答数据集来展示如何使用DSSM模型。<br>这组数据集包含很多对<a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/ACL15-STAGG.pdf" target="_blank" rel="noopener">问答</a>句子。<br>我们把这些数据预处理成两个部分：</p>
+<ul>
+<li>词汇文件：问题和回答各有一个单词文件。问题和答案分别有1204和1019个单词。</li>
+<li>问答句子：包含一个训练集和一个验证集。这些文本都被做成了<a href="https://cntk.ai/pythondocs/CNTK_202_Language_Understanding.html" target="_blank" rel="noopener">CTF格式</a>。训练集有3500对句子，验证集有409对。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">location = os.path.normpath(<span class="string">'data/DSSM'</span>)</span><br><span class="line">data = &#123;</span><br><span class="line">  <span class="string">'train'</span>: &#123; <span class="string">'file'</span>: <span class="string">'train.pair.tok.ctf'</span> &#125;,</span><br><span class="line">  <span class="string">'val'</span>:&#123; <span class="string">'file'</span>: <span class="string">'valid.pair.tok.ctf'</span> &#125;,</span><br><span class="line">  <span class="string">'query'</span>: &#123; <span class="string">'file'</span>: <span class="string">'vocab_Q.wl'</span> &#125;,</span><br><span class="line">  <span class="string">'answer'</span>: &#123; <span class="string">'file'</span>: <span class="string">'vocab_A.wl'</span> &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">download</span><span class="params">(url, filename)</span>:</span></span><br><span class="line">    <span class="string">""" utility function to download a file """</span></span><br><span class="line">    response = requests.get(url, stream=<span class="keyword">True</span>)</span><br><span class="line">    <span class="keyword">with</span> open(filename, <span class="string">"wb"</span>) <span class="keyword">as</span> handle:</span><br><span class="line">        <span class="keyword">for</span> data <span class="keyword">in</span> response.iter_content():</span><br><span class="line">            handle.write(data)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(location):</span><br><span class="line">    os.mkdir(location)</span><br><span class="line">     </span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> data.values():</span><br><span class="line">    path = os.path.normpath(os.path.join(location, item[<span class="string">'file'</span>]))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> os.path.exists(path):</span><br><span class="line">        print(<span class="string">"Reusing locally cached:"</span>, path)</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print(<span class="string">"Starting download:"</span>, item[<span class="string">'file'</span>])</span><br><span class="line">        url = <span class="string">"http://www.cntk.ai/jup/dat/DSSM/%s.csv"</span>%(item[<span class="string">'file'</span>])</span><br><span class="line">        print(url)</span><br><span class="line">        download(url, path)</span><br><span class="line">        print(<span class="string">"Download completed"</span>)</span><br><span class="line">    item[<span class="string">'file'</span>] = path</span><br></pre></td></tr></table></figure>
+<pre><code>Starting download: train.pair.tok.ctf
+http://www.cntk.ai/jup/dat/DSSM/train.pair.tok.ctf.csv
+Download completed
+Starting download: valid.pair.tok.ctf
+http://www.cntk.ai/jup/dat/DSSM/valid.pair.tok.ctf.csv
+Download completed
+Starting download: vocab_Q.wl
+http://www.cntk.ai/jup/dat/DSSM/vocab_Q.wl.csv
+Download completed
+Starting download: vocab_A.wl
+http://www.cntk.ai/jup/dat/DSSM/vocab_A.wl.csv
+Download completed
+</code></pre><h3 id="数据读取"><a href="#数据读取" class="headerlink" title="数据读取"></a>数据读取</h3><p>我们用CTF deserializer来读取数据。当然，你也可以选择用别的方法自己预处理数据。这里提供的CTF reader也提供打乱样本顺序的功能。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Define the vocabulary size (QRY-stands for question and ANS stands for answer)</span></span><br><span class="line">QRY_SIZE = <span class="number">1204</span></span><br><span class="line">ANS_SIZE = <span class="number">1019</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_reader</span><span class="params">(path, is_training)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> C.io.MinibatchSource(C.io.CTFDeserializer(path, C.io.StreamDefs(</span><br><span class="line">         query = C.io.StreamDef(field=<span class="string">'S0'</span>, shape=QRY_SIZE,  is_sparse=<span class="keyword">True</span>),</span><br><span class="line">         answer  = C.io.StreamDef(field=<span class="string">'S1'</span>, shape=ANS_SIZE, is_sparse=<span class="keyword">True</span>)</span><br><span class="line">     )), randomize=is_training, max_sweeps = C.io.INFINITELY_REPEAT <span class="keyword">if</span> is_training <span class="keyword">else</span> <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">train_file = data[<span class="string">'train'</span>][<span class="string">'file'</span>]</span><br><span class="line">print(train_file)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> os.path.exists(train_file):</span><br><span class="line">    train_source = create_reader(train_file, is_training=<span class="keyword">True</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">raise</span> ValueError(<span class="string">"Cannot locate file &#123;0&#125; in current directory &#123;1&#125;"</span>.format(train_file, os.getcwd()))</span><br><span class="line"></span><br><span class="line">validation_file = data[<span class="string">'val'</span>][<span class="string">'file'</span>]</span><br><span class="line">print(validation_file)</span><br><span class="line"><span class="keyword">if</span> os.path.exists(validation_file):</span><br><span class="line">    val_source = create_reader(validation_file, is_training=<span class="keyword">False</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">raise</span> ValueError(<span class="string">"Cannot locate file &#123;0&#125; in current directory &#123;1&#125;"</span>.format(validation_file, os.getcwd()))</span><br></pre></td></tr></table></figure>
+<pre><code>data\DSSM\train.pair.tok.ctf
+data\DSSM\valid.pair.tok.ctf
+</code></pre><h2 id="Model-creation"><a href="#Model-creation" class="headerlink" title="Model creation"></a>Model creation</h2><p>LSTM-RNN模型可以按照顺序读入句子中的单词，抽取单词中的信息，然后embed成一个vector。<br>在DSSM模型中，我们采用句子的最后一个hidden state来作为整个句子的vector表示。<br>这个vector通过两次Feedforward神经网络就可以作为query vector。</p>
+<pre><code>                                                    &quot;query vector&quot;
+                                                          ^
+                                                          |
+                                                      +-------+  
+                                                      | Dense |  
+                                                      +-------+  
+                                                          ^         
+                                                          |         
+                                                     +---------+  
+                                                     | Dropout |  
+                                                     +---------+
+                                                          ^
+                                                          |         
+                                                      +-------+  
+                                                      | Dense |  
+                                                      +-------+  
+                                                          ^         
+                                                          |         
+                                                      +------+   
+                                                      | last |  
+                                                      +------+  
+                                                          ^  
+                                                          |         
+          +------+   +------+   +------+   +------+   +------+   
+     0 --&gt;| LSTM |--&gt;| LSTM |--&gt;| LSTM |--&gt;| LSTM |--&gt;| LSTM |
+          +------+   +------+   +------+   +------+   +------+   
+              ^          ^          ^          ^          ^
+              |          |          |          |          |
+          +-------+  +-------+  +-------+  +-------+  +-------+
+          | Embed |  | Embed |  | Embed |  | Embed |  | Embed | 
+          +-------+  +-------+  +-------+  +-------+  +-------+
+              ^          ^          ^          ^          ^
+              |          |          |          |          |
+query  ------&gt;+---------&gt;+---------&gt;+---------&gt;+---------&gt;+
+</code></pre><p>类似地，我们可以把答案句子编码成answer vector。我们首先定义模型的输入，分别是query和answer的sequence，</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create the containers for input feature (x) and the label (y)</span></span><br><span class="line">qry = C.sequence.input_variable(QRY_SIZE)</span><br><span class="line">ans = C.sequence.input_variable(ANS_SIZE)</span><br></pre></td></tr></table></figure>
+<p>每个CNTK的sequence都包含一个dynamic axis，表示sequence的长度。<br>直观来说，当你的sequence有不同的长度和不同的单词表大小，他们都应该有一个dynamic axis。<br>这时候就需要声明named axis。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create the containers for input feature (x) and the label (y)</span></span><br><span class="line">axis_qry = C.Axis.new_unique_dynamic_axis(<span class="string">'axis_qry'</span>)</span><br><span class="line">qry = C.sequence.input_variable(QRY_SIZE, sequence_axis=axis_qry)</span><br><span class="line"></span><br><span class="line">axis_ans = C.Axis.new_unique_dynamic_axis(<span class="string">'axis_ans'</span>)</span><br><span class="line">ans = C.sequence.input_variable(ANS_SIZE, sequence_axis=axis_ans)</span><br></pre></td></tr></table></figure>
+<p>在创建模型之前我们先定义一些模型的参数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">EMB_DIM   = <span class="number">25</span> <span class="comment"># Embedding dimension</span></span><br><span class="line">HIDDEN_DIM = <span class="number">50</span> <span class="comment"># LSTM dimension</span></span><br><span class="line">DSSM_DIM = <span class="number">25</span> <span class="comment"># Dense layer dimension  </span></span><br><span class="line">NEGATIVE_SAMPLES = <span class="number">5</span></span><br><span class="line">DROPOUT_RATIO = <span class="number">0.2</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_model</span><span class="params">(qry, ans)</span>:</span></span><br><span class="line">    <span class="keyword">with</span> C.layers.default_options(initial_state=<span class="number">0.1</span>):</span><br><span class="line">        qry_vector = C.layers.Sequential([</span><br><span class="line">            C.layers.Embedding(EMB_DIM, name=<span class="string">'embed'</span>),</span><br><span class="line">            C.layers.Recurrence(C.layers.LSTM(HIDDEN_DIM), go_backwards=<span class="keyword">False</span>),</span><br><span class="line">            C.sequence.last,</span><br><span class="line">            C.layers.Dense(DSSM_DIM, activation=C.relu, name=<span class="string">'q_proj'</span>),</span><br><span class="line">            C.layers.Dropout(DROPOUT_RATIO, name=<span class="string">'dropout qdo1'</span>),</span><br><span class="line">            C.layers.Dense(DSSM_DIM, activation=C.tanh, name=<span class="string">'q_enc'</span>)</span><br><span class="line">        ])</span><br><span class="line">        </span><br><span class="line">        ans_vector = C.layers.Sequential([</span><br><span class="line">            C.layers.Embedding(EMB_DIM, name=<span class="string">'embed'</span>),</span><br><span class="line">            C.layers.Recurrence(C.layers.LSTM(HIDDEN_DIM), go_backwards=<span class="keyword">False</span>),</span><br><span class="line">            C.sequence.last,</span><br><span class="line">            C.layers.Dense(DSSM_DIM, activation=C.relu, name=<span class="string">'a_proj'</span>),</span><br><span class="line">            C.layers.Dropout(DROPOUT_RATIO, name=<span class="string">'dropout ado1'</span>),</span><br><span class="line">            C.layers.Dense(DSSM_DIM, activation=C.tanh, name=<span class="string">'a_enc'</span>)</span><br><span class="line">        ])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="string">'query_vector'</span>: qry_vector(qry),</span><br><span class="line">        <span class="string">'answer_vector'</span>: ans_vector(ans)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create the model and store reference in `network` dictionary</span></span><br><span class="line">network = create_model(qry, ans)</span><br><span class="line"></span><br><span class="line">network[<span class="string">'query'</span>], network[<span class="string">'axis_qry'</span>] = qry, axis_qry</span><br><span class="line">network[<span class="string">'answer'</span>], network[<span class="string">'axis_ans'</span>] = ans, axis_ans</span><br></pre></td></tr></table></figure>
+<h2 id="Training"><a href="#Training" class="headerlink" title="Training"></a>Training</h2><p>现在我们已经创建了模型，下一步就是找到一个合适的损失函数。这个损失函数的功能是，如果我们的问题和一个正确的答案匹配在一起，这个损失就应该是一个接近0的很小的数字，如果问题和答案不匹配，那么损失函数应该给我们返回一个接近1的数字。换句话说，这个损失函数最大化问题和正确答案之间的相似度，最小化问题与错误答案之间的相似度。</p>
+<p>DSSM经常被用在信息检索类问题中。往往给定一个搜索的短语或问题，我们需要在海量的文本中寻找正确答案。输入的数据是一个问题和一个潜在的答案（文本或者广告），这些文本或者广告可能会被点击。我们的目标是要提高被点击的概率，也就是说被搜索到的文档或广告与搜索关键词比较相关。一种做法是训练一个分类器，这个分类器可以预测链接是否被点开。为了训练这样一个模型，我们需要被点开的搜索短语和链接，也需要没有被点开的链接。一种模拟没有被点开的链接的方法是从当前minibatch中随机采样其他query产生的链接。这就是 <code>cosine_distance_with_negative_samples</code> 这个function在做的事情。注意，这个function的返回值1表示正确的问题与答案，0表示错误的问题与答案，我们把它叫做<em>similarity</em>。所以，我们用1-<code>cosine_distance_with_negative_samples</code>作为损失函数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_loss</span><span class="params">(vector_a, vector_b)</span>:</span></span><br><span class="line">    qry_ans_similarity = C.cosine_distance_with_negative_samples(vector_a, \</span><br><span class="line">                                                                 vector_b, \</span><br><span class="line">                                                                 shift=<span class="number">1</span>, \</span><br><span class="line">                                                                 num_negative_samples=<span class="number">5</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span> - qry_ans_similarity</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Model parameters</span></span><br><span class="line">MAX_EPOCHS = <span class="number">5</span></span><br><span class="line">EPOCH_SIZE = <span class="number">10000</span></span><br><span class="line">MINIBATCH_SIZE = <span class="number">50</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create trainer</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_trainer</span><span class="params">(reader, network)</span>:</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Setup the progress updater</span></span><br><span class="line">    progress_writer = C.logging.ProgressPrinter(tag=<span class="string">'Training'</span>, num_epochs=MAX_EPOCHS)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Set learning parameters</span></span><br><span class="line">    lr_per_sample     = [<span class="number">0.0015625</span>]*<span class="number">20</span> + \</span><br><span class="line">                        [<span class="number">0.00046875</span>]*<span class="number">20</span> + \</span><br><span class="line">                        [<span class="number">0.00015625</span>]*<span class="number">20</span> + \</span><br><span class="line">                        [<span class="number">0.000046875</span>]*<span class="number">10</span> + \</span><br><span class="line">                        [<span class="number">0.000015625</span>]</span><br><span class="line">    lr_schedule       = C.learning_parameter_schedule_per_sample(lr_per_sample, \</span><br><span class="line">                                                 epoch_size=EPOCH_SIZE)</span><br><span class="line">    mms               = [<span class="number">0</span>]*<span class="number">20</span> + [<span class="number">0.9200444146293233</span>]*<span class="number">20</span> + [<span class="number">0.9591894571091382</span>]</span><br><span class="line">    mm_schedule       = C.learners.momentum_schedule(mms, \</span><br><span class="line">                                                     epoch_size=EPOCH_SIZE, \</span><br><span class="line">                                                     minibatch_size=MINIBATCH_SIZE)</span><br><span class="line">    l2_reg_weight     = <span class="number">0.0002</span></span><br><span class="line"></span><br><span class="line">    model = C.combine(network[<span class="string">'query_vector'</span>], network[<span class="string">'answer_vector'</span>])</span><br><span class="line"></span><br><span class="line">    <span class="comment">#Notify the network that the two dynamic axes are indeed same</span></span><br><span class="line">    query_reconciled = C.reconcile_dynamic_axes(network[<span class="string">'query_vector'</span>], network[<span class="string">'answer_vector'</span>])</span><br><span class="line">  </span><br><span class="line">    network[<span class="string">'loss'</span>] = create_loss(query_reconciled, network[<span class="string">'answer_vector'</span>])</span><br><span class="line">    network[<span class="string">'error'</span>] = <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line">    print(<span class="string">'Using momentum sgd with no l2'</span>)</span><br><span class="line">    dssm_learner = C.learners.momentum_sgd(model.parameters, lr_schedule, mm_schedule)</span><br><span class="line"></span><br><span class="line">    network[<span class="string">'learner'</span>] = dssm_learner</span><br><span class="line"> </span><br><span class="line">    print(<span class="string">'Using local learner'</span>)</span><br><span class="line">    <span class="comment"># Create trainer</span></span><br><span class="line">    <span class="keyword">return</span> C.Trainer(model, (network[<span class="string">'loss'</span>], network[<span class="string">'error'</span>]), network[<span class="string">'learner'</span>], progress_writer)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Instantiate the trainer</span></span><br><span class="line">trainer = create_trainer(train_source, network)</span><br></pre></td></tr></table></figure>
+<pre><code>Using momentum sgd with no l2
+Using local learner
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Train </span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">do_train</span><span class="params">(network, trainer, train_source)</span>:</span></span><br><span class="line">    <span class="comment"># define mapping from intput streams to network inputs</span></span><br><span class="line">    input_map = &#123;</span><br><span class="line">        network[<span class="string">'query'</span>]: train_source.streams.query,</span><br><span class="line">        network[<span class="string">'answer'</span>]: train_source.streams.answer</span><br><span class="line">        &#125; </span><br><span class="line"></span><br><span class="line">    t = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> range(MAX_EPOCHS):         <span class="comment"># loop over epochs</span></span><br><span class="line">        epoch_end = (epoch+<span class="number">1</span>) * EPOCH_SIZE</span><br><span class="line">        <span class="keyword">while</span> t &lt; epoch_end:                <span class="comment"># loop over minibatches on the epoch</span></span><br><span class="line">            data = train_source.next_minibatch(MINIBATCH_SIZE, input_map= input_map)  <span class="comment"># fetch minibatch</span></span><br><span class="line">            trainer.train_minibatch(data)               <span class="comment"># update model with it</span></span><br><span class="line">            t += MINIBATCH_SIZE</span><br><span class="line"></span><br><span class="line">        trainer.summarize_training_progress()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">do_train(network, trainer, train_source)</span><br></pre></td></tr></table></figure>
+<pre><code>Learning rate per 1 samples: 0.0015625
+Momentum per 1 samples: 0.0
+Finished Epoch[1 of 5]: [Training] loss = 0.343046 * 1522, metric = 0.00% * 1522 5.720s (266.1 samples/s);
+Finished Epoch[2 of 5]: [Training] loss = 0.102804 * 1530, metric = 0.00% * 1530 3.464s (441.7 samples/s);
+Finished Epoch[3 of 5]: [Training] loss = 0.066461 * 1525, metric = 0.00% * 1525 3.402s (448.3 samples/s);
+Finished Epoch[4 of 5]: [Training] loss = 0.048511 * 1534, metric = 0.00% * 1534 3.390s (452.5 samples/s);
+Finished Epoch[5 of 5]: [Training] loss = 0.035384 * 1510, metric = 0.00% * 1510 3.383s (446.3 samples/s);
+</code></pre><h2 id="Validate"><a href="#Validate" class="headerlink" title="Validate"></a>Validate</h2><p>当我们训练完模型后，我们需要选择一个训练与验证错误率相近的模型。<br>可以通过选择不同的epoch数量来选择更好的模型。<br>通过这种方式选择的模型最终被用于预测。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Validate</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">do_validate</span><span class="params">(network, val_source)</span>:</span></span><br><span class="line">    <span class="comment"># process minibatches and perform evaluation</span></span><br><span class="line">    progress_printer = C.logging.ProgressPrinter(tag=<span class="string">'Evaluation'</span>, num_epochs=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    val_map = &#123;</span><br><span class="line">        network[<span class="string">'query'</span>]: val_source.streams.query,</span><br><span class="line">        network[<span class="string">'answer'</span>]: val_source.streams.answer</span><br><span class="line">        &#125; </span><br><span class="line"></span><br><span class="line">    evaluator = C.eval.Evaluator(network[<span class="string">'loss'</span>], progress_printer)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">        minibatch_size = <span class="number">100</span></span><br><span class="line">        data = val_source.next_minibatch(minibatch_size, input_map=val_map)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> data:                                 <span class="comment"># until we hit the end</span></span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        evaluator.test_minibatch(data)</span><br><span class="line"></span><br><span class="line">    evaluator.summarize_test_progress()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">do_validate(network, val_source)</span><br></pre></td></tr></table></figure>
+<pre><code>Finished Evaluation [1]: Minibatch[1-35]: metric = 0.02% * 410;
+</code></pre><h2 id="预测"><a href="#预测" class="headerlink" title="预测"></a>预测</h2><p>我们会把query和answer都转化成vector。然后计算它们之间的cosine similarity。这些cosine similarity的分数可以用来对搜索的网页排序。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># load dictionaries</span></span><br><span class="line">query_wl = [line.rstrip(<span class="string">'\n'</span>) <span class="keyword">for</span> line <span class="keyword">in</span> open(data[<span class="string">'query'</span>][<span class="string">'file'</span>])]</span><br><span class="line">answers_wl = [line.rstrip(<span class="string">'\n'</span>) <span class="keyword">for</span> line <span class="keyword">in</span> open(data[<span class="string">'answer'</span>][<span class="string">'file'</span>])]</span><br><span class="line">query_dict = &#123;query_wl[i]:i <span class="keyword">for</span> i <span class="keyword">in</span> range(len(query_wl))&#125;</span><br><span class="line">answers_dict = &#123;answers_wl[i]:i <span class="keyword">for</span> i <span class="keyword">in</span> range(len(answers_wl))&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># let's run a sequence through</span></span><br><span class="line">qry = <span class="string">'BOS what contribution did  e1  made to science in 1665 EOS'</span></span><br><span class="line">ans = <span class="string">'BOS book author book_editions_published EOS'</span></span><br><span class="line">ans_poor = <span class="string">'BOS language human_language main_country EOS'</span></span><br><span class="line"></span><br><span class="line">qry_idx = [query_dict[w+<span class="string">' '</span>] <span class="keyword">for</span> w <span class="keyword">in</span> qry.split()] <span class="comment"># convert to query word indices</span></span><br><span class="line">print(<span class="string">'Query Indices:'</span>, qry_idx)</span><br><span class="line"></span><br><span class="line">ans_idx = [answers_dict[w+<span class="string">' '</span>] <span class="keyword">for</span> w <span class="keyword">in</span> ans.split()] <span class="comment"># convert to answer word indices</span></span><br><span class="line">print(<span class="string">'Answer Indices:'</span>, ans_idx)</span><br><span class="line"></span><br><span class="line">ans_poor_idx = [answers_dict[w+<span class="string">' '</span>] <span class="keyword">for</span> w <span class="keyword">in</span> ans_poor.split()] <span class="comment"># convert to fake answer word indices</span></span><br><span class="line">print(<span class="string">'Poor Answer Indices:'</span>, ans_poor_idx)</span><br></pre></td></tr></table></figure>
+<pre><code>Query Indices: [1202, 1154, 267, 321, 357, 648, 1070, 905, 549, 6, 1203]
+Answer Indices: [1017, 135, 91, 137, 1018]
+Poor Answer Indices: [1017, 501, 452, 533, 1018]
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Create the one hot representations</span></span><br><span class="line">qry_onehot = np.zeros([len(qry_idx),len(query_dict)], np.float32)</span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> range(len(qry_idx)):</span><br><span class="line">    qry_onehot[t,qry_idx[t]] = <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">ans_onehot = np.zeros([len(ans_idx),len(answers_dict)], np.float32)</span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> range(len(ans_idx)):</span><br><span class="line">    ans_onehot[t,ans_idx[t]] = <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">ans_poor_onehot = np.zeros([len(ans_poor_idx),len(answers_dict)], np.float32)</span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> range(len(ans_poor_idx)):</span><br><span class="line">    ans_poor_onehot[t, ans_poor_idx[t]] = <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">qry_embedding = network[<span class="string">'query_vector'</span>].eval([qry_onehot])</span><br><span class="line">ans_embedding = network[<span class="string">'answer_vector'</span>].eval([ans_onehot])</span><br><span class="line">ans_poor_embedding = network[<span class="string">'answer_vector'</span>].eval([ans_poor_onehot])</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> scipy.spatial.distance <span class="keyword">import</span> cosine</span><br><span class="line"></span><br><span class="line">print(<span class="string">'Query to Answer similarity:'</span>, <span class="number">1</span>-cosine(qry_embedding, ans_embedding))</span><br><span class="line">print(<span class="string">'Query to poor-answer similarity:'</span>, <span class="number">1</span>-cosine(qry_embedding, ans_poor_embedding))</span><br></pre></td></tr></table></figure>
+<pre><code>Query to Answer similarity: 0.99995367043
+Query to poor-answer similarity: 0.999941420215
+</code></pre>
+                </article>
+                <ul class="tags-postTags">
+                    
+                    <li>
+                        <a href="/tags/nlp/" rel="tag"># nlp</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tags/自然语言处理/" rel="tag"># 自然语言处理</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    
+    <nav id="gobottom" class="pagination">
+        
+        <a class="prev-post" title="NLP系列" href="/2019-03-21/nlp/9chatbot_v2/2.generative_chatbot/2.seq2seq_details/">
+            ← NLP系列
+        </a>
+        
+        <span class="prev-next-post">·</span>
+        
+        <a class="next-post" title="NLP系列" href="/2019-03-21/nlp/9chatbot_v2/2.generative_chatbot/5.transformer_based_chatbot/">
+            NLP系列 →
+        </a>
+        
+    </nav>
+
+    
+    <div class="inner">
+        <div id="comment"></div>
+    </div>
+    
+</div>
+
+<div class="toc-bar">
+    <div class="toc-btn-bar">
+        <a href="#site-main" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M793.024 710.272a32 32 0 1 0 45.952-44.544l-310.304-320a32 32 0 0 0-46.4 0.48l-297.696 320a32 32 0 0 0 46.848 43.584l274.752-295.328 286.848 295.808z"/></svg>
+        </a>
+        <div class="toc-btn toc-switch">
+            <svg class="toc-open" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M779.776 480h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M779.776 672h-387.2a32 32 0 0 0 0 64h387.2a32 32 0 0 0 0-64M256 288a32 32 0 1 0 0 64 32 32 0 0 0 0-64M392.576 352h387.2a32 32 0 0 0 0-64h-387.2a32 32 0 0 0 0 64M256 480a32 32 0 1 0 0 64 32 32 0 0 0 0-64M256 672a32 32 0 1 0 0 64 32 32 0 0 0 0-64"/></svg>
+            <svg class="toc-close hide" viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M512 960c-247.039484 0-448-200.960516-448-448S264.960516 64 512 64 960 264.960516 960 512 759.039484 960 512 960zM512 128.287273c-211.584464 0-383.712727 172.128262-383.712727 383.712727 0 211.551781 172.128262 383.712727 383.712727 383.712727 211.551781 0 383.712727-172.159226 383.712727-383.712727C895.712727 300.415536 723.551781 128.287273 512 128.287273z"/><path d="M557.05545 513.376159l138.367639-136.864185c12.576374-12.416396 12.672705-32.671738 0.25631-45.248112s-32.704421-12.672705-45.248112-0.25631l-138.560301 137.024163-136.447897-136.864185c-12.512727-12.512727-32.735385-12.576374-45.248112-0.063647-12.512727 12.480043-12.54369 32.735385-0.063647 45.248112l136.255235 136.671523-137.376804 135.904314c-12.576374 12.447359-12.672705 32.671738-0.25631 45.248112 6.271845 6.335493 14.496116 9.504099 22.751351 9.504099 8.12794 0 16.25588-3.103239 22.496761-9.247789l137.567746-136.064292 138.687596 139.136568c6.240882 6.271845 14.432469 9.407768 22.65674 9.407768 8.191587 0 16.352211-3.135923 22.591372-9.34412 12.512727-12.480043 12.54369-32.704421 0.063647-45.248112L557.05545 513.376159z"/></svg>
+        </div>
+        <a href="#gobottom" class="toc-btn">
+            <svg viewbox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M231.424 346.208a32 32 0 0 0-46.848 43.584l297.696 320a32 32 0 0 0 46.4 0.48l310.304-320a32 32 0 1 0-45.952-44.544l-286.848 295.808-274.752-295.36z"/></svg>
+        </a>
+    </div>
+    <div class="toc-main">
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#基于DSSM的问题语义相似度匹配"><span class="toc-text">基于DSSM的问题语义相似度匹配</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#CNTK-303-Deep-Structured-Semantic-Modeling-with-LSTM-Networks"><span class="toc-text">CNTK 303: Deep Structured Semantic Modeling with LSTM Networks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Goal"><span class="toc-text">Goal</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Data-Preparation"><span class="toc-text">Data Preparation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Download"><span class="toc-text">Download</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据读取"><span class="toc-text">数据读取</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Model-creation"><span class="toc-text">Model creation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Training"><span class="toc-text">Training</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Validate"><span class="toc-text">Validate</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#预测"><span class="toc-text">预测</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+	</div>
+	
+
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+  <header class="read-next-card-header">
+    <small class="read-next-card-header-sitetitle">&mdash; Pastor Dean &mdash;</small>
+    <h3 class="read-next-card-header-title">Recent Posts</h3>
+  </header>
+  <div class="read-next-divider">
+    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24">
+      <path d="M13 14.5s2 3 5 3 5.5-2.463 5.5-5.5S21 6.5 18 6.5c-5 0-7 11-12 11C2.962 17.5.5 15.037.5 12S3 6.5 6 6.5s4.5 3.5 4.5 3.5"/>
+    </svg>
+  </div>
+  <div class="read-next-card-content">
+    <ul>
+      
+      
+      
+      <li>
+        <a href="/2020-01-16/thinking/Thinking modelBiological thinking Biological thinking looking at the business world from an evolutionary perspective/">Thinking modelBiological thinking Biological thinking: looking at the business world from an evolutionary perspective</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2020-01-13/thinking/Modern Darwin Integrated Model  Biological Thinking Mode Opening God Perspective/">Modern Darwin Integrated Model Biological Thinking Mode Opening God is Perspective</a>
+      </li>
+      
+      
+      
+      <li>
+        <a href="/2020-01-11/thinking/Metacognition Changing the stubborn thinking of the brain/">Metacognition Changing the stubborn thinking of the brain</a>
+      </li>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+  <footer class="read-next-card-footer">
+    <a href="/archives">  MORE  → </a>
+  </footer>
+</article>
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+    <header class="read-next-card-header tagcloud-card">
+        <h3 class="read-next-card-header-title">Categories</h3>
+    </header>
+    <div class="read-next-card-content">
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Biological-Thinking/">Biological Thinking</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cognitive-Neuroscience/">Cognitive Neuroscience</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DeepLearning/">DeepLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/FFmpeg/">FFmpeg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MacOS/">MacOS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MachineLearning/">MachineLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PM/">PM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/RPC/">RPC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vim/">Vim</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WebRTC/">WebRTC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/deeplearn/">deeplearn</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/http/">http</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/machineLearning/">machineLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/文摘/">文摘</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构师/">架构师</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/知识图谱/">知识图谱</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/职业规划/">职业规划</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/职业规划/个人提升/">个人提升</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机相关技术资料整理/">计算机相关技术资料整理</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/认知升级/">认知升级</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/财务自由/">财务自由</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/财富自由/">财富自由</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/运维/">运维</a></li></ul>
+    </div>
+</article>
+
+
+            
+            
+            
+
+<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
+	<header class="read-next-card-header tagcloud-card">
+		<h3 class="read-next-card-header-title">Tag Cloud</h3>
+	</header>
+	<div class="read-next-card-content-ext">
+		<a href="/tags/AI/" style="font-size: 14px;">AI</a> <a href="/tags/Android/" style="font-size: 14px;">Android</a> <a href="/tags/Biological/" style="font-size: 17.75px;">Biological</a> <a href="/tags/Browser/" style="font-size: 14px;">Browser</a> <a href="/tags/Business/" style="font-size: 16.5px;">Business</a> <a href="/tags/Cognitive/" style="font-size: 17.75px;">Cognitive</a> <a href="/tags/DeepLearning/" style="font-size: 15.25px;">DeepLearning</a> <a href="/tags/Docker/" style="font-size: 14px;">Docker</a> <a href="/tags/FFmpeg/" style="font-size: 21.5px;">FFmpeg</a> <a href="/tags/FastCGI/" style="font-size: 14px;">FastCGI</a> <a href="/tags/IP划分/" style="font-size: 14px;">IP划分</a> <a href="/tags/IP地址/" style="font-size: 14px;">IP地址</a> <a href="/tags/Knowledge-Graph/" style="font-size: 16.5px;">Knowledge Graph</a> <a href="/tags/Linux-Shell/" style="font-size: 14px;">Linux Shell</a> <a href="/tags/MacOS/" style="font-size: 15.25px;">MacOS</a> <a href="/tags/Neuroscience/" style="font-size: 17.75px;">Neuroscience</a> <a href="/tags/RPC/" style="font-size: 14px;">RPC</a> <a href="/tags/Thinking/" style="font-size: 17.75px;">Thinking</a> <a href="/tags/Tutorial/" style="font-size: 20.25px;">Tutorial</a> <a href="/tags/WebRTC/" style="font-size: 21.5px;">WebRTC</a> <a href="/tags/WebSocket/" style="font-size: 14px;">WebSocket</a> <a href="/tags/algorithm/" style="font-size: 15.25px;">algorithm</a> <a href="/tags/config/" style="font-size: 14px;">config</a> <a href="/tags/decisionTree/" style="font-size: 14px;">decisionTree</a> <a href="/tags/git/" style="font-size: 17.75px;">git</a> <a href="/tags/google-adsense/" style="font-size: 14px;">google adsense</a> <a href="/tags/hexo/" style="font-size: 17.75px;">hexo</a> <a href="/tags/http/" style="font-size: 17.75px;">http</a> <a href="/tags/knn/" style="font-size: 14px;">knn</a> <a href="/tags/lighttpd/" style="font-size: 15.25px;">lighttpd</a> <a href="/tags/mxnet/" style="font-size: 14px;">mxnet</a> <a href="/tags/mysql/" style="font-size: 22.75px;">mysql</a> <a href="/tags/nlp/" style="font-size: 24px;">nlp</a> <a href="/tags/nodejs/" style="font-size: 14px;">nodejs</a> <a href="/tags/openvpn/" style="font-size: 14px;">openvpn</a> <a href="/tags/other/" style="font-size: 15.25px;">other</a> <a href="/tags/paddle/" style="font-size: 14px;">paddle</a> <a href="/tags/planning/" style="font-size: 20.25px;">planning</a> <a href="/tags/pracitce/" style="font-size: 15.25px;">pracitce</a> <a href="/tags/rich/" style="font-size: 14px;">rich</a> <a href="/tags/shell/" style="font-size: 14px;">shell</a> <a href="/tags/svn/" style="font-size: 14px;">svn</a> <a href="/tags/ubuntu/" style="font-size: 14px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 16.5px;">vim</a> <a href="/tags/webpack/" style="font-size: 14px;">webpack</a> <a href="/tags/webrtc/" style="font-size: 19px;">webrtc</a> <a href="/tags/个人发展/" style="font-size: 14px;">个人发展</a> <a href="/tags/互联网实事/" style="font-size: 14px;">互联网实事</a> <a href="/tags/外链/" style="font-size: 14px;">外链</a> <a href="/tags/提升个人思维/" style="font-size: 14px;">提升个人思维</a> <a href="/tags/文摘/" style="font-size: 15.25px;">文摘</a> <a href="/tags/斜杠青年/" style="font-size: 14px;">斜杠青年</a> <a href="/tags/机器学习/" style="font-size: 16.5px;">机器学习</a> <a href="/tags/架构师/" style="font-size: 14px;">架构师</a> <a href="/tags/测试工具/" style="font-size: 14px;">测试工具</a> <a href="/tags/睡后成长/" style="font-size: 14px;">睡后成长</a> <a href="/tags/睡后收入/" style="font-size: 14px;">睡后收入</a> <a href="/tags/税后收入/" style="font-size: 14px;">税后收入</a> <a href="/tags/笔记/" style="font-size: 14px;">笔记</a> <a href="/tags/自然语言处理/" style="font-size: 24px;">自然语言处理</a> <a href="/tags/视频流/" style="font-size: 15.25px;">视频流</a> <a href="/tags/计算机相关技术资料整理/" style="font-size: 14px;">计算机相关技术资料整理</a> <a href="/tags/认知升级/" style="font-size: 14px;">认知升级</a> <a href="/tags/限速/" style="font-size: 14px;">限速</a> <a href="/tags/面试/" style="font-size: 14px;">面试</a> <a href="/tags/项目管理/" style="font-size: 14px;">项目管理</a>
+	</div>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+	
+
+
+
+
+<div id="search" class="search-overlay">
+    <div class="search-form">
+        
+        <div class="search-overlay-logo">
+        	<img src="/images/favicon-16x16-next.png" alt="Pastor Dean">
+        </div>
+        
+        <input id="local-search-input" class="search-input" type="text" name="search" placeholder="Search ...">
+        <a class="search-overlay-close" href="#"></a>
+    </div>
+    <div id="local-search-result"></div>
+</div>
+
+<footer class="site-footer outer">
+	<div class="site-footer-content inner">
+		<div class="copyright">
+			<a href="/" title="Pastor Dean">Pastor Dean &copy; 2020</a>
+			
+				
+			        <span hidden="true" id="/2019-03-21/nlp/11Text_similarity_calculation_and_text_matching/Chapter2_Text_semantic_matching_based_on_deep_learning/02DSSM-based_question_semantic_similarity_matching/" class="leancloud-visitors" data-flag-title="NLP系列">
+			            <span>阅读量 </span>
+			            <span class="leancloud-visitors-count">0</span>
+			        </span>
+	    		
+    		
+		</div>
+		<nav class="site-footer-nav">
+			
+			<a href="https://hexo.io" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+			<a href="https://github.com/xzhih/hexo-theme-casper" title="Casper" target="_blank" rel="noopener">Casper</a>
+		</nav>
+	</div>
+</footer>
+	
+
+
+<script>
+    if(window.navigator && navigator.serviceWorker) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+            for(let registration of registrations) {
+                registration.unregister()
+            }
+        })
+    }
+</script>
+
+
+<script id="scriptLoad" src="/js/allinone.min.js" async></script>
+
+
+<script>
+    document.getElementById('scriptLoad').addEventListener('load', function () {
+        
+        
+            var bLazy = new Blazy();
+        
+
+        
+        
+
+        
+        
+        
+            searchFunc("/");
+        
+        
+    })
+</script>
+
+
+
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+
+
+
+<script id="valineScript" src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+<script>
+    document.getElementById('valineScript').addEventListener("load", function() {
+        new Valine({
+            el: '#comment' ,
+            verify: false,
+            notify: false,
+            appId: '',
+            appKey: '',
+            placeholder: 'Just go go',
+            pageSize: 10,
+            avatar: 'mm',
+            visitor: true
+        })
+    });
+</script>
+
+
+
+
+
+</body>
+</html>
