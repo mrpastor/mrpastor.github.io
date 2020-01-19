@@ -31,7 +31,7 @@
 	<meta name="description" content="Committed to the development of business thinking models and cognitive science .Thinking models are visual models composed of easy-to-understand graphics, symbols, structured language, etc., which are visualized by people to observe, analyze and solve problems " psychological structure". it is the connection of concepts and knowledge modularity. a formula for solving problems. thinking model sapphire on top pyramid formed during evolution human civilization, an important theory in disciplines, sharp commodity ocean knowledge. ">
 
 	
-	<meta name="keywords" content="hexo, casper, ghost, theme">
+	<meta name="keywords" content="Committed to the development of business thinking models and cognitive science .Thinking models are visual models composed of easy-to-understand graphics, symbols, structured language, etc., which are visualized by people to observe, analyze and solve problems " psychological structure". it is the connection of concepts and knowledge modularity. a formula for solving problems. thinking model sapphire on top pyramid formed during evolution human civilization, an important theory in disciplines, sharp commodity ocean knowledge.">
 	
 
 	
@@ -98,19 +98,19 @@
             
             
             <li>
-                <a href="/ || home" title="home">home</a>
+                <a href="/" title="home">home</a>
             </li>
             
             <li>
-                <a href="/categories/ || th" title="categories">categories</a>
+                <a href="/categories/" title="categories">categories</a>
             </li>
             
             <li>
-                <a href="/archives/ || archive" title="archives">archives</a>
+                <a href="/archives/" title="archives">archives</a>
             </li>
             
             <li>
-                <a href="/tools/ || tools" title="tools">tools</a>
+                <a href="/tools/" title="tools">tools</a>
             </li>
             
             
@@ -163,7 +163,7 @@
 			<article class="post-card post  no-image ">
 				
 				<div class="post-card-content">
-					<a class="post-card-content-link" title="NLP系列" href="/2019-03-21/nlp/2NLP_Basics2/lesson1/3.re_example/">
+					<a class="post-card-content-link" title="NLP系列" href="/2019-03-21/nlp/4Text_Classification/Chapter2_Chapter1_Text_Classification_based_on_Deep_Learning/2.News_Classification_based_on_CNN/">
 						<header class="post-card-header">
 							<span class="post-card-tags">
 								
@@ -188,7 +188,7 @@
 								
 								
 								
-								简单爬虫与正则表达式应用有个非常热门的自然语言处理垂直技术叫做知识图谱，知识图谱的构建需要依托于大量的实体和关系，很多这样的内容是可以从互联网上取到的。我们这里
+								使用TensorFlow构建卷积神经网络完成新闻分类1234567891011121314# 数据预处理import jiebaimport pandas as
 								...
 							</p>
 						</div>
@@ -205,7 +205,7 @@
 							</div>
 						</div>
 						<span class="reading-time">
-							50
+							46
 							min read
 						</span>
 					</footer>
@@ -215,7 +215,7 @@
 			<article class="post-card post  no-image ">
 				
 				<div class="post-card-content">
-					<a class="post-card-content-link" title="NLP系列" href="/2019-03-21/nlp/2NLP_Basics2/lesson3/Chinese_text_analysis_and_processing/">
+					<a class="post-card-content-link" title="NLP系列" href="/2019-03-21/nlp/8Machine_Translation/3.Facebook_Machine_Translation_Model_based_on_CNN/Facebook_Machine_Translation_Model_based_on_CNN/">
 						<header class="post-card-header">
 							<span class="post-card-tags">
 								
@@ -238,9 +238,23 @@
 								
 								
 								
-								中文文本基本任务与处理1.分词对于中文和日文这样的特殊亚洲语系文本而言，字和字之间是紧密相连的，单纯从文本形态上无法区分具备独立含义的词（拉丁语系纯天然由空格分隔不同的word），而不同的词以不同的方式排布，可以表达不同的内容和情感，因此在很多中文任务中，我们需要做的第一个处理叫做分词。
-这是一个非常基础的功能，但是会较大程度影响下游任务(机器翻译、情感分析、文本理解)的效果。
-目前主流的分词方法主要是基于词典匹配的分词方法(正向最大匹配法、逆向最大匹配法和双向匹配分词法等)
+								facebook基于CNN的机器翻译模型本章概述
+基于CNN的翻译系统模型架构
+Pooling Encoder
+Convolution Encoder
+Convolution NMT
+对比CNN与RNN去构建的 encoder-decoder模型，分析CNN的优缺点
+
+
+使用CNN完成神经翻译系统的Trick
+对模型某些部分做缩放（scaling）
+对模型参数的初始化
+对超参数的选择
+
+
+【实战】facebook CNN机器翻译系统代码解析
+举例训练，及测试 CNN翻译系统
+
 								...
 							</p>
 						</div>
@@ -257,7 +271,63 @@
 							</div>
 						</div>
 						<span class="reading-time">
-							26
+							38
+							min read
+						</span>
+					</footer>
+				</div>
+			</article>
+			
+			<article class="post-card post  no-image ">
+				
+				<div class="post-card-content">
+					<a class="post-card-content-link" title="NLP系列" href="/2019-03-21/nlp/2NLP_Basics2/lesson2/3.Emotion Detection/">
+						<header class="post-card-header">
+							<span class="post-card-tags">
+								
+								
+								NLP
+								| 
+								
+								<time datetime="2019-03-21T11:19:18.000Z">
+									2019-03-21
+								</time>
+							</span>
+							<h2 class="post-card-title">NLP系列</h2>
+						</header>
+						<div class="post-card-excerpt">
+							<p>
+								
+								
+								
+								
+								
+								
+								
+								简易情感分析我们来结合一下sklearn，pandas和刚讲过的工具库，来构建一个简易情感分析模型。
+12import numpy as npimport pandas as pd
+加载数据1data = pd.read_csv("./data/emotion_data.csv")
+1data.shape
+(40000, 4)
+1data.head()
+    .dataframe tbody tr th:only-of-type {        vertical-alig
+								...
+							</p>
+						</div>
+					</a>
+					<footer class="post-card-meta">
+						<div class="author-list">
+							<div class="author-list-item">
+								<div class="author-name-tooltip">pastor</div>
+								
+								<a href="/about" class="static-avatar">
+									<img class="author-profile-image" src="/images/favicon-32x32-next.png" alt="pastor">
+								</a>
+								
+							</div>
+						</div>
+						<span class="reading-time">
+							8
 							min read
 						</span>
 					</footer>
@@ -320,7 +390,7 @@
 			<article class="post-card post  no-image ">
 				
 				<div class="post-card-content">
-					<a class="post-card-content-link" title="NLP系列" href="/2019-03-21/nlp/8Machine_Translation/1.Statistical_machine_translation/Statistical_machine_translation/">
+					<a class="post-card-content-link" title="NLP系列" href="/2019-03-21/nlp/2NLP_Basics2/lesson1/3.re_example/">
 						<header class="post-card-header">
 							<span class="post-card-tags">
 								
@@ -343,7 +413,10 @@
 								
 								
 								
-								moses统计翻译系统实战1234567891011%%bash# 安装 Moses# http://www.statmt.org/moses/?n=Development.GetStarted# 下载数据集corpus="$PWD/corpus"mkdir -p $corpuscd $corpus wget http://www.statmt.org/wmt13/training-parallel-nc-v8.tgztar zxvf training-parallel-nc
+								简单爬虫与正则表达式应用有个非常热门的自然语言处理垂直技术叫做知识图谱，知识图谱的构建需要依托于大量的实体和关系，很多这样的内容是可以从互联网上取到的。我们这里举一个最简单的应用，我们用正则表达式把搜狗百科的一些词条和解释抽取出来。
+123# 引入爬虫工具库import requests as rqimport re
+12# 发送请求page = rq.get("https://baike.sogou.com/v231013.htm")
+12# 返回状态码正常page.sta
 								...
 							</p>
 						</div>
@@ -360,7 +433,7 @@
 							</div>
 						</div>
 						<span class="reading-time">
-							65
+							50
 							min read
 						</span>
 					</footer>
@@ -422,7 +495,7 @@
 			<article class="post-card post  no-image ">
 				
 				<div class="post-card-content">
-					<a class="post-card-content-link" title="基于DRMM的问答匹配" href="/2019-03-21/nlp/11Text_similarity_calculation_and_text_matching/Chapter2_Text_semantic_matching_based_on_deep_learning/03Question_and_answer_matching_based_on_DRMM/">
+					<a class="post-card-content-link" title="NLP系列" href="/2019-03-21/nlp/2NLP_Basics2/lesson1/1.basic_text_processing/">
 						<header class="post-card-header">
 							<span class="post-card-tags">
 								
@@ -434,7 +507,7 @@
 									2019-03-21
 								</time>
 							</span>
-							<h2 class="post-card-title">基于DRMM的问答匹配</h2>
+							<h2 class="post-card-title">NLP系列</h2>
 						</header>
 						<div class="post-card-excerpt">
 							<p>
@@ -445,9 +518,22 @@
 								
 								
 								
-								基于DRMM的问答匹配DRRM模型我们参考MatchZoo的实现
-我们略过文本的预处理，训练和预测的代码，直接阅读模型的代码。模型使用Keras框架实现。
-123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858
+								基本文本处理操作NLP处理的对象是文本字符串内容，大家需要熟悉一些基本的文本字符串操作，这里以python为例，帮大家复习以下的中英文字符串操作：
+
+替换
+截取
+复制
+连接
+分割
+排序
+比较
+查找
+包含
+大小写转换
+
+1.清理与替换1en_str = " hello world, hello, my name is pastor! "
+12# 去空格及特殊符号  en_str.strip().lstrip().rstrip(',')
+12# 字符串替换en_str.repla
 								...
 							</p>
 						</div>
@@ -464,7 +550,7 @@
 							</div>
 						</div>
 						<span class="reading-time">
-							10
+							31
 							min read
 						</span>
 					</footer>
@@ -531,7 +617,7 @@
 			<article class="post-card post  no-image ">
 				
 				<div class="post-card-content">
-					<a class="post-card-content-link" title="NLP系列" href="/2019-03-21/nlp/10Visual_Text_Task_Image_Caption_and_VQA/Chapter2_Visual_Q_A/VQA/">
+					<a class="post-card-content-link" title="NLP系列" href="/2019-03-21/nlp/11Text_similarity_calculation_and_text_matching/Chapter2_Text_semantic_matching_based_on_deep_learning/04WordAVG/">
 						<header class="post-card-header">
 							<span class="post-card-tags">
 								
@@ -554,14 +640,8 @@
 								
 								
 								
-								视觉问答机器人（VQA) 原理与实现本章概述2.1 视觉问答机器人问题介绍
-2.2 基于图像信息和文本信息抽取匹配的VQA实现方案
-2.3 基于注意力（attention）的深度学习VQA实现方案
-2.4 【实战】使用keras完成CNN+RNN基础VQA模型
-2.5 【实战】基于attention 的深度学习VQA模型实现
-2.1 视觉问答机器人问题介绍
-视觉问答任务的定义是对于一张图片和一个跟这幅图片相关的问题，机器需要根据图片信息对问题进行回答。
-输入：一张图片和一个关
+								Word Averaging123456import gensimimport gensim.downloader as apiimport numpy as npfrom sklearn.metrics.pairwise import cosine_similaritymodel = api.load("glove-twitter-25")
+12print(model.get_vector("dog"))print(model.get_vector("dog").shape
 								...
 							</p>
 						</div>
@@ -578,7 +658,7 @@
 							</div>
 						</div>
 						<span class="reading-time">
-							38
+							29
 							min read
 						</span>
 					</footer>
@@ -588,7 +668,7 @@
 			<article class="post-card post  no-image ">
 				
 				<div class="post-card-content">
-					<a class="post-card-content-link" title="NLP系列" href="/2019-03-21/nlp/2NLP_Basics2/lesson2/2.English_text_analysis_and_processing-spaCy/">
+					<a class="post-card-content-link" title="基于DRMM的问答匹配" href="/2019-03-21/nlp/11Text_similarity_calculation_and_text_matching/Chapter2_Text_semantic_matching_based_on_deep_learning/03Question_and_answer_matching_based_on_DRMM/">
 						<header class="post-card-header">
 							<span class="post-card-tags">
 								
@@ -600,7 +680,7 @@
 									2019-03-21
 								</time>
 							</span>
-							<h2 class="post-card-title">NLP系列</h2>
+							<h2 class="post-card-title">基于DRMM的问答匹配</h2>
 						</header>
 						<div class="post-card-excerpt">
 							<p>
@@ -611,10 +691,9 @@
 								
 								
 								
-								英文文本处理与spaCyspaCy是Python和Cython中的高级自然语言处理库，它建立在最新的研究基础之上，从一开始就设计用于实际产品。spaCy 带有预先训练的统计模型和单词向量，目前支持 20 多种语言的标记。它具有世界上速度最快的句法分析器，用于标签的卷积神经网络模型，解析和命名实体识别以及与深度学习整合。
-
-0.英文Tokenization(标记化/分词)
-文本是不能成段送入模型中进行分析的，我们通常会把文本切成有独立含义的字、词或者短语，这个过程叫做token
+								基于DRMM的问答匹配DRRM模型我们参考MatchZoo的实现
+我们略过文本的预处理，训练和预测的代码，直接阅读模型的代码。模型使用Keras框架实现。
+123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858
 								...
 							</p>
 						</div>
@@ -631,59 +710,7 @@
 							</div>
 						</div>
 						<span class="reading-time">
-							25
-							min read
-						</span>
-					</footer>
-				</div>
-			</article>
-			
-			<article class="post-card post  no-image ">
-				
-				<div class="post-card-content">
-					<a class="post-card-content-link" title="NLP系列" href="/2019-03-21/nlp/11Text_similarity_calculation_and_text_matching/Chapter1_Text_similarity_and_its_application/01Edit_Distance_Calculation_based_on_Python/">
-						<header class="post-card-header">
-							<span class="post-card-tags">
-								
-								
-								NLP
-								| 
-								
-								<time datetime="2019-03-21T11:19:18.000Z">
-									2019-03-21
-								</time>
-							</span>
-							<h2 class="post-card-title">NLP系列</h2>
-						</header>
-						<div class="post-card-excerpt">
-							<p>
-								
-								
-								
-								
-								
-								
-								
-								编辑距离计算python实现
-
-1234567891011121314151617181920212223242526272829def editDistDP(s1, s2):     m = len(s1)    n = len(s2)    # 创建一张表格记录所有子问题的答案    dp = [[0 for x in range(n+1)] for x in range(m+1)]       # 从下往上填充DP表格    for i in range(m+1):  
-								...
-							</p>
-						</div>
-					</a>
-					<footer class="post-card-meta">
-						<div class="author-list">
-							<div class="author-list-item">
-								<div class="author-name-tooltip">pastor</div>
-								
-								<a href="/about" class="static-avatar">
-									<img class="author-profile-image" src="/images/favicon-32x32-next.png" alt="pastor">
-								</a>
-								
-							</div>
-						</div>
-						<span class="reading-time">
-							28
+							10
 							min read
 						</span>
 					</footer>
@@ -1087,31 +1114,6 @@
 
             
             
-            
-
-<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
-    <header class="read-next-card-header tagcloud-card">
-        <h3 class="read-next-card-header-title">Categories</h3>
-    </header>
-    <div class="read-next-card-content">
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Biological-Thinking/">Biological Thinking</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Cognitive-Neuroscience/">Cognitive Neuroscience</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/DeepLearning/">DeepLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/FFmpeg/">FFmpeg</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MacOS/">MacOS</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MachineLearning/">MachineLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/NLP/">NLP</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/PM/">PM</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/RPC/">RPC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Shell/">Shell</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Vim/">Vim</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/WebRTC/">WebRTC</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/deeplearn/">deeplearn</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/git/">git</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/http/">http</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/machineLearning/">machineLearning</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">other</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/前端/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/文摘/">文摘</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/架构师/">架构师</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/知识图谱/">知识图谱</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/职业规划/">职业规划</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/职业规划/个人提升/">个人提升</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机基础/">计算机基础</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/计算机相关技术资料整理/">计算机相关技术资料整理</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/认知升级/">认知升级</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/财务自由/">财务自由</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/财富自由/">财富自由</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/运维/">运维</a></li></ul>
-    </div>
-</article>
-
-
-            
-            
-            
-
-<article class="read-next-card" style="background-image: url(/images/favicon-32x32-next.png)">
-	<header class="read-next-card-header tagcloud-card">
-		<h3 class="read-next-card-header-title">Tag Cloud</h3>
-	</header>
-	<div class="read-next-card-content-ext">
-		<a href="/tags/AI/" style="font-size: 14px;">AI</a> <a href="/tags/Android/" style="font-size: 14px;">Android</a> <a href="/tags/Biological/" style="font-size: 17.75px;">Biological</a> <a href="/tags/Browser/" style="font-size: 14px;">Browser</a> <a href="/tags/Business/" style="font-size: 16.5px;">Business</a> <a href="/tags/Cognitive/" style="font-size: 17.75px;">Cognitive</a> <a href="/tags/DeepLearning/" style="font-size: 15.25px;">DeepLearning</a> <a href="/tags/Docker/" style="font-size: 14px;">Docker</a> <a href="/tags/FFmpeg/" style="font-size: 21.5px;">FFmpeg</a> <a href="/tags/FastCGI/" style="font-size: 14px;">FastCGI</a> <a href="/tags/IP划分/" style="font-size: 14px;">IP划分</a> <a href="/tags/IP地址/" style="font-size: 14px;">IP地址</a> <a href="/tags/Knowledge-Graph/" style="font-size: 16.5px;">Knowledge Graph</a> <a href="/tags/Linux-Shell/" style="font-size: 14px;">Linux Shell</a> <a href="/tags/MacOS/" style="font-size: 15.25px;">MacOS</a> <a href="/tags/Neuroscience/" style="font-size: 17.75px;">Neuroscience</a> <a href="/tags/RPC/" style="font-size: 14px;">RPC</a> <a href="/tags/Thinking/" style="font-size: 17.75px;">Thinking</a> <a href="/tags/Tutorial/" style="font-size: 20.25px;">Tutorial</a> <a href="/tags/WebRTC/" style="font-size: 21.5px;">WebRTC</a> <a href="/tags/WebSocket/" style="font-size: 14px;">WebSocket</a> <a href="/tags/algorithm/" style="font-size: 15.25px;">algorithm</a> <a href="/tags/config/" style="font-size: 14px;">config</a> <a href="/tags/decisionTree/" style="font-size: 14px;">decisionTree</a> <a href="/tags/git/" style="font-size: 17.75px;">git</a> <a href="/tags/google-adsense/" style="font-size: 14px;">google adsense</a> <a href="/tags/hexo/" style="font-size: 17.75px;">hexo</a> <a href="/tags/http/" style="font-size: 17.75px;">http</a> <a href="/tags/knn/" style="font-size: 14px;">knn</a> <a href="/tags/lighttpd/" style="font-size: 15.25px;">lighttpd</a> <a href="/tags/mxnet/" style="font-size: 14px;">mxnet</a> <a href="/tags/mysql/" style="font-size: 22.75px;">mysql</a> <a href="/tags/nlp/" style="font-size: 24px;">nlp</a> <a href="/tags/nodejs/" style="font-size: 14px;">nodejs</a> <a href="/tags/openvpn/" style="font-size: 14px;">openvpn</a> <a href="/tags/other/" style="font-size: 15.25px;">other</a> <a href="/tags/paddle/" style="font-size: 14px;">paddle</a> <a href="/tags/planning/" style="font-size: 20.25px;">planning</a> <a href="/tags/pracitce/" style="font-size: 15.25px;">pracitce</a> <a href="/tags/rich/" style="font-size: 14px;">rich</a> <a href="/tags/shell/" style="font-size: 14px;">shell</a> <a href="/tags/svn/" style="font-size: 14px;">svn</a> <a href="/tags/ubuntu/" style="font-size: 14px;">ubuntu</a> <a href="/tags/vim/" style="font-size: 16.5px;">vim</a> <a href="/tags/webpack/" style="font-size: 14px;">webpack</a> <a href="/tags/webrtc/" style="font-size: 19px;">webrtc</a> <a href="/tags/个人发展/" style="font-size: 14px;">个人发展</a> <a href="/tags/互联网实事/" style="font-size: 14px;">互联网实事</a> <a href="/tags/外链/" style="font-size: 14px;">外链</a> <a href="/tags/提升个人思维/" style="font-size: 14px;">提升个人思维</a> <a href="/tags/文摘/" style="font-size: 15.25px;">文摘</a> <a href="/tags/斜杠青年/" style="font-size: 14px;">斜杠青年</a> <a href="/tags/机器学习/" style="font-size: 16.5px;">机器学习</a> <a href="/tags/架构师/" style="font-size: 14px;">架构师</a> <a href="/tags/测试工具/" style="font-size: 14px;">测试工具</a> <a href="/tags/睡后成长/" style="font-size: 14px;">睡后成长</a> <a href="/tags/睡后收入/" style="font-size: 14px;">睡后收入</a> <a href="/tags/税后收入/" style="font-size: 14px;">税后收入</a> <a href="/tags/笔记/" style="font-size: 14px;">笔记</a> <a href="/tags/自然语言处理/" style="font-size: 24px;">自然语言处理</a> <a href="/tags/视频流/" style="font-size: 15.25px;">视频流</a> <a href="/tags/计算机相关技术资料整理/" style="font-size: 14px;">计算机相关技术资料整理</a> <a href="/tags/认知升级/" style="font-size: 14px;">认知升级</a> <a href="/tags/限速/" style="font-size: 14px;">限速</a> <a href="/tags/面试/" style="font-size: 14px;">面试</a> <a href="/tags/项目管理/" style="font-size: 14px;">项目管理</a>
-	</div>
-</article>
-
             
         </div>
     </div>
